@@ -1,0 +1,699 @@
+{
+    "@context": {
+        "adms": "http://www.w3.org/ns/adms#",
+        "cpsv": "http://purl.org/vocab/cpsv#",
+        "cv": "http://data.europa.eu/m8g/",
+        "dcat": "http://www.w3.org/ns/dcat#",
+        "dct": "http://purl.org/dc/terms/",
+        "eli": "http://data.europa.eu/eli/ontology#",
+        "foaf": "http://xmlns.com/foaf/0.1/",
+        "locn": "http://www.w3.org/ns/locn#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "schema": "https://schema.org/",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    },
+    "@graph": [
+        {
+            "@id": "http://cpsvap.semic.eu/DGP-2016-2082",
+            "@type": "eli:LegalResource",
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Deliberazione della Giunta provinciale n. 2082 del 24 novembre 2016"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "DGP-2016-2082"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/3.4_hiring_employee",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "3.4 Hiring an employee"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/Q88.9.9",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "Q88.9.9 - Other social work activities without accommodation n.e.c."
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/94957bab-e8cb-44fe-bc7a-3447cf478760",
+            "@type": "cv:Cost",
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Marca da bollo da 16 euro, se non esenti"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "94957bab-e8cb-44fe-bc7a-3447cf478760"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/p_TN_1519",
+            "@type": "cpsv:PublicService",
+            "cpsv:hasInput": [
+                {
+                    "@id": "http://cpsvap.semic.eu/a0777fd1-2e0f-466c-9150-c5dd6e5d9515"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/956f5350-aba1-439d-aa5f-03de060cac97"
+                }
+            ],
+            "cpsv:produces": {
+                "@id": "http://cpsvap.semic.eu/output_fb"
+            },
+            "cv:hasChannel": {
+                "@id": "http://cpsvap.semic.eu/CH_PS_GeAPF"
+            },
+            "cv:hasCompetentAuthority": {
+                "@id": "http://cpsvap.semic.eu/LYMI3J"
+            },
+            "cv:hasContactPoint": [
+                {
+                    "@id": "http://cpsvap.semic.eu/CP_LYMI3J"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/CP_LYMI3J_pec"
+                }
+            ],
+            "cv:hasCost": [
+                {
+                    "@id": "http://cpsvap.semic.eu/94957bab-e8cb-44fe-bc7a-3447cf478760"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/2189a486-6ffd-4cd5-939f-4848b3189ad4"
+                }
+            ],
+            "cv:hasCriterion": {
+                "@id": "http://cpsvap.semic.eu/19194197-782b-418e-b5d2-e033c9147a63"
+            },
+            "cv:hasLegalResource": [
+                {
+                    "@id": "http://cpsvap.semic.eu/DGP-2015-1945"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/LP-1983-19"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/LP-2011-1"
+                }
+            ],
+            "cv:isDescribedAt": {
+                "@id": "http://cpsvap.semic.eu/WEB_p_TN_1519"
+            },
+            "cv:isGroupedBy": [
+                {
+                    "@id": "http://cpsvap.semic.eu/BE_1.7"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/BE_3.4"
+                }
+            ],
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "I datori di lavoro privati possono richiedere un contributo per la realizzazione di interventi di riorganizzazione e di rimodulazione degli orari di lavoro collegati ad impegni di cura e di assistenza, anche utilizzando il telelavoro, volti ad aumentare la possibilità di conciliare la vita familiare e quella lavorativa dei dipendenti.\nIl contributo è concesso per ogni lavoratore coinvolto in forme di flessibilità o per ogni disoccupato assunto a tempo indeterminato. Il contributo può anche riguardare le spese di consulenza per la riorganizzazione aziendale e le spese di attuazione del progetto riorganizzativo. In tal caso il contributo non può superare il 70% delle relative spese.\n\nIl contributo è ridotto nella misura corrispondente al finanziamento riconosciuto nell'ambito del Family-Audit, nel caso in cui il datore di lavoro aderisca alla sperimentazione nazionale del Family-Audit."
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "p_TN_1519"
+            },
+            "dct:language": {
+                "@id": "http://publications.europa.eu/resource/authority/language/ITA"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Work family - progetti sui regimi di orario"
+            },
+            "dct:type": [
+                {
+                    "@id": "http://cpsvap.semic.eu/01.3.1"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/10.4.0"
+                }
+            ]
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/19194197-782b-418e-b5d2-e033c9147a63",
+            "@type": "cv:CriterionRequirement",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "19194197-782b-418e-b5d2-e033c9147a63"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Possono presentare domanda i datori di lavoro privati con sede legale o unità produttiva in provincia di Trento limitatamente ai lavoratori ivi occupati con un rapporto alle dipendenze di natura privatistica, i datori di lavoro privati con sede legale o unità produttiva in provincia di Trento aderenti al processo di certificazione Family Audit.\n\nLe esigenze di conciliazione dei dipendenti devono riguardare figli minori conviventi di età inferiore ai 12 anni oppure persone conviventi o, se non conviventi, parenti di I o II grado o affini di I grado, con bisogno di assistenza accertata da certificazione medica.\n\nSono escluse dal finanziamento le società e gli organismi a totale o prevalente partecipazione pubblica e le loro società controllate, gli enti strumentali della Provincia, gli organismi controllati e gli enti strumentali degli enti locali, nonché i soggetti dagli stessi controllati."
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/CP_EHGQO1_pec",
+            "@type": "schema:ContactPoint",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "CP_EHGQO1_pec"
+            },
+            "schema:email": {
+                "@type": "rdfs:Literal",
+                "@value": "agenziafamiglia@pec.provincia.tn.it"
+            },
+            "schema:telephone": [
+                {
+                    "@type": "rdfs:Literal",
+                    "@value": "0461494110"
+                },
+                {
+                    "@type": "rdfs:Literal",
+                    "@value": "0461494112"
+                }
+            ]
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/CP_LYMI3J_pec",
+            "@type": "schema:ContactPoint",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "CP_LYMI3J_pec"
+            },
+            "schema:email": {
+                "@type": "rdfs:Literal",
+                "@value": "amministrazione.adl@pec.provincia.tn.it"
+            },
+            "schema:telephone": [
+                {
+                    "@type": "rdfs:Literal",
+                    "@value": "0461496020"
+                },
+                {
+                    "@type": "rdfs:Literal",
+                    "@value": "800264760"
+                }
+            ]
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/LP-1983-19",
+            "@type": "eli:LegalResource",
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Legge provinciale n. 19 del 16 giugno 1983"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "LP-1983-19"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/BE_1.2",
+            "@type": [
+                "cv:Event",
+                "cv:BusinessEvent"
+            ],
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Abilitazioni, riconoscimenti professionali, licenze, autorizzazioni per avviare un'attività (primo rilascio)"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "BE_1.2"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Richiesta licenze/permessi/certificati"
+            },
+            "dct:type": {
+                "@id": "http://cpsvap.semic.eu/1.2_licence"
+            }
+        },
+        {
+            "@id": "http://publications.europa.eu/resource/authority/data-theme/SOCI",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "SOCI"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/WEB_p_TN_1519",
+            "@type": "cv:PublicServiceDataset",
+            "dcat:landingPage": {
+                "@id": "https://www.agenzialavoro.tn.it/Schede-informative/WORK-FAMILY-Progetti-sui-regimi-di-orario"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "WEB_p_TN_1519"
+            },
+            "dct:publisher": {
+                "@id": "http://cpsvap.semic.eu/LYMI3J"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Work family - progetti sui regimi di orario"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/WEB_p_TN_NP7",
+            "@type": "cv:PublicServiceDataset",
+            "dcat:landingPage": {
+                "@id": "https://www.servizionline.provincia.tn.it/portal/server.pt/community/imprese_e_professionisti/1065/certificazione_family_audit/291667"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "WEB_p_TN_NP7"
+            },
+            "dct:publisher": {
+                "@id": "http://cpsvap.semic.eu/EHGQO1"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Certificazione Family Audit"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/BE_3.4",
+            "@type": [
+                "cv:Event",
+                "cv:BusinessEvent"
+            ],
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Servizi per il personale"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "BE_3.4"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Gestione personale"
+            },
+            "dct:type": {
+                "@id": "http://cpsvap.semic.eu/3.4_hiring_employee"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/output_financial_benefit",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "Financial benefit"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/BE_1.7",
+            "@type": [
+                "cv:Event",
+                "cv:BusinessEvent"
+            ],
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Servizi per il personale"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "BE_1.7"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Gestione personale"
+            },
+            "dct:type": {
+                "@id": "http://cpsvap.semic.eu/1.7_hiring_employee"
+            }
+        },
+        {
+            "@id": "http://publications.europa.eu/resource/authority/language/ITA",
+            "@type": "dct:LinguisticSystem",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "Italiano"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/LYMI3J",
+            "@type": [
+                "cv:PublicOrganisation",
+                "dct:Agent"
+            ],
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "LYMI3J"
+            },
+            "dct:spatial": {
+                "@id": "http://www.geonames.org/3165241/"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Provincia autonoma di Trento - Agenzia del lavoro"
+            },
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "Provincia autonoma di Trento - Agenzia del lavoro"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/p_TN_NP7",
+            "@type": "cpsv:PublicService",
+            "cpsv:hasInput": {
+                "@id": "http://cpsvap.semic.eu/507ca4fb-ba34-4824-a192-cce68d4b583e"
+            },
+            "cpsv:produces": {
+                "@id": "http://cpsvap.semic.eu/output_rec"
+            },
+            "cv:hasChannel": {
+                "@id": "http://cpsvap.semic.eu/CH_PS_GeAPF"
+            },
+            "cv:hasCompetentAuthority": {
+                "@id": "http://cpsvap.semic.eu/EHGQO1"
+            },
+            "cv:hasContactPoint": [
+                {
+                    "@id": "http://cpsvap.semic.eu/CP_EHGQO1"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/CP_EHGQO1_pec"
+                }
+            ],
+            "cv:hasCost": [
+                {
+                    "@id": "http://cpsvap.semic.eu/2189a486-6ffd-4cd5-939f-4848b3189ad4"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/94957bab-e8cb-44fe-bc7a-3447cf478760"
+                }
+            ],
+            "cv:hasLegalResource": [
+                {
+                    "@id": "http://cpsvap.semic.eu/DGP-2016-2082"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/LP-2011-1"
+                }
+            ],
+            "cv:isDescribedAt": {
+                "@id": "http://cpsvap.semic.eu/WEB_p_TN_NP7"
+            },
+            "cv:isGroupedBy": [
+                {
+                    "@id": "http://cpsvap.semic.eu/BE_3.2"
+                },
+                {
+                    "@id": "http://cpsvap.semic.eu/BE_1.2"
+                }
+            ],
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Qualsiasi organizzazione pubblica o privata, con o senza scopo di lucro, di qualsiasi dimensione, qualunque sia il prodotto o il servizio fornito, che intenda adottare un approccio organizzativo attento alle esigenze di conciliazione famiglia-lavoro dei propri lavoratori, può avviare un percorso di certificazione che consente di ottenere ed utilizzare il marchio Family Audit. Lo standard Family Audit promuove un cambiamento culturale all'interno delle organizzazioni, consentendo alle stesse di adottare delle politiche di gestione del personale orientate al benessere dei propri dipendenti e delle loro famiglie.\nIl processo di certificazione si realizza attraverso percorsi di valutazione sistematica e standardizzata con il supporto di professionisti accreditati.\n\nE' inoltre possibile attivare dei percorsi di mantenimento e di consolidamento della certificazione già ottenuta."
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "p_TN_NP7"
+            },
+            "dct:language": {
+                "@id": "http://publications.europa.eu/resource/authority/language/ITA"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Certificazione Family Audit"
+            },
+            "dct:type": {
+                "@id": "http://cpsvap.semic.eu/01.3.1"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/507ca4fb-ba34-4824-a192-cce68d4b583e",
+            "@type": "cv:Evidence",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "507ca4fb-ba34-4824-a192-cce68d4b583e"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "A seconda del percorso che interessa, va presentata la domanda di attivazione del percorso di certificazione, la domanda di attivazione del percorso di mantenimento oppure la domanda di attivazione del percorso di consolidamento"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/3.2_licence",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "3.2 Needing a licence, permit or certificate to start or continue an activity"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/1.2_licence",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "1.2Needing a licence, permit or certificate to start or continue an activity"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/output_fb",
+            "@type": "cv:Output",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "output_fb"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Contributi"
+            },
+            "dct:type": {
+                "@id": "http://cpsvap.semic.eu/output_financial_benefit"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/BE_3.2",
+            "@type": [
+                "cv:BusinessEvent",
+                "cv:Event"
+            ],
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Abilitazioni, riconoscimenti professionali, licenze, autorizzazioni per proseguire un'attività (rinnovo)"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "BE_3.2"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Richiesta licenze/permessi/certificati"
+            },
+            "dct:type": {
+                "@id": "http://cpsvap.semic.eu/3.2_licence"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/CP_EHGQO1",
+            "@type": "schema:ContactPoint",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "CP_EHGQO1"
+            },
+            "schema:email": {
+                "@type": "rdfs:Literal",
+                "@value": "agenziafamiglia@provincia.tn.it"
+            },
+            "schema:faxNumber": {
+                "@type": "rdfs:Literal",
+                "@value": "0461494111"
+            },
+            "schema:telephone": [
+                {
+                    "@type": "rdfs:Literal",
+                    "@value": "0461494110"
+                },
+                {
+                    "@type": "rdfs:Literal",
+                    "@value": "0461494112"
+                }
+            ]
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/LP-2011-1",
+            "@type": "eli:LegalResource",
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Legge provinciale n. 1 del 2 marzo 2011"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "LP-2011-1"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/CH_PS_GeAPF",
+            "@type": "cv:Channel",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "CH_PS_GeAPF"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/output_rec",
+            "@type": "cv:Output",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "output_rec"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Abilitazioni, iscrizioni, certificazioni, dati"
+            },
+            "dct:type": {
+                "@id": "http://cpsvap.semic.eu/output_recognition"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/status_attivo",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "attivo"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/1.7_hiring_employee",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "1.7 Hiring an employee "
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/10.4.0",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "10.4.0 - Family and children (IS)"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/01.3.1",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "01.3.1 - General personnel services (CS)"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/a0777fd1-2e0f-466c-9150-c5dd6e5d9515",
+            "@type": "cv:Evidence",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "a0777fd1-2e0f-466c-9150-c5dd6e5d9515"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Domanda di ammissione"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/EHGQO1",
+            "@type": [
+                "dct:Agent",
+                "cv:PublicOrganisation"
+            ],
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "EHGQO1"
+            },
+            "dct:spatial": {
+                "@id": "http://www.geonames.org/3165241/"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Provincia autonoma di Trento - Agenzia provinciale per la famiglia, la natalità e le politiche giovanili (APF)"
+            },
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "Provincia autonoma di Trento - Agenzia provinciale per la famiglia, la natalità e le politiche giovanili (APF)"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/CP_LYMI3J",
+            "@type": "schema:ContactPoint",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "CP_LYMI3J"
+            },
+            "schema:email": {
+                "@type": "rdfs:Literal",
+                "@value": "direzione@agenzialavoro.tn.it"
+            },
+            "schema:faxNumber": {
+                "@type": "rdfs:Literal",
+                "@value": "0461496180"
+            },
+            "schema:telephone": [
+                {
+                    "@type": "rdfs:Literal",
+                    "@value": "800264760"
+                },
+                {
+                    "@type": "rdfs:Literal",
+                    "@value": "0461496020"
+                }
+            ]
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/output_recognition",
+            "@type": "skos:Concept",
+            "skos:prefLabel": {
+                "@type": "rdfs:Literal",
+                "@value": "Recognition"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/DGP-2015-1945",
+            "@type": "eli:LegalResource",
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Deliberazione della Giunta provinciale n. 1945 del 2 novembre  2015"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "DGP-2015-1945"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/2189a486-6ffd-4cd5-939f-4848b3189ad4",
+            "@type": "cv:Cost",
+            "dct:description": {
+                "@type": "rdfs:Literal",
+                "@value": "Costi per l'attivazione del processo definiti nella delibera di riferimento e quota di compartecipazione ai costi della certificazione (da 100 a 500 euro a seconda della dimensione dell'organizzazione)"
+            },
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "2189a486-6ffd-4cd5-939f-4848b3189ad4"
+            }
+        },
+        {
+            "@id": "http://cpsvap.semic.eu/956f5350-aba1-439d-aa5f-03de060cac97",
+            "@type": "cv:Evidence",
+            "dct:identifier": {
+                "@type": "rdfs:Literal",
+                "@value": "956f5350-aba1-439d-aa5f-03de060cac97"
+            },
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Progetto di intervento"
+            }
+        },
+        {
+            "@id": "http://www.geonames.org/3165241/",
+            "@type": "dct:Location",
+            "dct:title": {
+                "@type": "rdfs:Literal",
+                "@value": "Trento"
+            }
+        }
+    ]
+}
