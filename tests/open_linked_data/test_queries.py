@@ -1,6 +1,8 @@
 import unittest
+
 from rdflib import Literal, URIRef
-from c4c_cpsv_ap.open_linked_data.queries import get_types, TYPE_CONTACT_POINT, TYPE_PUBLICSERVICE,\
+
+from c4c_cpsv_ap.open_linked_data.queries import get_types, TYPE_CONTACT_POINT, TYPE_PUBLICSERVICE, \
     get_contact_points, get_public_services, get_contact_point_info
 
 SPARQL_ENDPOINT = 'http://192.168.105.41:3030/C4C_demo'
@@ -25,8 +27,6 @@ class TestTypes(unittest.TestCase):
             self.assertIn(str(TYPE_PUBLICSERVICE), map(str, l_types), "Couldn't find the 'public service' type")
 
 
-
-
 class TestGetContactPoints(unittest.TestCase):
 
     def test_find_something(self):
@@ -35,8 +35,8 @@ class TestGetContactPoints(unittest.TestCase):
         with self.subTest('Non-empty'):
             self.assertTrue(l_cp, 'Should be non-empty')
 
-        for k, class_i  in zip(('uri', ),
-                       (URIRef, )):
+        for k, class_i in zip(('uri',),
+                              (URIRef,)):
 
             with self.subTest(k):
                 for l_i in l_cp:
@@ -54,22 +54,24 @@ class TestGetContactPointInfo(unittest.TestCase):
         """
         l_cp = get_contact_points(SPARQL_ENDPOINT)
 
-        # First element of all contact points and first element to get URI to CP.
-        cp_0 = l_cp[0]['uri']
-
-        l_cp_info = get_contact_point_info(SPARQL_ENDPOINT, cp_0)
+        l_cp_info_aggr = [d_i for cp_i in l_cp for d_i in get_contact_point_info(SPARQL_ENDPOINT, cp_i['uri'])]
 
         with self.subTest('Non-empty'):
-            self.assertTrue(l_cp_info, 'Should be non-empty')
+            self.assertTrue(l_cp_info_aggr, 'Should be non-empty')
 
-        for k, class_i  in zip(('uri', 'pred', 'label'),
-                       (URIRef, URIRef, Literal)):
+        for k, class_i in zip(('uri', 'pred', 'label'),
+                              (URIRef, URIRef, Literal)):
 
             with self.subTest(k):
-                for l_i in l_cp_info:
+                for l_i in l_cp_info_aggr:
                     self.assertIn(k, l_i.keys())
                     self.assertIsInstance(l_i.get(k), class_i)
 
+        set_pred = set(str(d_i.get('pred')) for d_i in l_cp_info_aggr)
+        for s in ['email', 'tele', 'hour']:
+            with self.subTest(f'Contact info predicate "{s}":'):
+                self.assertTrue(any((s in pred_i.lower()) for pred_i in set_pred),
+                                f'Pred "{s}" not found in {set_pred}')
 
 
 class TestGetPublicServices(unittest.TestCase):
@@ -87,8 +89,8 @@ class TestGetPublicServices(unittest.TestCase):
         #         self.assertIsInstance(str(title), str, 'Should be equivalent to strings')
         #         self.assertIsInstance(str(description), str, 'Should be equivalent to strings')
 
-        for k, class_i  in zip(('uri', 'title', 'description'),
-                       (URIRef, Literal, Literal )):
+        for k, class_i in zip(('uri', 'title', 'description'),
+                              (URIRef, Literal, Literal)):
 
             with self.subTest(k):
                 for l_i in l_ps:

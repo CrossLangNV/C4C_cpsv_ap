@@ -58,10 +58,9 @@ def get_contact_point_info(endpoint, cp_uri):
     
     SELECT distinct ({cp_uri.n3()} as ?{URI}) ?{PRED} ?{LABEL}
     WHERE {{
+        VALUES ?{PRED} {{schema:openingHours vcard2006:hasTelephone vcard2006:hasEmail}} 
         {cp_uri.n3()} rdf:type <http://www.w3.org/ns/dcat#ContactPoint> ;
             ?{PRED} ?{LABEL} .         
-        FILTER ( ?{PRED} in (schema:openingHours, vcard2006:hasTelephone, vcard2006:hasTelephone)
-    )
     }}
     """
     # print(q)
