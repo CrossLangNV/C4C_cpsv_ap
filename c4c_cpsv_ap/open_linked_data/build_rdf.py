@@ -1,4 +1,5 @@
-from rdflib import Graph, Literal, URIRef
+from rdflib.graph import Graph
+from rdflib.term import Literal, URIRef
 from rdflib.namespace import RDF, Namespace, DCAT, DCTERMS, SKOS
 
 from rdflib.term import _serial_number_generator

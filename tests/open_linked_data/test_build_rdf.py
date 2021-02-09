@@ -1,8 +1,9 @@
 import json
 import os
 import unittest
+from urllib.parse import urlsplit, urlunsplit
 
-from rdflib import Literal
+from rdflib.term import Literal
 
 from c4c_cpsv_ap.open_linked_data.build_rdf import PublicService, CPSV_APGraph, ContactPoint
 
@@ -39,7 +40,10 @@ class TestOpenRawData(unittest.TestCase):
 
             self.assertEqual(known_keys, keys, 'Only for the stated keys is known how it has to be processed')
 
-        g = CPSV_APGraph()
+        url_id = get_homepage(data[0]['url'][0])
+
+        # Identifier doesn't do much until we connect directly to Fuseki from python
+        g = CPSV_APGraph(identifier=url_id)  # Might be problem in the future if we parse multiple websites at once.
 
         for page in data:
             ps = PublicService.from_dict(page)
@@ -59,14 +63,12 @@ class TestOpenRawData(unittest.TestCase):
             g.add_life_events(l_life_events, public_service_uri=ps_uri)
 
             for k, v in page.items():
-                print(k, '# TODO')  # TODO
+                print(k, '# TODO')
 
                 f = map_do.get(k)
                 assert f, 'Unknown key'
 
                 f(v)
-
-            # break  # TODO remove. now just working on a single page
 
         print(g.serialize(format='pretty-xml').decode())
 
@@ -107,3 +109,17 @@ class TestOpenRawData(unittest.TestCase):
                 l = list(g.query(q))
 
                 self.assertTrue(l, f'Should have {Literal(title)._literal_n3()} in graph')
+
+
+def get_homepage(url: str) -> str:
+    """ 'http://asas.abc.hostname.com/somethings/anything/' ->  'http://asas.abc.hostname.com'
+
+    :param url: String
+    :return: String
+    """
+
+    v = urlsplit(url)
+
+    homepage = urlunsplit((v.scheme, v.netloc, '', '', ''))
+
+    return homepage
