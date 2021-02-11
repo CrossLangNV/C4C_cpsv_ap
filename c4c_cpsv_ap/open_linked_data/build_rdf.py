@@ -1,7 +1,6 @@
 from rdflib.graph import Graph
-from rdflib.term import Literal, URIRef
 from rdflib.namespace import RDF, Namespace, DCAT, DCTERMS, SKOS
-
+from rdflib.term import Literal, URIRef
 from rdflib.term import _serial_number_generator
 
 CPSV = Namespace("http://purl.org/vocab/cpsv#")
@@ -66,6 +65,10 @@ class PublicService:
 
 
 class ContactPoint:
+    """
+    Represent the CPSV-AP contact point.
+    """
+
     l_phone: list = None
     l_emails: list = None
     l_opening_hours: list = None
@@ -76,9 +79,9 @@ class ContactPoint:
                  l_opening_hours=[]):
         """
 
-        :param l_phone: List with phone numbers
-        :param l_emails: List with email contacts
-        :param l_opening_hours: List with information about opening hours
+        :param l_phone: (Optional) List with phone numbers
+        :param l_emails: (Optional) List with email contacts
+        :param l_opening_hours: (Optional) List with information about opening hours
         """
 
         self.l_phone = l_phone
@@ -101,6 +104,24 @@ class ContactPoint:
             print(e,
                   "If certain variables are not yet defined. It's because they were not found, while they should have!")
 
+    def get_l_emails(self):
+        return self.l_emails
+
+    def get_l_phone(self):
+        return self.l_phone
+
+    def get_l_opening_hours(self):
+        return self.l_opening_hours
+
+    def add_email(self, email: str = None):
+        self.l_emails.append(email)
+
+    def add_phone(self, telephone_number: str = None):
+        self.l_phone.append(telephone_number)
+
+    def add_opening_hours(self, opening_hours: str = None):
+        self.l_opening_hours.append(opening_hours)
+
 
 # TODO move to other file
 class CPSV_APGraph(Graph):
@@ -108,12 +129,14 @@ class CPSV_APGraph(Graph):
     def __init__(self, *args, **kwargs):
         super(CPSV_APGraph, self).__init__(*args, **kwargs)
 
+        self.bind("rdf", RDF)
         self.bind('cpsv', CPSV)
         self.bind('dct', DCTERMS)
         self.bind('dcat', DCAT)
         self.bind('vcard', VCARD)
         self.bind('schema', SCHEMA)
         self.bind('skos', SKOS)
+        self.bind('c4c', C4C)
 
     def add_public_service(self, public_service: PublicService):
         uri = public_service.uri
@@ -132,22 +155,22 @@ class CPSV_APGraph(Graph):
         return uri_ref
 
     def add_contact_point(self, contact_point: ContactPoint):
-        """
+        """ Add new contact points to the RDF as CPSV-AP Contact Points.
 
-        :param contact_point:
+        :param contact_point: a contact point object
         :return:
             If contact info was found, it returns URI to contact_info
         """
 
-        l_emails = contact_point.l_emails
-        l_opening_hours = contact_point.l_opening_hours
-        l_phone = contact_point.l_phone
+        l_emails = contact_point.get_l_emails()
+        l_opening_hours = contact_point.get_l_opening_hours()
+        l_phone = contact_point.get_l_phone()
 
         if not (len(l_emails) or len(l_opening_hours) or len(l_phone)):
             # No contact info found
             return
 
-        id = 'contactPoint' + _serial_number_generator()()
+        id = 'contactPoint' + id_generator()
         uri_ref = URIRef(id, base=C4C)
 
         self.add((uri_ref, RDF.type, RDF.Description))
@@ -159,7 +182,7 @@ class CPSV_APGraph(Graph):
                       Literal(email)))
 
         for opening_hour in l_opening_hours:
-            # TODO finetune
+            # TODO fine-tune
             self.add((uri_ref,
                       SCHEMA.openingHours,
                       Literal(opening_hour)))
@@ -211,7 +234,7 @@ class CPSV_APGraph(Graph):
 
             # Add to graph if it doesn't exist yet
             else:
-                id = 'concept' + _serial_number_generator()()
+                id = 'concept' + id_generator()
                 uri_ref = URIRef(id, base=C4C)
 
                 self.add((uri_ref, RDF.type, RDF.Description))
@@ -262,7 +285,7 @@ class CPSV_APGraph(Graph):
 
             # Add to graph if it doesn't exist yet
             else:
-                id = 'lifeEvent' + _serial_number_generator()()
+                id = 'lifeEvent' + id_generator()
                 uri_ref = URIRef(id, base=C4C)
 
                 self.add((uri_ref, RDF.type, RDF.Description))
@@ -284,3 +307,9 @@ class CPSV_APGraph(Graph):
 
 def title_to_identifier(s: str):
     return s.title().replace(' ', '')
+
+
+def id_generator():
+    # def id_generator(size=12, chars=string.ascii_lowercase + string.digits):
+    #     return ''.join(random.choice(chars) for _ in range(size))
+    return _serial_number_generator()()
