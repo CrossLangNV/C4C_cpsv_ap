@@ -1,6 +1,6 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
-from rdflib import Literal, URIRef
 from rdflib.namespace import DCAT, Namespace
+from rdflib.term import Literal, URIRef
 
 TYPE_CONTACT_POINT = DCAT.ContactPoint
 
@@ -75,7 +75,7 @@ def get_contact_point_info(endpoint, cp_uri,
         {q_filter} 
         Graph ?{GRAPH} {{
             VALUES ?{PRED} {{schema:openingHours vcard2006:hasTelephone vcard2006:hasEmail}} 
-            {cp_uri.n3()} rdf:type <http://www.w3.org/ns/dcat#ContactPoint> ;
+            {cp_uri.n3()} rdf:type {DCAT.ContactPoint.n3()} ;
                 ?{PRED} ?{LABEL} .     
         }}    
     }}

@@ -5,7 +5,8 @@ from urllib.parse import urlsplit, urlunsplit
 
 from rdflib.term import Literal
 
-from c4c_cpsv_ap.open_linked_data.build_rdf import PublicService, CPSV_APGraph, ContactPoint
+from c4c_cpsv_ap.open_linked_data.build_rdf import CPSV_APGraph
+from c4c_cpsv_ap.open_linked_data.node import PublicService, ContactPoint
 
 
 class TestOpenRawData(unittest.TestCase):
