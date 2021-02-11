@@ -1,9 +1,10 @@
 import unittest
 
-from rdflib import Literal, URIRef
+from rdflib.term import Literal, URIRef
 
 from c4c_cpsv_ap.open_linked_data.queries import get_types, TYPE_CONTACT_POINT, TYPE_PUBLICSERVICE, \
-    get_contact_points, get_public_services, get_contact_point_info, get_graphs, GRAPH
+    get_contact_points, get_public_services, get_contact_point_info, get_graphs, GRAPH, get_concepts, \
+    LABEL, get_classified_by_concepts, TITLE, URI, PS
 
 SPARQL_ENDPOINT = 'http://192.168.105.41:3030/C4C_demo'
 
@@ -182,3 +183,87 @@ class TestGetGraphs(unittest.TestCase):
 
         with self.subTest('Wien'):
             self.assertTrue(any('wien' in g_i.lower() for g_i in l_g_uri), 'Wien is expected to be in the test example')
+
+
+class TestGetTerms(unittest.TestCase):
+
+    def test_find_something(self):
+        l_c = get_concepts(SPARQL_ENDPOINT)
+
+        with self.subTest(f'Non-empty'):
+            self.assertTrue(l_c, 'Should be non-empty.')
+
+        with self.subTest(f'Strings'):
+            for c_i in l_c:
+                self.assertIn(LABEL, c_i, 'Expected to contain Label')
+
+                self.assertIsInstance(c_i.get(LABEL), str, 'Expected to contain label as a string')
+
+            self.assertTrue(l_c, 'Should be non-empty.')
+
+        return
+
+
+class TestGetClassifiedByTerms(unittest.TestCase):
+
+    def test_equivalence(self):
+        l_c = get_classified_by_concepts(SPARQL_ENDPOINT)
+
+        l_c_unique = get_concepts(SPARQL_ENDPOINT)
+
+        s_c = {c_i.get(LABEL) for c_i in l_c}
+        s_c_unique = {c_i.get(LABEL) for c_i in l_c}
+
+    def test_find_something(self):
+        l_c = get_classified_by_concepts(SPARQL_ENDPOINT)
+
+        s_c = {c_i.get(LABEL) for c_i in l_c}
+
+        n_c = len(s_c)  # Not length of l_c, cause that
+
+        with self.subTest(f'Non-empty'):
+            self.assertTrue(l_c, 'Should be non-empty.')
+
+        l_pc = get_public_services(SPARQL_ENDPOINT)
+
+        n_tot = 0
+        l_c_aggr = []
+
+        for pc_i in l_pc:
+            with self.subTest(pc_i.get(TITLE)):
+                uri_pc = pc_i.get(URI)
+
+                l_c_i = get_classified_by_concepts(SPARQL_ENDPOINT,
+                                                   public_service=uri_pc
+                                                   )
+
+                n_c_i = len(l_c_i)
+                n_tot += n_c_i
+                l_c_aggr.extend(l_c_i)
+
+                self.assertLess(n_c_i, n_c)
+
+                s_c_i = {c_i.get(LABEL) for c_i in l_c_i}
+
+                self.assertTrue(s_c_i.issubset(s_c), 'Should be a subset')
+
+        def set_from_l_c(l_c):
+            lambda2tuple = lambda d: (d.get(LABEL), d.get(PS))
+
+            return set(map(lambda2tuple, l_c))
+
+        with self.subTest("Equivalence summing all terms per PS"):
+            self.assertEqual(n_tot, len(l_c), "Going over all terms per PS")
+
+            s_l_c = set_from_l_c(l_c)
+
+            self.assertEqual(len(l_c), len(s_l_c),
+                             "Sanity check, each element of list should still be mapped to unique tuple")
+
+            self.assertEqual(s_l_c,
+                             set_from_l_c(l_c_aggr), "Terms that used in different pc's is expected")
+
+        with self.subTest('Overlap'):
+            self.assertGreater(n_tot, n_c, "Terms that used in different pc's is expected")
+
+        return

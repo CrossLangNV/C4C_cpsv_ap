@@ -1,6 +1,10 @@
+from typing import List
+
 from SPARQLWrapper import SPARQLWrapper, JSON
-from rdflib.namespace import DCAT, Namespace
+from rdflib.namespace import DCAT, Namespace, SKOS
 from rdflib.term import Literal, URIRef
+
+from c4c_cpsv_ap.open_linked_data.build_rdf import CPSV
 
 TYPE_CONTACT_POINT = DCAT.ContactPoint
 
@@ -12,6 +16,8 @@ DESCRIPTION = 'description'
 PRED = "pred"
 LABEL = 'label'
 GRAPH = 'graph'
+
+PS = 'publicService'
 
 
 def get_types(endpoint):
@@ -116,16 +122,85 @@ def get_public_services(endpoint, graph_uri=None):
 
 def get_graphs(endpoint):
     q = f"""
-    # PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-	# PREFIX cpsv: <http://purl.org/vocab/cpsv#>
-	# PREFIX terms: <http://purl.org/dc/terms/>
-
     SELECT distinct ?{GRAPH}
     WHERE {{  
         Graph ?{GRAPH} {{ }}
     }}
     """
     # print(q)
+
+    l = shared_query_func(q, endpoint)
+
+    return l
+
+
+def get_concepts(endpoint,
+                 graph_uri=None,
+                 ):
+    """ Return all concepts
+
+    :param endpoint:
+    :param graph_uri: (Optional). To filter based on municipality
+
+    :return:
+    """
+
+    q_filter = f"""
+    values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
+    """ if graph_uri is not None else ''
+
+    q = f"""
+    PREFIX skos: {URIRef(str(SKOS)).n3()}
+
+    SELECT distinct ?{LABEL}
+    WHERE {{
+        {q_filter}
+        Graph ?{GRAPH} {{ 
+            ?concept skos:prefLabel ?{LABEL}
+        }}
+    }}
+    """
+    # print(q)
+
+    l = shared_query_func(q, endpoint)
+
+    return l
+
+
+def get_classified_by_concepts(endpoint,
+                               public_service: URIRef = None,
+                               graph_uri=None,
+                               ) -> List[dict]:
+    """ Not only return the concepts, but also the public services they are linked with.
+
+    :param endpoint:
+    :param public_service:
+    :param graph_uri:
+    :return:
+    """
+
+    q_filter = f"""
+    values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
+    """ if graph_uri is not None else ''
+
+    q_filter_ps = f"""
+    values ?{PS} {{ {URIRef(public_service).n3()} }}
+    """ if public_service is not None else ''
+
+    q = f"""
+    PREFIX skos: {URIRef(str(SKOS)).n3()}
+    PREFIX cpsv: {URIRef(CPSV).n3()}
+
+    SELECT distinct ?{LABEL} ?{PS}
+    WHERE {{
+        {q_filter}
+        {q_filter_ps}
+        Graph ?{GRAPH} {{ 
+            ?{PS} cpsv:isClassifiedBy ?concept .
+            ?concept skos:prefLabel ?{LABEL}
+        }}
+    }}
+    """
 
     l = shared_query_func(q, endpoint)
 
