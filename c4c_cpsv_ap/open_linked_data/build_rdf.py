@@ -3,9 +3,10 @@ from rdflib.namespace import RDF, Namespace, DCAT, DCTERMS, SKOS
 from rdflib.term import Literal, URIRef
 from rdflib.term import _serial_number_generator
 
-from c4c_cpsv_ap.open_linked_data.node import PublicService, ContactPoint
+from c4c_cpsv_ap.open_linked_data.node import PublicService, ContactPoint, PublicOrganization
 
 CPSV = Namespace("http://purl.org/vocab/cpsv#")
+CV = Namespace("http://data.europa.eu/m8g/")
 VCARD = Namespace("http://www.w3.org/2006/vcard/ns#")
 
 C4C = Namespace("http://cefat4cities.crosslang.com/content/")
@@ -26,22 +27,6 @@ class CPSV_APGraph(Graph):
         self.bind('skos', SKOS)
         self.bind('c4c', C4C)
 
-    def add_public_service(self, public_service: PublicService):
-        uri = public_service.uri
-        uri_ref = URIRef(uri)
-
-        title = public_service.title
-
-        self.add((uri_ref, RDF.type, RDF.Description))
-        self.add((uri_ref, RDF.type, CPSV.PublicService))
-
-        # Mandatory
-        self.add((uri_ref, DCTERMS.identifier, Literal(title_to_identifier(title))))
-        self.add((uri_ref, DCTERMS.description, Literal('TODO')))  # TODO
-        self.add((uri_ref, DCTERMS.title, Literal(title)))
-
-        return uri_ref
-
     def add_contact_point(self, contact_point: ContactPoint):
         """ Add new contact points to the RDF as CPSV-AP Contact Points.
 
@@ -58,8 +43,8 @@ class CPSV_APGraph(Graph):
             # No contact info found
             return
 
-        id = 'contactPoint' + id_generator()
-        uri_ref = URIRef(id, base=C4C)
+        val = 'contactPoint' + id_generator()
+        uri_ref = URIRef(val, base=C4C)
 
         self.add((uri_ref, RDF.type, RDF.Description))
         self.add((uri_ref, RDF.type, DCAT.ContactPoint))  # ['ContactPoPublicService']))
@@ -82,6 +67,75 @@ class CPSV_APGraph(Graph):
 
         return uri_ref
 
+    def add_public_service(self, public_service: PublicService):
+        uri = public_service.uri
+        uri_ref = URIRef(uri)
+
+        title = public_service.title
+
+        self.add((uri_ref, RDF.type, RDF.Description))
+        self.add((uri_ref, RDF.type, CPSV.PublicService))
+
+        # Mandatory
+        self.add((uri_ref, DCTERMS.identifier, Literal(title_to_identifier(title))))
+        self.add((uri_ref, DCTERMS.description, Literal('TODO')))  # TODO
+        self.add((uri_ref, DCTERMS.title, Literal(title)))
+
+        return uri_ref
+
+    def add_public_organization(self, public_organization: PublicOrganization):
+        """
+        If it already exists, nothing is changed
+
+        :param public_organization:
+        :return:
+        """
+
+        label = public_organization.get_preferred_label()
+        loc_uri = URIRef(public_organization.get_spatial())
+
+        q = """
+        
+        """
+
+        t_label = [None, SKOS.prefLabel, Literal(title_to_identifier(label))]
+        t_spatial = [None, DCTERMS.spatial, loc_uri]
+
+        def get_uri():
+            """ Private helper function. Return
+
+            :return: The URI for the public organisation.
+            """
+            # TODO needs refactoring. Although it works, it's prone to fail if changes are made to the code
+
+            t_existing0 = self.triples(t_label)
+            t_existing1 = self.triples(t_spatial)
+
+            for s0, _, _ in t_existing0:
+                for s1, _, _ in t_existing1:
+                    if s0 == s1:
+                        print(s0)
+                        return s0
+
+            # Nothing found
+            val = 'publicOrganization' + id_generator()
+            uri_ref = URIRef(val, base=C4C)
+            return uri_ref
+
+        uri_ref = get_uri()
+
+        t_label[0] = uri_ref
+        t_spatial[0] = uri_ref
+
+        self.add((uri_ref, RDF.type, RDF.Description))
+        self.add((uri_ref, RDF.type, CV.PublicOrganisation))
+
+        # Mandatory
+        self.add(t_label)
+        self.add(t_spatial)
+
+        return uri_ref
+
     def link_ps_cp(self, ps_uri, cp_uri):
 
         if not isinstance(ps_uri, URIRef):
@@ -93,6 +147,16 @@ class CPSV_APGraph(Graph):
             cp_uri = URIRef(cp_uri)
 
         self.add((URIRef(ps_uri), DCAT.hasContactPoint, URIRef(cp_uri)))
+
+    def link_ps_po(self, ps_uri, po_uri):
+        """
+
+        :param ps_uri: URI to Public Service
+        :param po_uri: URI to Public Organization
+        :return:
+        """
+
+        self.add((URIRef(ps_uri), CV.hasCompetentAuthority, URIRef(po_uri)))
 
     def add_concepts(self, l_terms, public_service_uri: URIRef):
 
@@ -122,8 +186,8 @@ class CPSV_APGraph(Graph):
 
             # Add to graph if it doesn't exist yet
             else:
-                id = 'concept' + id_generator()
-                uri_ref = URIRef(id, base=C4C)
+                val = 'concept' + id_generator()
+                uri_ref = URIRef(val, base=C4C)
 
                 self.add((uri_ref, RDF.type, RDF.Description))
                 self.add((uri_ref, RDF.type, SKOS.Concept))  # ['ContactPoPublicService']))
@@ -173,8 +237,8 @@ class CPSV_APGraph(Graph):
 
             # Add to graph if it doesn't exist yet
             else:
-                id = 'lifeEvent' + id_generator()
-                uri_ref = URIRef(id, base=C4C)
+                val = 'lifeEvent' + id_generator()
+                uri_ref = URIRef(val, base=C4C)
 
                 self.add((uri_ref, RDF.type, RDF.Description))
                 self.add((uri_ref, RDF.type, CPSV.LifeEvent))
