@@ -6,7 +6,7 @@ from c4c_cpsv_ap.open_linked_data.queries import get_types, TYPE_CONTACT_POINT, 
     get_contact_points, get_public_services, get_contact_point_info, get_graphs, GRAPH, get_concepts, \
     LABEL, get_classified_by_concepts, TITLE, URI, PS
 
-SPARQL_ENDPOINT = 'http://192.168.105.41:3030/C4C_demo'
+SPARQL_ENDPOINT = 'http://gpu1.crosslang.com:3030/C4C_demo'
 
 GRAPH_URI_EX = 'https://www.wien.gv.at'
 

@@ -6,7 +6,8 @@ from urllib.parse import urlsplit, urlunsplit
 from rdflib.term import Literal
 
 from c4c_cpsv_ap.open_linked_data.build_rdf import CPSV_APGraph
-from c4c_cpsv_ap.open_linked_data.node import PublicService, ContactPoint
+from c4c_cpsv_ap.open_linked_data.node import ContactPoint, PublicOrganization, PublicService
+from examples.PoC_public_organisation import d_pub_org_PoC
 
 
 class TestOpenRawData(unittest.TestCase):
@@ -34,6 +35,8 @@ class TestOpenRawData(unittest.TestCase):
                   'pdf': foo,
                   'title': foo}
 
+        DEFAULT_PUB_ORG_WIEN = ('Stadt Wien', 'http://publications.europa.eu/resource/authority/atu/AUT_STTS_VIE')
+
         known_keys = map_do.keys()
 
         with self.subTest('Known keys'):
@@ -47,6 +50,8 @@ class TestOpenRawData(unittest.TestCase):
         g = CPSV_APGraph(identifier=url_id)  # Might be problem in the future if we parse multiple websites at once.
 
         for page in data:
+            url_page = page.get('url')[0]
+
             ps = PublicService.from_dict(page)
             cp = ContactPoint.from_dict(page)
 
@@ -63,6 +68,17 @@ class TestOpenRawData(unittest.TestCase):
             l_life_events = page.pop('life_events')
             g.add_life_events(l_life_events, public_service_uri=ps_uri)
 
+            # Public organisation
+            preferred_label, loc_uri = d_pub_org_PoC.get(url_page)
+            if preferred_label is None or loc_uri is None:  # TODO
+                preferred_label, loc_uri = DEFAULT_PUB_ORG_WIEN
+
+            po = PublicOrganization(preferred_label,
+                                    loc_uri)
+            po_uri = g.add_public_organization(po)
+            g.link_ps_po(ps_uri, po_uri)
+
+            # Unused keys
             for k, v in page.items():
                 print(k, '# TODO')
 
