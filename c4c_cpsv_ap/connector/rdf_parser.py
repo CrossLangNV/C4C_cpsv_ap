@@ -3,7 +3,7 @@ from typing import List
 from SPARQLWrapper.Wrapper import JSON, SPARQLWrapper
 from rdflib.term import Literal, URIRef
 
-from ..open_linked_data.queries import get_public_services, URI
+from ..open_linked_data.queries import get_public_services
 
 PRED = 'pred'
 URI = "uri"
@@ -97,16 +97,40 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
     def get_contact_points(self, has_uri=URIRef('http://www.w3.org/ns/dcat#hasContactPoint')):
         """ Can only return URI's to the contact points as they don't have a label (yet).
 
-        :param has_uri:
-        :return: List of dictionary
+        :param has_uri: default should be fine
+        :return: List of dictionary with URI.
         """
 
-        q = """
-        
+        if not isinstance(has_uri, URIRef):
+            has_uri = URIRef(has_uri)
+
+        q = f"""
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+            PREFIX terms: <http://purl.org/dc/terms/>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+            SELECT distinct  ?{URI}
+            WHERE {{
+                Graph ?graph {{
+                    ?ps rdf:type cpsv:PublicService ;
+                       {has_uri.n3()} ?{URI} .
+                }}
+            }}
         """
 
         q_debug = """
-        
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+            PREFIX terms: <http://purl.org/dc/terms/>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+            SELECT distinct  ?label # ?pred ?uri
+            WHERE {
+                Graph ?graph {
+                    ?ps rdf:type cpsv:PublicService ;
+                       <http://www.w3.org/ns/dcat#hasContactPoint> ?uri .
+                    ?uri ?pred ?label
+                }
+            }
         """
 
         # print(q)
@@ -118,7 +142,37 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
     def get_competent_authorities(self, has_uri=URIRef('http://data.europa.eu/m8g/hasCompetentAuthority')):
         """
 
-        :param has_uri:
+        :param has_uri: default should be fine
+        :return: List with dictionaries with the keys URI (ID) and LABEL (string representation).
+        """
+
+        if not isinstance(has_uri, URIRef):
+            has_uri = URIRef(has_uri)
+
+        q = f"""
+            PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+            PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+            PREFIX terms: <http://purl.org/dc/terms/>
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+            SELECT distinct ?{URI} ?{LABEL}
+            WHERE {{
+                Graph ?graph {{
+                    ?ps rdf:type cpsv:PublicService ;
+                        {has_uri.n3()} ?{URI} .
+                    ?{URI} skos:prefLabel ?{LABEL}
+                }}
+            }}
+        """
+
+        l = self.query(q)
+
+        return l
+
+    def get_concepts(self, has_uri=URIRef('http://purl.org/vocab/cpsv#isClassifiedBy')):
+        """ Returns the concepts the public service is classified by.
+
+        :param has_uri: default should be fine
         :return: List with dictionaries with the keys URI (ID) and LABEL (string representation).
         """
 

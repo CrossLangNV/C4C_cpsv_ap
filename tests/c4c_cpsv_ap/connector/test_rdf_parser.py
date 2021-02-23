@@ -83,9 +83,58 @@ class TestPublicServicesProvider(unittest.TestCase):
         with self.subTest('Non-empty'):
             self.assertTrue(l_cp)
 
+        with self.subTest('List with dicts with URI'):
+            # Check if elements can be string casted.
+            # Probably not the most reliable test as a lot of types can be cast to string.
+
+            for d_i in l_cp:
+                self.assertIsInstance(d_i.get(URI), str, 'Should be string-like')
+
+        with self.subTest('List with dicts with LABEL that are string-likes'):
+            # Check if elements can be string casted.
+            # Probably not the most reliable test as a lot of types can be cast to string.
+
+            for d_i in l_cp:
+                self.assertIsInstance(d_i.get(LABEL), str, 'Would be nice if there is a string representation')
+
     def test_competent_authorities(self):
 
         l_ca = self.provider.get_competent_authorities()
 
         with self.subTest('Non-empty'):
             self.assertTrue(l_ca)
+
+        with self.subTest('List with dicts with URI'):
+            # Check if elements can be string casted.
+            # Probably not the most reliable test as a lot of types can be cast to string.
+
+            for d_i in l_ca:
+                self.assertIsInstance(d_i.get(URI), str, 'Should be string-like')
+
+        with self.subTest('List with dicts with LABEL that are string-likes'):
+            # Check if elements can be string casted.
+            # Probably not the most reliable test as a lot of types can be cast to string.
+
+            for d_i in l_ca:
+                self.assertIsInstance(d_i.get(LABEL), str, 'Should be string-like')
+
+    def test_get_concepts(self):
+
+        l_c = self.provider.get_concepts()
+
+        with self.subTest('Non-empty'):
+            self.assertTrue(l_c)
+
+        with self.subTest('List with dicts with URI'):
+            # Check if elements can be string casted.
+            # Probably not the most reliable test as a lot of types can be cast to string.
+
+            for d_i in l_c:
+                self.assertIsInstance(d_i.get(URI), str, 'Should be string-like')
+
+        with self.subTest('List with dicts with LABEL that are string-likes'):
+            # Check if elements can be string casted.
+            # Probably not the most reliable test as a lot of types can be cast to string.
+
+            for d_i in l_c:
+                self.assertIsInstance(d_i.get(LABEL), str, 'Should be string-like')
