@@ -138,3 +138,52 @@ class TestPublicServicesProvider(unittest.TestCase):
 
             for d_i in l_c:
                 self.assertIsInstance(d_i.get(LABEL), str, 'Should be string-like')
+
+    def test_get_public_service_uris_filter(self):
+
+        with self.subTest('Equivalence'):
+            l_ps = self.provider.get_public_service_uris_filter()
+
+            l_ps_baseline = self.provider.get_public_service_uris()
+
+            self.assertEqual(l_ps, l_ps_baseline)
+
+        with self.subTest('Filter concepts'):
+            l_c = self.provider.get_concepts()
+            l_c_labels = list(map(str, [l_c_i.get(LABEL) for l_c_i in l_c]))
+
+            # Wirtschaft is used by all?
+            # Kindergruppenbetreuungspersonen seems fine
+            l_c_label_i = l_c_labels[-1]
+
+            l_ps = self.provider.get_public_service_uris_filter(filter_concepts=l_c_label_i)
+            l_ps_list = self.provider.get_public_service_uris_filter(filter_concepts=[l_c_label_i])
+
+            self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
+            self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
+
+        with self.subTest('Filter public organizations'):
+            l_po = self.provider.get_competent_authorities()
+            l_po_labels = list(map(str, [l_po_i.get(LABEL) for l_po_i in l_po]))
+
+            l_po_label_i = l_po_labels[-1]
+
+            l_ps = self.provider.get_public_service_uris_filter(filter_public_organization=l_po_label_i)
+            l_ps_list = self.provider.get_public_service_uris_filter(filter_public_organization=[l_po_label_i])
+
+            self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
+            self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
+
+        with self.subTest('Filter contact points'):
+            l_cp = self.provider.get_contact_points()
+            l_cp_uris = list(map(str, [l_cp_i.get(URI) for l_cp_i in l_cp]))
+
+            l_cp_uri_i = l_cp_uris[-1]
+
+            l_ps = self.provider.get_public_service_uris_filter(filter_contact_point=l_cp_uri_i)
+            l_ps_list = self.provider.get_public_service_uris_filter(filter_contact_point=[l_cp_uri_i])
+
+            self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
+            self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
+
+        return
