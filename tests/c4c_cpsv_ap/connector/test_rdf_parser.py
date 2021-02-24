@@ -90,12 +90,13 @@ class TestPublicServicesProvider(unittest.TestCase):
             for d_i in l_cp:
                 self.assertIsInstance(d_i.get(URI), str, 'Should be string-like')
 
-        with self.subTest('List with dicts with LABEL that are string-likes'):
+        with self.subTest('WARNING NOT YET IMPLEMENTED List with dicts with LABEL that are string-likes'):
             # Check if elements can be string casted.
             # Probably not the most reliable test as a lot of types can be cast to string.
 
             for d_i in l_cp:
-                self.assertIsInstance(d_i.get(LABEL), str, 'Would be nice if there is a string representation')
+                self.assertIsInstance(d_i.get(LABEL), str,
+                                      'WARNING NOT YET IMPLEMENTED Would be nice if there is a string representation')
 
     def test_competent_authorities(self):
 
@@ -141,9 +142,14 @@ class TestPublicServicesProvider(unittest.TestCase):
 
     def test_get_public_service_uris_filter(self):
 
+        with self.subTest('Equivalence len'):
+            l_ps = self.provider.get_public_service_uris_filter()
+            l_ps_baseline = self.provider.get_public_service_uris()
+
+            self.assertEqual(len(l_ps), len(l_ps_baseline))
+
         with self.subTest('Equivalence'):
             l_ps = self.provider.get_public_service_uris_filter()
-
             l_ps_baseline = self.provider.get_public_service_uris()
 
             self.assertEqual(l_ps, l_ps_baseline)
@@ -253,3 +259,31 @@ class TestContactPointProvider(unittest.TestCase):
 
             for d_i in l_ps:
                 self.assertIsInstance(d_i.get(LABEL), str, 'Should be string-like')
+
+    def test_get_contact_point_uris_filter(self):
+
+        with self.subTest('Equivalence len'):
+            l_cp = self.provider.get_contact_point_uris_filter()
+            l_cp_baseline = self.provider.get_contact_point_uris()
+
+            self.assertEqual(len(l_cp), len(l_cp_baseline))
+
+        with self.subTest('Equivalence'):
+            l_cp = self.provider.get_contact_point_uris_filter()
+            l_cp_baseline = self.provider.get_contact_point_uris()
+
+            self.assertEqual(l_cp, l_cp_baseline)
+
+        with self.subTest('Filter public services'):
+            l_ps = self.provider.get_public_services()
+            l_ps_labels = list(map(str, [l_ps_i.get(LABEL) for l_ps_i in l_ps]))
+
+            l_ps_label_i = l_ps_labels[-1]
+
+            l_cp = self.provider.get_contact_point_uris_filter(filter_public_service=l_ps_label_i)
+            l_cp_list = self.provider.get_contact_point_uris_filter(filter_public_service=[l_ps_label_i])
+
+            self.assertGreaterEqual(len(l_cp), 1, 'Should be non-empty.')
+            self.assertEqual(l_cp, l_cp_list, 'Both single value and list should work.')
+
+        return
