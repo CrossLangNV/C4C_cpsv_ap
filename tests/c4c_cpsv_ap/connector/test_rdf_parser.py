@@ -187,3 +187,69 @@ class TestPublicServicesProvider(unittest.TestCase):
             self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
 
         return
+
+
+class TestContactPointProvider(unittest.TestCase):
+    def setUp(self) -> None:
+        """ Initialise a provider
+
+        :return:
+        """
+
+        self.provider = SPARQLContactPointProvider(SPARQL_ENDPOINT)
+
+    def test_get_contact_point(self):
+        l_uris = self.provider.get_contact_point_uris()
+
+        with self.subTest('Non-empty'):
+            self.assertTrue(l_uris)
+
+        with self.subTest('List of string-likes'):
+            # Check if elements can be string casted.
+            # Probably not the most reliable test as a lot of types can be cast to string.
+
+            for uri_i in l_uris:
+                self.assertIsInstance(uri_i, str, 'Should be string-like')
+
+    def test_get_contact_point_info(self):
+
+        l_uris = self.provider.get_contact_point_uris()
+        uri_i = l_uris[0]
+
+        for uri_i in [l_uris[0],
+                      l_uris[1]]:
+
+            l = self.provider.get_contact_point_info(uri_i)
+
+            with self.subTest('Retrieve URI in each element'):
+
+                for d_i in l:
+                    self.assertEqual(str(d_i.get(URI)), str(uri_i))
+
+            with self.subTest('subjects'):
+                self.assertTrue(any(map(lambda d: d.get(SUBJ), l)))
+
+            with self.subTest('objects'):
+                self.assertTrue(any(map(lambda d: d.get(OBJ), l)))
+
+        return
+
+    def test_get_public_services(self):
+        l_ps = self.provider.get_public_services()
+
+        with self.subTest('Non-empty'):
+            self.assertTrue(l_ps)
+
+        with self.subTest('List with dicts with URI'):
+            # Check if elements can be string casted.
+            # Probably not the most reliable test as a lot of types can be cast to string.
+
+            for d_i in l_ps:
+                self.assertIsInstance(d_i.get(URI), str, 'Should be string-like')
+
+        with self.subTest('List with dicts with LABEL that are string-likes'):
+            # Check if elements can be string casted.
+            # Probably not the most reliable test as a lot of types can be cast to string.
+
+            for d_i in l_ps:
+                self.assertIsInstance(d_i.get(LABEL), str, 'Should be string-like')

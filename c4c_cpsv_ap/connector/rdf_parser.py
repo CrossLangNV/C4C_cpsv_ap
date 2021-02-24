@@ -5,7 +5,9 @@ from rdflib.term import Literal, URIRef
 
 from ..open_linked_data.queries import get_public_services
 
+SUBJ = 'subj'
 PRED = 'pred'
+OBJ = 'obj'
 URI = "uri"
 LABEL = 'label'
 
@@ -250,7 +252,6 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
 
         q_filter_public_org = _get_q_filter(VALUE_PO, filter_public_organization) if filter_public_organization else ''
 
-        # TODO
         q_filter_contact_point = _get_q_filter_uri(URI_CP, filter_contact_point) if filter_contact_point else ''
 
         q = f"""
@@ -307,10 +308,109 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
                     ?uri rdf:type <http://purl.org/vocab/cpsv#PublicService> ;
                         ?pred ?object .
                     ?object a ?type	. # Filters Literals
-    				?object ?pred_link ?val
+                    ?object ?pred_link ?val
                 }
             }
         """
 
         l = self.query(q_debug)
         return l
+
+
+class SPARQLContactPointProvider(SPARQLConnector):
+    def get_contact_point_uris(self) -> List[URIRef]:
+        """
+
+        :return: A list of URI's to the webpages, which are used as indices to the public services.
+        """
+
+        q = f"""
+            PREFIX dcat: <http://www.w3.org/ns/dcat#>
+            
+            SELECT distinct ?{URI}
+            WHERE {{
+                Graph ?graph {{
+                    ?{URI} a dcat:ContactPoint .
+                }}
+            }}
+        """
+
+        l = self.query(q)
+
+        l_uri = list(map(lambda d: d.get(URI), l))
+
+        return l_uri
+
+    def get_contact_point_info(self, uri):
+        """ Get all relevant info of a single contact point.
+
+        :param uri:
+        :return:
+        """
+
+        if not isinstance(uri, URIRef):
+            uri = URIRef(uri)
+
+        q_cp_as_sub = f"""
+            PREFIX dcat: <http://www.w3.org/ns/dcat#>
+            
+            SELECT distinct ?{URI} ?{PRED} ?{OBJ}
+            WHERE {{
+                Graph ?graph {{
+                    Values ?{URI} {{ {uri.n3()} }}
+                    ?{URI} a dcat:ContactPoint .      
+                    ?{URI} ?{PRED} ?{OBJ}
+                }}
+            }}
+        """
+
+        q_cp_as_obj = f"""
+            PREFIX dcat: <http://www.w3.org/ns/dcat#>
+            
+            SELECT distinct ?{SUBJ} ?{PRED} ?{URI}
+            WHERE {{
+                Graph ?graph {{
+                    Values ?{URI} {{ {uri.n3()} }}
+                    ?{URI} a dcat:ContactPoint .      
+                    ?{SUBJ} ?{PRED} ?{URI} .
+                }}
+            }}
+        """
+
+        l_sub = self.query(q_cp_as_sub)
+
+        l_obj = self.query(q_cp_as_obj)
+
+        l = l_sub + l_obj
+        return l
+
+    def get_public_services(self, has_uri=URIRef('http://www.w3.org/ns/dcat#hasContactPoint')):
+        """ Public services can be used as the subject to filter contact points.
+
+        :param has_uri:
+        :return:
+        """
+
+        if not isinstance(has_uri, URIRef):
+            has_uri = URIRef(has_uri)
+
+        q_cp_as_obj = f"""
+            PREFIX dcat: <http://www.w3.org/ns/dcat#>
+            SELECT distinct ?{URI} ?{LABEL}
+            WHERE {{
+                Graph ?graph {{
+                    ?uri_cp a dcat:ContactPoint .      
+                    ?{URI} {has_uri.n3()} ?uri_cp .
+    				OPTIONAL{{
+                    	?{URI} <http://purl.org/dc/terms/title> ?{LABEL}
+                    }}
+                }}
+            }}
+        """
+
+        l = self.query(q_cp_as_obj)
+
+        return l
+
+    def get_contact_point_uris_filter(self):
+        raise NotImplementedError()  # TODO
