@@ -98,7 +98,7 @@ class CPSV_APGraph(Graph):
         
         """
 
-        t_label = [None, SKOS.prefLabel, Literal(title_to_identifier(label))]
+        t_label = [None, SKOS.prefLabel, Literal(label)]
         t_spatial = [None, DCTERMS.spatial, loc_uri]
 
         def get_uri():
