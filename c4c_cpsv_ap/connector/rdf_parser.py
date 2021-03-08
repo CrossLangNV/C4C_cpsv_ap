@@ -17,10 +17,18 @@ class Provider:
 
 
 class SPARQLConnector(Provider):
-    def __init__(self, endpoint):
+    def __init__(self, endpoint, *args, **kwargs):
+        """
+
+        :param endpoint: URL to RDF endpoint
+        :param agent: (optional) header for authentication
+        """
+
         self.endpoint = endpoint
         # RDF
-        self.sparql = SPARQLWrapper(endpoint)
+
+        self.sparql = SPARQLWrapper(endpoint, *args, **kwargs)
+
         self.sparql.setReturnFormat(JSON)  # JSON or XML only give valid response
 
     def query(self, q: str):

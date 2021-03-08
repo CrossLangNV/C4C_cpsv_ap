@@ -1,6 +1,9 @@
 import unittest
 
-from c4c_cpsv_ap.connector.rdf_parser import *
+from SPARQLWrapper.Wrapper import POST
+from rdflib.term import Literal, URIRef
+
+from c4c_cpsv_ap.connector.rdf_parser import SPARQLConnector, SPARQLPublicServicesProvider, SPARQLContactPointProvider
 
 SPARQL_ENDPOINT = 'http://gpu1.crosslang.com:3030/C4C_demo'
 
@@ -287,3 +290,172 @@ class TestContactPointProvider(unittest.TestCase):
             self.assertEqual(l_cp, l_cp_list, 'Both single value and list should work.')
 
         return
+
+
+class TestReadOnly(unittest.TestCase):
+    SUB = 'www.test.com'
+    PRED = 'www.test.com/pred'
+    OBJECT = 'a website'
+
+    def setUp(self) -> None:
+        """ Initialise a provider
+
+        :return:
+        """
+
+        if 0:
+            # TODO we might work with a separate page to protect Fuseki from outside.
+            agent = {'Bearer': 'OERthRgu7kpJ6gCVXhPw3pDSpEeCCm'}
+            endpoint = 'https://django.cefat4cities.crosslang.com/cpsv/api/dataset'
+        else:
+            endpoint = SPARQL_ENDPOINT
+            agent = None
+
+        self.provider = SPARQLConnector(endpoint, agent=agent)
+
+    def test_read(self):
+        """
+        Is allowed
+
+        :return:
+        """
+
+        q = """
+        SELECT ?graph ?subject ?predicate ?object
+        WHERE {
+          GRAPH ?graph {
+          ?subject ?predicate ?object
+          }
+        }
+        LIMIT 25
+        """
+
+        r = self.provider.query(q)
+
+        self.assertTrue(len(r), 'Should return some results')
+
+        return
+
+    def test_update(self):
+        """
+        Is not allowed
+
+        :return:
+        """
+
+        q = f"""
+            SELECT ?graph ?subject ?predicate ?object
+            WHERE {{
+                VALUES ?subject {{ {URIRef(self.SUB).n3()} }}
+                VALUES ?predicate {{ {URIRef(self.PRED).n3()} }}
+                VALUES ?object {{ {Literal(self.OBJECT).n3()} }}
+                VALUES ?graph {{ {URIRef(self.SUB).n3()} }}
+                GRAPH ?graph {{
+                ?subject ?predicate ?object
+                }}
+            }}
+            LIMIT 25
+        """
+
+        r = self.provider.query(q)
+
+        with self.subTest('Sanity check'):
+            self.assertFalse(len(r), 'Triple should not exist yet!')
+
+        q_insert = f"""
+        INSERT DATA {{ 
+            GRAPH {URIRef(self.SUB).n3()} {{
+                {URIRef(self.SUB).n3()} {URIRef(self.PRED).n3()} {Literal(self.OBJECT).n3()}
+            }}
+        }}
+        """
+
+        try:
+
+            self.provider.sparql.setMethod(POST)
+            self.provider.sparql.setQuery(q_insert)
+            r = self.provider.sparql.query()
+            results = r.convert().decode()
+
+            with self.subTest('Fail to update'):
+                self.assertNotIn('succ', results.lower(), 'Should not have succeeded!')
+
+        except Exception as e:
+            print(e)
+        else:
+            with self.subTest('Update response'):
+                print(results)
+
+        finally:
+            r = self.provider.query(q)
+
+            with self.subTest('Still empty after trying to add'):
+                self.assertFalse(len(r), 'Triple should not exist yet!')
+
+    def test_remove(self):
+        """
+        Is not allowed
+
+        :return:
+        """
+
+        q_remove = f"""
+        DELETE DATA {{ 
+            GRAPH {URIRef(self.SUB).n3()} {{
+                {URIRef(self.SUB).n3()} {URIRef(self.PRED).n3()} {Literal(self.OBJECT).n3()}
+            }}
+        }}
+        """
+
+        b = self._check_exists(self.SUB,
+                               self.PRED,
+                               self.OBJECT,
+                               self.SUB)
+
+        with self.subTest('Sanity check'):
+            self.assertTrue(b, 'This test triple should exist already!')
+
+        try:
+
+            self.provider.sparql.setMethod(POST)
+            self.provider.sparql.setQuery(q_remove)
+            r = self.provider.sparql.query()
+            results = r.convert().decode()
+
+            with self.subTest('Fail to update'):
+                self.assertNotIn('succ', results.lower(), 'Should not have succeeded!')
+
+        except Exception as e:
+            print(e)
+        else:
+            with self.subTest('Update response'):
+                print(results)
+
+        finally:
+
+            b = self._check_exists(self.SUB,
+                                   self.PRED,
+                                   self.OBJECT,
+                                   self.SUB)
+
+            with self.subTest('Still exist after trying to remove.'):
+                self.assertTrue(len(b), 'Triple should still exist.')
+
+    def _check_exists(self, sub, pred, obj, graph):
+        q = f"""
+            SELECT ?graph ?subject ?predicate ?object
+            WHERE {{
+                VALUES ?subject {{ {URIRef(sub).n3()} }}
+                VALUES ?predicate {{ {URIRef(pred).n3()} }}
+                VALUES ?object {{ {Literal(obj).n3()} }}
+                VALUES ?graph {{ {URIRef(graph).n3()} }}
+                GRAPH ?graph {{
+                    ?subject ?predicate ?object
+                }}
+            }}
+            LIMIT 25
+        """
+
+        r = self.provider.query(q)
+
+        return r
