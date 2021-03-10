@@ -1,6 +1,6 @@
 from typing import List
 
-from SPARQLWrapper.Wrapper import JSON, SPARQLWrapper
+from SPARQLWrapper.Wrapper import JSON, SPARQLWrapper, GET
 from rdflib.term import Literal, URIRef
 
 from ..open_linked_data.queries import get_public_services
@@ -32,6 +32,7 @@ class SPARQLConnector(Provider):
         self.sparql.setReturnFormat(JSON)  # JSON or XML only give valid response
 
     def query(self, q: str):
+        self.sparql.setMethod(GET)
         self.sparql.setQuery(q)
 
         r = self.sparql.query()

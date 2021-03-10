@@ -3,9 +3,13 @@ import unittest
 from SPARQLWrapper.Wrapper import POST
 from rdflib.term import Literal, URIRef
 
-from c4c_cpsv_ap.connector.rdf_parser import SPARQLConnector, SPARQLPublicServicesProvider, SPARQLContactPointProvider
+from c4c_cpsv_ap.connector.rdf_parser import SPARQLConnector, SPARQLPublicServicesProvider, SPARQLContactPointProvider, \
+    SUBJ, OBJ, URI, LABEL
 
-SPARQL_ENDPOINT = 'http://gpu1.crosslang.com:3030/C4C_demo'
+SPARQL_ENDPOINT = 'http://gpu1.crosslang.com:3030/C4C_demo/query'
+
+
+# SPARQL_ENDPOINT = 'https://django.cefat4cities.crosslang.com/cpsv/api/dataset'
 
 
 class TestPublicServicesProvider(unittest.TestCase):
@@ -307,11 +311,13 @@ class TestReadOnly(unittest.TestCase):
             # TODO we might work with a separate page to protect Fuseki from outside.
             agent = {'Bearer': 'OERthRgu7kpJ6gCVXhPw3pDSpEeCCm'}
             endpoint = 'https://django.cefat4cities.crosslang.com/cpsv/api/dataset'
+        elif 0:
+            endpoint = 'http://gpu1.crosslang.com:3030/C4C_demo/query'
+
         else:
             endpoint = SPARQL_ENDPOINT
-            agent = None
 
-        self.provider = SPARQLConnector(endpoint, agent=agent)
+        self.provider = SPARQLConnector(endpoint)
 
     def test_read(self):
         """
@@ -349,7 +355,7 @@ class TestReadOnly(unittest.TestCase):
                 VALUES ?subject {{ {URIRef(self.SUB).n3()} }}
                 VALUES ?predicate {{ {URIRef(self.PRED).n3()} }}
                 VALUES ?object {{ {Literal(self.OBJECT).n3()} }}
-                VALUES ?graph {{ {URIRef(self.SUB).n3()} }}
+                VALUES ?graph {{ {URIRef(self.PRED).n3()} }}
                 GRAPH ?graph {{
                 ?subject ?predicate ?object
                 }}
@@ -364,14 +370,13 @@ class TestReadOnly(unittest.TestCase):
 
         q_insert = f"""
         INSERT DATA {{ 
-            GRAPH {URIRef(self.SUB).n3()} {{
+            GRAPH {URIRef(self.PRED).n3()} {{
                 {URIRef(self.SUB).n3()} {URIRef(self.PRED).n3()} {Literal(self.OBJECT).n3()}
             }}
         }}
         """
 
         try:
-
             self.provider.sparql.setMethod(POST)
             self.provider.sparql.setQuery(q_insert)
             r = self.provider.sparql.query()
@@ -381,7 +386,8 @@ class TestReadOnly(unittest.TestCase):
                 self.assertNotIn('succ', results.lower(), 'Should not have succeeded!')
 
         except Exception as e:
-            print(e)
+            with self.subTest('Fail to update'):
+                print(e)
         else:
             with self.subTest('Update response'):
                 print(results)
@@ -426,7 +432,8 @@ class TestReadOnly(unittest.TestCase):
                 self.assertNotIn('succ', results.lower(), 'Should not have succeeded!')
 
         except Exception as e:
-            print(e)
+            with self.subTest('Fail to update'):
+                print(e)
         else:
             with self.subTest('Update response'):
                 print(results)
