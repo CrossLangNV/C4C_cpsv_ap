@@ -1,7 +1,7 @@
-from typing import List
+from typing import List, Dict
 
 from SPARQLWrapper.Wrapper import JSON, SPARQLWrapper, GET
-from rdflib.term import Literal, URIRef
+from rdflib.term import Literal, URIRef, Identifier
 
 from ..open_linked_data.queries import get_public_services
 
@@ -31,7 +31,7 @@ class SPARQLConnector(Provider):
 
         self.sparql.setReturnFormat(JSON)  # JSON or XML only give valid response
 
-    def query(self, q: str):
+    def query(self, q: str) -> List[Dict[str, Identifier]]:
         self.sparql.setMethod(GET)
         self.sparql.setQuery(q)
 

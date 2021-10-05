@@ -12,6 +12,30 @@ SPARQL_ENDPOINT = 'http://gpu1.crosslang.com:3030/C4C_demo/query'
 # SPARQL_ENDPOINT = 'https://django.cefat4cities.crosslang.com/cpsv/api/dataset'
 
 
+class TestSPARQLConnector(unittest.TestCase):
+    def setUp(self) -> None:
+        """ Initialise a provider
+
+        :return:
+        """
+
+        self.provider = SPARQLConnector(SPARQL_ENDPOINT)
+
+    def test_get_triples(self):
+        n = 25
+        q = f"""
+        SELECT ?subject ?predicate ?object
+        WHERE {{
+          ?subject ?predicate ?object
+        }}
+        LIMIT {n}
+        """
+
+        l = self.provider.query(q)
+
+        self.assertEqual(len(l), n, "Number of returned triples is unexpected.")
+
+
 class TestPublicServicesProvider(unittest.TestCase):
     def setUp(self) -> None:
         """ Initialise a provider
