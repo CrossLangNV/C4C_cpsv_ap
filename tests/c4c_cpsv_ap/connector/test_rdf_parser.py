@@ -7,8 +7,6 @@ from c4c_cpsv_ap.connector.rdf_parser import SPARQLConnector, SPARQLPublicServic
     SUBJ, OBJ, URI, LABEL
 
 SPARQL_ENDPOINT = 'http://gpu1.crosslang.com:3030/C4C_demo/query'
-
-
 # SPARQL_ENDPOINT = 'https://django.cefat4cities.crosslang.com/cpsv/api/dataset'
 
 
@@ -125,7 +123,12 @@ class TestPublicServicesProvider(unittest.TestCase):
             # Check if elements can be string casted.
             # Probably not the most reliable test as a lot of types can be cast to string.
 
+            cp_prov = SPARQLContactPointProvider(SPARQL_ENDPOINT)
+
             for d_i in l_cp:
+                url = d_i[URI]
+                info = cp_prov.get_contact_point_info(url)
+
                 self.assertIsInstance(d_i.get(LABEL), str,
                                       'WARNING NOT YET IMPLEMENTED Would be nice if there is a string representation')
 
@@ -183,47 +186,46 @@ class TestPublicServicesProvider(unittest.TestCase):
             l_ps = self.provider.get_public_service_uris_filter()
             l_ps_baseline = self.provider.get_public_service_uris()
 
-            self.assertEqual(l_ps, l_ps_baseline)
+            self.assertListEqual(l_ps, l_ps_baseline)
 
-        with self.subTest('Filter concepts'):
-            l_c = self.provider.get_concepts()
-            l_c_labels = list(map(str, [l_c_i.get(LABEL) for l_c_i in l_c]))
+    def test_get_public_service_uris_filter_concept(self):
+        l_c = self.provider.get_concepts()
+        l_c_labels = list(map(str, [l_c_i.get(LABEL) for l_c_i in l_c]))
 
-            # Wirtschaft is used by all?
-            # Kindergruppenbetreuungspersonen seems fine
-            l_c_label_i = l_c_labels[-1]
+        # Wirtschaft is used by all?
+        # Kindergruppenbetreuungspersonen seems fine
+        l_c_label_i = l_c_labels[-1]
 
-            l_ps = self.provider.get_public_service_uris_filter(filter_concepts=l_c_label_i)
-            l_ps_list = self.provider.get_public_service_uris_filter(filter_concepts=[l_c_label_i])
+        l_ps = self.provider.get_public_service_uris_filter(filter_concepts=l_c_label_i)
+        l_ps_list = self.provider.get_public_service_uris_filter(filter_concepts=[l_c_label_i])
 
-            self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
-            self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
+        self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
+        self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
 
-        with self.subTest('Filter public organizations'):
-            l_po = self.provider.get_competent_authorities()
-            l_po_labels = list(map(str, [l_po_i.get(LABEL) for l_po_i in l_po]))
+    def test_get_public_service_uris_filter_pub_organization(self):
 
-            l_po_label_i = l_po_labels[-1]
+        l_po = self.provider.get_competent_authorities()
+        l_po_labels = list(map(str, [l_po_i.get(LABEL) for l_po_i in l_po]))
 
-            l_ps = self.provider.get_public_service_uris_filter(filter_public_organization=l_po_label_i)
-            l_ps_list = self.provider.get_public_service_uris_filter(filter_public_organization=[l_po_label_i])
+        l_po_label_i = l_po_labels[-1]
 
-            self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
-            self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
+        l_ps = self.provider.get_public_service_uris_filter(filter_public_organization=l_po_label_i)
+        l_ps_list = self.provider.get_public_service_uris_filter(filter_public_organization=[l_po_label_i])
 
-        with self.subTest('Filter contact points'):
-            l_cp = self.provider.get_contact_points()
-            l_cp_uris = list(map(str, [l_cp_i.get(URI) for l_cp_i in l_cp]))
+        self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
+        self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
 
-            l_cp_uri_i = l_cp_uris[-1]
+    def test_get_public_service_uris_filter_contact_points(self):
+        l_cp = self.provider.get_contact_points()
+        l_cp_uris = list(map(str, [l_cp_i.get(URI) for l_cp_i in l_cp]))
 
-            l_ps = self.provider.get_public_service_uris_filter(filter_contact_point=l_cp_uri_i)
-            l_ps_list = self.provider.get_public_service_uris_filter(filter_contact_point=[l_cp_uri_i])
+        l_cp_uri_i = l_cp_uris[-1]
 
-            self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
-            self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
+        l_ps = self.provider.get_public_service_uris_filter(filter_contact_point=l_cp_uri_i)
+        l_ps_list = self.provider.get_public_service_uris_filter(filter_contact_point=[l_cp_uri_i])
 
-        return
+        self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
+        self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')
 
 
 class TestContactPointProvider(unittest.TestCase):

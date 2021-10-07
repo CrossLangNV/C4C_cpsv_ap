@@ -7,7 +7,7 @@ from rdflib.term import Literal
 
 from c4c_cpsv_ap.open_linked_data.build_rdf import CPSV_APGraph
 from c4c_cpsv_ap.open_linked_data.node import ContactPoint, PublicOrganization, PublicService
-from examples.PoC_public_organisation import d_pub_org_PoC
+from data.examples.PoC_public_organisation import d_pub_org_PoC
 
 
 class TestOpenRawData(unittest.TestCase):
@@ -87,9 +87,10 @@ class TestOpenRawData(unittest.TestCase):
 
                 f(v)
 
-        print(g.serialize(format='pretty-xml').decode())
+        print(g.serialize(format='pretty-xml'))
 
         print(g.serialize(PATH_EXPORT, format='pretty-xml'))
+        print(g.serialize(os.path.splitext(PATH_EXPORT)[0] + '.ttl', format='turtle'))
 
         return
 

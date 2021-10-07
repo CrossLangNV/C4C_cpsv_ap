@@ -1,15 +1,19 @@
 from typing import List, Dict
 
 from SPARQLWrapper.Wrapper import JSON, SPARQLWrapper, GET
+from rdflib import Namespace
 from rdflib.term import Literal, URIRef, Identifier
 
-from ..open_linked_data.queries import get_public_services
+TYPE_PUBLICSERVICE = Namespace('http://purl.org/vocab/cpsv#').PublicService
 
 SUBJ = 'subj'
 PRED = 'pred'
 OBJ = 'obj'
 URI = "uri"
 LABEL = 'label'
+GRAPH = 'graph'
+TITLE = "title"
+DESCRIPTION = 'description'
 
 
 class Provider:
@@ -50,14 +54,42 @@ class SPARQLConnector(Provider):
 
 class SPARQLPublicServicesProvider(SPARQLConnector):
 
-    def get_public_service_uris(self) -> List[URIRef]:
+    def get_public_service_uris(self,
+                                graph_uri: URIRef = None,
+                                debug=False) -> List[URIRef]:
         """
 
+        :param graph_uri: To filter on a specific graph name.
+        :param debug: Will print intermediate results if True.
         :return: A list of URI's to the webpages, which are used as indices to the public services.
+
         """
 
-        l_ps = get_public_services(self.endpoint)
+        q_filter = f"""
+        values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }} 
+        """ if graph_uri is not None else ''
 
+        q = f"""
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    	PREFIX cpsv: <http://purl.org/vocab/cpsv#>
+    	PREFIX terms: <http://purl.org/dc/terms/>
+
+        SELECT distinct ?{URI} ?{TITLE} ?{DESCRIPTION} ?{GRAPH}
+        WHERE {{
+            {q_filter}
+            Graph ?{GRAPH} {{
+                ?{URI} a {TYPE_PUBLICSERVICE.n3()} ;
+                    terms:title ?{TITLE} ;
+                    terms:description ?{DESCRIPTION} .
+            }}
+        }}
+        ORDER BY ?{URI}
+        """
+
+        if debug:
+            print(q)
+
+        l_ps = self.query(q)
         l_ps_uri = [ps_i.get(URI) for ps_i in l_ps]
 
         return l_ps_uri
@@ -109,7 +141,9 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
 
         return l_pred
 
-    def get_contact_points(self, has_uri=URIRef('http://www.w3.org/ns/dcat#hasContactPoint')):
+    def get_contact_points(self,
+                           has_uri=URIRef('http://www.w3.org/ns/dcat#hasContactPoint'),
+                           ):
         """ Can only return URI's to the contact points as they don't have a label (yet).
 
         :param has_uri: default should be fine
@@ -156,7 +190,9 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
 
         return l
 
-    def get_competent_authorities(self, has_uri=URIRef('http://data.europa.eu/m8g/hasCompetentAuthority')):
+    def get_competent_authorities(self,
+                                  has_uri=URIRef('http://data.europa.eu/m8g/hasCompetentAuthority')
+                                  ):
         """
 
         :param has_uri: default should be fine
@@ -188,7 +224,9 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
 
         return l
 
-    def get_concepts(self, has_uri=URIRef('http://purl.org/vocab/cpsv#isClassifiedBy')):
+    def get_concepts(self,
+                     has_uri=URIRef('http://purl.org/vocab/cpsv#isClassifiedBy')
+                     ):
         """ Returns the concepts the public service is classified by.
 
         :param has_uri: default should be fine
@@ -221,14 +259,23 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
         return l
 
     def get_public_service_uris_filter(self,
-                                       filter_concepts: List[str] = [],
-                                       filter_public_organization: List[str] = [],
-                                       filter_contact_point: List[URIRef] = []
+                                       filter_concepts: List[str] = None,
+                                       filter_public_organization: List[str] = None,
+                                       filter_contact_point: List[URIRef] = None,
                                        ) -> List[URIRef]:
         """
 
         :return: A list of URI's to the webpages, which are used as indices to the public services.
         """
+
+        if filter_concepts is None:
+            filter_concepts = []
+
+        if filter_public_organization is None:
+            filter_public_organization = []
+
+        if filter_contact_point is None:
+            filter_contact_point = []
 
         VALUE_C = 'value_c'
         VALUE_PO = 'value_po'
@@ -284,21 +331,21 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
             SELECT distinct ?{URI}
             WHERE {{
                 Graph ?graph {{
-                    ?{URI} rdf:type cpsv:PublicService .
+                    ?{URI} a cpsv:PublicService .
                                    
                     OPTIONAL{{
                         ?{URI} cpsv:isClassifiedBy ?uri_c .
                         ?uri_c skos:prefLabel ?{VALUE_C} .
                     }}
+                    {q_filter_concept}
                     OPTIONAL{{
                         ?{URI} cv:hasCompetentAuthority ?uri_po .
                         ?uri_po ?pred ?{VALUE_PO} .
                     }}
+                    {q_filter_public_org}
                     OPTIONAL{{
                         ?{URI} dcat:hasContactPoint ?{URI_CP} .
-                    }} 
-                    {q_filter_concept}
-                    {q_filter_public_org}
+                    }}
                     {q_filter_contact_point}
                 }}
             }}
@@ -438,11 +485,14 @@ class SPARQLContactPointProvider(SPARQLConnector):
         return l
 
     def get_contact_point_uris_filter(self,
-                                      filter_public_service: List[str] = []) -> List[URIRef]:
+                                      filter_public_service: List[str] = None) -> List[URIRef]:
         """
 
         :return: A list of URI's of the contact pages.
         """
+
+        if filter_public_service is None:
+            filter_public_service = []
 
         VALUE_PS = 'value_ps'
 

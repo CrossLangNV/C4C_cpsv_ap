@@ -8,7 +8,7 @@ This can be separated into subproblems:
 * Extract relevant information.
 * Save as RDF.
 
-  ![CPSV-AP PNG](examples/CPSV-AP.png)
+  ![CPSV-AP PNG](data/CPSV-AP.png)
   *Core Public Service Vocabulary Application Profile*
 
 For all information related to CPSV-AP

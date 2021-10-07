@@ -46,7 +46,7 @@ class CPSV_APGraph(Graph):
         val = 'contactPoint' + id_generator()
         uri_ref = URIRef(val, base=C4C)
 
-        self.add((uri_ref, RDF.type, RDF.Description))
+        # self.add((uri_ref, RDF.type, RDF.Description)) # TODO why not working anymore?
         self.add((uri_ref, RDF.type, DCAT.ContactPoint))  # ['ContactPoPublicService']))
 
         for email in l_emails:
@@ -73,7 +73,7 @@ class CPSV_APGraph(Graph):
 
         title = public_service.title
 
-        self.add((uri_ref, RDF.type, RDF.Description))
+        # self.add((uri_ref, RDF.type, RDF.Description)) # TODO why not working anymore?
         self.add((uri_ref, RDF.type, CPSV.PublicService))
 
         # Mandatory
@@ -127,7 +127,7 @@ class CPSV_APGraph(Graph):
         t_label[0] = uri_ref
         t_spatial[0] = uri_ref
 
-        self.add((uri_ref, RDF.type, RDF.Description))
+        # self.add((uri_ref, RDF.type, RDF.Description)) # TODO why not working anymore?
         self.add((uri_ref, RDF.type, CV.PublicOrganisation))
 
         # Mandatory
@@ -189,7 +189,7 @@ class CPSV_APGraph(Graph):
                 val = 'concept' + id_generator()
                 uri_ref = URIRef(val, base=C4C)
 
-                self.add((uri_ref, RDF.type, RDF.Description))
+                # self.add((uri_ref, RDF.type, RDF.Description))  # TODO why not working anymore?
                 self.add((uri_ref, RDF.type, SKOS.Concept))  # ['ContactPoPublicService']))
                 self.add((uri_ref, SKOS.prefLabel, Literal(term)))
 
@@ -240,7 +240,7 @@ class CPSV_APGraph(Graph):
                 val = 'lifeEvent' + id_generator()
                 uri_ref = URIRef(val, base=C4C)
 
-                self.add((uri_ref, RDF.type, RDF.Description))
+                # self.add((uri_ref, RDF.type, RDF.Description)) # TODO why not working anymore?
                 self.add((uri_ref, RDF.type, CPSV.LifeEvent))
 
                 # Mandatory

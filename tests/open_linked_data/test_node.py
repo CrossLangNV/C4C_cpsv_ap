@@ -4,7 +4,7 @@ import unittest
 
 from c4c_cpsv_ap.open_linked_data.build_rdf import CPSV_APGraph
 from c4c_cpsv_ap.open_linked_data.node import PublicOrganization, PublicService
-from examples.PoC_public_organisation import d_pub_org_PoC
+from data.examples.PoC_public_organisation import d_pub_org_PoC
 
 
 class TestPublicOrganization(unittest.TestCase):
