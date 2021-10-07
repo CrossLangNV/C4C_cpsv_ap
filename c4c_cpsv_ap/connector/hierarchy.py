@@ -57,23 +57,27 @@ class Harvester:
                  graph_uri: str = None
                  ):
         """
-        Will use endpoint if available, else use store.
+        Harvester of CPSV-data.
+
+        1. Will use endpoint if available,
+        2. else use store,
+        3. if nothing is provided, it will start with an empty Graph.
         Args:
             endpoint:
             source:
             graph_uri: URI with the name of the graph.
         """
 
-        if not (endpoint or source):
-            raise TypeError('Either endpoint or store should be provided.')
-
         if endpoint:
             store = SPARQLStore(endpoint)
             g = CPSV_APGraph(store)
 
-        else:
-            g = CPSV_APGraph()  # To work with named graphs
+        elif source:
+            g = CPSV_APGraph()
             g.parse(source, publicID=graph_uri)
+
+        else:
+            g = CPSV_APGraph()  # Empty graph
 
         self.graph = g
 

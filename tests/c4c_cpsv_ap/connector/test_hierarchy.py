@@ -26,7 +26,7 @@ class TestConnector(unittest.TestCase):
         LIMIT {self.n}
         """
 
-    def test_init(self):
+    def test_init_endpoint(self):
         connector = Harvester(
             FUSEKI_ENDPOINT,
         )
@@ -50,6 +50,15 @@ class TestConnector(unittest.TestCase):
 
         self.assertTrue(l)
         self.assertEqual(len(l), self.n)
+
+    def test_init_empty(self):
+        connector = Harvester()
+
+        self.assertTrue(connector)
+
+        l = list(connector.query(self.q))
+
+        self.assertEqual(len(l), 0, 'Should be empty')
 
 
 class TestPublicServices(unittest.TestCase):
@@ -82,7 +91,6 @@ class TestPublicServicesProvider(unittest.TestCase):
 
     def setUp(self) -> None:
         self.provider = Provider(
-            # endpoint=FUSEKI_ENDPOINT,
             source=FILENAME_RDF_DEMO,
             graph_uri=CONTEXT
         )
