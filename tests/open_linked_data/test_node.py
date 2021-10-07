@@ -10,7 +10,7 @@ from data.examples.PoC_public_organisation import d_pub_org_PoC
 class TestPublicOrganization(unittest.TestCase):
 
     def setUp(self) -> None:
-        PATH_EXAMPLE = os.path.join(os.path.dirname(__file__), 'tmp/demo2.json')
+        PATH_EXAMPLE = os.path.join(os.path.dirname(__file__), '../../data/examples/demo2.json')
 
         with open(PATH_EXAMPLE) as json_file:
             self.data = json.load(json_file)

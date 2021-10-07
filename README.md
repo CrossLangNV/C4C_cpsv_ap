@@ -14,7 +14,18 @@ This can be separated into subproblems:
 For all information related to CPSV-AP
 see [Core Public Service Vocabulary Application Profile solution](https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/solution/core-public-service-vocabulary-application-profile/releases)
 
-## TODO
+## Validation
+
+For validation of the RDF, we currently refer
+to [https://www.itb.ec.europa.eu/shacl/cpsv-ap/upload](https://www.itb.ec.europa.eu/shacl/cpsv-ap/upload).
+
+Validation of the data (07/10/2011):
+
+* data/output/demo2_export.rdf: property dct:spatial has to be added to PublicOrganizations.
+* data/examples/trento.jsonld: flawless
+* data/examples/export.rdf: "The property dct:language SHOULD have the following pattern"
+
+# TODO
 
 *[ ] Extract and save basic functionalities
     * Opening hours
