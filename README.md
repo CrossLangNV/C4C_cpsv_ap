@@ -11,6 +11,9 @@ This can be separated into subproblems:
   ![CPSV-AP PNG](examples/CPSV-AP.png)
   *Core Public Service Vocabulary Application Profile*
 
+For all information related to CPSV-AP
+see [Core Public Service Vocabulary Application Profile solution](https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/solution/core-public-service-vocabulary-application-profile/releases)
+
 ## TODO
 
 *[ ] Extract and save basic functionalities
