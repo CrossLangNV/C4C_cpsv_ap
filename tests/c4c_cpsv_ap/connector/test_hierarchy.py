@@ -7,7 +7,7 @@ from c4c_cpsv_ap.connector.hierarchy import Harvester, Provider
 from c4c_cpsv_ap.models import PublicService
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
-FILENAME_RDF_DEMO = os.path.join(os.path.dirname(__file__), '../../open_linked_data/tmp/demo2_export.rdf')
+FILENAME_RDF_DEMO = os.path.join(os.path.dirname(__file__), '../../../data/output/demo2_export.rdf')
 assert os.path.exists(FILENAME_RDF_DEMO)
 
 CONTEXT = 'https://www.wien.gv.at'

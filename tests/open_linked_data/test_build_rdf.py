@@ -18,7 +18,7 @@ class TestOpenRawData(unittest.TestCase):
         """
 
         PATH_EXAMPLE = os.path.join(os.path.dirname(__file__), 'tmp/demo2.json')
-        PATH_EXPORT = os.path.join(os.path.dirname(__file__), 'tmp/demo2_export.rdf')
+        PATH_EXPORT = os.path.join(os.path.dirname(__file__), '../../data/output/demo2_export.rdf')
 
         with open(PATH_EXAMPLE) as json_file:
             data = json.load(json_file)
