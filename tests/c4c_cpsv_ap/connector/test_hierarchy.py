@@ -95,6 +95,14 @@ class TestPublicServicesProvider(unittest.TestCase):
             graph_uri=CONTEXT
         )
 
+    def test_equivalent(self):
+        harvest = Harvester(FUSEKI_ENDPOINT)
+
+        l_prov = self.provider.public_services.get_all()
+        l_harv = harvest.public_services.get_all()
+
+        self.assertListEqual(l_prov, l_harv, 'Should return same content.')
+
     def test_add(self):
         public_service = PublicService(description='Test description.',
                                        identifier='Test identifier.',
@@ -116,10 +124,39 @@ class TestPublicServicesProvider(unittest.TestCase):
 
             self.assertEqual(dict(public_service), dict(public_service_get), 'Should have saved all key values.')
 
-    def test_equivalent(self):
-        harvest = Harvester(FUSEKI_ENDPOINT)
+    def test_delete(self):
+        n_before = len(self.provider.graph)
 
-        l_prov = self.provider.public_services.get_all()
-        l_harv = harvest.public_services.get_all()
+        public_service = PublicService(description='Delete this description.',
+                                       identifier='Delete this identifier.',
+                                       name='Delete this name.')
 
-        self.assertListEqual(l_prov, l_harv, 'Should return same content.')
+        uri_ps = self.provider.public_services.add(public_service, CONTEXT)
+        with self.subTest('Add method (Sanity check)'):
+            n_during = len(self.provider.graph)
+            self.assertGreater(n_during, n_before,
+                               'Should have increased number of triples, make sure *add* method works.')
+
+        with self.subTest('Delete method'):
+            self.provider.public_services.delete(uri_ps)
+
+        n_after = len(self.provider.graph)
+
+        with self.subTest("Restore to previous state"):
+            self.assertEqual(n_before, n_after, 'Should restore to previous number of triples')
+
+        # uri_ps_before = self.provider.public_services.get_all()
+        #
+        # uri_ps = self.provider.public_services.add(public_service, CONTEXT)
+        #
+        # uri_ps_after = self.provider.public_services.get_all()
+        #
+        # self.assertNotIn(uri_ps, uri_ps_before)
+        # self.assertIn(uri_ps, uri_ps_after)
+        #
+        # with self.subTest('Get'):
+        #     # Expect identical keys
+        #
+        #     public_service_get = self.provider.public_services.get(uri_ps)
+        #
+        #     self.assertEqual(dict(public_service), dict(public_service_get), 'Should have saved all key values.')
