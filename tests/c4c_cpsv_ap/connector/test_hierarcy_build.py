@@ -6,21 +6,22 @@ from c4c_cpsv_ap.connector.hierarchy import Provider
 from c4c_cpsv_ap.models import PublicService
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
-FILENAME_DEMO_DATA = os.path.join(os.path.dirname(__file__), '../../../data/examples/demo2.json')
-FILENAME_RDF_DEMO = os.path.join(os.path.dirname(__file__), '../../../data/output/demo2_export.rdf')
+ROOT = os.path.join(os.path.dirname(__file__), '../../..')
+FILENAME_DEMO_DATA = os.path.join(ROOT, 'data/examples/demo3.json')
+FILENAME_OUT_BASENAME = os.path.join(ROOT, 'data/output/demo_export_v3')
 
-assert os.path.exists(FILENAME_RDF_DEMO)
+assert os.path.exists(FILENAME_DEMO_DATA)
 
 CONTEXT = 'https://www.wien.gv.at'
+
+URL = 'url'
+NAME = 'title'
 
 
 class TestProviderBuild(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.provider = Provider(
-            # source=FILENAME_RDF_DEMO,
-            graph_uri=CONTEXT
-        )
+        self.provider = Provider()
 
         with open(FILENAME_DEMO_DATA) as json_file:
             self.data = json.load(json_file)
@@ -46,9 +47,6 @@ class TestProviderBuild(unittest.TestCase):
         """
 
         public_service0 = self.data[0].copy()
-
-        URL = 'url'
-        NAME = 'title'
 
         def get_single_el_from_list(l):
             """
@@ -83,18 +81,14 @@ class TestProviderBuild(unittest.TestCase):
                     pass
                 else:
                     self.fail('Every key element should be implemented.')
-        # def foo(l, *args, **kwargs):
-        #     return
-        #
-        # map_do = {'url': foo,
-        #           'life_events': foo,
-        #           'terms': foo,
-        #           'phone': foo,
-        #           'emails': foo,
-        #           'opening_hours': foo,
-        #           'pdf': foo,
-        #           'title': foo}
-        #
+
+        with self.subTest('Export'):
+
+            print(self.provider.graph.serialize(format='pretty-xml'))
+
+            self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.rdf', format='pretty-xml')
+            self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.ttl', format='turtle')
+
         # DEFAULT_PUB_ORG_WIEN = ('Stadt Wien', 'http://publications.europa.eu/resource/authority/atu/AUT_STTS_VIE')
         #
         # known_keys = map_do.keys()
@@ -112,10 +106,8 @@ class TestProviderBuild(unittest.TestCase):
         # for page in data:
         #     url_page = page.get('url')[0]
         #
-        #     ps = PublicService.from_dict(page)
         #     cp = ContactPoint.from_dict(page)
         #
-        #     ps_uri = g.add_public_service(ps)
         #     cp_uri = g.add_contact_point(cp)
         #
         #     if cp_uri:  # Only make sense if it's not none.
@@ -146,10 +138,3 @@ class TestProviderBuild(unittest.TestCase):
         #         assert f, 'Unknown key'
         #
         #         f(v)
-        #
-        # print(g.serialize(format='pretty-xml'))
-        #
-        # print(g.serialize(PATH_EXPORT, format='pretty-xml'))
-        # print(g.serialize(os.path.splitext(PATH_EXPORT)[0] + '.ttl', format='turtle'))
-
-        self.assertEqual(0, 1, '#TODO')

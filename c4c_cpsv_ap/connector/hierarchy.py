@@ -65,7 +65,7 @@ class Harvester:
         Args:
             endpoint:
             source:
-            graph_uri: URI with the name of the graph.
+            graph_uri: URI with the name of the graph. (only used when source is used)
         """
 
         if endpoint:
