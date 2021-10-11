@@ -97,10 +97,6 @@ class Harvester:
 
 
 class Provider(Harvester):
-    """
-    TODO implement generator
-    """
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -138,7 +134,7 @@ class SubHarvester(abc.ABC):
 class SubProvider(SubHarvester, abc.ABC):
     """
     Nested classes of providers
-    TODO how to add write rights.
+    TODO how to add write rights for endpoint.
     """
 
     def __init__(self, provider: Provider):
@@ -146,17 +142,55 @@ class SubProvider(SubHarvester, abc.ABC):
         self.provider = provider
 
     @abc.abstractmethod
-    def add(self, obj: object, *args, **kwargs) -> URIRef:
+    def add(self, *args, **kwargs) -> URIRef:
         """
         Add a new item to the RDF.
 
         Args:
-            obj: One
+            obj: An item object, see models.py
 
         Returns:
-            uri to the new item in the RDF.
+            URI to the new item in the RDF.
         """
         pass
+
+    @abc.abstractmethod
+    def update(self, obj: object, uri: URIRef, *args, **kwargs) -> None:
+        """
+        Update an item from the RDF. When one or multiple of the links are updated
+
+        Args:
+            obj: An item object, see models.py
+            uri:
+
+        Returns:
+
+        TODO:
+         * This could be part of add, by just adding the URI as an option. If None, generate new, else use the
+         URI and overwrite the previous one? But then we also would have to delete previous links, so an explicit
+         update might be better.
+
+        """
+        pass
+
+    def delete(self,
+               uri: URIRef,
+               context: str
+               ) -> None:
+        """
+        Remove an item from the RDF.
+
+        Args:
+            uri: Main uri to the item in the RDF.
+            context: subgraph uri
+
+        Returns:
+
+        """
+
+        # this will remove all matching triples:
+        self.provider.graph.remove((uri, None, None, context))
+        self.provider.graph.remove((None, None, uri, context))
 
 
 class PublicServicesHarvester(SubHarvester):
@@ -251,7 +285,7 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
         Args:
             public_service:
             context: subgraph uri
-            uri:
+            uri (str, Optional): Specify the URI of new public service. If None, a new one is generated.
 
         Returns:
 
@@ -275,13 +309,27 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
 
         return uri_ref
 
+    def update(self, obj: object, uri: URIRef, *args, **kwargs) -> None:
+        """
 
-def id_generator():
-    # def id_generator(size=12, chars=string.ascii_lowercase + string.digits):
-    #     return ''.join(random.choice(chars) for _ in range(size))
+        Args:
+            obj:
+            uri:
+            *args:
+            **kwargs:
+        """
+        raise NotImplementedError('# TODO')
+
+        # Mandatory
+        self.provider.graph.set((uri, DCTERMS.identifier, Literal(public_service.identifier), context))
+        self.provider.graph.set((uri, DCTERMS.description, Literal(public_service.description), context))
+        self.provider.graph.set((uri, DCTERMS.title, Literal(public_service.name), context))
+
+
+def id_generator() -> str:
     return _serial_number_generator()()
 
 
-def uriref_generator(name: str, base=None):
+def uriref_generator(name: str, base=None) -> URIRef:
     val = name + id_generator()
     return URIRef(val, base=base)

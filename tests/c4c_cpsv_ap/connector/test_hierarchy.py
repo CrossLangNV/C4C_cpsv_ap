@@ -124,6 +124,14 @@ class TestPublicServicesProvider(unittest.TestCase):
 
             self.assertEqual(dict(public_service), dict(public_service_get), 'Should have saved all key values.')
 
+    def test_update(self):
+        """
+        Test the update of a public service method
+        Returns:
+
+        """
+        self.assertEqual(0, 1)
+
     def test_delete(self):
         n_before = len(self.provider.graph)
 
@@ -138,25 +146,9 @@ class TestPublicServicesProvider(unittest.TestCase):
                                'Should have increased number of triples, make sure *add* method works.')
 
         with self.subTest('Delete method'):
-            self.provider.public_services.delete(uri_ps)
+            self.provider.public_services.delete(uri_ps, CONTEXT)
 
         n_after = len(self.provider.graph)
 
         with self.subTest("Restore to previous state"):
             self.assertEqual(n_before, n_after, 'Should restore to previous number of triples')
-
-        # uri_ps_before = self.provider.public_services.get_all()
-        #
-        # uri_ps = self.provider.public_services.add(public_service, CONTEXT)
-        #
-        # uri_ps_after = self.provider.public_services.get_all()
-        #
-        # self.assertNotIn(uri_ps, uri_ps_before)
-        # self.assertIn(uri_ps, uri_ps_after)
-        #
-        # with self.subTest('Get'):
-        #     # Expect identical keys
-        #
-        #     public_service_get = self.provider.public_services.get(uri_ps)
-        #
-        #     self.assertEqual(dict(public_service), dict(public_service_get), 'Should have saved all key values.')
