@@ -1,24 +1,15 @@
 import abc
-from typing import List, Generator, Dict
+from typing import List, Generator, Dict, Union
 
 from rdflib.graph import ConjunctiveGraph
-from rdflib.namespace import Namespace, DCAT, DCTERMS, RDF, SKOS
+from rdflib.namespace import DCAT, DCTERMS, RDF, SKOS
 from rdflib.plugins.stores.sparqlstore import SPARQLStore
 from rdflib.term import Identifier, Literal
 from rdflib.term import URIRef
 from rdflib.term import _serial_number_generator
 
-from c4c_cpsv_ap.models import PublicService
-
-CPSV = Namespace("http://purl.org/vocab/cpsv#")
-CV = Namespace("http://data.europa.eu/m8g/")
-VCARD = Namespace("http://www.w3.org/2006/vcard/ns#")
-
-C4C = Namespace("http://cefat4cities.crosslang.com/content/")
-SCHEMA = Namespace("https://schema.org/")
-
-TYPE_PUBLICSERVICE = CPSV.PublicService
-TYPE_ISCLASSIFIEDBY = CPSV.isClassifiedBy
+from c4c_cpsv_ap.models import PublicService, Concept
+from c4c_cpsv_ap.namespace import CPSV, VCARD, C4C, SCHEMA
 
 SUBJ = 'subj'
 PRED = 'pred'
@@ -43,6 +34,26 @@ class CPSV_APGraph(ConjunctiveGraph):
         self.bind('schema', SCHEMA)
         self.bind('skos', SKOS)
         self.bind('c4c', C4C)
+
+    def set(self, triple_or_quad):
+        """Convenience method to update the value of object
+        Allow to add quad
+
+        Remove any existing triples for subject and predicate before adding
+        (subject, predicate, object).
+        """
+
+        (subject, predicate, object_, context) = self._spoc(triple_or_quad, default=True)
+
+        assert (
+                subject is not None
+        ), "s can't be None in .set([s,p,o]), as it would remove (*, p, *)"
+        assert (
+                predicate is not None
+        ), "p can't be None in .set([s,p,o]), as it would remove (s, *, *)"
+        self.remove((subject, predicate, None, context))
+        self.add((subject, predicate, object_, context))
+        return self
 
 
 class Harvester:
@@ -81,6 +92,7 @@ class Harvester:
 
         self.graph = g
 
+        self.concepts = ConceptsHarvester(self)
         self.public_services = PublicServicesHarvester(self)
 
     def query(self, q) -> Generator[Dict[str, Identifier], None, None]:
@@ -100,6 +112,7 @@ class Provider(Harvester):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.concepts = ConceptsProvider(self)
         self.public_services = PublicServicesProvider(self)
 
 
@@ -155,13 +168,13 @@ class SubProvider(SubHarvester, abc.ABC):
         pass
 
     @abc.abstractmethod
-    def update(self, obj: object, uri: URIRef, *args, **kwargs) -> None:
+    def update(self, *args) -> None:
         """
         Update an item from the RDF. When one or multiple of the links are updated
 
         Args:
             obj: An item object, see models.py
-            uri:
+            uri (URIRef): URI to the item in the RDF.
 
         Returns:
 
@@ -193,6 +206,94 @@ class SubProvider(SubHarvester, abc.ABC):
         self.provider.graph.remove((None, None, uri, context))
 
 
+class ConceptsHarvester(SubHarvester):
+    def get_all(self,
+                graph_uri: URIRef = None,
+                debug=False
+                ) -> List[URIRef]:
+        q_filter = f"""
+                values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
+                """ if graph_uri is not None else ''
+
+        q = f"""
+        SELECT distinct ?{URI} ?{LABEL} ?{GRAPH}
+            WHERE {{
+                {q_filter}
+                Graph ?{GRAPH} {{
+                    ?{URI} a {SKOS.Concept.n3()} ;
+                        {SKOS.prefLabel.n3()} ?{LABEL} .
+
+                }}
+            }}
+            ORDER BY ?{URI}
+        """
+
+        if debug:
+            print(q)
+
+        l_c = self.query(q)
+        l_c_uri = [ps_i.get(URI) for ps_i in l_c]
+
+        return l_c_uri
+
+    def get(self,
+            uri: URIRef,
+            ) -> Concept:
+
+        if not isinstance(uri, URIRef):
+            uri = URIRef(uri)
+
+        # TODO use graph.objects() when we allow multiple labels.
+        pref_label = xstr(self.harvester.graph.value(uri, SKOS.prefLabel, None, any=False))
+
+        if pref_label is not None:
+            return Concept(
+                pref_label=pref_label,
+            )
+
+
+class ConceptsProvider(SubProvider, ConceptsHarvester):
+    def add(self,
+            concept: Concept,
+            context: str,
+            uri: str = None
+            ) -> URIRef:
+
+        if uri is None:
+            uri = uriref_generator('Concept', C4C)
+
+        uri_ref = URIRef(uri)
+
+        if not isinstance(context, URIRef):
+            context = URIRef(context)
+
+        # self.provider.graph.add((uri_ref, RDF.type, RDF.Description)) # TODO find out if this is necessary/existing?
+        self.provider.graph.add((uri_ref, RDF.type, SKOS.Concept, context))
+
+        # Mandatory
+        self.provider.graph.add((uri_ref, SKOS.prefLabel, Literal(concept.pref_label), context))
+
+        return uri_ref
+
+    def update(self,
+               concept: Concept,
+               uri_c: URIRef,
+               context: str) -> URIRef:
+        """
+
+        Args:
+            concept (Concept): Contains all the information of the concept.
+            uri_ps: URI of the previous concept.
+            # context: subgraph uri
+
+        """
+
+        # Mandatory
+        self.provider.graph.set((uri_c, SKOS.prefLabel, Literal(concept.pref_label), context))
+
+        return uri_c
+
+
 class PublicServicesHarvester(SubHarvester):
 
     def get_all(self,
@@ -212,7 +313,7 @@ class PublicServicesHarvester(SubHarvester):
             WHERE {{
                 {q_filter}
                 Graph ?{GRAPH} {{
-                    ?{URI} a {TYPE_PUBLICSERVICE.n3()} ;
+                    ?{URI} a {CPSV.PublicService.n3()} ;
                         terms:title ?{TITLE} ;
                         terms:description ?{DESCRIPTION} .
                 }}
@@ -234,42 +335,23 @@ class PublicServicesHarvester(SubHarvester):
         if not isinstance(uri, URIRef):
             uri = URIRef(uri)
 
-        q = f"""
-        SELECT ?{PRED} ?{OBJ}
-        WHERE {{
-            Graph ?g {{
-                {uri.n3()} ?{PRED} ?{OBJ} .
-            }}
-        }}
-        """
+        l_concepts: List[Concept] = []
+        for uri_concept in self.harvester.graph.objects(uri, CPSV.isClassifiedBy):
+            concept = self.harvester.concepts.get(uri_concept)
+            if concept is not None:
+                l_concepts.append(concept)
 
-        if debug:
-            print(q)
+        title = self.harvester.graph.value(uri, DCTERMS.title, None, any=False)
+        identifier = self.harvester.graph.value(uri, DCTERMS.identifier, None, any=False)
+        description = self.harvester.graph.value(uri, DCTERMS.description, None, any=False)
 
-        l_query = self.query(q)
-
-        l_concepts: List[URIRef] = []
-        title = None
-        description = None
-        identifier = None
-
-        for d_i in l_query:
-
-            pred = d_i[PRED]
-            obj = d_i[OBJ]
-            if pred == TYPE_ISCLASSIFIEDBY:
-                l_concepts.append(obj)
-            elif pred == DCTERMS.title:
-                title = str(obj)
-            elif pred == DCTERMS.identifier:
-                identifier = str(obj)
-            elif pred == DCTERMS.description:
-                description = str(obj)
+        keywords = list(map(str, self.harvester.graph.objects(uri, DCAT.keyword)))
 
         return PublicService(
-            name=title,
-            description=description,
-            identifier=identifier,
+            name=xstr(title),
+            description=xstr(description),
+            identifier=xstr(identifier),
+            keyword=keywords,
             classified_by=l_concepts,
         )
 
@@ -307,23 +389,38 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
         self.provider.graph.add((uri_ref, DCTERMS.description, Literal(public_service.description), context))
         self.provider.graph.add((uri_ref, DCTERMS.title, Literal(public_service.name), context))
 
+        # keyword
+        for keyword in public_service.keyword:
+            self.provider.graph.add((uri_ref, DCAT.keyword, Literal(keyword), context))
+
+        # IsClassified
+        # requires Concepts. For this we have to have concepts first in the RDF and in models.py
+        for concept in public_service.classified_by:
+            # TODO find previously existing concept with this label and get uri.
+            uri_concept = self.provider.concepts.add(concept, context=context)
+            self.provider.graph.add((uri_ref, CPSV.isClassifiedBy, uri_concept, context))
+
         return uri_ref
 
-    def update(self, obj: object, uri: URIRef, *args, **kwargs) -> None:
+    def update(self,
+               public_service: PublicService,
+               uri_ps: URIRef,
+               context: str) -> URIRef:
         """
 
         Args:
-            obj:
-            uri:
-            *args:
-            **kwargs:
+            public_service (PublicService): Contains all the information of the public service.
+            uri_ps: URI of the previous public service.
+            context: subgraph uri
+
         """
-        raise NotImplementedError('# TODO')
 
         # Mandatory
-        self.provider.graph.set((uri, DCTERMS.identifier, Literal(public_service.identifier), context))
-        self.provider.graph.set((uri, DCTERMS.description, Literal(public_service.description), context))
-        self.provider.graph.set((uri, DCTERMS.title, Literal(public_service.name), context))
+        self.provider.graph.set((uri_ps, DCTERMS.identifier, Literal(public_service.identifier), context))
+        self.provider.graph.set((uri_ps, DCTERMS.description, Literal(public_service.description), context))
+        self.provider.graph.set((uri_ps, DCTERMS.title, Literal(public_service.name), context))
+
+        return uri_ps
 
 
 def id_generator() -> str:
@@ -333,3 +430,29 @@ def id_generator() -> str:
 def uriref_generator(name: str, base=None) -> URIRef:
     val = name + id_generator()
     return URIRef(val, base=base)
+
+
+def get_single_el_from_list(l: list):
+    """
+    Expects a list with only one element.
+    Args:
+        l:
+
+    Returns:
+        First and only item.
+    """
+    assert (len(l)) == 1, len(l)
+    assert isinstance(l, list), type(l)
+    return l[0]
+
+
+def xstr(s) -> Union[str, None]:
+    """
+
+    Args:
+        s: to be casted to string
+
+    Returns:
+        string or
+    """
+    return str(s) if s is not None else None

@@ -1,10 +1,11 @@
+import abc
 import os
 import unittest
 
 from rdflib import URIRef
 
-from c4c_cpsv_ap.connector.hierarchy import Harvester, Provider
-from c4c_cpsv_ap.models import PublicService
+from c4c_cpsv_ap.connector.hierarchy import Harvester, Provider, SubHarvester
+from c4c_cpsv_ap.models import PublicService, Concept
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 FILENAME_RDF_DEMO = os.path.join(os.path.dirname(__file__), '../../../data/output/demo2_export.rdf')
@@ -61,7 +62,54 @@ class TestConnector(unittest.TestCase):
         self.assertEqual(len(l), 0, 'Should be empty')
 
 
-class TestPublicServices(unittest.TestCase):
+class AbstractTestModels(abc.ABC):
+
+    def setUp(self) -> None:
+        self.harvester = SubHarvester()
+
+    @abc.abstractmethod
+    def test_get_all(self):
+        self.harvester.get_all()
+
+    @abc.abstractmethod
+    def test_get(self):
+        self.harvester.get()
+
+
+class TestConcepts(unittest.TestCase, AbstractTestModels):
+
+    def setUp(self) -> None:
+        """
+        Set up
+        """
+        self.connector = Harvester(
+            source=FILENAME_RDF_DEMO,
+            graph_uri='https://www.wien.gv.at'
+        )
+
+    def test_get_all(self):
+        l = self.connector.concepts.get_all()
+
+        with self.subTest('Non-empty'):
+            self.assertTrue(l, 'Should return Non-empty')
+
+        with self.subTest('Type'):
+            for a in l:
+                self.assertIsInstance(a, URIRef, 'Elements in list have unexpected type.')
+
+    def test_get(self):
+        uri_0 = self.connector.concepts.get_all()[0]
+
+        with self.subTest('Sanity check'):
+            self.assertTrue(uri_0, 'Should return Non-empty')
+
+        concept = self.connector.concepts.get(uri_0)
+
+        with self.subTest('Type'):
+            self.assertIsInstance(concept, Concept, 'Elements in list have unexpected type.')
+
+
+class TestPublicServices(unittest.TestCase, AbstractTestModels):
 
     def setUp(self) -> None:
         self.connector = Harvester(
@@ -122,15 +170,39 @@ class TestPublicServicesProvider(unittest.TestCase):
 
             public_service_get = self.provider.public_services.get(uri_ps)
 
-            self.assertEqual(dict(public_service), dict(public_service_get), 'Should have saved all key values.')
+            self.assertDictEqual(dict(public_service), dict(public_service_get), 'Should have saved all key values.')
 
-    def test_update(self):
-        """
-        Test the update of a public service method
-        Returns:
+    def test_add2(self):
+        concept0 = Concept(pref_label='Test concept 0')
+        concept1 = Concept(pref_label='Test concept 1')
 
-        """
-        self.assertEqual(0, 1)
+        public_service = PublicService(description='Test description.',
+                                       identifier='Test identifier.',
+                                       name='Test name.',
+                                       keyword=['Test keyword'],
+                                       classified_by=[concept0, concept1],
+                                       )
+
+        uri_ps_before = self.provider.public_services.get_all()
+
+        uri_ps = self.provider.public_services.add(public_service, CONTEXT)
+
+        uri_ps_after = self.provider.public_services.get_all()
+
+        self.assertNotIn(uri_ps, uri_ps_before)
+        self.assertIn(uri_ps, uri_ps_after)
+
+        with self.subTest('Get'):
+            # Expect identical keys
+
+            public_service_get = self.provider.public_services.get(uri_ps)
+
+            self.assertDictEqual(dict(public_service), dict(public_service_get), 'Should have saved all key values.')
+
+        with self.subTest('Export single'):
+            FILENAME_SINGLE = os.path.join(os.path.dirname(__file__), '../../../data/output/single_test.ttl')
+
+            self.provider.graph.serialize(FILENAME_SINGLE, format='turtle')
 
     def test_delete(self):
         n_before = len(self.provider.graph)
@@ -152,3 +224,74 @@ class TestPublicServicesProvider(unittest.TestCase):
 
         with self.subTest("Restore to previous state"):
             self.assertEqual(n_before, n_after, 'Should restore to previous number of triples')
+
+
+class TestPublicServicesProviderUpdate(unittest.TestCase):
+    public_service_old = PublicService(description='Old test description.',
+                                       identifier='Old test identifier.',
+                                       name='Old test name.')
+
+    public_service_old_2 = PublicService(description='Old test description.',
+                                         identifier='Old test identifier.',
+                                         name='Old test name.',
+                                         classified_by=[Concept(pref_label='Old test term')])
+
+    public_service_new = PublicService(description='New test description.',
+                                       identifier='New test identifier.',
+                                       name='New test name.')
+
+    public_service_new_2 = PublicService(description='New test description.',
+                                         identifier='New test identifier.',
+                                         name='New test name.',
+                                         keyword=['This is new']
+                                         )
+
+    def setUp(self) -> None:
+        self.provider = Provider(
+            source=FILENAME_RDF_DEMO,
+            graph_uri=CONTEXT
+        )
+
+    def test_update(self):
+        """
+        Test the update of a public service method
+        Returns:
+
+        """
+
+        self.shared_test(self.public_service_old, self.public_service_new)
+
+    def test_update_more_info(self):
+        """
+        Test the update of a public service method
+        Returns:
+
+        """
+
+        self.shared_test(self.public_service_old, self.public_service_new_2)
+
+    def test_update_less_info(self):
+        """
+        Test the update of a public service method
+        Returns:
+
+        """
+
+        self.shared_test(self.public_service_old_2, self.public_service_new)
+
+    def test_update_add_remove(self):
+        self.shared_test(self.public_service_old_2, self.public_service_new_2)
+
+    def shared_test(self, ps_old: PublicService, ps_new: PublicService):
+        uri = self.provider.public_services.add(ps_old, CONTEXT)
+
+        with self.subTest('Sanity check'):
+            r_old = self.provider.public_services.get(uri)
+            self.assertDictEqual(dict(r_old), dict(ps_old))
+
+        self.provider.public_services.update(ps_new, uri, CONTEXT)
+
+        r = self.provider.public_services.get(uri)
+
+        with self.subTest('Updated'):
+            self.assertDictEqual(dict(r), dict(ps_new))

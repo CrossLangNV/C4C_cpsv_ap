@@ -2,7 +2,7 @@ import json
 import os
 import unittest
 
-from c4c_cpsv_ap.connector.hierarchy import Provider
+from c4c_cpsv_ap.connector.hierarchy import Provider, get_single_el_from_list
 from c4c_cpsv_ap.models import PublicService
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
@@ -47,18 +47,6 @@ class TestProviderBuild(unittest.TestCase):
         """
 
         public_service0 = self.data[0].copy()
-
-        def get_single_el_from_list(l):
-            """
-            Expects a list with only one element.
-            Args:
-                l:
-
-            Returns:
-
-            """
-            self.assertIsInstance(l, list)
-            return l[0]
 
         with self.subTest('Public service'):
             identifier = get_single_el_from_list(public_service0.pop(URL))

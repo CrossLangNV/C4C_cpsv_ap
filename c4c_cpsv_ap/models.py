@@ -7,11 +7,15 @@ https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic
 from typing import Optional, List
 
 from pydantic import BaseModel
-from rdflib import URIRef
 
 
 class ContactPoint:
     pass
+
+
+class Concept(BaseModel):
+    # TODO add language
+    pref_label: str
 
 
 class PublicService(BaseModel):
@@ -23,4 +27,4 @@ class PublicService(BaseModel):
     keyword: Optional[List[str]] = []
 
     # Links
-    classified_by: Optional[List[URIRef]] = []
+    classified_by: Optional[List[Concept]] = []
