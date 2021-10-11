@@ -4,8 +4,8 @@ import unittest
 
 from rdflib import URIRef
 
-from c4c_cpsv_ap.connector.hierarchy import Harvester, Provider, SubHarvester
-from c4c_cpsv_ap.models import PublicService, Concept
+from c4c_cpsv_ap.connector.hierarchy import Harvester, Provider, SubHarvester, SubProvider
+from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 FILENAME_RDF_DEMO = os.path.join(os.path.dirname(__file__), '../../../data/output/demo2_export.rdf')
@@ -76,6 +76,117 @@ class AbstractTestModels(abc.ABC):
         self.harvester.get()
 
 
+class AbstractTestModelsProvider(abc.ABC):
+
+    def setUp(self) -> None:
+        self.provider = SubProvider()
+
+    @abc.abstractmethod
+    def test_equivalent(self):
+        harvest = SubHarvester()
+
+        l_prov = self.provider.get_all()
+        l_harv = harvest.get_all()
+
+        self.assertListEqual(l_prov, l_harv, 'Should return same content.')
+
+    @abc.abstractmethod
+    def test_add(self):
+        obj = CPSVAPModel()
+
+        uri_before = self.provider.get_all()
+
+        uri = self.provider.add(obj, CONTEXT)
+
+        uri_after = self.provider.get_all()
+
+        self.assertNotIn(uri, uri_before)
+        self.assertIn(uri, uri_after)
+
+        with self.subTest('Get'):
+            # Expect identical keys
+
+            obj_get = self.provider.get(uri)
+
+            self.assertDictEqual(dict(obj), dict(obj_get), 'Should have saved all key values.')
+
+    @abc.abstractmethod
+    def test_delete(self):
+        n_before = len(self.provider.provider.graph)
+
+        obj = CPSVAPModel()
+
+        uri = self.provider.add(obj, CONTEXT)
+        with self.subTest('Add method (Sanity check)'):
+            n_during = len(self.provider.provider.graph)
+            self.assertGreater(n_during, n_before,
+                               'Should have increased number of triples, make sure *add* method works.')
+
+        with self.subTest('Delete method'):
+            self.provider.delete(uri, CONTEXT)
+
+        n_after = len(self.provider.provider.graph)
+
+        with self.subTest("Restore to previous state"):
+            self.assertEqual(n_before, n_after, 'Should restore to previous number of triples')
+
+
+class AbstractTestModelsProviderUpdate(abc.ABC):
+    obj_old = CPSVAPModel()
+    obj_old2 = CPSVAPModel()
+    obj_new = CPSVAPModel()
+    obj_new2 = CPSVAPModel()
+
+    def setUp(self) -> None:
+        self.provider = SubProvider()
+
+    @abc.abstractmethod
+    def test_update(self):
+        """
+        Returns:
+
+        """
+
+        self.shared_test(self.obj_old, self.obj_new)
+
+    @abc.abstractmethod
+    def test_update_more_info(self):
+        """
+        Returns:
+
+        """
+
+        self.shared_test(self.obj_old, self.obj_new2)
+
+    @abc.abstractmethod
+    def test_update_less_info(self):
+        """
+        Test the update of a public service method
+        Returns:
+
+        """
+
+        self.shared_test(self.obj_old2, self.obj_new)
+
+    @abc.abstractmethod
+    def test_update_add_remove(self):
+        self.shared_test(self.obj_old2, self.obj_new2)
+
+    @abc.abstractmethod
+    def shared_test(self, obj_old: CPSVAPModel, obj_new: CPSVAPModel):
+        uri = self.provider.add(obj_old, CONTEXT)
+
+        with self.subTest('Sanity check'):
+            r_old = self.provider.get(uri)
+            self.assertDictEqual(dict(obj_old), dict(r_old))
+
+        self.provider.update(obj_new, uri, CONTEXT)
+        r = self.provider.get(uri)
+
+        with self.subTest('Updated'):
+            self.assertDictEqual(dict(obj_new), dict(r))
+
+
 class TestConcepts(unittest.TestCase, AbstractTestModels):
 
     def setUp(self) -> None:
@@ -109,6 +220,34 @@ class TestConcepts(unittest.TestCase, AbstractTestModels):
             self.assertIsInstance(concept, Concept, 'Elements in list have unexpected type.')
 
 
+class TestConceptsProvider(unittest.TestCase, AbstractTestModelsProvider):
+    def test_equivalent(self):
+        self.assertEqual(0, 1)
+
+    def test_add(self):
+        self.assertEqual(0, 1)
+
+    def test_delete(self):
+        self.assertEqual(0, 1)
+
+
+class TestConceptsProviderUpdate(unittest.TestCase, AbstractTestModelsProviderUpdate):
+    def test_update(self):
+        self.assertEqual(0, 1)
+
+    def test_update_more_info(self):
+        self.assertEqual(0, 1)
+
+    def test_update_less_info(self):
+        self.assertEqual(0, 1)
+
+    def test_update_add_remove(self):
+        self.assertEqual(0, 1)
+
+    def shared_test(self, obj_old: CPSVAPModel, obj_new: CPSVAPModel):
+        self.assertEqual(0, 1)
+
+
 class TestPublicServices(unittest.TestCase, AbstractTestModels):
 
     def setUp(self) -> None:
@@ -135,7 +274,7 @@ class TestPublicServices(unittest.TestCase, AbstractTestModels):
         self.assertIsInstance(public_service, PublicService, 'Elements in list have unexpected type.')
 
 
-class TestPublicServicesProvider(unittest.TestCase):
+class TestPublicServicesProvider(unittest.TestCase, AbstractTestModelsProvider):
 
     def setUp(self) -> None:
         self.provider = Provider(
@@ -226,7 +365,7 @@ class TestPublicServicesProvider(unittest.TestCase):
             self.assertEqual(n_before, n_after, 'Should restore to previous number of triples')
 
 
-class TestPublicServicesProviderUpdate(unittest.TestCase):
+class TestPublicServicesProviderUpdate(unittest.TestCase, AbstractTestModelsProviderUpdate):
     public_service_old = PublicService(description='Old test description.',
                                        identifier='Old test identifier.',
                                        name='Old test name.')
@@ -287,7 +426,7 @@ class TestPublicServicesProviderUpdate(unittest.TestCase):
 
         with self.subTest('Sanity check'):
             r_old = self.provider.public_services.get(uri)
-            self.assertDictEqual(dict(r_old), dict(ps_old))
+            self.assertDictEqual(dict(ps_old), dict(r_old))
 
         self.provider.public_services.update(ps_new, uri, CONTEXT)
         r = self.provider.public_services.get(uri)

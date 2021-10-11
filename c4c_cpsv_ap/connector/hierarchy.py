@@ -175,7 +175,7 @@ class SubProvider(SubHarvester, abc.ABC):
     def update(self,
                obj: CPSVAPModel,
                uri: URIRef,
-               context: URIRef = None
+               context: str
                ) -> URIRef:
         """
         Update an item from the RDF. When one or multiple of the links are updated
@@ -194,6 +194,9 @@ class SubProvider(SubHarvester, abc.ABC):
          update might be better.
 
         """
+
+        uri = URIRef(uri)
+        context = URIRef(context)
 
         self.delete(uri,
                     context=context)
