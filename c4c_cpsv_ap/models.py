@@ -11,19 +11,32 @@ from pydantic import BaseModel
 
 
 class CPSVAPModel(abc.ABC, BaseModel):
+    """
+    Abstract class for the RDF object models.
+    """
     pass
 
 
 class ContactPoint(CPSVAPModel):
+    """
+    CPSV-AP Contact Point
+    """
     pass
+    # TODO
 
 
 class Concept(CPSVAPModel):
+    """
+    SKOS Concept
+    """
     # TODO add language
     pref_label: str
 
 
 class PublicService(CPSVAPModel):
+    """
+    CPSV-AP Public Service
+    """
     description: str
     identifier: str
     name: str

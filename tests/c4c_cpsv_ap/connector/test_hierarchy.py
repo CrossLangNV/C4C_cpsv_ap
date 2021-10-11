@@ -137,6 +137,7 @@ class AbstractTestModelsProviderUpdate(abc.ABC):
     obj_new = CPSVAPModel()
     obj_new2 = CPSVAPModel()
 
+    @abc.abstractmethod
     def setUp(self) -> None:
         self.provider = SubProvider()
 
@@ -187,7 +188,7 @@ class AbstractTestModelsProviderUpdate(abc.ABC):
             self.assertDictEqual(dict(obj_new), dict(r))
 
 
-class TestConcepts(unittest.TestCase, AbstractTestModels):
+class TestConcepts(AbstractTestModels, unittest.TestCase):
 
     def setUp(self) -> None:
         """
@@ -220,35 +221,97 @@ class TestConcepts(unittest.TestCase, AbstractTestModels):
             self.assertIsInstance(concept, Concept, 'Elements in list have unexpected type.')
 
 
-class TestConceptsProvider(unittest.TestCase, AbstractTestModelsProvider):
+class TestConceptsProvider(AbstractTestModelsProvider, unittest.TestCase):
+    OBJ = Concept(pref_label='Test label')
+
+    def setUp(self) -> None:
+        self.provider = Provider(
+            source=FILENAME_RDF_DEMO,
+            graph_uri=CONTEXT
+        )
+
     def test_equivalent(self):
-        self.assertEqual(0, 1)
+        harvest = Harvester(source=FILENAME_RDF_DEMO,
+                            graph_uri=CONTEXT)
+
+        l_prov = self.provider.concepts.get_all()
+        l_harv = harvest.concepts.get_all()
+
+        self.assertListEqual(l_prov, l_harv, 'Should return same content.')
 
     def test_add(self):
-        self.assertEqual(0, 1)
+        uri_before = self.provider.concepts.get_all()
+
+        uri = self.provider.concepts.add(self.OBJ, CONTEXT)
+
+        uri_after = self.provider.concepts.get_all()
+
+        self.assertNotIn(uri, uri_before)
+        self.assertIn(uri, uri_after)
+
+        with self.subTest('Get'):
+            # Expect identical keys
+            obj_get = self.provider.concepts.get(uri)
+
+            self.assertDictEqual(dict(self.OBJ), dict(obj_get), 'Should have saved all key values.')
 
     def test_delete(self):
-        self.assertEqual(0, 1)
+        n_before = len(self.provider.graph)
+
+        uri = self.provider.concepts.add(self.OBJ, CONTEXT)
+        with self.subTest('Add method (Sanity check)'):
+            n_during = len(self.provider.graph)
+            self.assertGreater(n_during, n_before,
+                               'Should have increased number of triples, make sure *add* method works.')
+
+        with self.subTest('Delete method'):
+            self.provider.concepts.delete(uri, CONTEXT)
+
+        n_after = len(self.provider.graph)
+
+        with self.subTest("Restore to previous state"):
+            self.assertEqual(n_before, n_after, 'Should restore to previous number of triples')
 
 
-class TestConceptsProviderUpdate(unittest.TestCase, AbstractTestModelsProviderUpdate):
+class TestConceptsProviderUpdate(AbstractTestModelsProviderUpdate, unittest.TestCase):
+    obj_old = Concept(pref_label='Old label')
+    obj_old2 = Concept(pref_label='Old label 2')
+    obj_new = Concept(pref_label='New label')
+    obj_new2 = Concept(pref_label='New label 2')
+
+    def setUp(self) -> None:
+        self.provider = Provider(
+            source=FILENAME_RDF_DEMO,
+            graph_uri=CONTEXT
+        )
+
     def test_update(self):
-        self.assertEqual(0, 1)
+        self.shared_test(self.obj_old, self.obj_new)
 
     def test_update_more_info(self):
-        self.assertEqual(0, 1)
+        self.shared_test(self.obj_old, self.obj_new2)
 
     def test_update_less_info(self):
-        self.assertEqual(0, 1)
+        self.shared_test(self.obj_old2, self.obj_new)
 
     def test_update_add_remove(self):
-        self.assertEqual(0, 1)
+        self.shared_test(self.obj_old2, self.obj_new2)
 
     def shared_test(self, obj_old: CPSVAPModel, obj_new: CPSVAPModel):
-        self.assertEqual(0, 1)
+        uri = self.provider.concepts.add(obj_old, CONTEXT)
+
+        with self.subTest('Sanity check'):
+            r_old = self.provider.concepts.get(uri)
+            self.assertDictEqual(dict(obj_old), dict(r_old))
+
+        self.provider.concepts.update(obj_new, uri, CONTEXT)
+        r = self.provider.concepts.get(uri)
+
+        with self.subTest('Updated'):
+            self.assertDictEqual(dict(obj_new), dict(r))
 
 
-class TestPublicServices(unittest.TestCase, AbstractTestModels):
+class TestPublicServices(AbstractTestModels, unittest.TestCase):
 
     def setUp(self) -> None:
         self.connector = Harvester(
@@ -274,7 +337,7 @@ class TestPublicServices(unittest.TestCase, AbstractTestModels):
         self.assertIsInstance(public_service, PublicService, 'Elements in list have unexpected type.')
 
 
-class TestPublicServicesProvider(unittest.TestCase, AbstractTestModelsProvider):
+class TestPublicServicesProvider(AbstractTestModelsProvider, unittest.TestCase):
 
     def setUp(self) -> None:
         self.provider = Provider(
@@ -365,7 +428,7 @@ class TestPublicServicesProvider(unittest.TestCase, AbstractTestModelsProvider):
             self.assertEqual(n_before, n_after, 'Should restore to previous number of triples')
 
 
-class TestPublicServicesProviderUpdate(unittest.TestCase, AbstractTestModelsProviderUpdate):
+class TestPublicServicesProviderUpdate(AbstractTestModelsProviderUpdate, unittest.TestCase):
     public_service_old = PublicService(description='Old test description.',
                                        identifier='Old test identifier.',
                                        name='Old test name.')
