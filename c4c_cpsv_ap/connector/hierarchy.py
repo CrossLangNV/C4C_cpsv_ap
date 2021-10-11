@@ -8,7 +8,7 @@ from rdflib.term import Identifier, Literal
 from rdflib.term import URIRef
 from rdflib.term import _serial_number_generator
 
-from c4c_cpsv_ap.models import PublicService, Concept
+from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel
 from c4c_cpsv_ap.namespace import CPSV, VCARD, C4C, SCHEMA
 
 SUBJ = 'subj'
@@ -136,7 +136,7 @@ class SubHarvester(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def get(self, uri: URIRef) -> object:
+    def get(self, uri: URIRef) -> CPSVAPModel:
         """
         Get specific item based on uri
         :return:
@@ -155,28 +155,38 @@ class SubProvider(SubHarvester, abc.ABC):
         self.provider = provider
 
     @abc.abstractmethod
-    def add(self, *args, **kwargs) -> URIRef:
+    def add(self,
+            obj: CPSVAPModel,
+            context: str,
+            uri: URIRef) -> URIRef:
         """
         Add a new item to the RDF.
 
         Args:
             obj: An item object, see models.py
+            context:
+            uri:
 
         Returns:
             URI to the new item in the RDF.
         """
         pass
 
-    @abc.abstractmethod
-    def update(self, *args) -> None:
+    def update(self,
+               obj: CPSVAPModel,
+               uri: URIRef,
+               context: URIRef = None
+               ) -> URIRef:
         """
         Update an item from the RDF. When one or multiple of the links are updated
 
         Args:
             obj: An item object, see models.py
             uri (URIRef): URI to the item in the RDF.
+            context (Optional): SubGraph
 
         Returns:
+            original URI of item
 
         TODO:
          * This could be part of add, by just adding the URI as an option. If None, generate new, else use the
@@ -184,7 +194,14 @@ class SubProvider(SubHarvester, abc.ABC):
          update might be better.
 
         """
-        pass
+
+        self.delete(uri,
+                    context=context)
+        self.add(obj,
+                 context=context,
+                 uri=uri)
+
+        return uri
 
     def delete(self,
                uri: URIRef,
@@ -274,24 +291,6 @@ class ConceptsProvider(SubProvider, ConceptsHarvester):
         self.provider.graph.add((uri_ref, SKOS.prefLabel, Literal(concept.pref_label), context))
 
         return uri_ref
-
-    def update(self,
-               concept: Concept,
-               uri_c: URIRef,
-               context: str) -> URIRef:
-        """
-
-        Args:
-            concept (Concept): Contains all the information of the concept.
-            uri_ps: URI of the previous concept.
-            # context: subgraph uri
-
-        """
-
-        # Mandatory
-        self.provider.graph.set((uri_c, SKOS.prefLabel, Literal(concept.pref_label), context))
-
-        return uri_c
 
 
 class PublicServicesHarvester(SubHarvester):
@@ -401,26 +400,6 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
             self.provider.graph.add((uri_ref, CPSV.isClassifiedBy, uri_concept, context))
 
         return uri_ref
-
-    def update(self,
-               public_service: PublicService,
-               uri_ps: URIRef,
-               context: str) -> URIRef:
-        """
-
-        Args:
-            public_service (PublicService): Contains all the information of the public service.
-            uri_ps: URI of the previous public service.
-            context: subgraph uri
-
-        """
-
-        # Mandatory
-        self.provider.graph.set((uri_ps, DCTERMS.identifier, Literal(public_service.identifier), context))
-        self.provider.graph.set((uri_ps, DCTERMS.description, Literal(public_service.description), context))
-        self.provider.graph.set((uri_ps, DCTERMS.title, Literal(public_service.name), context))
-
-        return uri_ps
 
 
 def id_generator() -> str:

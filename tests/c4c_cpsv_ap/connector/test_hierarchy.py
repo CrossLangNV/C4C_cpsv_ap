@@ -290,8 +290,7 @@ class TestPublicServicesProviderUpdate(unittest.TestCase):
             self.assertDictEqual(dict(r_old), dict(ps_old))
 
         self.provider.public_services.update(ps_new, uri, CONTEXT)
-
         r = self.provider.public_services.get(uri)
 
         with self.subTest('Updated'):
-            self.assertDictEqual(dict(r), dict(ps_new))
+            self.assertDictEqual(dict(ps_new), dict(r))
