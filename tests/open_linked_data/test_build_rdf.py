@@ -6,7 +6,7 @@ from urllib.parse import urlsplit, urlunsplit
 from rdflib.term import Literal
 
 from c4c_cpsv_ap.open_linked_data.build_rdf import CPSV_APGraph
-from c4c_cpsv_ap.open_linked_data.node import ContactPoint, PublicOrganization, PublicService
+from c4c_cpsv_ap.open_linked_data.node import ContactPoint, PublicOrganisation, PublicService
 from data.examples.PoC_public_organisation import d_pub_org_PoC
 
 
@@ -73,9 +73,9 @@ class TestOpenRawData(unittest.TestCase):
             if preferred_label is None or loc_uri is None:  # TODO
                 preferred_label, loc_uri = DEFAULT_PUB_ORG_WIEN
 
-            po = PublicOrganization(preferred_label,
+            po = PublicOrganisation(preferred_label,
                                     loc_uri)
-            po_uri = g.add_public_organization(po)
+            po_uri = g.add_public_organisation(po)
             g.link_ps_po(ps_uri, po_uri)
 
             # Unused keys

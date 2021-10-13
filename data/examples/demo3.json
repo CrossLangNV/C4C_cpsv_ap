@@ -22,7 +22,14 @@
     ],
     "opening_hours": [
       "All day all night."
-    ]
+    ],
+    "public_organisation": {
+      "label": {
+        "en": "Finance",
+        "de": "Finanzwesen"
+      },
+      "spatial": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05"
+    }
   },
   {
     "url": [

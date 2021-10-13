@@ -3,7 +3,7 @@ from rdflib.namespace import RDF, Namespace, DCAT, DCTERMS, SKOS
 from rdflib.term import Literal, URIRef
 from rdflib.term import _serial_number_generator
 
-from c4c_cpsv_ap.open_linked_data.node import PublicService, ContactPoint, PublicOrganization
+from c4c_cpsv_ap.open_linked_data.node import PublicService, ContactPoint, PublicOrganisation
 
 CPSV = Namespace("http://purl.org/vocab/cpsv#")
 CV = Namespace("http://data.europa.eu/m8g/")
@@ -83,16 +83,16 @@ class CPSV_APGraph(Graph):
 
         return uri_ref
 
-    def add_public_organization(self, public_organization: PublicOrganization):
+    def add_public_organisation(self, public_organisation: PublicOrganisation):
         """
         If it already exists, nothing is changed
 
-        :param public_organization:
+        :param public_organisation:
         :return:
         """
 
-        label = public_organization.get_preferred_label()
-        loc_uri = URIRef(public_organization.get_spatial())
+        label = public_organisation.get_preferred_label()
+        loc_uri = URIRef(public_organisation.get_spatial())
 
         q = """
         
@@ -118,7 +118,7 @@ class CPSV_APGraph(Graph):
                         return s0
 
             # Nothing found
-            val = 'publicOrganization' + id_generator()
+            val = 'PublicOrganisation' + id_generator()
             uri_ref = URIRef(val, base=C4C)
             return uri_ref
 

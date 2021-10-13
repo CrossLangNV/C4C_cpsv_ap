@@ -3,11 +3,11 @@ import os
 import unittest
 
 from c4c_cpsv_ap.open_linked_data.build_rdf import CPSV_APGraph
-from c4c_cpsv_ap.open_linked_data.node import PublicOrganization, PublicService
+from c4c_cpsv_ap.open_linked_data.node import PublicOrganisation, PublicService
 from data.examples.PoC_public_organisation import d_pub_org_PoC
 
 
-class TestPublicOrganization(unittest.TestCase):
+class TestPublicOrganisation(unittest.TestCase):
 
     def setUp(self) -> None:
         PATH_EXAMPLE = os.path.join(os.path.dirname(__file__), '../../data/examples/demo2.json')
@@ -30,14 +30,14 @@ class TestPublicOrganization(unittest.TestCase):
         # FROM https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/atu
         loc_uri = 'http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE09'
 
-        po = PublicOrganization(preferredLabel,
+        po = PublicOrganisation(preferredLabel,
                                 loc_uri)
 
         g = CPSV_APGraph(
             # identifier=url_id
         )
 
-        po_uri = g.add_public_organization(po)
+        po_uri = g.add_public_organisation(po)
 
         q = """
             PREFIX cv: <http://data.europa.eu/m8g/>
@@ -80,10 +80,10 @@ class TestPublicOrganization(unittest.TestCase):
             if preferred_label is None or loc_uri is None:  # TODO
                 preferred_label, loc_uri = default_pub_org_wien
 
-            po = PublicOrganization(preferred_label,
+            po = PublicOrganisation(preferred_label,
                                     loc_uri)
 
-            po_uri = g.add_public_organization(po)
+            po_uri = g.add_public_organisation(po)
 
             g.link_ps_po(ps_uri, po_uri)
 

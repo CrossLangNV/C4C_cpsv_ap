@@ -21,7 +21,7 @@ to [https://www.itb.ec.europa.eu/shacl/cpsv-ap/upload](https://www.itb.ec.europa
 
 Validation of the data (07/10/2011):
 
-* data/output/demo2_export.rdf: property dct:spatial has to be added to PublicOrganizations.
+* data/output/demo2_export.rdf: property dct:spatial has to be added to PublicOrganisations.
 * data/examples/trento.jsonld: flawless
 * data/examples/export.rdf: "The property dct:language SHOULD have the following pattern"
 

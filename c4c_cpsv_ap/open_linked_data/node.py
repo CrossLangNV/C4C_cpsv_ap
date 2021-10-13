@@ -96,7 +96,7 @@ class PublicService:
                   "If certain variables are not yet defined. It's because they were not found, while they should have!")
 
 
-class PublicOrganization:
+class PublicOrganisation:
     preferred_label: str = None
     spatial: str = None
 

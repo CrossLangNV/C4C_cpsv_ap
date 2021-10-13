@@ -3,12 +3,13 @@ import os
 import unittest
 
 from c4c_cpsv_ap.connector.hierarchy import Provider, get_single_el_from_list
-from c4c_cpsv_ap.models import PublicService
+from c4c_cpsv_ap.models import PublicService, PublicOrganisation
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 ROOT = os.path.join(os.path.dirname(__file__), '../../..')
 FILENAME_DEMO_DATA = os.path.join(ROOT, 'data/examples/demo3.json')
 FILENAME_OUT_BASENAME = os.path.join(ROOT, 'data/output/demo_export_v3')
+FILENAME_OUT_CONTEXT_BROKER = os.path.join(ROOT, 'data/output/demo_context_broker.jsonld')
 
 assert os.path.exists(FILENAME_DEMO_DATA)
 
@@ -36,7 +37,7 @@ class TestProviderBuild(unittest.TestCase):
                 l = [val for el in self.data for val in el[key]]
                 print(l)
 
-    def test_demo2_single(self, debug=True):
+    def test_demo2_single(self, debug=True, save=True):
         """
         From a JSON build the RDF. Start of an example on how the RDF can be build.
 
@@ -48,13 +49,27 @@ class TestProviderBuild(unittest.TestCase):
 
         public_service0 = self.data[0].copy()
 
+        po = None
+        with self.subTest('public_organisation'):
+
+            d_pub_org = public_service0.pop('public_organisation')
+
+            labels = d_pub_org['label']
+            spatial_uri = d_pub_org['spatial']
+            po = PublicOrganisation(pref_label=labels,
+                                    spatial=spatial_uri
+                                    )
+
+            po_uri = self.provider.public_organisations.add(po, CONTEXT)
+
         with self.subTest('Public service'):
             identifier = get_single_el_from_list(public_service0.pop(URL))
             name = public_service0.pop(NAME)
 
             public_service = PublicService(description=f'A description of {name}',  # TODO
                                            identifier=identifier,
-                                           name=name)
+                                           name=name,
+                                           has_competent_authority=po)
             self.provider.public_services.add(public_service, CONTEXT)
 
         while public_service0:
@@ -72,10 +87,14 @@ class TestProviderBuild(unittest.TestCase):
 
         with self.subTest('Export'):
 
-            print(self.provider.graph.serialize(format='pretty-xml'))
+            s = self.provider.graph.serialize(format='pretty-xml')
+            if debug:
+                print(s)
 
-            self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.rdf', format='pretty-xml')
-            self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.ttl', format='turtle')
+            if save:
+                self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.rdf', format='pretty-xml')
+                self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.ttl', format='turtle')
+                self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.jsonld', format='json-ld')
 
         # DEFAULT_PUB_ORG_WIEN = ('Stadt Wien', 'http://publications.europa.eu/resource/authority/atu/AUT_STTS_VIE')
         #
@@ -113,9 +132,9 @@ class TestProviderBuild(unittest.TestCase):
         #     if preferred_label is None or loc_uri is None:  # TODO
         #         preferred_label, loc_uri = DEFAULT_PUB_ORG_WIEN
         #
-        #     po = PublicOrganization(preferred_label,
+        #     po = PublicOrganisation(preferred_label,
         #                             loc_uri)
-        #     po_uri = g.add_public_organization(po)
+        #     po_uri = g.add_public_organisation(po)
         #     g.link_ps_po(ps_uri, po_uri)
         #
         #     # Unused keys
@@ -126,3 +145,40 @@ class TestProviderBuild(unittest.TestCase):
         #         assert f, 'Unknown key'
         #
         #         f(v)
+
+    def test_demo_context_broker(self):
+        """
+        For Fernando Lopez (FiWare) for the Context Broker meeting
+
+        Returns:
+
+        TODO
+            * Wien is not added. Debug!
+        """
+
+        print("init", len(self.provider.graph))
+
+        # Add Trento
+        filename_trento = os.path.join(ROOT, 'data/examples/trento.jsonld')
+        context_trento = 'https://www.provincia.tn.it/'
+        assert os.path.exists(filename_trento)
+
+        self.provider.graph.parse(filename_trento, publicID=context_trento)
+
+        print("After Trento", len(self.provider.graph))
+
+        # Add Mikkeli
+        filename_mikkeli = os.path.join(ROOT, 'data/examples/export.rdf')
+        context_mikkeli = 'https://www.mikkeli.fi/'
+        assert os.path.exists(filename_mikkeli)
+        self.provider.graph.parse(filename_mikkeli, publicID=context_mikkeli)
+
+        print("After Mikkeli", len(self.provider.graph))
+
+        # Add Own
+        self.test_demo2_single(debug=False, save=False)
+
+        print("After own", len(self.provider.graph))
+
+        self.provider.graph.serialize(FILENAME_OUT_CONTEXT_BROKER, format='json-ld')
+        self.provider.graph.serialize(FILENAME_OUT_CONTEXT_BROKER.rsplit('.', 1)[0] + '.rdf', format='pretty-xml')

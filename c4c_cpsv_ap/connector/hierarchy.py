@@ -1,4 +1,5 @@
 import abc
+import warnings
 from typing import List, Generator, Dict, Union
 
 from rdflib.graph import ConjunctiveGraph
@@ -8,8 +9,8 @@ from rdflib.term import Identifier, Literal
 from rdflib.term import URIRef
 from rdflib.term import _serial_number_generator
 
-from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel
-from c4c_cpsv_ap.namespace import CPSV, VCARD, C4C, SCHEMA
+from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel, PublicOrganisation
+from c4c_cpsv_ap.namespace import CPSV, VCARD, C4C, SCHEMA, CV
 
 SUBJ = 'subj'
 PRED = 'pred'
@@ -114,6 +115,7 @@ class Provider(Harvester):
 
         self.concepts = ConceptsProvider(self)
         self.public_services = PublicServicesProvider(self)
+        self.public_organisations = PublicOrganisationsProvider(self)
 
 
 class SubHarvester(abc.ABC):
@@ -158,7 +160,7 @@ class SubProvider(SubHarvester, abc.ABC):
     def add(self,
             obj: CPSVAPModel,
             context: str,
-            uri: URIRef) -> URIRef:
+            uri: URIRef = None) -> URIRef:
         """
         Add a new item to the RDF.
 
@@ -296,6 +298,68 @@ class ConceptsProvider(SubProvider, ConceptsHarvester):
         return uri_ref
 
 
+class PublicOrganisationsHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        raise NotImplementedError()
+
+    def get(self, uri: URIRef) -> PublicOrganisation:
+        raise NotImplementedError()
+
+    def search(self, obj: PublicOrganisation, context: str = None):
+
+        label = obj.pref_label
+        if isinstance(label, dict):
+            # One is enough
+            lang, label_val = list(label.items())[0]
+            label_lit = Literal(label_val, lang=lang)
+        else:
+            label_lit = Literal(label)
+
+        # filter on spatial
+        for s, _, _ in self.harvester.graph.triples((None, DCTERMS.spatial, Literal(obj.spatial)), context=context):
+            for s2, _, _ in self.harvester.graph.triples((s, SKOS.prefLabel, label_lit, context)):
+                yield s2
+
+
+class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
+    def add(self, obj: PublicOrganisation, context: str, uri: URIRef = None) -> URIRef:
+
+        if uri is None:
+            uri = uriref_generator('PublicOrganisation', C4C)
+
+        uri_ref = URIRef(uri)
+
+        if not isinstance(context, URIRef):
+            context = URIRef(context)
+
+        # self.provider.graph.add((uri_ref, RDF.type, RDF.Description)) # TODO find out if this is necessary/existing?
+        self.provider.graph.add((uri_ref, RDF.type, CV.PublicOrganisation, context))
+
+        # Mandatory
+        pref_label = obj.pref_label
+        if isinstance(pref_label, str):
+            self.provider.graph.add((uri_ref, SKOS.prefLabel, Literal(obj.pref_label), context))
+
+        elif isinstance(pref_label, dict):
+            # ! only one allowed
+
+            for i, (lang, label_val) in enumerate(pref_label.items()):
+
+                if i > 0:
+                    warnings.warn("Only one label allowed for Public services")
+                    break
+
+                _t = (uri_ref, SKOS.prefLabel, Literal(label_val, lang=lang), context)
+                self.provider.graph.add(_t)
+
+        else:
+            raise ValueError(f'{pref_label} Should be str or dict')
+
+        self.provider.graph.add((uri_ref, DCTERMS.spatial, Literal(obj.spatial), context))
+
+        return uri_ref
+
+
 class PublicServicesHarvester(SubHarvester):
 
     def get_all(self,
@@ -338,7 +402,7 @@ class PublicServicesHarvester(SubHarvester):
             uri = URIRef(uri)
 
         l_concepts: List[Concept] = []
-        for uri_concept in self.harvester.graph.objects(uri, CPSV.isClassifiedBy):
+        for uri_concept in self.harvester.graph.objects(uri, CV.isClassifiedBy):
             concept = self.harvester.concepts.get(uri_concept)
             if concept is not None:
                 l_concepts.append(concept)
@@ -391,6 +455,10 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
         self.provider.graph.add((uri_ref, DCTERMS.description, Literal(public_service.description), context))
         self.provider.graph.add((uri_ref, DCTERMS.title, Literal(public_service.name), context))
 
+        uri_public_org = \
+        list(self.provider.public_organisations.search(public_service.has_competent_authority, context=context))[0]
+        self.provider.graph.add((uri_ref, CV.hasCompetentAuthority, uri_public_org, context))
+
         # keyword
         for keyword in public_service.keyword:
             self.provider.graph.add((uri_ref, DCAT.keyword, Literal(keyword), context))
@@ -400,7 +468,7 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
         for concept in public_service.classified_by:
             # TODO find previously existing concept with this label and get uri.
             uri_concept = self.provider.concepts.add(concept, context=context)
-            self.provider.graph.add((uri_ref, CPSV.isClassifiedBy, uri_concept, context))
+            self.provider.graph.add((uri_ref, CV.isClassifiedBy, uri_concept, context))
 
         return uri_ref
 
@@ -423,9 +491,19 @@ def get_single_el_from_list(l: list):
     Returns:
         First and only item.
     """
-    assert (len(l)) == 1, len(l)
-    assert isinstance(l, list), type(l)
-    return l[0]
+
+    if isinstance(l, list):
+        if len(l) != 1:
+            warnings.warn('Expected a list with only one item, '
+                          'will return first element.', UserWarning)
+        return l[0]
+
+    elif isinstance(l, str):
+        # Expected a list, but this is fine.
+        return l
+
+    else:
+        raise ValueError(f'Unknown input: {l}')
 
 
 def xstr(s) -> Union[str, None]:

@@ -209,8 +209,8 @@ class TestPublicServicesProvider(unittest.TestCase):
 
         l_po_label_i = l_po_labels[-1]
 
-        l_ps = self.provider.get_public_service_uris_filter(filter_public_organization=l_po_label_i)
-        l_ps_list = self.provider.get_public_service_uris_filter(filter_public_organization=[l_po_label_i])
+        l_ps = self.provider.get_public_service_uris_filter(filter_public_organisation=l_po_label_i)
+        l_ps_list = self.provider.get_public_service_uris_filter(filter_public_organisation=[l_po_label_i])
 
         self.assertGreaterEqual(len(l_ps), 1, 'Should be non-empty.')
         self.assertEqual(l_ps, l_ps_list, 'Both single value and list should work.')

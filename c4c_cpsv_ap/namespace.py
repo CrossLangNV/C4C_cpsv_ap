@@ -1,11 +1,62 @@
 from rdflib import URIRef
 from rdflib.namespace import DefinedNamespace, Namespace
 
-CV = Namespace("http://data.europa.eu/m8g/")
 SCHEMA = Namespace("https://schema.org/")
 VCARD = Namespace("http://www.w3.org/2006/vcard/ns#")
 
 C4C = Namespace("http://cefat4cities.crosslang.com/content/")
+
+
+class CV(DefinedNamespace):
+    """
+    http://data.europa.eu/m8g/
+    """
+
+    sector: URIRef
+    thematicArea: URIRef
+    isGroupedBy: URIRef
+    hasCriterion: URIRef
+    hasCompetentAuthority: URIRef
+    hasParticipation: URIRef
+    hasLegalResouce: URIRef
+    hasContactPoint: URIRef
+    hasChannel: URIRef
+    processingTime: URIRef
+    hasCost: URIRef
+    isDescribedAt: URIRef
+    isClassifiedBy: URIRef
+
+    # Classes
+    Event: URIRef
+    BusinessEvent: URIRef
+    LifeEvent: URIRef
+    PublicServiceDataset: URIRef
+    Participation: URIRef
+    CriterionRequirement: URIRef
+    Evidence: URIRef
+    Output: URIRef
+    Cost: URIRef
+    Channel: URIRef
+    PublicOrganisation: URIRef
+
+    # The Participation Class
+    role: URIRef
+
+    # The Cost Class
+    value: URIRef
+    currency: URIRef
+    isDefinedBy: URIRef
+    ifAccessedThrough: URIRef
+
+    # The Channel Class
+    ownedBy: URIRef
+    playsRole: URIRef
+
+    # Agent
+    hasAddress: URIRef
+
+    _NS = Namespace(
+        "http://data.europa.eu/m8g/")
 
 
 class CPSV(DefinedNamespace):
@@ -20,6 +71,5 @@ class CPSV(DefinedNamespace):
 
     # http://purl.org/vocab/cpsv#
     PublicService: URIRef
-    isClassifiedBy: URIRef
 
     _NS = Namespace("http://purl.org/vocab/cpsv#")

@@ -260,7 +260,7 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
 
     def get_public_service_uris_filter(self,
                                        filter_concepts: List[str] = None,
-                                       filter_public_organization: List[str] = None,
+                                       filter_public_organisation: List[str] = None,
                                        filter_contact_point: List[URIRef] = None,
                                        ) -> List[URIRef]:
         """
@@ -271,8 +271,8 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
         if filter_concepts is None:
             filter_concepts = []
 
-        if filter_public_organization is None:
-            filter_public_organization = []
+        if filter_public_organisation is None:
+            filter_public_organisation = []
 
         if filter_contact_point is None:
             filter_contact_point = []
@@ -316,7 +316,7 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
 
         q_filter_concept = _get_q_filter(VALUE_C, filter_concepts) if filter_concepts else ''
 
-        q_filter_public_org = _get_q_filter(VALUE_PO, filter_public_organization) if filter_public_organization else ''
+        q_filter_public_org = _get_q_filter(VALUE_PO, filter_public_organisation) if filter_public_organisation else ''
 
         q_filter_contact_point = _get_q_filter_uri(URI_CP, filter_contact_point) if filter_contact_point else ''
 
