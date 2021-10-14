@@ -5,7 +5,7 @@ import unittest
 from rdflib import URIRef
 
 from c4c_cpsv_ap.connector.hierarchy import Harvester, Provider, SubHarvester, SubProvider
-from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel
+from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel, PublicOrganisation
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 FILENAME_RDF_DEMO = os.path.join(os.path.dirname(__file__), '../../../data/output/demo2_export.rdf')
@@ -345,6 +345,11 @@ class TestPublicServicesProvider(AbstractTestModelsProvider, unittest.TestCase):
             graph_uri=CONTEXT
         )
 
+        public_org = PublicOrganisation(pref_label='Test label',
+                                        spatial='www.test.local.com')
+        self.provider.public_organisations.add(public_org, CONTEXT)
+        self.public_org = public_org
+
     def test_equivalent(self):
         harvest = Harvester(FUSEKI_ENDPOINT)
 
@@ -356,7 +361,8 @@ class TestPublicServicesProvider(AbstractTestModelsProvider, unittest.TestCase):
     def test_add(self):
         public_service = PublicService(description='Test description.',
                                        identifier='Test identifier.',
-                                       name='Test name.')
+                                       name='Test name.',
+                                       has_competent_authority=self.public_org)
 
         uri_ps_before = self.provider.public_services.get_all()
 
@@ -381,6 +387,7 @@ class TestPublicServicesProvider(AbstractTestModelsProvider, unittest.TestCase):
         public_service = PublicService(description='Test description.',
                                        identifier='Test identifier.',
                                        name='Test name.',
+                                       has_competent_authority=self.public_org,
                                        keyword=['Test keyword'],
                                        classified_by=[concept0, concept1],
                                        )
@@ -411,7 +418,8 @@ class TestPublicServicesProvider(AbstractTestModelsProvider, unittest.TestCase):
 
         public_service = PublicService(description='Delete this description.',
                                        identifier='Delete this identifier.',
-                                       name='Delete this name.')
+                                       name='Delete this name.',
+                                       has_competent_authority=self.public_org)
 
         uri_ps = self.provider.public_services.add(public_service, CONTEXT)
         with self.subTest('Add method (Sanity check)'):
@@ -429,30 +437,41 @@ class TestPublicServicesProvider(AbstractTestModelsProvider, unittest.TestCase):
 
 
 class TestPublicServicesProviderUpdate(AbstractTestModelsProviderUpdate, unittest.TestCase):
-    public_service_old = PublicService(description='Old test description.',
-                                       identifier='Old test identifier.',
-                                       name='Old test name.')
-
-    public_service_old_2 = PublicService(description='Old test description.',
-                                         identifier='Old test identifier.',
-                                         name='Old test name.',
-                                         classified_by=[Concept(pref_label='Old test term')])
-
-    public_service_new = PublicService(description='New test description.',
-                                       identifier='New test identifier.',
-                                       name='New test name.')
-
-    public_service_new_2 = PublicService(description='New test description.',
-                                         identifier='New test identifier.',
-                                         name='New test name.',
-                                         keyword=['This is new']
-                                         )
 
     def setUp(self) -> None:
         self.provider = Provider(
             source=FILENAME_RDF_DEMO,
             graph_uri=CONTEXT
         )
+
+        public_org = PublicOrganisation(pref_label='Test label',
+                                        spatial='www.test.local.com')
+        self.provider.public_organisations.add(public_org, CONTEXT)
+        self.public_org = public_org
+
+        self.public_service_old = PublicService(description='Old test description.',
+                                                identifier='Old test identifier.',
+                                                name='Old test name.',
+                                                has_competent_authority=self.public_org)
+
+        self.public_service_old_2 = PublicService(description='Old test description.',
+                                                  identifier='Old test identifier.',
+                                                  name='Old test name.',
+                                                  has_competent_authority=self.public_org,
+                                                  classified_by=[Concept(pref_label='Old test term')])
+
+        self.public_service_new = PublicService(description='New test description.',
+                                                identifier='New test identifier.',
+                                                name='New test name.',
+                                                has_competent_authority=self.public_org,
+                                                )
+
+        self.public_service_new_2 = PublicService(description='New test description.',
+                                                  identifier='New test identifier.',
+                                                  name='New test name.',
+                                                  has_competent_authority=self.public_org,
+                                                  keyword=['This is new']
+                                                  )
 
     def test_update(self):
         """

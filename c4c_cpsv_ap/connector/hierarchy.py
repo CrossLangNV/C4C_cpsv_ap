@@ -95,6 +95,7 @@ class Harvester:
 
         self.concepts = ConceptsHarvester(self)
         self.public_services = PublicServicesHarvester(self)
+        self.public_organisations = PublicOrganisationsHarvester(self)
 
     def query(self, q) -> Generator[Dict[str, Identifier], None, None]:
         """
@@ -302,23 +303,54 @@ class PublicOrganisationsHarvester(SubHarvester):
     def get_all(self) -> List[URIRef]:
         raise NotImplementedError()
 
-    def get(self, uri: URIRef) -> PublicOrganisation:
-        raise NotImplementedError()
+    def get(self, uri: URIRef, context=None) -> PublicOrganisation:
+
+        label = str(self.get_preferred_label(uri, context=context))
+        spatial = list(map(str, self.get_spatial(uri, context=context)))
+
+        return PublicOrganisation(pref_label=label,
+                                  spatial=spatial)
 
     def search(self, obj: PublicOrganisation, context: str = None):
 
-        label = obj.pref_label
-        if isinstance(label, dict):
-            # One is enough
-            lang, label_val = list(label.items())[0]
-            label_lit = Literal(label_val, lang=lang)
-        else:
-            label_lit = Literal(label)
+        def get_label_literal(obj: PublicOrganisation):
+            label = obj.pref_label
+            if isinstance(label, dict):
+                # One is enough
+                lang, label_val = list(label.items())[0]
+                label_lit = Literal(label_val, lang=lang)
+            else:
+                label_lit = Literal(label)
 
-        # filter on spatial
-        for s, _, _ in self.harvester.graph.triples((None, DCTERMS.spatial, Literal(obj.spatial)), context=context):
-            for s2, _, _ in self.harvester.graph.triples((s, SKOS.prefLabel, label_lit, context)):
-                yield s2
+            return label_lit
+
+        def get_l_spatial_uri(obj: PublicOrganisation):
+            return [URIRef(uri) for uri in obj.spatial]
+
+        label_lit = get_label_literal(obj)
+        l_spatial_uri = get_l_spatial_uri(obj)
+
+        # Filter on label
+        for s_label, _, _ in self.harvester.graph.triples((None, SKOS.prefLabel, label_lit, context)):
+
+            ok = True
+            # Filter on spatial
+            for spatial_uri in l_spatial_uri:
+                if not list(self.harvester.graph.triples((s_label, DCTERMS.spatial, spatial_uri), context=context)):
+                    ok = False
+                    break
+
+            if ok:
+                yield s_label
+
+    def get_spatial(self, uri: URIRef, context=None) -> List[URIRef]:
+        return [o for _, _, o in self.harvester.graph.triples((uri, DCTERMS.spatial, None), context=context)]
+
+    def get_preferred_label(self, uri: URIRef, context=None) -> Literal:
+        """ Only a single label is allowed """
+
+        return get_single_el_from_list(
+            [o for _, _, o in self.harvester.graph.triples((uri, SKOS.prefLabel, None), context=context)])
 
 
 class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
@@ -355,7 +387,8 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
         else:
             raise ValueError(f'{pref_label} Should be str or dict')
 
-        self.provider.graph.add((uri_ref, DCTERMS.spatial, Literal(obj.spatial), context))
+        for uri_spat in obj.spatial:
+            self.provider.graph.add((uri_ref, DCTERMS.spatial, URIRef(uri_spat), context))
 
         return uri_ref
 
@@ -401,22 +434,33 @@ class PublicServicesHarvester(SubHarvester):
         if not isinstance(uri, URIRef):
             uri = URIRef(uri)
 
+        title = self.harvester.graph.value(uri, DCTERMS.title, None, any=False)
+        identifier = self.harvester.graph.value(uri, DCTERMS.identifier, None, any=False)
+        description = self.harvester.graph.value(uri, DCTERMS.description, None, any=False)
+
+        def get_public_org_from_public_service(uri):
+
+            uri_public_org = self.harvester.graph.value(uri, CV.hasCompetentAuthority, None, any=False)
+
+            public_org = self.harvester.public_organisations.get(uri_public_org)
+
+            return public_org
+
+        public_org = get_public_org_from_public_service(uri)
+
+        keywords = list(map(str, self.harvester.graph.objects(uri, DCAT.keyword)))
+
         l_concepts: List[Concept] = []
         for uri_concept in self.harvester.graph.objects(uri, CV.isClassifiedBy):
             concept = self.harvester.concepts.get(uri_concept)
             if concept is not None:
                 l_concepts.append(concept)
 
-        title = self.harvester.graph.value(uri, DCTERMS.title, None, any=False)
-        identifier = self.harvester.graph.value(uri, DCTERMS.identifier, None, any=False)
-        description = self.harvester.graph.value(uri, DCTERMS.description, None, any=False)
-
-        keywords = list(map(str, self.harvester.graph.objects(uri, DCAT.keyword)))
-
         return PublicService(
             name=xstr(title),
             description=xstr(description),
             identifier=xstr(identifier),
+            has_competent_authority=public_org,
             keyword=keywords,
             classified_by=l_concepts,
         )
@@ -456,7 +500,7 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
         self.provider.graph.add((uri_ref, DCTERMS.title, Literal(public_service.name), context))
 
         uri_public_org = \
-        list(self.provider.public_organisations.search(public_service.has_competent_authority, context=context))[0]
+            list(self.provider.public_organisations.search(public_service.has_competent_authority, context=context))[0]
         self.provider.graph.add((uri_ref, CV.hasCompetentAuthority, uri_public_org, context))
 
         # keyword

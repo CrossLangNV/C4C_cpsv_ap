@@ -7,7 +7,7 @@ https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic
 import abc
 from typing import Optional, List, Dict, Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
 
 class CPSVAPModel(abc.ABC, BaseModel):
@@ -48,7 +48,25 @@ class PublicOrganisation(CPSVAPModel):
 
     # URI, according to ATU The value of the latter should be a URI from the Administrative Territorial
     # Units Named Authority List maintained by the Publications Office's Metadata Registry
-    spatial: str
+    # spatial: Union[str, List[str]]
+    spatial: List[str]
+
+    @validator("spatial", pre=True)
+    def spatial_list(cls, v: Union[str, List[str]]):
+        """
+        When a single string is given, put it in a list
+
+        Args:
+            v:
+            pre:
+
+        Returns:
+
+        """
+        if isinstance(v, str):
+            return [v]
+        else:
+            return v
 
 
 class PublicService(CPSVAPModel):
