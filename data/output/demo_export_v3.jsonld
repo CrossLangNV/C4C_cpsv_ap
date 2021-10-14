@@ -2,33 +2,7 @@
   {
     "@graph": [
       {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicService0a57a3016bee4e75b9f46c6afedbe9ee",
-        "@type": [
-          "http://purl.org/vocab/cpsv#PublicService"
-        ],
-        "http://data.europa.eu/m8g/hasCompetentAuthority": [
-          {
-            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationd7731b1b1ac842ed987ee00c2d403e81"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@value": "A description of Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@value": "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@value": "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse"
-          }
-        ]
-      },
-      {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationd7731b1b1ac842ed987ee00c2d403e81",
+        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation87d2e103c2ce4873945c949866e77040",
         "@type": [
           "http://data.europa.eu/m8g/PublicOrganisation"
         ],
@@ -41,6 +15,32 @@
           {
             "@language": "en",
             "@value": "Finance"
+          }
+        ]
+      },
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/PublicServicef0ad89df6da44f7b9872f4020854b475",
+        "@type": [
+          "http://purl.org/vocab/cpsv#PublicService"
+        ],
+        "http://data.europa.eu/m8g/hasCompetentAuthority": [
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation87d2e103c2ce4873945c949866e77040"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@value": "Die Stadt Wien - Finanzwesen fördert in subsidiärer Generalkompetenz (das bedeutet wenn keine andere Fachabteilung der Stadt dafür zuständig ist) Vorhaben, an denen ein erhebliches öffentliches Interesse sowie ein unmittelbarer Bezug zur Stadt Wien in inhaltlicher, institutioneller und geographischer Sicht bestehen."
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@value": "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@value": "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse"
           }
         ]
       }

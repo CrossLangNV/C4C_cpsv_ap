@@ -6,6 +6,7 @@ https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic
 """
 import abc
 from typing import Optional, List, Dict, Union
+from uuid import uuid4
 
 from pydantic import BaseModel, validator
 
@@ -31,6 +32,33 @@ class Concept(CPSVAPModel):
     """
     # TODO add language
     pref_label: str
+
+
+class Event(CPSVAPModel):
+    """
+    Event
+    """
+
+    identifier: str
+    name: str
+
+    description: Optional[str] = None
+    type: Optional[int] = None
+
+    # Links
+    ## PublicService
+    related_service: Optional[List] = []
+
+    def add_related_service(self, public_service):
+        self.related_service.append(public_service)
+
+
+class BusinessEvent(Event):
+    pass
+
+
+class LifeEvent(Event):
+    pass
 
 
 class PublicOrganisation(CPSVAPModel):
@@ -83,3 +111,24 @@ class PublicService(CPSVAPModel):
     # Links
     has_competent_authority: PublicOrganisation
     classified_by: Optional[List[Concept]] = []
+    is_grouped_by: Optional[List[Event]] = []
+
+    def __init__(self, *args, **kwargs):
+        super(PublicService, self).__init__(*args, **kwargs)
+
+        self._add_related_service()
+
+    def _add_related_service(self):
+        """
+        """
+
+        for event in self.is_grouped_by:
+            event.add_related_service(self)
+
+
+def _id_generator() -> str:
+    """
+    Generates UUID4-based but ncname-compliant identifiers.
+    """
+
+    return uuid4().hex

@@ -3,7 +3,7 @@ import os
 import unittest
 
 from c4c_cpsv_ap.connector.hierarchy import Provider, get_single_el_from_list
-from c4c_cpsv_ap.models import PublicService, PublicOrganisation
+from c4c_cpsv_ap.models import PublicService, PublicOrganisation, BusinessEvent, _id_generator
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 ROOT = os.path.join(os.path.dirname(__file__), '../../..')
@@ -17,6 +17,7 @@ CONTEXT = 'https://www.wien.gv.at'
 
 URL = 'url'
 NAME = 'title'
+DESCRIPTION = 'description'
 
 
 class TestProviderBuild(unittest.TestCase):
@@ -27,7 +28,7 @@ class TestProviderBuild(unittest.TestCase):
         with open(FILENAME_DEMO_DATA) as json_file:
             self.data = json.load(json_file)
 
-    def test_demo2_data(self):
+    def test_demo3_data(self):
 
         keys = self.data[0].keys()
 
@@ -37,7 +38,7 @@ class TestProviderBuild(unittest.TestCase):
                 l = [val for el in self.data for val in el[key]]
                 print(l)
 
-    def test_demo2_single(self, debug=True, save=True):
+    def test_demo3_single(self, debug=True, save=True):
         """
         From a JSON build the RDF. Start of an example on how the RDF can be build.
 
@@ -62,14 +63,27 @@ class TestProviderBuild(unittest.TestCase):
 
             po_uri = self.provider.public_organisations.add(po, CONTEXT)
 
+        l_business_event = []
+        with self.subTest('Business Events'):
+
+            names = public_service0.pop("business_events")
+
+            for name in names:
+                business_event = BusinessEvent(identifier=_id_generator(),  # TODO
+                                               name=name)
+                l_business_event.append(business_event)
+
         with self.subTest('Public service'):
             identifier = get_single_el_from_list(public_service0.pop(URL))
             name = public_service0.pop(NAME)
+            description = public_service0.pop(DESCRIPTION)
 
-            public_service = PublicService(description=f'A description of {name}',  # TODO
+            public_service = PublicService(description=description,  # TODO
                                            identifier=identifier,
                                            name=name,
-                                           has_competent_authority=po)
+                                           has_competent_authority=po,
+                                           is_grouped_by=l_business_event
+                                           )
             self.provider.public_services.add(public_service, CONTEXT)
 
         while public_service0:
@@ -176,7 +190,7 @@ class TestProviderBuild(unittest.TestCase):
         print("After Mikkeli", len(self.provider.graph))
 
         # Add Own
-        self.test_demo2_single(debug=False, save=False)
+        self.test_demo3_single(debug=False, save=False)
 
         print("After own", len(self.provider.graph))
 
