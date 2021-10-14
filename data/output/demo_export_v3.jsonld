@@ -1,0 +1,50 @@
+[
+  {
+    "@graph": [
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/PublicService0a57a3016bee4e75b9f46c6afedbe9ee",
+        "@type": [
+          "http://purl.org/vocab/cpsv#PublicService"
+        ],
+        "http://data.europa.eu/m8g/hasCompetentAuthority": [
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationd7731b1b1ac842ed987ee00c2d403e81"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@value": "A description of Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@value": "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@value": "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse"
+          }
+        ]
+      },
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationd7731b1b1ac842ed987ee00c2d403e81",
+        "@type": [
+          "http://data.europa.eu/m8g/PublicOrganisation"
+        ],
+        "http://purl.org/dc/terms/spatial": [
+          {
+            "@id": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05"
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@language": "en",
+            "@value": "Finance"
+          }
+        ]
+      }
+    ],
+    "@id": "https://www.wien.gv.at"
+  }
+]

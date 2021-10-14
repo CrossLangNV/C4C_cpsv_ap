@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+  xmlns:cpsv="http://purl.org/vocab/cpsv#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dct="http://purl.org/dc/terms/"
+  xmlns:ns1="http://data.europa.eu/m8g/"
+>
+  <cpsv:PublicService rdf:about="http://cefat4cities.crosslang.com/content/PublicService0a57a3016bee4e75b9f46c6afedbe9ee">
+    <dct:identifier>https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html</dct:identifier>
+    <dct:description>A description of Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse</dct:description>
+    <dct:title>Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse</dct:title>
+    <ns1:hasCompetentAuthority>
+      <ns1:PublicOrganisation rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationd7731b1b1ac842ed987ee00c2d403e81">
+        <skos:prefLabel xml:lang="en">Finance</skos:prefLabel>
+        <dct:spatial rdf:resource="http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05"/>
+      </ns1:PublicOrganisation>
+    </ns1:hasCompetentAuthority>
+  </cpsv:PublicService>
+</rdf:RDF>
