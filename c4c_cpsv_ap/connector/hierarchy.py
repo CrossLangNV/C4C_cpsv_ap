@@ -12,14 +12,14 @@ from rdflib.term import _serial_number_generator
 from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel, PublicOrganisation
 from c4c_cpsv_ap.namespace import CPSV, VCARD, C4C, SCHEMA, CV
 
-SUBJ = 'subj'
-PRED = 'pred'
-OBJ = 'obj'
+SUBJ = "subj"
+PRED = "pred"
+OBJ = "obj"
 URI = "uri"
-LABEL = 'label'
-GRAPH = 'graph'
+LABEL = "label"
+GRAPH = "graph"
 TITLE = "title"
-DESCRIPTION = 'description'
+DESCRIPTION = "description"
 
 
 class CPSV_APGraph(ConjunctiveGraph):
@@ -28,14 +28,14 @@ class CPSV_APGraph(ConjunctiveGraph):
         super(CPSV_APGraph, self).__init__(*args, **kwargs)
 
         self.bind("rdf", RDF)
-        self.bind('cpsv', CPSV)
-        self.bind('dct', DCTERMS)
-        self.bind('dcat', DCAT)
-        self.bind('vcard', VCARD)
-        self.bind('schema', SCHEMA)
-        self.bind('skos', SKOS)
-        self.bind('c4c', C4C)
-        self.bind('cv', CV)
+        self.bind("cpsv", CPSV)
+        self.bind("dct", DCTERMS)
+        self.bind("dcat", DCAT)
+        self.bind("vcard", VCARD)
+        self.bind("schema", SCHEMA)
+        self.bind("skos", SKOS)
+        self.bind("c4c", C4C)
+        self.bind("cv", CV)
 
     def set(self, triple_or_quad):
         """Convenience method to update the value of object
@@ -239,7 +239,7 @@ class ConceptsHarvester(SubHarvester):
                 ) -> List[URIRef]:
         q_filter = f"""
                 values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
-                """ if graph_uri is not None else ''
+                """ if graph_uri is not None else ""
 
         q = f"""
         SELECT distinct ?{URI} ?{LABEL} ?{GRAPH}
@@ -286,7 +286,7 @@ class ConceptsProvider(SubProvider, ConceptsHarvester):
             ) -> URIRef:
 
         if uri is None:
-            uri = uriref_generator('Concept', C4C)
+            uri = uriref_generator("Concept", C4C)
 
         uri_ref = URIRef(uri)
 
@@ -320,13 +320,13 @@ class LocationsProvider(SubProvider, LocationsHarvester):
 
         self.provider.graph.add((uri_spat, RDF.type, DCTERMS.Location, context))
 
+        tmp_graph = Graph()
         try:
-            tmp_graph = Graph()
-            tmp_graph.parse(str(uri_spat), format='xml')
+            tmp_graph.parse(str(uri_spat), format="xml")
             for label in list(tmp_graph.objects(URIRef(uri_spat), SKOS.prefLabel)):
                 self.provider.graph.add((uri_spat, SKOS.prefLabel, label, context))
         except:
-            warnings.warn('Did not succeed in extracting ATU info.')
+            warnings.warn("Did not succeed in extracting ATU info.")
 
         return uri_spat
 
@@ -389,7 +389,7 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
     def add(self, obj: PublicOrganisation, context: str, uri: URIRef = None) -> URIRef:
 
         if uri is None:
-            uri = uriref_generator('PublicOrganisation', C4C)
+            uri = uriref_generator("PublicOrganisation", C4C)
 
         uri_ref = URIRef(uri)
 
@@ -417,7 +417,7 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
                 self.provider.graph.add(_t)
 
         else:
-            raise ValueError(f'{pref_label} Should be str or dict')
+            raise ValueError(f"{pref_label} Should be str or dict")
 
         # Spatial
         for uri_spat in obj.spatial:
@@ -437,7 +437,7 @@ class PublicServicesHarvester(SubHarvester):
                 ) -> List[URIRef]:
         q_filter = f"""
                 values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }} 
-                """ if graph_uri is not None else ''
+                """ if graph_uri is not None else ""
 
         q = f"""
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -520,7 +520,7 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
         """
 
         if uri is None:
-            uri = uriref_generator('PublicService', C4C)
+            uri = uriref_generator("PublicService", C4C)
 
         uri_ref = URIRef(uri)
 
@@ -550,6 +550,28 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
             uri_concept = self.provider.concepts.add(concept, context=context)
             self.provider.graph.add((uri_ref, CV.isClassifiedBy, uri_concept, context))
 
+        # hasContactPoint
+        for contact_point in public_service.has_contact_point:
+            uri_contact_point = uriref_generator("ContactPoint", C4C)
+            self.provider.graph.add((uri_contact_point, RDF.type, SCHEMA.ContactPoint, context))
+            self.provider.graph.add((uri_ref, CV.hasContactPoint, uri_contact_point, context))
+
+            for email in contact_point.email:
+                self.provider.graph.add((uri_contact_point, SCHEMA.email, Literal(email), context))
+
+            for telephone in contact_point.telephone:
+                self.provider.graph.add((uri_contact_point, SCHEMA.telephone, Literal(telephone), context))
+
+            for hours in contact_point.opening_hours:
+                uri_opening_hours_specification = uriref_generator("OpeningHoursSpecification", C4C)
+
+                self.provider.graph.add(
+                    (uri_opening_hours_specification, RDF.type, SCHEMA.OpeningHoursSpecification, context))
+                self.provider.graph.add(
+                    (uri_contact_point, SCHEMA.hoursAvailable, uri_opening_hours_specification, context))
+
+                self.provider.graph.add((uri_opening_hours_specification, SCHEMA.description, Literal(hours), context))
+
         return uri_ref
 
 
@@ -574,8 +596,8 @@ def get_single_el_from_list(l: list):
 
     if isinstance(l, list):
         if len(l) != 1:
-            warnings.warn('Expected a list with only one item, '
-                          'will return first element.', UserWarning)
+            warnings.warn("Expected a list with only one item, "
+                          "will return first element.", UserWarning)
         return l[0]
 
     elif isinstance(l, str):
@@ -583,7 +605,7 @@ def get_single_el_from_list(l: list):
         return l
 
     else:
-        raise ValueError(f'Unknown input: {l}')
+        raise ValueError(f"Unknown input: {l}")
 
 
 def xstr(s) -> Union[str, None]:

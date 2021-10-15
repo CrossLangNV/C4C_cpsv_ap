@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF
+  xmlns:schema="https://schema.org/"
   xmlns:dct="http://purl.org/dc/terms/"
   xmlns:cv="http://data.europa.eu/m8g/"
-  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
   xmlns:cpsv="http://purl.org/vocab/cpsv#"
+  xmlns:skos="http://www.w3.org/2004/02/skos/core#"
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 >
-  <cpsv:PublicService rdf:about="http://cefat4cities.crosslang.com/content/PublicServiced1275b87dbd74d348781a44f4e8d059b">
+  <cpsv:PublicService rdf:about="http://cefat4cities.crosslang.com/content/PublicService7147d184b1f842f1858b5f0092f0619e">
     <dct:identifier>https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html</dct:identifier>
     <dct:description>Die Stadt Wien - Finanzwesen fördert in subsidiärer Generalkompetenz (das bedeutet wenn keine andere Fachabteilung der Stadt dafür zuständig ist) Vorhaben, an denen ein erhebliches öffentliches Interesse sowie ein unmittelbarer Bezug zur Stadt Wien in inhaltlicher, institutioneller und geographischer Sicht bestehen.</dct:description>
     <dct:title>Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse</dct:title>
     <cv:hasCompetentAuthority>
-      <cv:PublicOrganisation rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation43c8879860e445b48260a7e28ceeaa8d">
+      <cv:PublicOrganisation rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation338738c426c345acb08c5521dbbcc10b">
         <skos:prefLabel xml:lang="en">Finance - Head of Service</skos:prefLabel>
         <dct:spatial rdf:resource="http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05"/>
       </cv:PublicOrganisation>
     </cv:hasCompetentAuthority>
     <cv:isClassifiedBy>
-      <skos:Concept rdf:about="http://cefat4cities.crosslang.com/content/Concept795a707a007d437bae913895dab3b0e8">
+      <skos:Concept rdf:about="http://cefat4cities.crosslang.com/content/Concept0dda3ed9a5224383968fc123a4e463d5">
         <skos:prefLabel>Finanzielles</skos:prefLabel>
       </skos:Concept>
     </cv:isClassifiedBy>
     <cv:isClassifiedBy>
-      <skos:Concept rdf:about="http://cefat4cities.crosslang.com/content/Conceptade07aea2ddb4d659c8c2a1055b38d7d">
+      <skos:Concept rdf:about="http://cefat4cities.crosslang.com/content/Concept8622205ff56c4180bae11ec1910308ef">
         <skos:prefLabel>Förderungen</skos:prefLabel>
       </skos:Concept>
     </cv:isClassifiedBy>
+    <cv:hasContactPoint>
+      <schema:ContactPoint rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint05a7f0842dc7411d8018e5211c383b79">
+        <schema:email>E-Mail: foerderungen@ma05.wien.gv.at</schema:email>
+        <schema:telephone>Telefon: +43 1 4000-86528</schema:telephone>
+        <schema:telephone>Fax: +43 1 4000-99-86510</schema:telephone>
+        <schema:hoursAvailable rdf:resource="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification8bc95bf0916a46a5a89df471c6e9d700"/>
+      </schema:ContactPoint>
+    </cv:hasContactPoint>
   </cpsv:PublicService>
+  <schema:OpeningHoursSpecification rdf:about="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification8bc95bf0916a46a5a89df471c6e9d700">
+    <schema:description>All day, all night.</schema:description>
+  </schema:OpeningHoursSpecification>
   <dct:Location rdf:about="http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05">
     <skos:prefLabel xml:lang="de">Wien 5. Margareten</skos:prefLabel>
   </dct:Location>

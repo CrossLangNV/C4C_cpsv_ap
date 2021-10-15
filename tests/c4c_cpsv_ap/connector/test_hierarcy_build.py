@@ -4,7 +4,7 @@ import unittest
 from typing import List
 
 from c4c_cpsv_ap.connector.hierarchy import Provider, get_single_el_from_list
-from c4c_cpsv_ap.models import PublicService, PublicOrganisation, BusinessEvent, _id_generator, Concept
+from c4c_cpsv_ap.models import PublicService, PublicOrganisation, BusinessEvent, _id_generator, Concept, ContactPoint
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 ROOT = os.path.join(os.path.dirname(__file__), '../../..')
@@ -94,8 +94,31 @@ class TestProviderBuild(unittest.TestCase):
 
             return l_business_event
 
-        def get_public_service(public_org, l_concepts: List[Concept], l_business_event):
-            with self.subTest('Public service'):
+        def get_concepts():
+            terms = data0.pop(TERMS)
+            l_concepts = []
+            for term in terms:
+                concept = Concept(pref_label=term)
+                l_concepts.append(concept)
+            return l_concepts
+
+        def get_contact_point() -> List[ContactPoint]:
+
+            email = data0.pop("emails")
+            telephone = data0.pop("phone")
+            opening_hours = data0.pop("opening_hours")
+
+            contact_point = ContactPoint(email=email,
+                                         telephone=telephone,
+                                         opening_hours=opening_hours)
+
+            return [contact_point]
+
+        def get_public_service(public_org,
+                               l_concepts: List[Concept],
+                               l_business_event,
+                               l_contact_point: List[ContactPoint]):
+            with self.subTest("Public service"):
                 identifier = get_single_el_from_list(data0.pop(URL))
                 name = data0.pop(NAME)
                 description = data0.pop(DESCRIPTION)
@@ -103,9 +126,10 @@ class TestProviderBuild(unittest.TestCase):
                 public_service = PublicService(description=description,  # TODO
                                                identifier=identifier,
                                                name=name,
-                                               has_competent_authority=po,
+                                               has_competent_authority=public_org,
                                                is_classified_by=l_concepts,
                                                is_grouped_by=l_business_event,
+                                               has_contact_point=l_contact_point
                                                )
                 self.provider.public_services.add(public_service, CONTEXT)
 
@@ -115,19 +139,15 @@ class TestProviderBuild(unittest.TestCase):
 
         l_business_event = get_business_events()
 
-        def get_concepts():
-            terms = data0.pop(TERMS)
-            l_concepts = []
-            for term in terms:
-                concept = Concept(pref_label=term)
-                l_concepts.append(concept)
-            return l_concepts
-
         l_concepts = get_concepts()
+
+        l_contact_point = get_contact_point()
 
         public_service = get_public_service(public_org=po,
                                             l_concepts=l_concepts,
-                                            l_business_event=l_business_event)
+                                            l_business_event=l_business_event,
+                                            l_contact_point=l_contact_point
+                                            )
 
         while data0:
             key = list(data0)[0]
@@ -140,18 +160,18 @@ class TestProviderBuild(unittest.TestCase):
                 if 0:  # TODO
                     pass
                 else:
-                    self.fail('Every key element should be implemented.')
+                    self.fail("Every key element should be implemented.")
 
-        with self.subTest('Export'):
+        with self.subTest("Export"):
 
-            s = self.provider.graph.serialize(format='pretty-xml')
+            s = self.provider.graph.serialize(format="pretty-xml")
             if debug:
                 print(s)
 
             if save:
-                self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.rdf', format='pretty-xml')
-                self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.ttl', format='turtle')
-                self.provider.graph.serialize(FILENAME_OUT_BASENAME + '.jsonld', format='json-ld')
+                self.provider.graph.serialize(FILENAME_OUT_BASENAME + ".rdf", format="pretty-xml")
+                self.provider.graph.serialize(FILENAME_OUT_BASENAME + ".ttl", format="turtle")
+                self.provider.graph.serialize(FILENAME_OUT_BASENAME + ".jsonld", format="json-ld")
 
         # DEFAULT_PUB_ORG_WIEN = ('Stadt Wien', 'http://publications.europa.eu/resource/authority/atu/AUT_STTS_VIE')
         #

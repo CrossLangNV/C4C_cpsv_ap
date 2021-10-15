@@ -2,23 +2,34 @@
 @prefix cpsv: <http://purl.org/vocab/cpsv#> .
 @prefix cv: <http://data.europa.eu/m8g/> .
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-c4c:PublicServiced1275b87dbd74d348781a44f4e8d059b a cpsv:PublicService ;
-    cv:hasCompetentAuthority c4c:PublicOrganisation43c8879860e445b48260a7e28ceeaa8d ;
-    cv:isClassifiedBy c4c:Concept795a707a007d437bae913895dab3b0e8,
-        c4c:Conceptade07aea2ddb4d659c8c2a1055b38d7d ;
+c4c:PublicService7147d184b1f842f1858b5f0092f0619e a cpsv:PublicService ;
+    cv:hasCompetentAuthority c4c:PublicOrganisation338738c426c345acb08c5521dbbcc10b ;
+    cv:hasContactPoint c4c:ContactPoint05a7f0842dc7411d8018e5211c383b79 ;
+    cv:isClassifiedBy c4c:Concept0dda3ed9a5224383968fc123a4e463d5,
+        c4c:Concept8622205ff56c4180bae11ec1910308ef ;
     dct:description "Die Stadt Wien - Finanzwesen fördert in subsidiärer Generalkompetenz (das bedeutet wenn keine andere Fachabteilung der Stadt dafür zuständig ist) Vorhaben, an denen ein erhebliches öffentliches Interesse sowie ein unmittelbarer Bezug zur Stadt Wien in inhaltlicher, institutioneller und geographischer Sicht bestehen." ;
     dct:identifier "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html" ;
     dct:title "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse" .
 
-c4c:Concept795a707a007d437bae913895dab3b0e8 a skos:Concept ;
+c4c:Concept0dda3ed9a5224383968fc123a4e463d5 a skos:Concept ;
     skos:prefLabel "Finanzielles" .
 
-c4c:Conceptade07aea2ddb4d659c8c2a1055b38d7d a skos:Concept ;
+c4c:Concept8622205ff56c4180bae11ec1910308ef a skos:Concept ;
     skos:prefLabel "Förderungen" .
 
-c4c:PublicOrganisation43c8879860e445b48260a7e28ceeaa8d a cv:PublicOrganisation ;
+c4c:ContactPoint05a7f0842dc7411d8018e5211c383b79 a schema:ContactPoint ;
+    schema:email "E-Mail: foerderungen@ma05.wien.gv.at" ;
+    schema:hoursAvailable c4c:OpeningHoursSpecification8bc95bf0916a46a5a89df471c6e9d700 ;
+    schema:telephone "Fax: +43 1 4000-99-86510",
+        "Telefon: +43 1 4000-86528" .
+
+c4c:OpeningHoursSpecification8bc95bf0916a46a5a89df471c6e9d700 a schema:OpeningHoursSpecification ;
+    schema:description "All day, all night." .
+
+c4c:PublicOrganisation338738c426c345acb08c5521dbbcc10b a cv:PublicOrganisation ;
     dct:spatial <http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05> ;
     skos:prefLabel "Finance - Head of Service"@en .
 

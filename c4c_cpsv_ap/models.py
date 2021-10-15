@@ -34,6 +34,12 @@ class Concept(CPSVAPModel):
     pref_label: str
 
 
+class ContactPoint(CPSVAPModel):
+    email: List[str] = None
+    telephone: List[str] = None
+    opening_hours: List[str] = None
+
+
 class Event(CPSVAPModel):
     """
     Event
@@ -112,6 +118,7 @@ class PublicService(CPSVAPModel):
     has_competent_authority: PublicOrganisation
     is_classified_by: Optional[List[Concept]] = []
     is_grouped_by: Optional[List[Event]] = []
+    has_contact_point: Optional[List[ContactPoint]] = []
 
     def __init__(self, *args, **kwargs):
         super(PublicService, self).__init__(*args, **kwargs)
