@@ -1,16 +1,24 @@
 @prefix c4c: <http://cefat4cities.crosslang.com/content/> .
 @prefix cpsv: <http://purl.org/vocab/cpsv#> .
+@prefix cv: <http://data.europa.eu/m8g/> .
 @prefix dct: <http://purl.org/dc/terms/> .
-@prefix ns1: <http://data.europa.eu/m8g/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-c4c:PublicService1148fe92b951456c8e1d4d7dccce794c a cpsv:PublicService ;
-    ns1:hasCompetentAuthority c4c:PublicOrganisationf4b1389f3aba4a39a7f34e7a37a7825f ;
+c4c:PublicServiced1275b87dbd74d348781a44f4e8d059b a cpsv:PublicService ;
+    cv:hasCompetentAuthority c4c:PublicOrganisation43c8879860e445b48260a7e28ceeaa8d ;
+    cv:isClassifiedBy c4c:Concept795a707a007d437bae913895dab3b0e8,
+        c4c:Conceptade07aea2ddb4d659c8c2a1055b38d7d ;
     dct:description "Die Stadt Wien - Finanzwesen fördert in subsidiärer Generalkompetenz (das bedeutet wenn keine andere Fachabteilung der Stadt dafür zuständig ist) Vorhaben, an denen ein erhebliches öffentliches Interesse sowie ein unmittelbarer Bezug zur Stadt Wien in inhaltlicher, institutioneller und geographischer Sicht bestehen." ;
     dct:identifier "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html" ;
     dct:title "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse" .
 
-c4c:PublicOrganisationf4b1389f3aba4a39a7f34e7a37a7825f a ns1:PublicOrganisation ;
+c4c:Concept795a707a007d437bae913895dab3b0e8 a skos:Concept ;
+    skos:prefLabel "Finanzielles" .
+
+c4c:Conceptade07aea2ddb4d659c8c2a1055b38d7d a skos:Concept ;
+    skos:prefLabel "Förderungen" .
+
+c4c:PublicOrganisation43c8879860e445b48260a7e28ceeaa8d a cv:PublicOrganisation ;
     dct:spatial <http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05> ;
     skos:prefLabel "Finance - Head of Service"@en .
 

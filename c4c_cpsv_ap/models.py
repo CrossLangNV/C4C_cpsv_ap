@@ -110,7 +110,7 @@ class PublicService(CPSVAPModel):
 
     # Links
     has_competent_authority: PublicOrganisation
-    classified_by: Optional[List[Concept]] = []
+    is_classified_by: Optional[List[Concept]] = []
     is_grouped_by: Optional[List[Event]] = []
 
     def __init__(self, *args, **kwargs):

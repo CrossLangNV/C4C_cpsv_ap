@@ -1,23 +1,28 @@
 import json
 import os
 import unittest
+from typing import List
 
 from c4c_cpsv_ap.connector.hierarchy import Provider, get_single_el_from_list
-from c4c_cpsv_ap.models import PublicService, PublicOrganisation, BusinessEvent, _id_generator
+from c4c_cpsv_ap.models import PublicService, PublicOrganisation, BusinessEvent, _id_generator, Concept
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 ROOT = os.path.join(os.path.dirname(__file__), '../../..')
+FILENAME_DEMO_DATA_V2 = os.path.join(ROOT, 'data/examples/demo2.json')
 FILENAME_DEMO_DATA = os.path.join(ROOT, 'data/examples/demo3.json')
 FILENAME_OUT_BASENAME = os.path.join(ROOT, 'data/output/demo_export_v3')
 FILENAME_OUT_CONTEXT_BROKER = os.path.join(ROOT, 'data/output/demo_context_broker.jsonld')
 
-assert os.path.exists(FILENAME_DEMO_DATA)
+for filename in [FILENAME_DEMO_DATA_V2,
+                 FILENAME_DEMO_DATA]:
+    assert os.path.exists(filename)
 
 CONTEXT = 'https://www.wien.gv.at'
 
 URL = 'url'
 NAME = 'title'
 DESCRIPTION = 'description'
+TERMS = "terms"
 
 
 class TestProviderBuild(unittest.TestCase):
@@ -28,14 +33,27 @@ class TestProviderBuild(unittest.TestCase):
         with open(FILENAME_DEMO_DATA) as json_file:
             self.data = json.load(json_file)
 
-    def test_demo3_data(self):
+    def test_demo2_data(self):
+        with open(FILENAME_DEMO_DATA_V2) as json_file:
+            self.data = json.load(json_file)
 
         keys = self.data[0].keys()
 
         for key in keys:
             with self.subTest(key):
                 # Each/most el is a list (of length 1 or more)
-                l = [val for el in self.data for val in el[key]]
+
+                l = []
+                for el in self.data:
+                    val = el[key]
+
+                    if isinstance(val, list):
+                        l += val
+
+                    else:
+                        l.append(val)
+
+                # l = [val for el in self.data for val in el[key]]
                 print(l)
 
     def test_demo3_single(self, debug=True, save=True):
@@ -48,48 +66,72 @@ class TestProviderBuild(unittest.TestCase):
 
         """
 
-        public_service0 = self.data[0].copy()
+        data0 = self.data[0].copy()
 
-        po = None
-        with self.subTest('public_organisation'):
+        def get_po() -> PublicOrganisation:
+            with self.subTest('public_organisation'):
+                d_pub_org = data0.pop('public_organisation')
 
-            d_pub_org = public_service0.pop('public_organisation')
+                labels = d_pub_org['label']
+                spatial = d_pub_org['spatial']
+                spatial_uri = spatial["uri"]
+                po = PublicOrganisation(pref_label=labels,
+                                        spatial=spatial_uri
+                                        )
 
-            labels = d_pub_org['label']
-            spatial = d_pub_org['spatial']
-            spatial_uri = spatial["uri"]
-            po = PublicOrganisation(pref_label=labels,
-                                    spatial=spatial_uri
-                                    )
+                po_uri = self.provider.public_organisations.add(po, CONTEXT)
+                return po
 
-            po_uri = self.provider.public_organisations.add(po, CONTEXT)
+        def get_business_events() -> List[BusinessEvent]:
+            l_business_event = []
+            with self.subTest('Business Events'):
+                names = data0.pop("business_events")
 
-        l_business_event = []
-        with self.subTest('Business Events'):
+                for name in names:
+                    business_event = BusinessEvent(identifier=_id_generator(),  # TODO
+                                                   name=name)
+                    l_business_event.append(business_event)
 
-            names = public_service0.pop("business_events")
+            return l_business_event
 
-            for name in names:
-                business_event = BusinessEvent(identifier=_id_generator(),  # TODO
-                                               name=name)
-                l_business_event.append(business_event)
+        def get_public_service(public_org, l_concepts: List[Concept], l_business_event):
+            with self.subTest('Public service'):
+                identifier = get_single_el_from_list(data0.pop(URL))
+                name = data0.pop(NAME)
+                description = data0.pop(DESCRIPTION)
 
-        with self.subTest('Public service'):
-            identifier = get_single_el_from_list(public_service0.pop(URL))
-            name = public_service0.pop(NAME)
-            description = public_service0.pop(DESCRIPTION)
+                public_service = PublicService(description=description,  # TODO
+                                               identifier=identifier,
+                                               name=name,
+                                               has_competent_authority=po,
+                                               is_classified_by=l_concepts,
+                                               is_grouped_by=l_business_event,
+                                               )
+                self.provider.public_services.add(public_service, CONTEXT)
 
-            public_service = PublicService(description=description,  # TODO
-                                           identifier=identifier,
-                                           name=name,
-                                           has_competent_authority=po,
-                                           is_grouped_by=l_business_event
-                                           )
-            self.provider.public_services.add(public_service, CONTEXT)
+                return public_service
 
-        while public_service0:
-            key = list(public_service0)[0]
-            value = public_service0.pop(key)
+        po = get_po()
+
+        l_business_event = get_business_events()
+
+        def get_concepts():
+            terms = data0.pop(TERMS)
+            l_concepts = []
+            for term in terms:
+                concept = Concept(pref_label=term)
+                l_concepts.append(concept)
+            return l_concepts
+
+        l_concepts = get_concepts()
+
+        public_service = get_public_service(public_org=po,
+                                            l_concepts=l_concepts,
+                                            l_business_event=l_business_event)
+
+        while data0:
+            key = list(data0)[0]
+            value = data0.pop(key)
 
             if debug:
                 print(key)

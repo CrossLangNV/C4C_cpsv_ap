@@ -35,6 +35,7 @@ class CPSV_APGraph(ConjunctiveGraph):
         self.bind('schema', SCHEMA)
         self.bind('skos', SKOS)
         self.bind('c4c', C4C)
+        self.bind('cv', CV)
 
     def set(self, triple_or_quad):
         """Convenience method to update the value of object
@@ -544,7 +545,7 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
 
         # IsClassified
         # requires Concepts. For this we have to have concepts first in the RDF and in models.py
-        for concept in public_service.classified_by:
+        for concept in public_service.is_classified_by:
             # TODO find previously existing concept with this label and get uri.
             uri_concept = self.provider.concepts.add(concept, context=context)
             self.provider.graph.add((uri_ref, CV.isClassifiedBy, uri_concept, context))

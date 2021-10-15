@@ -2,42 +2,32 @@
   {
     "@graph": [
       {
-        "@id": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05",
+        "@id": "http://cefat4cities.crosslang.com/content/Concept795a707a007d437bae913895dab3b0e8",
         "@type": [
-          "http://purl.org/dc/terms/Location"
+          "http://www.w3.org/2004/02/skos/core#Concept"
         ],
         "http://www.w3.org/2004/02/skos/core#prefLabel": [
           {
-            "@language": "de",
-            "@value": "Wien 5. Margareten"
+            "@value": "Finanzielles"
           }
         ]
       },
       {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationf4b1389f3aba4a39a7f34e7a37a7825f",
-        "@type": [
-          "http://data.europa.eu/m8g/PublicOrganisation"
-        ],
-        "http://purl.org/dc/terms/spatial": [
-          {
-            "@id": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05"
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@language": "en",
-            "@value": "Finance - Head of Service"
-          }
-        ]
-      },
-      {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicService1148fe92b951456c8e1d4d7dccce794c",
+        "@id": "http://cefat4cities.crosslang.com/content/PublicServiced1275b87dbd74d348781a44f4e8d059b",
         "@type": [
           "http://purl.org/vocab/cpsv#PublicService"
         ],
         "http://data.europa.eu/m8g/hasCompetentAuthority": [
           {
-            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationf4b1389f3aba4a39a7f34e7a37a7825f"
+            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation43c8879860e445b48260a7e28ceeaa8d"
+          }
+        ],
+        "http://data.europa.eu/m8g/isClassifiedBy": [
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/Concept795a707a007d437bae913895dab3b0e8"
+          },
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/Conceptade07aea2ddb4d659c8c2a1055b38d7d"
           }
         ],
         "http://purl.org/dc/terms/description": [
@@ -53,6 +43,46 @@
         "http://purl.org/dc/terms/title": [
           {
             "@value": "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse"
+          }
+        ]
+      },
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/Conceptade07aea2ddb4d659c8c2a1055b38d7d",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@value": "Förderungen"
+          }
+        ]
+      },
+      {
+        "@id": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05",
+        "@type": [
+          "http://purl.org/dc/terms/Location"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@language": "de",
+            "@value": "Wien 5. Margareten"
+          }
+        ]
+      },
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation43c8879860e445b48260a7e28ceeaa8d",
+        "@type": [
+          "http://data.europa.eu/m8g/PublicOrganisation"
+        ],
+        "http://purl.org/dc/terms/spatial": [
+          {
+            "@id": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05"
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@language": "en",
+            "@value": "Finance - Head of Service"
           }
         ]
       }
