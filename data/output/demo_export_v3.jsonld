@@ -2,7 +2,7 @@
   {
     "@graph": [
       {
-        "@id": "http://cefat4cities.crosslang.com/content/Concept795a707a007d437bae913895dab3b0e8",
+        "@id": "http://cefat4cities.crosslang.com/content/Conceptd8cac85073f0428eb64d49638b3d8870",
         "@type": [
           "http://www.w3.org/2004/02/skos/core#Concept"
         ],
@@ -13,21 +13,45 @@
         ]
       },
       {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicServiced1275b87dbd74d348781a44f4e8d059b",
+        "@id": "http://cefat4cities.crosslang.com/content/OpeningHoursSpecificationb8b095f4799a40a89d5d33f3a43adef4",
+        "@type": [
+          "https://schema.org/OpeningHoursSpecification"
+        ],
+        "https://schema.org/description": [
+          {
+            "@value": "All day, all night."
+          }
+        ]
+      },
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/PublicService6f77cd8c6c51426685b2faf8687bb24b",
         "@type": [
           "http://purl.org/vocab/cpsv#PublicService"
         ],
         "http://data.europa.eu/m8g/hasCompetentAuthority": [
           {
-            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation43c8879860e445b48260a7e28ceeaa8d"
+            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationba9f95fb5cc54bf7b660ead75d5ba7b7"
+          }
+        ],
+        "http://data.europa.eu/m8g/hasContactPoint": [
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/ContactPoint96f1461e912f4771afa4c41f51d88d5f"
           }
         ],
         "http://data.europa.eu/m8g/isClassifiedBy": [
           {
-            "@id": "http://cefat4cities.crosslang.com/content/Concept795a707a007d437bae913895dab3b0e8"
+            "@id": "http://cefat4cities.crosslang.com/content/Conceptd8cac85073f0428eb64d49638b3d8870"
           },
           {
-            "@id": "http://cefat4cities.crosslang.com/content/Conceptade07aea2ddb4d659c8c2a1055b38d7d"
+            "@id": "http://cefat4cities.crosslang.com/content/Concept2501d0e3d79b4c8a85b5fd6647177a29"
+          }
+        ],
+        "http://data.europa.eu/m8g/isGroupedBy": [
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/BusinessEvent4113f2f56d304c36ad69b2b2132dc687"
+          },
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/LifeEvent22c3f7aee5c44c3f8a324f14cfc93f4b"
           }
         ],
         "http://purl.org/dc/terms/description": [
@@ -47,7 +71,7 @@
         ]
       },
       {
-        "@id": "http://cefat4cities.crosslang.com/content/Conceptade07aea2ddb4d659c8c2a1055b38d7d",
+        "@id": "http://cefat4cities.crosslang.com/content/Concept2501d0e3d79b4c8a85b5fd6647177a29",
         "@type": [
           "http://www.w3.org/2004/02/skos/core#Concept"
         ],
@@ -58,19 +82,53 @@
         ]
       },
       {
-        "@id": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05",
+        "@id": "http://cefat4cities.crosslang.com/content/BusinessEvent4113f2f56d304c36ad69b2b2132dc687",
         "@type": [
-          "http://purl.org/dc/terms/Location"
+          "http://data.europa.eu/m8g/BusinessEvent",
+          "http://data.europa.eu/m8g/Event"
         ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        "http://purl.org/dc/terms/identifier": [
           {
-            "@language": "de",
-            "@value": "Wien 5. Margareten"
+            "@value": "4649e38fd59941f79511b594152fd01b"
+          }
+        ],
+        "http://purl.org/dc/terms/relation": [
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/PublicService6f77cd8c6c51426685b2faf8687bb24b"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@value": "Start a new project"
           }
         ]
       },
       {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation43c8879860e445b48260a7e28ceeaa8d",
+        "@id": "http://cefat4cities.crosslang.com/content/ContactPoint96f1461e912f4771afa4c41f51d88d5f",
+        "@type": [
+          "https://schema.org/ContactPoint"
+        ],
+        "https://schema.org/email": [
+          {
+            "@value": "E-Mail: foerderungen@ma05.wien.gv.at"
+          }
+        ],
+        "https://schema.org/hoursAvailable": [
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/OpeningHoursSpecificationb8b095f4799a40a89d5d33f3a43adef4"
+          }
+        ],
+        "https://schema.org/telephone": [
+          {
+            "@value": "Telefon: +43 1 4000-86528"
+          },
+          {
+            "@value": "Fax: +43 1 4000-99-86510"
+          }
+        ]
+      },
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationba9f95fb5cc54bf7b660ead75d5ba7b7",
         "@type": [
           "http://data.europa.eu/m8g/PublicOrganisation"
         ],
@@ -83,6 +141,40 @@
           {
             "@language": "en",
             "@value": "Finance - Head of Service"
+          }
+        ]
+      },
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/LifeEvent22c3f7aee5c44c3f8a324f14cfc93f4b",
+        "@type": [
+          "http://data.europa.eu/m8g/LifeEvent",
+          "http://data.europa.eu/m8g/Event"
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@value": "38209667aaf34ff1a49290529351b7ae"
+          }
+        ],
+        "http://purl.org/dc/terms/relation": [
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/PublicService6f77cd8c6c51426685b2faf8687bb24b"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@value": "Start a business"
+          }
+        ]
+      },
+      {
+        "@id": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05",
+        "@type": [
+          "http://purl.org/dc/terms/Location"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@language": "de",
+            "@value": "Wien 5. Margareten"
           }
         ]
       }

@@ -4,7 +4,8 @@ import unittest
 from typing import List
 
 from c4c_cpsv_ap.connector.hierarchy import Provider, get_single_el_from_list
-from c4c_cpsv_ap.models import PublicService, PublicOrganisation, BusinessEvent, _id_generator, Concept, ContactPoint
+from c4c_cpsv_ap.models import PublicService, PublicOrganisation, BusinessEvent, _id_generator, Concept, ContactPoint, \
+    LifeEvent
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 ROOT = os.path.join(os.path.dirname(__file__), '../../..')
@@ -94,6 +95,18 @@ class TestProviderBuild(unittest.TestCase):
 
             return l_business_event
 
+        def get_life_events() -> List[LifeEvent]:
+            l_life_event = []
+            with self.subTest('Life Events'):
+                names = data0.pop("life_events")
+
+                for name in names:
+                    life_event = LifeEvent(identifier=_id_generator(),  # TODO
+                                           name=name)
+                    l_life_event.append(life_event)
+
+            return l_life_event
+
         def get_concepts():
             terms = data0.pop(TERMS)
             l_concepts = []
@@ -117,6 +130,7 @@ class TestProviderBuild(unittest.TestCase):
         def get_public_service(public_org,
                                l_concepts: List[Concept],
                                l_business_event,
+                               l_life_event,
                                l_contact_point: List[ContactPoint]):
             with self.subTest("Public service"):
                 identifier = get_single_el_from_list(data0.pop(URL))
@@ -128,7 +142,7 @@ class TestProviderBuild(unittest.TestCase):
                                                name=name,
                                                has_competent_authority=public_org,
                                                is_classified_by=l_concepts,
-                                               is_grouped_by=l_business_event,
+                                               is_grouped_by=l_business_event + l_life_event,
                                                has_contact_point=l_contact_point
                                                )
                 self.provider.public_services.add(public_service, CONTEXT)
@@ -138,6 +152,7 @@ class TestProviderBuild(unittest.TestCase):
         po = get_po()
 
         l_business_event = get_business_events()
+        l_life_event = get_life_events()
 
         l_concepts = get_concepts()
 
@@ -146,6 +161,7 @@ class TestProviderBuild(unittest.TestCase):
         public_service = get_public_service(public_org=po,
                                             l_concepts=l_concepts,
                                             l_business_event=l_business_event,
+                                            l_life_event=l_life_event,
                                             l_contact_point=l_contact_point
                                             )
 

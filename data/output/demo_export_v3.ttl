@@ -5,34 +5,48 @@
 @prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-c4c:PublicService7147d184b1f842f1858b5f0092f0619e a cpsv:PublicService ;
-    cv:hasCompetentAuthority c4c:PublicOrganisation338738c426c345acb08c5521dbbcc10b ;
-    cv:hasContactPoint c4c:ContactPoint05a7f0842dc7411d8018e5211c383b79 ;
-    cv:isClassifiedBy c4c:Concept0dda3ed9a5224383968fc123a4e463d5,
-        c4c:Concept8622205ff56c4180bae11ec1910308ef ;
-    dct:description "Die Stadt Wien - Finanzwesen fördert in subsidiärer Generalkompetenz (das bedeutet wenn keine andere Fachabteilung der Stadt dafür zuständig ist) Vorhaben, an denen ein erhebliches öffentliches Interesse sowie ein unmittelbarer Bezug zur Stadt Wien in inhaltlicher, institutioneller und geographischer Sicht bestehen." ;
-    dct:identifier "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html" ;
-    dct:title "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse" .
+c4c:BusinessEvent4113f2f56d304c36ad69b2b2132dc687 a cv:BusinessEvent,
+        cv:Event ;
+    dct:identifier "4649e38fd59941f79511b594152fd01b" ;
+    dct:relation c4c:PublicService6f77cd8c6c51426685b2faf8687bb24b ;
+    dct:title "Start a new project" .
 
-c4c:Concept0dda3ed9a5224383968fc123a4e463d5 a skos:Concept ;
-    skos:prefLabel "Finanzielles" .
-
-c4c:Concept8622205ff56c4180bae11ec1910308ef a skos:Concept ;
+c4c:Concept2501d0e3d79b4c8a85b5fd6647177a29 a skos:Concept ;
     skos:prefLabel "Förderungen" .
 
-c4c:ContactPoint05a7f0842dc7411d8018e5211c383b79 a schema:ContactPoint ;
+c4c:Conceptd8cac85073f0428eb64d49638b3d8870 a skos:Concept ;
+    skos:prefLabel "Finanzielles" .
+
+c4c:ContactPoint96f1461e912f4771afa4c41f51d88d5f a schema:ContactPoint ;
     schema:email "E-Mail: foerderungen@ma05.wien.gv.at" ;
-    schema:hoursAvailable c4c:OpeningHoursSpecification8bc95bf0916a46a5a89df471c6e9d700 ;
+    schema:hoursAvailable c4c:OpeningHoursSpecificationb8b095f4799a40a89d5d33f3a43adef4 ;
     schema:telephone "Fax: +43 1 4000-99-86510",
         "Telefon: +43 1 4000-86528" .
 
-c4c:OpeningHoursSpecification8bc95bf0916a46a5a89df471c6e9d700 a schema:OpeningHoursSpecification ;
+c4c:LifeEvent22c3f7aee5c44c3f8a324f14cfc93f4b a cv:Event,
+        cv:LifeEvent ;
+    dct:identifier "38209667aaf34ff1a49290529351b7ae" ;
+    dct:relation c4c:PublicService6f77cd8c6c51426685b2faf8687bb24b ;
+    dct:title "Start a business" .
+
+c4c:OpeningHoursSpecificationb8b095f4799a40a89d5d33f3a43adef4 a schema:OpeningHoursSpecification ;
     schema:description "All day, all night." .
 
-c4c:PublicOrganisation338738c426c345acb08c5521dbbcc10b a cv:PublicOrganisation ;
+c4c:PublicOrganisationba9f95fb5cc54bf7b660ead75d5ba7b7 a cv:PublicOrganisation ;
     dct:spatial <http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05> ;
     skos:prefLabel "Finance - Head of Service"@en .
 
 <http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05> a dct:Location ;
     skos:prefLabel "Wien 5. Margareten"@de .
+
+c4c:PublicService6f77cd8c6c51426685b2faf8687bb24b a cpsv:PublicService ;
+    cv:hasCompetentAuthority c4c:PublicOrganisationba9f95fb5cc54bf7b660ead75d5ba7b7 ;
+    cv:hasContactPoint c4c:ContactPoint96f1461e912f4771afa4c41f51d88d5f ;
+    cv:isClassifiedBy c4c:Concept2501d0e3d79b4c8a85b5fd6647177a29,
+        c4c:Conceptd8cac85073f0428eb64d49638b3d8870 ;
+    cv:isGroupedBy c4c:BusinessEvent4113f2f56d304c36ad69b2b2132dc687,
+        c4c:LifeEvent22c3f7aee5c44c3f8a324f14cfc93f4b ;
+    dct:description "Die Stadt Wien - Finanzwesen fördert in subsidiärer Generalkompetenz (das bedeutet wenn keine andere Fachabteilung der Stadt dafür zuständig ist) Vorhaben, an denen ein erhebliches öffentliches Interesse sowie ein unmittelbarer Bezug zur Stadt Wien in inhaltlicher, institutioneller und geographischer Sicht bestehen." ;
+    dct:identifier "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html" ;
+    dct:title "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse" .
 

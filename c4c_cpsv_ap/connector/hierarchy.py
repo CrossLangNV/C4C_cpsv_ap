@@ -9,7 +9,7 @@ from rdflib.term import Identifier, Literal
 from rdflib.term import URIRef
 from rdflib.term import _serial_number_generator
 
-from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel, PublicOrganisation
+from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel, PublicOrganisation, BusinessEvent, LifeEvent
 from c4c_cpsv_ap.namespace import CPSV, VCARD, C4C, SCHEMA, CV
 
 SUBJ = "subj"
@@ -410,7 +410,7 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
             for i, (lang, label_val) in enumerate(pref_label.items()):
 
                 if i > 0:
-                    warnings.warn("Only one label allowed for Public services")
+                    warnings.warn("Only one label allowed for Public services. We break the loop.")
                     break
 
                 _t = (uri_ref, SKOS.prefLabel, Literal(label_val, lang=lang), context)
@@ -522,39 +522,64 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
         if uri is None:
             uri = uriref_generator("PublicService", C4C)
 
-        uri_ref = URIRef(uri)
+        uri_ps = URIRef(uri)
 
         if not isinstance(context, URIRef):
             context = URIRef(context)
 
         # self.provider.graph.add((uri_ref, RDF.type, RDF.Description)) # TODO find out if this is necessary/existing?
-        self.provider.graph.add((uri_ref, RDF.type, CPSV.PublicService, context))
+        self.provider.graph.add((uri_ps, RDF.type, CPSV.PublicService, context))
 
         # Mandatory
-        self.provider.graph.add((uri_ref, DCTERMS.identifier, Literal(public_service.identifier), context))
-        self.provider.graph.add((uri_ref, DCTERMS.description, Literal(public_service.description), context))
-        self.provider.graph.add((uri_ref, DCTERMS.title, Literal(public_service.name), context))
+        self.provider.graph.add((uri_ps, DCTERMS.identifier, Literal(public_service.identifier), context))
+        self.provider.graph.add((uri_ps, DCTERMS.description, Literal(public_service.description), context))
+        self.provider.graph.add((uri_ps, DCTERMS.title, Literal(public_service.name), context))
 
         uri_public_org = \
             list(self.provider.public_organisations.search(public_service.has_competent_authority, context=context))[0]
-        self.provider.graph.add((uri_ref, CV.hasCompetentAuthority, uri_public_org, context))
+        self.provider.graph.add((uri_ps, CV.hasCompetentAuthority, uri_public_org, context))
 
         # keyword
         for keyword in public_service.keyword:
-            self.provider.graph.add((uri_ref, DCAT.keyword, Literal(keyword), context))
+            self.provider.graph.add((uri_ps, DCAT.keyword, Literal(keyword), context))
+
+        # Event:
+        for event in public_service.is_grouped_by:
+
+            if isinstance(event, BusinessEvent):
+                uri_event = uriref_generator("BusinessEvent", C4C)
+                self.provider.graph.add((uri_event, RDF.type, CV.BusinessEvent, context))
+            elif isinstance(event, LifeEvent):
+                uri_event = uriref_generator("LifeEvent", C4C)
+                self.provider.graph.add((uri_event, RDF.type, CV.LifeEvent, context))
+            else:  # Event
+                uri_event = uriref_generator("Event", C4C)
+
+            # Type
+            self.provider.graph.add((uri_event, RDF.type, CV.Event, context))
+
+            # Properties
+            self.provider.graph.add((uri_event, DCTERMS.identifier, Literal(event.identifier), context))
+            self.provider.graph.add((uri_event, DCTERMS.title, Literal(event.name), context))
+
+            # isGroupedBy
+            self.provider.graph.add((uri_ps, CV.isGroupedBy, uri_event, context))
+
+            # relatedService
+            self.provider.graph.add((uri_event, DCTERMS.relation, uri_ps, context))
 
         # IsClassified
         # requires Concepts. For this we have to have concepts first in the RDF and in models.py
         for concept in public_service.is_classified_by:
             # TODO find previously existing concept with this label and get uri.
             uri_concept = self.provider.concepts.add(concept, context=context)
-            self.provider.graph.add((uri_ref, CV.isClassifiedBy, uri_concept, context))
+            self.provider.graph.add((uri_ps, CV.isClassifiedBy, uri_concept, context))
 
         # hasContactPoint
         for contact_point in public_service.has_contact_point:
             uri_contact_point = uriref_generator("ContactPoint", C4C)
             self.provider.graph.add((uri_contact_point, RDF.type, SCHEMA.ContactPoint, context))
-            self.provider.graph.add((uri_ref, CV.hasContactPoint, uri_contact_point, context))
+            self.provider.graph.add((uri_ps, CV.hasContactPoint, uri_contact_point, context))
 
             for email in contact_point.email:
                 self.provider.graph.add((uri_contact_point, SCHEMA.email, Literal(email), context))
@@ -572,7 +597,7 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
 
                 self.provider.graph.add((uri_opening_hours_specification, SCHEMA.description, Literal(hours), context))
 
-        return uri_ref
+        return uri_ps
 
 
 def id_generator() -> str:
