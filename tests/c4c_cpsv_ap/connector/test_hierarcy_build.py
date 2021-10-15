@@ -56,7 +56,8 @@ class TestProviderBuild(unittest.TestCase):
             d_pub_org = public_service0.pop('public_organisation')
 
             labels = d_pub_org['label']
-            spatial_uri = d_pub_org['spatial']
+            spatial = d_pub_org['spatial']
+            spatial_uri = spatial["uri"]
             po = PublicOrganisation(pref_label=labels,
                                     spatial=spatial_uri
                                     )

@@ -2,26 +2,37 @@
   {
     "@graph": [
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/publicadministration-defence-compulsory-socialsecurity",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/employment",
         "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
+          "http://data.europa.eu/m8g/PublicOrganisation"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:00+01:00"
+            "@value": "2020-12-16T14:35:55+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:00+01:00"
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Employment"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:00+01:00"
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/spatial": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -32,103 +43,37 @@
         "http://www.w3.org/2004/02/skos/core#prefLabel": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "PublicAdministration Defence Compulsory SocialSecurity"
+            "@value": "Employment and Economic Development Office"
           }
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/servicelocation-startup",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/phonechannelmikeli",
         "@type": [
-          "https://schema.org/ContactPoint"
+          "http://data.europa.eu/m8g/Channel"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:57+01:00"
+            "@value": "2020-12-16T14:35:54+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:57+01:00"
+            "@value": "2020-12-16T14:35:54+01:00"
           }
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "ServiceLocation-StartUp"
+            "@value": "PhoneChannel/Mikeli"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:57+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "https://schema.org/email": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "https://schema.org/faxNumber": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "https://schema.org/telephone": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/be34",
-        "@type": [
-          "http://data.europa.eu/m8g/BusinessEvent",
-          "http://data.europa.eu/m8g/Event"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "BE_3.4"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Gestione personale"
+            "@value": "2020-12-16T14:35:54+01:00"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -138,21 +83,56 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingeducation",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/espoo",
+        "@type": [
+          "http://data.europa.eu/m8g/Channel"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "espoo"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/doingbusiness",
         "@type": [
           "http://data.europa.eu/m8g/Event",
-          "http://data.europa.eu/m8g/LifeEvent"
+          "http://data.europa.eu/m8g/BusinessEvent"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
+            "@value": "2020-12-16T14:35:58+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
+            "@value": "2020-12-16T14:35:58+01:00"
           }
         ],
         "http://purl.org/dc/terms/description": [
@@ -164,24 +144,59 @@
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "StartingEducation"
+            "@value": "DoingBusiness"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
+            "@value": "2020-12-16T14:35:58+01:00"
           }
         ],
         "http://purl.org/dc/terms/title": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Starting Education"
+            "@value": "Doing business"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
           {
             "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mining-quarrying",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:59+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:59+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:59+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Mining Quarrying"
           }
         ]
       },
@@ -234,32 +249,26 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/english",
         "@type": [
-          "http://purl.org/dc/terms/Location"
+          "http://purl.org/dc/terms/LinguisticSystem"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
+            "@value": "2020-12-16T14:35:56+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
+            "@value": "2020-12-16T14:35:56+01:00"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Mikkeli"
+            "@value": "2020-12-16T14:35:56+01:00"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -267,53 +276,40 @@
             "@value": 0
           }
         ],
-        "http://www.w3.org/ns/locn#GeographicName": [
+        "http://www.w3.org/2000/01/rdf-schema#label": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
+            "@value": "English"
           }
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingbusiness",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/kaarisillan-paivakoti",
         "@type": [
-          "http://data.europa.eu/m8g/Event",
-          "http://data.europa.eu/m8g/BusinessEvent"
+          "http://data.europa.eu/m8g/Channel"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
+            "@value": "2020-12-16T14:35:54+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
+            "@value": "2020-12-16T14:35:54+01:00"
           }
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "StartingBusiness"
+            "@value": "kaarisillan-paivakoti"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Starting Business"
+            "@value": "2020-12-16T14:35:54+01:00"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -376,23 +372,107 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/pre-schooleducation",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/education",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:53+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:53+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:53+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Education"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/ehgqo1",
+        "@type": [
+          "http://data.europa.eu/m8g/PublicOrganisation"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:03+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:03+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "EHGQO1"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:03+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/spatial": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/trento"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Provincia autonoma di Trento - Agenzia provinciale per la famiglia, la natalità e le politiche giovanili (APF)"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/wastemanagement",
         "@type": [
           "http://purl.org/vocab/cpsv#PublicService"
         ],
         "http://data.europa.eu/m8g/Sector": [
           {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/education"
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/agricultureforestryfishing"
           }
         ],
         "http://data.europa.eu/m8g/hasCompetentAuthority": [
           {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3"
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/economicdevelopment"
           }
         ],
         "http://data.europa.eu/m8g/isGroupedBy": [
           {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingeducation"
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/other"
+          },
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/doingbusiness"
           }
         ],
         "http://data.europa.eu/m8g/processingTime": [
@@ -404,37 +484,37 @@
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:00+01:00"
+            "@value": "2020-12-16T14:35:59+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:00+01:00"
+            "@value": "2020-12-16T14:35:59+01:00"
           }
         ],
         "http://purl.org/dc/terms/description": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Children in the pre-school education age, or 6 years, participate in pre-school education organised by the municipality. Those 7-year-olds whose school attendance has been postponed also participate in pre-school education. It can additionally be attended by 5-year-olds to whom a decision on extended compulsory education has been issued. The children receive pre-school education for four hours every morning. During this time, a lunch is served to the children. Under the Basic Education Act, participation in pre-school education is mandatory. A child’s guardian is responsible for ensuring that the child participates in pre-school education or activities that meet its objectives during the school year that precedes the start of compulsory education. "
+            "@value": "Under the Waste Act, all waste producers must treat their waste in a proper manner. If a resident neglects their waste management obligations, the responsibility will, on certain conditions, be transferred to the property holder. Organising the management of household and municipal waste is the responsibility of individual municipalities or the joint responsibility of a group of municipalities.  Municipalities must also organise the reception and treatment of hazardous waste. Reception of hazardous waste generated in agriculture and forestry is, to a reasonable extent, the responsibility of municipalities.  Manufacturers and importers of certain products also have waste management responsibilities. Under the Waste Act, as much as possible of the waste must be sorted and recycled or otherwise recovered."
           }
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Pre-schooleducation"
+            "@value": "WasteManagement"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:00+01:00"
+            "@value": "2020-12-16T14:35:59+01:00"
           }
         ],
         "http://purl.org/dc/terms/title": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Pre-school education"
+            "@value": "Waste management"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -444,106 +524,7 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/employment",
-        "@type": [
-          "http://data.europa.eu/m8g/PublicOrganisation"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Employment"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/spatial": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Employment and Economic Development Office"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/telephone-mikeli",
-        "@type": [
-          "https://schema.org/ContactPoint"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Telephone-Mikeli"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "https://schema.org/email": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "https://schema.org/faxNumber": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "https://schema.org/telephone": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/english",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/swedish",
         "@type": [
           "http://purl.org/dc/terms/LinguisticSystem"
         ],
@@ -573,37 +554,49 @@
         "http://www.w3.org/2000/01/rdf-schema#label": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "English"
+            "@value": "Swedish"
           }
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/chpsgeapf",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startupgrant",
         "@type": [
-          "http://data.europa.eu/m8g/Channel"
+          "http://data.europa.eu/m8g/Evidence"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
+            "@value": "2020-12-16T14:35:56+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
           }
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "CH_PS_GeAPF"
+            "@value": "StartUpGrant"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "StartUpGrant"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -681,395 +674,13 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/espoo",
-        "@type": [
-          "http://data.europa.eu/m8g/Channel"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "espoo"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/swedish",
-        "@type": [
-          "http://purl.org/dc/terms/LinguisticSystem"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2000/01/rdf-schema#label": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Swedish"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/cplymi3jpec",
-        "@type": [
-          "https://schema.org/ContactPoint"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "CP_LYMI3J_pec"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "https://schema.org/email": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "https://schema.org/faxNumber": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "https://schema.org/telephone": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/administrative-support-service-activities",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Administrative Support Service Activities"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/finnish",
-        "@type": [
-          "http://purl.org/dc/terms/LinguisticSystem"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2000/01/rdf-schema#label": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Finnish"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0131-general-personnel-services-cs",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "01.3.1 - General personnel services (CS)"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/fireinspections",
-        "@type": [
-          "http://purl.org/vocab/cpsv#PublicService"
-        ],
-        "http://data.europa.eu/m8g/Sector": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/publicadministration-defence-compulsory-socialsecurity"
-          }
-        ],
-        "http://data.europa.eu/m8g/hasCompetentAuthority": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3"
-          }
-        ],
-        "http://data.europa.eu/m8g/isGroupedBy": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/doingbusiness"
-          }
-        ],
-        "http://data.europa.eu/m8g/processingTime": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:00+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:00+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Fire inspections are the responsibility of the joint municipal rescue authority. Fire inspections comprise general and special fire inspections, follow-up inspections, additional fire inspections and self-checks. The fire inspector provides advice and instructions on fire safety and minutes must be kept on the inspections. The owner or occupant of a property or the operator must, on request, provide the authorities with a rescue plan and other details of the fire and evacuation safety of the building."
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Fireinspections"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:00+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Fire inspections "
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/avausnakymajsf",
-        "@type": [
-          "http://data.europa.eu/m8g/Channel"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "avausnakyma.jsf"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/doingbusiness",
-        "@type": [
-          "http://data.europa.eu/m8g/Event",
-          "http://data.europa.eu/m8g/BusinessEvent"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "DoingBusiness"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Doing business"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/careatamunicipalday-carecentre",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/pre-schooleducation",
         "@type": [
           "http://purl.org/vocab/cpsv#PublicService"
         ],
         "http://data.europa.eu/m8g/Sector": [
           {
             "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/education"
-          },
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/human-health-social-work-activities"
           }
         ],
         "http://data.europa.eu/m8g/hasCompetentAuthority": [
@@ -1079,7 +690,7 @@
         ],
         "http://data.europa.eu/m8g/isGroupedBy": [
           {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/other"
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingeducation"
           }
         ],
         "http://data.europa.eu/m8g/processingTime": [
@@ -1091,37 +702,37 @@
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
+            "@value": "2020-12-16T14:36:00+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
+            "@value": "2020-12-16T14:36:00+01:00"
           }
         ],
         "http://purl.org/dc/terms/description": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Children aged under 7 may receive day care organised by the municipality. In practice, day care is organised by individual municipalities or groups of municipalities, private operators, NGOs or other organisations to which the municipality outsources the service. The objective of early childhood education and care is to support the child’s growth, development and learning and promote his or her well-being. An early childhood education plan is prepared for each child in care provided at a day-care centre. Municipal day care may be full time or part time care. Municipalities may limit the care time of a child in early childhood education to 20 hours a week, if one of the child’s parents is staying at home due to unemployment."
+            "@value": "Children in the pre-school education age, or 6 years, participate in pre-school education organised by the municipality. Those 7-year-olds whose school attendance has been postponed also participate in pre-school education. It can additionally be attended by 5-year-olds to whom a decision on extended compulsory education has been issued. The children receive pre-school education for four hours every morning. During this time, a lunch is served to the children. Under the Basic Education Act, participation in pre-school education is mandatory. A child’s guardian is responsible for ensuring that the child participates in pre-school education or activities that meet its objectives during the school year that precedes the start of compulsory education. "
           }
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Careatamunicipalday-carecentre"
+            "@value": "Pre-schooleducation"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
+            "@value": "2020-12-16T14:36:00+01:00"
           }
         ],
         "http://purl.org/dc/terms/title": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Care at a municipal day-care centre"
+            "@value": "Pre-school education"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -1131,48 +742,70 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/notificationprimaryproduction",
         "@type": [
-          "http://data.europa.eu/m8g/PublicOrganisation"
+          "http://purl.org/vocab/cpsv#PublicService"
+        ],
+        "http://data.europa.eu/m8g/Sector": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/agricultureforestryfishing"
+          }
+        ],
+        "http://data.europa.eu/m8g/hasCompetentAuthority": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/economicdevelopment"
+          }
+        ],
+        "http://data.europa.eu/m8g/isGroupedBy": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingbusiness"
+          }
+        ],
+        "http://data.europa.eu/m8g/processingTime": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
+            "@value": "2020-12-16T14:35:59+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
+            "@value": "2020-12-16T14:35:59+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "The municipal food control authority must be notified, in writing, of the premises of primary production and the primary production practised there, unless the authority is notified of the primary production premises by another authority (Food Act 22 § Subsection 2). Primary production means the production, rearing or growing of primary products including harvesting, milking and farmed animal production prior to slaughter. Primary production includes, for example, milk and egg production, keeping beef cattle, fishing and fish farming, farming vegetables, fruits, grains and mushrooms, as well as honey production. Primary production also includes the transport, storage and handling of the products at the place of production so that the nature of the products is not significantly changed. In addition, it includes the transport of live animals and other products of primary production, except for milk, to the next handling place in the food supply chain. Notification of primary production is not required for hunting or picking wild plants and mushrooms even if the purpose would be to sell these products for consumption."
           }
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "0165116-3"
+            "@value": "NotificationPrimaryProduction"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
+            "@value": "2020-12-16T14:35:59+01:00"
           }
         ],
-        "http://purl.org/dc/terms/spatial": [
+        "http://purl.org/dc/terms/title": [
           {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli"
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Notification of primary production premises"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
           {
             "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "City of Mikkeli"
           }
         ]
       },
@@ -1245,73 +878,96 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/wastemanagement",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/cplymi3jpec",
         "@type": [
-          "http://purl.org/vocab/cpsv#PublicService"
-        ],
-        "http://data.europa.eu/m8g/Sector": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/agricultureforestryfishing"
-          }
-        ],
-        "http://data.europa.eu/m8g/hasCompetentAuthority": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/economicdevelopment"
-          }
-        ],
-        "http://data.europa.eu/m8g/isGroupedBy": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/other"
-          },
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/doingbusiness"
-          }
-        ],
-        "http://data.europa.eu/m8g/processingTime": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
+          "https://schema.org/ContactPoint"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:59+01:00"
+            "@value": "2020-12-16T14:36:03+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:59+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Under the Waste Act, all waste producers must treat their waste in a proper manner. If a resident neglects their waste management obligations, the responsibility will, on certain conditions, be transferred to the property holder. Organising the management of household and municipal waste is the responsibility of individual municipalities or the joint responsibility of a group of municipalities.  Municipalities must also organise the reception and treatment of hazardous waste. Reception of hazardous waste generated in agriculture and forestry is, to a reasonable extent, the responsibility of municipalities.  Manufacturers and importers of certain products also have waste management responsibilities. Under the Waste Act, as much as possible of the waste must be sorted and recycled or otherwise recovered."
+            "@value": "2020-12-16T14:36:03+01:00"
           }
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "WasteManagement"
+            "@value": "CP_LYMI3J_pec"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:59+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Waste management"
+            "@value": "2020-12-16T14:36:03+01:00"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
           {
             "@value": 0
+          }
+        ],
+        "https://schema.org/email": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/faxNumber": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/telephone": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli",
+        "@type": [
+          "http://purl.org/dc/terms/Location"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:53+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:53+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:53+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Mikkeli"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/ns/locn#GeographicName": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
           }
         ]
       },
@@ -1384,189 +1040,7 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/guidancecounsellingingeneraluppersecondaryeducation",
-        "@type": [
-          "http://purl.org/vocab/cpsv#PublicService"
-        ],
-        "http://data.europa.eu/m8g/Sector": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/education"
-          },
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/administrative-support-service-activities"
-          }
-        ],
-        "http://data.europa.eu/m8g/hasCompetentAuthority": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3"
-          }
-        ],
-        "http://data.europa.eu/m8g/isGroupedBy": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingeducation"
-          }
-        ],
-        "http://data.europa.eu/m8g/processingTime": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Students participating in general upper secondary education are entitled to guidance counselling that supports the students and helps them prepare for studies and working life after general upper secondary school. The purpose of guidance counselling is to help the upper secondary students to understand their personal vocational orientation and acquire the skills and capabilities that they will need in their studies and later in working life. Guidance counselling is organised both for groups and individuals. In individual guidance counselling, the student has a possibility of discussing questions related to his or her studies, educational choices, vocational and career planning and life situation. Further details of guidance counselling are laid down in the curriculum."
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Guidancecounsellingingeneraluppersecondaryeducation"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Guidance counselling in general upper secondary education"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/human-health-social-work-activities",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Human Health Social Work Activities"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/phonechannelmikeli",
-        "@type": [
-          "http://data.europa.eu/m8g/Channel"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "PhoneChannel/Mikeli"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/trento",
-        "@type": [
-          "http://purl.org/dc/terms/Location"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Trento"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/ns/locn#GeographicName": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mining-quarrying",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/information-communication",
         "@type": [
           "http://www.w3.org/2004/02/skos/core#Concept"
         ],
@@ -1596,318 +1070,7 @@
         "http://www.w3.org/2004/02/skos/core#prefLabel": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Mining Quarrying"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/webpagemikeli",
-        "@type": [
-          "http://data.europa.eu/m8g/Channel"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Webpage/Mikeli"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/be17",
-        "@type": [
-          "http://data.europa.eu/m8g/BusinessEvent",
-          "http://data.europa.eu/m8g/Event"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "BE_1.7"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Gestione personale"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startupgrant",
-        "@type": [
-          "http://data.europa.eu/m8g/Evidence"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "StartUpGrant"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:56+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "StartUpGrant"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/cplymi3j",
-        "@type": [
-          "https://schema.org/ContactPoint"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "CP_LYMI3J"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "https://schema.org/email": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "https://schema.org/faxNumber": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "https://schema.org/telephone": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startupgrant-0",
-        "@type": [
-          "http://data.europa.eu/m8g/Evidence"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:57+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:57+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "StartUpGrant"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:57+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Tax Administration report on personal taxation from the previous fiscal year."
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startupgrant-1",
-        "@type": [
-          "http://data.europa.eu/m8g/Channel"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:57+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:57+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "startup_grant"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:57+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/economicdevelopment",
-        "@type": [
-          "http://data.europa.eu/m8g/PublicOrganisation"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "EconomicDevelopment"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/spatial": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Centre for Economic Development, Transport and the Environment"
+            "@value": "Information Communication"
           }
         ]
       },
@@ -1983,26 +1146,26 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/information-communication",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/administrative-support-service-activities",
         "@type": [
           "http://www.w3.org/2004/02/skos/core#Concept"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:59+01:00"
+            "@value": "2020-12-16T14:35:53+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:59+01:00"
+            "@value": "2020-12-16T14:35:53+01:00"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:59+01:00"
+            "@value": "2020-12-16T14:35:53+01:00"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -2013,7 +1176,515 @@
         "http://www.w3.org/2004/02/skos/core#prefLabel": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Information Communication"
+            "@value": "Administrative Support Service Activities"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/professional-scientific-technical-activities",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Professional Scientific Technical Activities"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/be17",
+        "@type": [
+          "http://data.europa.eu/m8g/BusinessEvent",
+          "http://data.europa.eu/m8g/Event"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "BE_1.7"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Gestione personale"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/daycarepreschoolers",
+        "@type": [
+          "http://purl.org/vocab/cpsv#PublicService"
+        ],
+        "http://data.europa.eu/m8g/Sector": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/education"
+          }
+        ],
+        "http://data.europa.eu/m8g/hasChannel": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/phonechannelmikeli"
+          },
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/kaarisillan-paivakoti"
+          },
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/webpagemikeli"
+          },
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli-0"
+          }
+        ],
+        "http://data.europa.eu/m8g/hasCompetentAuthority": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3"
+          }
+        ],
+        "http://data.europa.eu/m8g/hasContactPoint": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/visitingaddress-mikeli"
+          },
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/telephone-mikeli"
+          }
+        ],
+        "http://data.europa.eu/m8g/isGroupedBy": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingeducation"
+          }
+        ],
+        "http://data.europa.eu/m8g/processingTime": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "In Mikkeli, preschoolers' day care is given in day care centers as either full day care (over 5 hrs a day) or part time care (max 5 hrs a day)."
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "DayCarePreschoolers"
+          }
+        ],
+        "http://purl.org/dc/terms/language": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/finnish"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Day care for preschoolers"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/servicelocation-startup",
+        "@type": [
+          "https://schema.org/ContactPoint"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:57+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:57+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "ServiceLocation-StartUp"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:57+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "https://schema.org/email": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/faxNumber": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/telephone": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startupgrant-1",
+        "@type": [
+          "http://data.europa.eu/m8g/Channel"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:57+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:57+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "startup_grant"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:57+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/telephone-mikeli",
+        "@type": [
+          "https://schema.org/ContactPoint"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Telephone-Mikeli"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "https://schema.org/email": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/faxNumber": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/telephone": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/visitingaddress-mikeli",
+        "@type": [
+          "https://schema.org/ContactPoint"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "VisitingAddress-Mikeli"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "https://schema.org/email": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/faxNumber": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/telephone": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0131-general-personnel-services-cs",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "01.3.1 - General personnel services (CS)"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/cplymi3j",
+        "@type": [
+          "https://schema.org/ContactPoint"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "CP_LYMI3J"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "https://schema.org/email": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/faxNumber": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "https://schema.org/telephone": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/be34",
+        "@type": [
+          "http://data.europa.eu/m8g/BusinessEvent",
+          "http://data.europa.eu/m8g/Event"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "BE_3.4"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Gestione personale"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
           }
         ]
       },
@@ -2116,216 +1787,6 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/956f5350-aba1-439d-aa5f-03de060cac97",
-        "@type": [
-          "http://data.europa.eu/m8g/Evidence"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "956f5350-aba1-439d-aa5f-03de060cac97"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Progetto di intervento"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/lymi3j",
-        "@type": [
-          "http://data.europa.eu/m8g/PublicOrganisation"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "LYMI3J"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/spatial": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/trento"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Provincia autonoma di Trento - Agenzia del lavoro"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/507ca4fb-ba34-4824-a192-cce68d4b583e",
-        "@type": [
-          "http://data.europa.eu/m8g/Evidence"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "507ca4fb-ba34-4824-a192-cce68d4b583e"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "A seconda del percorso che interessa, va presentata la domanda di attivazione del percorso di certificazione, la domanda di attivazione del percorso di mantenimento oppure la domanda di attivazione del percorso di consolidamento"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/1040-family-and-children",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "10.4.0 - Family and children (IS)"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/italiano",
-        "@type": [
-          "http://purl.org/dc/terms/LinguisticSystem"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:01+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2000/01/rdf-schema#label": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Italiano"
-          }
-        ]
-      },
-      {
         "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/tem325fi",
         "@type": [
           "http://data.europa.eu/m8g/Channel"
@@ -2366,148 +1827,32 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/professional-scientific-technical-activities",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Professional Scientific Technical Activities"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/ehgqo1",
-        "@type": [
-          "http://data.europa.eu/m8g/PublicOrganisation"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "EHGQO1"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/spatial": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/trento"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Provincia autonoma di Trento - Agenzia provinciale per la famiglia, la natalità e le politiche giovanili (APF)"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/kaarisillan-paivakoti",
-        "@type": [
-          "http://data.europa.eu/m8g/Channel"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "kaarisillan-paivakoti"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:54+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/visitingaddress-mikeli",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/cpehgqo1",
         "@type": [
           "https://schema.org/ContactPoint"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
+            "@value": "2020-12-16T14:36:04+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
+            "@value": "2020-12-16T14:36:04+01:00"
           }
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "VisitingAddress-Mikeli"
+            "@value": "CP_EHGQO1"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
+            "@value": "2020-12-16T14:36:04+01:00"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -2531,218 +1876,6 @@
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
             "@value": ""
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/daycarepreschoolers",
-        "@type": [
-          "http://purl.org/vocab/cpsv#PublicService"
-        ],
-        "http://data.europa.eu/m8g/Sector": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/education"
-          }
-        ],
-        "http://data.europa.eu/m8g/hasChannel": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/phonechannelmikeli"
-          },
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/kaarisillan-paivakoti"
-          },
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/webpagemikeli"
-          },
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli-0"
-          }
-        ],
-        "http://data.europa.eu/m8g/hasCompetentAuthority": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3"
-          }
-        ],
-        "http://data.europa.eu/m8g/hasContactPoint": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/visitingaddress-mikeli"
-          },
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/telephone-mikeli"
-          }
-        ],
-        "http://data.europa.eu/m8g/isGroupedBy": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingeducation"
-          }
-        ],
-        "http://data.europa.eu/m8g/processingTime": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "In Mikkeli, preschoolers' day care is given in day care centers as either full day care (over 5 hrs a day) or part time care (max 5 hrs a day)."
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "DayCarePreschoolers"
-          }
-        ],
-        "http://purl.org/dc/terms/language": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/finnish"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Day care for preschoolers"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/a0777fd1-2e0f-466c-9150-c5dd6e5d9515",
-        "@type": [
-          "http://data.europa.eu/m8g/Evidence"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "a0777fd1-2e0f-466c-9150-c5dd6e5d9515"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:02+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Domanda di ammissione"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/agricultureforestryfishing",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:58+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "AgricultureForestryFishing"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli-0",
-        "@type": [
-          "http://data.europa.eu/m8g/Channel"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "mikkeli"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:55+01:00"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
           }
         ]
       },
@@ -2786,122 +1919,6 @@
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
             "@value": "Other"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/be32",
-        "@type": [
-          "http://data.europa.eu/m8g/Event",
-          "http://data.europa.eu/m8g/BusinessEvent"
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "BE_3.2"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:03+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Richiesta licenze/permessi/certificati"
-          }
-        ],
-        "http://rdfs.org/sioc/ns#num_replies": [
-          {
-            "@value": 0
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/notificationprimaryproduction",
-        "@type": [
-          "http://purl.org/vocab/cpsv#PublicService"
-        ],
-        "http://data.europa.eu/m8g/Sector": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/agricultureforestryfishing"
-          }
-        ],
-        "http://data.europa.eu/m8g/hasCompetentAuthority": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/economicdevelopment"
-          }
-        ],
-        "http://data.europa.eu/m8g/isGroupedBy": [
-          {
-            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingbusiness"
-          }
-        ],
-        "http://data.europa.eu/m8g/processingTime": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": ""
-          }
-        ],
-        "http://purl.org/dc/terms/created": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:59+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/date": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:59+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "The municipal food control authority must be notified, in writing, of the premises of primary production and the primary production practised there, unless the authority is notified of the primary production premises by another authority (Food Act 22 § Subsection 2). Primary production means the production, rearing or growing of primary products including harvesting, milking and farmed animal production prior to slaughter. Primary production includes, for example, milk and egg production, keeping beef cattle, fishing and fish farming, farming vegetables, fruits, grains and mushrooms, as well as honey production. Primary production also includes the transport, storage and handling of the products at the place of production so that the nature of the products is not significantly changed. In addition, it includes the transport of live animals and other products of primary production, except for milk, to the next handling place in the food supply chain. Notification of primary production is not required for hunting or picking wild plants and mushrooms even if the purpose would be to sell these products for consumption."
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "NotificationPrimaryProduction"
-          }
-        ],
-        "http://purl.org/dc/terms/modified": [
-          {
-            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:59+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Notification of primary production premises"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -2979,26 +1996,26 @@
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/education",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/1040-family-and-children",
         "@type": [
           "http://www.w3.org/2004/02/skos/core#Concept"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
+            "@value": "2020-12-16T14:36:01+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
+            "@value": "2020-12-16T14:36:01+01:00"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:35:53+01:00"
+            "@value": "2020-12-16T14:36:01+01:00"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -3009,37 +2026,31 @@
         "http://www.w3.org/2004/02/skos/core#prefLabel": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Education"
+            "@value": "10.4.0 - Family and children (IS)"
           }
         ]
       },
       {
-        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/cpehgqo1",
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/publicadministration-defence-compulsory-socialsecurity",
         "@type": [
-          "https://schema.org/ContactPoint"
+          "http://www.w3.org/2004/02/skos/core#Concept"
         ],
         "http://purl.org/dc/terms/created": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:04+01:00"
+            "@value": "2020-12-16T14:36:00+01:00"
           }
         ],
         "http://purl.org/dc/terms/date": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:04+01:00"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "CP_EHGQO1"
+            "@value": "2020-12-16T14:36:00+01:00"
           }
         ],
         "http://purl.org/dc/terms/modified": [
           {
             "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2020-12-16T14:36:04+01:00"
+            "@value": "2020-12-16T14:36:00+01:00"
           }
         ],
         "http://rdfs.org/sioc/ns#num_replies": [
@@ -3047,22 +2058,1011 @@
             "@value": 0
           }
         ],
-        "https://schema.org/email": [
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "PublicAdministration Defence Compulsory SocialSecurity"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/guidancecounsellingingeneraluppersecondaryeducation",
+        "@type": [
+          "http://purl.org/vocab/cpsv#PublicService"
+        ],
+        "http://data.europa.eu/m8g/Sector": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/education"
+          },
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/administrative-support-service-activities"
+          }
+        ],
+        "http://data.europa.eu/m8g/hasCompetentAuthority": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3"
+          }
+        ],
+        "http://data.europa.eu/m8g/isGroupedBy": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingeducation"
+          }
+        ],
+        "http://data.europa.eu/m8g/processingTime": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
             "@value": ""
           }
         ],
-        "https://schema.org/faxNumber": [
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Students participating in general upper secondary education are entitled to guidance counselling that supports the students and helps them prepare for studies and working life after general upper secondary school. The purpose of guidance counselling is to help the upper secondary students to understand their personal vocational orientation and acquire the skills and capabilities that they will need in their studies and later in working life. Guidance counselling is organised both for groups and individuals. In individual guidance counselling, the student has a possibility of discussing questions related to his or her studies, educational choices, vocational and career planning and life situation. Further details of guidance counselling are laid down in the curriculum."
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Guidancecounsellingingeneraluppersecondaryeducation"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Guidance counselling in general upper secondary education"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/be32",
+        "@type": [
+          "http://data.europa.eu/m8g/Event",
+          "http://data.europa.eu/m8g/BusinessEvent"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:03+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:03+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
             "@value": ""
           }
         ],
-        "https://schema.org/telephone": [
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "BE_3.2"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:03+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Richiesta licenze/permessi/certificati"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3",
+        "@type": [
+          "http://data.europa.eu/m8g/PublicOrganisation"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:53+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:53+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "0165116-3"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:53+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/spatial": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "City of Mikkeli"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/a0777fd1-2e0f-466c-9150-c5dd6e5d9515",
+        "@type": [
+          "http://data.europa.eu/m8g/Evidence"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
             "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "a0777fd1-2e0f-466c-9150-c5dd6e5d9515"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Domanda di ammissione"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/trento",
+        "@type": [
+          "http://purl.org/dc/terms/Location"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Trento"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/ns/locn#GeographicName": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/careatamunicipalday-carecentre",
+        "@type": [
+          "http://purl.org/vocab/cpsv#PublicService"
+        ],
+        "http://data.europa.eu/m8g/Sector": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/education"
+          },
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/human-health-social-work-activities"
+          }
+        ],
+        "http://data.europa.eu/m8g/hasCompetentAuthority": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3"
+          }
+        ],
+        "http://data.europa.eu/m8g/isGroupedBy": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/other"
+          }
+        ],
+        "http://data.europa.eu/m8g/processingTime": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Children aged under 7 may receive day care organised by the municipality. In practice, day care is organised by individual municipalities or groups of municipalities, private operators, NGOs or other organisations to which the municipality outsources the service. The objective of early childhood education and care is to support the child’s growth, development and learning and promote his or her well-being. An early childhood education plan is prepared for each child in care provided at a day-care centre. Municipal day care may be full time or part time care. Municipalities may limit the care time of a child in early childhood education to 20 hours a week, if one of the child’s parents is staying at home due to unemployment."
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Careatamunicipalday-carecentre"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Care at a municipal day-care centre"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/avausnakymajsf",
+        "@type": [
+          "http://data.europa.eu/m8g/Channel"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "avausnakyma.jsf"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/webpagemikeli",
+        "@type": [
+          "http://data.europa.eu/m8g/Channel"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Webpage/Mikeli"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/956f5350-aba1-439d-aa5f-03de060cac97",
+        "@type": [
+          "http://data.europa.eu/m8g/Evidence"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "956f5350-aba1-439d-aa5f-03de060cac97"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Progetto di intervento"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/fireinspections",
+        "@type": [
+          "http://purl.org/vocab/cpsv#PublicService"
+        ],
+        "http://data.europa.eu/m8g/Sector": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/publicadministration-defence-compulsory-socialsecurity"
+          }
+        ],
+        "http://data.europa.eu/m8g/hasCompetentAuthority": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/0165116-3"
+          }
+        ],
+        "http://data.europa.eu/m8g/isGroupedBy": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/doingbusiness"
+          }
+        ],
+        "http://data.europa.eu/m8g/processingTime": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:00+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:00+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Fire inspections are the responsibility of the joint municipal rescue authority. Fire inspections comprise general and special fire inspections, follow-up inspections, additional fire inspections and self-checks. The fire inspector provides advice and instructions on fire safety and minutes must be kept on the inspections. The owner or occupant of a property or the operator must, on request, provide the authorities with a rescue plan and other details of the fire and evacuation safety of the building."
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Fireinspections"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:00+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Fire inspections "
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingbusiness",
+        "@type": [
+          "http://data.europa.eu/m8g/Event",
+          "http://data.europa.eu/m8g/BusinessEvent"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "StartingBusiness"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:56+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Starting Business"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/chpsgeapf",
+        "@type": [
+          "http://data.europa.eu/m8g/Channel"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "CH_PS_GeAPF"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:02+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startingeducation",
+        "@type": [
+          "http://data.europa.eu/m8g/Event",
+          "http://data.europa.eu/m8g/LifeEvent"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "StartingEducation"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Starting Education"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/agricultureforestryfishing",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "AgricultureForestryFishing"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/human-health-social-work-activities",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Human Health Social Work Activities"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/italiano",
+        "@type": [
+          "http://purl.org/dc/terms/LinguisticSystem"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Italiano"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli-0",
+        "@type": [
+          "http://data.europa.eu/m8g/Channel"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "mikkeli"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:55+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/lymi3j",
+        "@type": [
+          "http://data.europa.eu/m8g/PublicOrganisation"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "LYMI3J"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:01+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/spatial": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/trento"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Provincia autonoma di Trento - Agenzia del lavoro"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/startupgrant-0",
+        "@type": [
+          "http://data.europa.eu/m8g/Evidence"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:57+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:57+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "StartUpGrant"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:57+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Tax Administration report on personal taxation from the previous fiscal year."
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/economicdevelopment",
+        "@type": [
+          "http://data.europa.eu/m8g/PublicOrganisation"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "EconomicDevelopment"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:58+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/spatial": [
+          {
+            "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Centre for Economic Development, Transport and the Environment"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/507ca4fb-ba34-4824-a192-cce68d4b583e",
+        "@type": [
+          "http://data.europa.eu/m8g/Evidence"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:03+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:03+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": ""
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "507ca4fb-ba34-4824-a192-cce68d4b583e"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:36:03+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "A seconda del percorso che interessa, va presentata la domanda di attivazione del percorso di certificazione, la domanda di attivazione del percorso di mantenimento oppure la domanda di attivazione del percorso di consolidamento"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsv-ap.semic.eu/cpsv-ap_editor/content/finnish",
+        "@type": [
+          "http://purl.org/dc/terms/LinguisticSystem"
+        ],
+        "http://purl.org/dc/terms/created": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/date": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://purl.org/dc/terms/modified": [
+          {
+            "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2020-12-16T14:35:54+01:00"
+          }
+        ],
+        "http://rdfs.org/sioc/ns#num_replies": [
+          {
+            "@value": 0
+          }
+        ],
+        "http://www.w3.org/2000/01/rdf-schema#label": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Finnish"
           }
         ]
       }
@@ -3072,33 +3072,19 @@
   {
     "@graph": [
       {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicServiced6477c765f6646a4bb7c9d26475241ae",
+        "@id": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05",
         "@type": [
-          "http://purl.org/vocab/cpsv#PublicService"
+          "http://purl.org/dc/terms/Location"
         ],
-        "http://data.europa.eu/m8g/hasCompetentAuthority": [
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
           {
-            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationf3cf257d204f429184262ff185fc0487"
-          }
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@value": "A description of Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@value": "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@value": "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse"
+            "@language": "de",
+            "@value": "Wien 5. Margareten"
           }
         ]
       },
       {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationf3cf257d204f429184262ff185fc0487",
+        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation4812124575cb4c439c732ccca1981bbe",
         "@type": [
           "http://data.europa.eu/m8g/PublicOrganisation"
         ],
@@ -3110,7 +3096,33 @@
         "http://www.w3.org/2004/02/skos/core#prefLabel": [
           {
             "@language": "en",
-            "@value": "Finance"
+            "@value": "Finance - Head of Service"
+          }
+        ]
+      },
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/PublicService09799cf9c75b4004962f09a6fd24cd26",
+        "@type": [
+          "http://purl.org/vocab/cpsv#PublicService"
+        ],
+        "http://data.europa.eu/m8g/hasCompetentAuthority": [
+          {
+            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation4812124575cb4c439c732ccca1981bbe"
+          }
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@value": "Die Stadt Wien - Finanzwesen fördert in subsidiärer Generalkompetenz (das bedeutet wenn keine andere Fachabteilung der Stadt dafür zuständig ist) Vorhaben, an denen ein erhebliches öffentliches Interesse sowie ein unmittelbarer Bezug zur Stadt Wien in inhaltlicher, institutioneller und geographischer Sicht bestehen."
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@value": "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@value": "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse"
           }
         ]
       }
@@ -3138,267 +3150,6 @@
         ]
       },
       {
-        "@id": "http://cpsvap.semic.eu/CP_LYMI3J",
-        "@type": [
-          "https://schema.org/ContactPoint"
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "CP_LYMI3J"
-          }
-        ],
-        "https://schema.org/email": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "direzione@agenzialavoro.tn.it"
-          }
-        ],
-        "https://schema.org/faxNumber": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "0461496180"
-          }
-        ],
-        "https://schema.org/telephone": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "800264760"
-          },
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "0461496020"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/output_rec",
-        "@type": [
-          "http://data.europa.eu/m8g/Output"
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "output_rec"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Abilitazioni, iscrizioni, certificazioni, dati"
-          }
-        ],
-        "http://purl.org/dc/terms/type": [
-          {
-            "@id": "http://cpsvap.semic.eu/output_recognition"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/WEB_p_TN_1519",
-        "@type": [
-          "http://data.europa.eu/m8g/PublicServiceDataset"
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "WEB_p_TN_1519"
-          }
-        ],
-        "http://purl.org/dc/terms/publisher": [
-          {
-            "@id": "http://cpsvap.semic.eu/LYMI3J"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Work family - progetti sui regimi di orario"
-          }
-        ],
-        "http://www.w3.org/ns/dcat#landingPage": [
-          {
-            "@id": "https://www.agenzialavoro.tn.it/Schede-informative/WORK-FAMILY-Progetti-sui-regimi-di-orario"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/BE_1.2",
-        "@type": [
-          "http://data.europa.eu/m8g/Event",
-          "http://data.europa.eu/m8g/BusinessEvent"
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Abilitazioni, riconoscimenti professionali, licenze, autorizzazioni per avviare un'attività (primo rilascio)"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "BE_1.2"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Richiesta licenze/permessi/certificati"
-          }
-        ],
-        "http://purl.org/dc/terms/type": [
-          {
-            "@id": "http://cpsvap.semic.eu/1.2_licence"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/LP-2011-1",
-        "@type": [
-          "http://data.europa.eu/eli/ontology#LegalResource"
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Legge provinciale n. 1 del 2 marzo 2011"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "LP-2011-1"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/WEB_p_TN_NP7",
-        "@type": [
-          "http://data.europa.eu/m8g/PublicServiceDataset"
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "WEB_p_TN_NP7"
-          }
-        ],
-        "http://purl.org/dc/terms/publisher": [
-          {
-            "@id": "http://cpsvap.semic.eu/EHGQO1"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Certificazione Family Audit"
-          }
-        ],
-        "http://www.w3.org/ns/dcat#landingPage": [
-          {
-            "@id": "https://www.servizionline.provincia.tn.it/portal/server.pt/community/imprese_e_professionisti/1065/certificazione_family_audit/291667"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/CP_LYMI3J_pec",
-        "@type": [
-          "https://schema.org/ContactPoint"
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "CP_LYMI3J_pec"
-          }
-        ],
-        "https://schema.org/email": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "amministrazione.adl@pec.provincia.tn.it"
-          }
-        ],
-        "https://schema.org/telephone": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "0461496020"
-          },
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "800264760"
-          }
-        ]
-      },
-      {
-        "@id": "http://publications.europa.eu/resource/authority/data-theme/SOCI",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "SOCI"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/a0777fd1-2e0f-466c-9150-c5dd6e5d9515",
-        "@type": [
-          "http://data.europa.eu/m8g/Evidence"
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "a0777fd1-2e0f-466c-9150-c5dd6e5d9515"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Domanda di ammissione"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/output_recognition",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Recognition"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/BE_3.2",
-        "@type": [
-          "http://data.europa.eu/m8g/BusinessEvent",
-          "http://data.europa.eu/m8g/Event"
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Abilitazioni, riconoscimenti professionali, licenze, autorizzazioni per proseguire un'attività (rinnovo)"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "BE_3.2"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Richiesta licenze/permessi/certificati"
-          }
-        ],
-        "http://purl.org/dc/terms/type": [
-          {
-            "@id": "http://cpsvap.semic.eu/3.2_licence"
-          }
-        ]
-      },
-      {
         "@id": "http://cpsvap.semic.eu/3.2_licence",
         "@type": [
           "http://www.w3.org/2004/02/skos/core#Concept"
@@ -3411,60 +3162,20 @@
         ]
       },
       {
-        "@id": "http://cpsvap.semic.eu/CP_EHGQO1_pec",
+        "@id": "http://cpsvap.semic.eu/956f5350-aba1-439d-aa5f-03de060cac97",
         "@type": [
-          "https://schema.org/ContactPoint"
+          "http://data.europa.eu/m8g/Evidence"
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "CP_EHGQO1_pec"
+            "@value": "956f5350-aba1-439d-aa5f-03de060cac97"
           }
         ],
-        "https://schema.org/email": [
+        "http://purl.org/dc/terms/title": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "agenziafamiglia@pec.provincia.tn.it"
-          }
-        ],
-        "https://schema.org/telephone": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "0461494110"
-          },
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "0461494112"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/3.4_hiring_employee",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "3.4 Hiring an employee"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/94957bab-e8cb-44fe-bc7a-3447cf478760",
-        "@type": [
-          "http://data.europa.eu/m8g/Cost"
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Marca da bollo da 16 euro, se non esenti"
-          }
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "94957bab-e8cb-44fe-bc7a-3447cf478760"
+            "@value": "Progetto di intervento"
           }
         ]
       },
@@ -3499,68 +3210,20 @@
         ]
       },
       {
-        "@id": "http://cpsvap.semic.eu/CH_PS_GeAPF",
-        "@type": [
-          "http://data.europa.eu/m8g/Channel"
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "CH_PS_GeAPF"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/1.2_licence",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "1.2Needing a licence, permit or certificate to start or continue an activity"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/1.7_hiring_employee",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "1.7 Hiring an employee "
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/LP-1983-19",
+        "@id": "http://cpsvap.semic.eu/DGP-2016-2082",
         "@type": [
           "http://data.europa.eu/eli/ontology#LegalResource"
         ],
         "http://purl.org/dc/terms/description": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Legge provinciale n. 19 del 16 giugno 1983"
+            "@value": "Deliberazione della Giunta provinciale n. 2082 del 24 novembre 2016"
           }
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "LP-1983-19"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/status_attivo",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "attivo"
+            "@value": "DGP-2016-2082"
           }
         ]
       },
@@ -3656,50 +3319,43 @@
         ]
       },
       {
-        "@id": "http://cpsvap.semic.eu/BE_1.7",
+        "@id": "http://cpsvap.semic.eu/19194197-782b-418e-b5d2-e033c9147a63",
         "@type": [
-          "http://data.europa.eu/m8g/Event",
-          "http://data.europa.eu/m8g/BusinessEvent"
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Servizi per il personale"
-          }
+          "http://data.europa.eu/m8g/CriterionRequirement"
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "BE_1.7"
+            "@value": "19194197-782b-418e-b5d2-e033c9147a63"
           }
         ],
         "http://purl.org/dc/terms/title": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Gestione personale"
-          }
-        ],
-        "http://purl.org/dc/terms/type": [
-          {
-            "@id": "http://cpsvap.semic.eu/1.7_hiring_employee"
+            "@value": "Possono presentare domanda i datori di lavoro privati con sede legale o unità produttiva in provincia di Trento limitatamente ai lavoratori ivi occupati con un rapporto alle dipendenze di natura privatistica, i datori di lavoro privati con sede legale o unità produttiva in provincia di Trento aderenti al processo di certificazione Family Audit.\n\nLe esigenze di conciliazione dei dipendenti devono riguardare figli minori conviventi di età inferiore ai 12 anni oppure persone conviventi o, se non conviventi, parenti di I o II grado o affini di I grado, con bisogno di assistenza accertata da certificazione medica.\n\nSono escluse dal finanziamento le società e gli organismi a totale o prevalente partecipazione pubblica e le loro società controllate, gli enti strumentali della Provincia, gli organismi controllati e gli enti strumentali degli enti locali, nonché i soggetti dagli stessi controllati."
           }
         ]
       },
       {
-        "@id": "http://cpsvap.semic.eu/DGP-2016-2082",
+        "@id": "http://cpsvap.semic.eu/output_fb",
         "@type": [
-          "http://data.europa.eu/eli/ontology#LegalResource"
-        ],
-        "http://purl.org/dc/terms/description": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Deliberazione della Giunta provinciale n. 2082 del 24 novembre 2016"
-          }
+          "http://data.europa.eu/m8g/Output"
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "DGP-2016-2082"
+            "@value": "output_fb"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Contributi"
+          }
+        ],
+        "http://purl.org/dc/terms/type": [
+          {
+            "@id": "http://cpsvap.semic.eu/output_financial_benefit"
           }
         ]
       },
@@ -3738,18 +3394,6 @@
         ]
       },
       {
-        "@id": "http://publications.europa.eu/resource/authority/language/ITA",
-        "@type": [
-          "http://purl.org/dc/terms/LinguisticSystem"
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Italiano"
-          }
-        ]
-      },
-      {
         "@id": "http://cpsvap.semic.eu/BE_3.4",
         "@type": [
           "http://data.europa.eu/m8g/Event",
@@ -3780,18 +3424,6 @@
         ]
       },
       {
-        "@id": "http://cpsvap.semic.eu/10.4.0",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "10.4.0 - Family and children (IS)"
-          }
-        ]
-      },
-      {
         "@id": "http://cpsvap.semic.eu/2189a486-6ffd-4cd5-939f-4848b3189ad4",
         "@type": [
           "http://data.europa.eu/m8g/Cost"
@@ -3806,47 +3438,6 @@
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
             "@value": "2189a486-6ffd-4cd5-939f-4848b3189ad4"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/output_fb",
-        "@type": [
-          "http://data.europa.eu/m8g/Output"
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "output_fb"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Contributi"
-          }
-        ],
-        "http://purl.org/dc/terms/type": [
-          {
-            "@id": "http://cpsvap.semic.eu/output_financial_benefit"
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/19194197-782b-418e-b5d2-e033c9147a63",
-        "@type": [
-          "http://data.europa.eu/m8g/CriterionRequirement"
-        ],
-        "http://purl.org/dc/terms/identifier": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "19194197-782b-418e-b5d2-e033c9147a63"
-          }
-        ],
-        "http://purl.org/dc/terms/title": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Possono presentare domanda i datori di lavoro privati con sede legale o unità produttiva in provincia di Trento limitatamente ai lavoratori ivi occupati con un rapporto alle dipendenze di natura privatistica, i datori di lavoro privati con sede legale o unità produttiva in provincia di Trento aderenti al processo di certificazione Family Audit.\n\nLe esigenze di conciliazione dei dipendenti devono riguardare figli minori conviventi di età inferiore ai 12 anni oppure persone conviventi o, se non conviventi, parenti di I o II grado o affini di I grado, con bisogno di assistenza accertata da certificazione medica.\n\nSono escluse dal finanziamento le società e gli organismi a totale o prevalente partecipazione pubblica e le loro società controllate, gli enti strumentali della Provincia, gli organismi controllati e gli enti strumentali degli enti locali, nonché i soggetti dagli stessi controllati."
           }
         ]
       },
@@ -3869,20 +3460,372 @@
         ]
       },
       {
-        "@id": "http://cpsvap.semic.eu/956f5350-aba1-439d-aa5f-03de060cac97",
+        "@id": "http://cpsvap.semic.eu/BE_1.2",
+        "@type": [
+          "http://data.europa.eu/m8g/Event",
+          "http://data.europa.eu/m8g/BusinessEvent"
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Abilitazioni, riconoscimenti professionali, licenze, autorizzazioni per avviare un'attività (primo rilascio)"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "BE_1.2"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Richiesta licenze/permessi/certificati"
+          }
+        ],
+        "http://purl.org/dc/terms/type": [
+          {
+            "@id": "http://cpsvap.semic.eu/1.2_licence"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/CH_PS_GeAPF",
+        "@type": [
+          "http://data.europa.eu/m8g/Channel"
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "CH_PS_GeAPF"
+          }
+        ]
+      },
+      {
+        "@id": "http://publications.europa.eu/resource/authority/data-theme/SOCI",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "SOCI"
+          }
+        ]
+      },
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/ITA",
+        "@type": [
+          "http://purl.org/dc/terms/LinguisticSystem"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Italiano"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/01.3.1",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "01.3.1 - General personnel services (CS)"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/CP_LYMI3J",
+        "@type": [
+          "https://schema.org/ContactPoint"
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "CP_LYMI3J"
+          }
+        ],
+        "https://schema.org/email": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "direzione@agenzialavoro.tn.it"
+          }
+        ],
+        "https://schema.org/faxNumber": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "0461496180"
+          }
+        ],
+        "https://schema.org/telephone": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "800264760"
+          },
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "0461496020"
+          }
+        ]
+      },
+      {
+        "@id": "http://www.geonames.org/3165241/",
+        "@type": [
+          "http://purl.org/dc/terms/Location"
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Trento"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/LP-1983-19",
+        "@type": [
+          "http://data.europa.eu/eli/ontology#LegalResource"
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Legge provinciale n. 19 del 16 giugno 1983"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "LP-1983-19"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/WEB_p_TN_1519",
+        "@type": [
+          "http://data.europa.eu/m8g/PublicServiceDataset"
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "WEB_p_TN_1519"
+          }
+        ],
+        "http://purl.org/dc/terms/publisher": [
+          {
+            "@id": "http://cpsvap.semic.eu/LYMI3J"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Work family - progetti sui regimi di orario"
+          }
+        ],
+        "http://www.w3.org/ns/dcat#landingPage": [
+          {
+            "@id": "https://www.agenzialavoro.tn.it/Schede-informative/WORK-FAMILY-Progetti-sui-regimi-di-orario"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/BE_1.7",
+        "@type": [
+          "http://data.europa.eu/m8g/Event",
+          "http://data.europa.eu/m8g/BusinessEvent"
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Servizi per il personale"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "BE_1.7"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Gestione personale"
+          }
+        ],
+        "http://purl.org/dc/terms/type": [
+          {
+            "@id": "http://cpsvap.semic.eu/1.7_hiring_employee"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/LP-2011-1",
+        "@type": [
+          "http://data.europa.eu/eli/ontology#LegalResource"
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Legge provinciale n. 1 del 2 marzo 2011"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "LP-2011-1"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/WEB_p_TN_NP7",
+        "@type": [
+          "http://data.europa.eu/m8g/PublicServiceDataset"
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "WEB_p_TN_NP7"
+          }
+        ],
+        "http://purl.org/dc/terms/publisher": [
+          {
+            "@id": "http://cpsvap.semic.eu/EHGQO1"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Certificazione Family Audit"
+          }
+        ],
+        "http://www.w3.org/ns/dcat#landingPage": [
+          {
+            "@id": "https://www.servizionline.provincia.tn.it/portal/server.pt/community/imprese_e_professionisti/1065/certificazione_family_audit/291667"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/CP_LYMI3J_pec",
+        "@type": [
+          "https://schema.org/ContactPoint"
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "CP_LYMI3J_pec"
+          }
+        ],
+        "https://schema.org/email": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "amministrazione.adl@pec.provincia.tn.it"
+          }
+        ],
+        "https://schema.org/telephone": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "0461496020"
+          },
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "800264760"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/output_financial_benefit",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Financial benefit"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/status_attivo",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "attivo"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/BE_3.2",
+        "@type": [
+          "http://data.europa.eu/m8g/BusinessEvent",
+          "http://data.europa.eu/m8g/Event"
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Abilitazioni, riconoscimenti professionali, licenze, autorizzazioni per proseguire un'attività (rinnovo)"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "BE_3.2"
+          }
+        ],
+        "http://purl.org/dc/terms/title": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Richiesta licenze/permessi/certificati"
+          }
+        ],
+        "http://purl.org/dc/terms/type": [
+          {
+            "@id": "http://cpsvap.semic.eu/3.2_licence"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/3.4_hiring_employee",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "3.4 Hiring an employee"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/a0777fd1-2e0f-466c-9150-c5dd6e5d9515",
         "@type": [
           "http://data.europa.eu/m8g/Evidence"
         ],
         "http://purl.org/dc/terms/identifier": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "956f5350-aba1-439d-aa5f-03de060cac97"
+            "@value": "a0777fd1-2e0f-466c-9150-c5dd6e5d9515"
           }
         ],
         "http://purl.org/dc/terms/title": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Progetto di intervento"
+            "@value": "Domanda di ammissione"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/1.7_hiring_employee",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "1.7 Hiring an employee "
           }
         ]
       },
@@ -3992,26 +3935,107 @@
         ]
       },
       {
-        "@id": "http://cpsvap.semic.eu/output_financial_benefit",
+        "@id": "http://cpsvap.semic.eu/1.2_licence",
         "@type": [
           "http://www.w3.org/2004/02/skos/core#Concept"
         ],
         "http://www.w3.org/2004/02/skos/core#prefLabel": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Financial benefit"
+            "@value": "1.2Needing a licence, permit or certificate to start or continue an activity"
           }
         ]
       },
       {
-        "@id": "http://www.geonames.org/3165241/",
+        "@id": "http://cpsvap.semic.eu/CP_EHGQO1_pec",
         "@type": [
-          "http://purl.org/dc/terms/Location"
+          "https://schema.org/ContactPoint"
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "CP_EHGQO1_pec"
+          }
+        ],
+        "https://schema.org/email": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "agenziafamiglia@pec.provincia.tn.it"
+          }
+        ],
+        "https://schema.org/telephone": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "0461494110"
+          },
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "0461494112"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/output_recognition",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Recognition"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/output_rec",
+        "@type": [
+          "http://data.europa.eu/m8g/Output"
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "output_rec"
+          }
         ],
         "http://purl.org/dc/terms/title": [
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "Trento"
+            "@value": "Abilitazioni, iscrizioni, certificazioni, dati"
+          }
+        ],
+        "http://purl.org/dc/terms/type": [
+          {
+            "@id": "http://cpsvap.semic.eu/output_recognition"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/94957bab-e8cb-44fe-bc7a-3447cf478760",
+        "@type": [
+          "http://data.europa.eu/m8g/Cost"
+        ],
+        "http://purl.org/dc/terms/description": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "Marca da bollo da 16 euro, se non esenti"
+          }
+        ],
+        "http://purl.org/dc/terms/identifier": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "94957bab-e8cb-44fe-bc7a-3447cf478760"
+          }
+        ]
+      },
+      {
+        "@id": "http://cpsvap.semic.eu/10.4.0",
+        "@type": [
+          "http://www.w3.org/2004/02/skos/core#Concept"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
+            "@value": "10.4.0 - Family and children (IS)"
           }
         ]
       },
@@ -4024,18 +4048,6 @@
           {
             "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
             "@value": "Q88.9.9 - Other social work activities without accommodation n.e.c."
-          }
-        ]
-      },
-      {
-        "@id": "http://cpsvap.semic.eu/01.3.1",
-        "@type": [
-          "http://www.w3.org/2004/02/skos/core#Concept"
-        ],
-        "http://www.w3.org/2004/02/skos/core#prefLabel": [
-          {
-            "@type": "http://www.w3.org/2000/01/rdf-schema#Literal",
-            "@value": "01.3.1 - General personnel services (CS)"
           }
         ]
       },

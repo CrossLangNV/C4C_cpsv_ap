@@ -2,7 +2,7 @@ import abc
 import warnings
 from typing import List, Generator, Dict, Union
 
-from rdflib.graph import ConjunctiveGraph
+from rdflib.graph import ConjunctiveGraph, Graph
 from rdflib.namespace import DCAT, DCTERMS, RDF, SKOS
 from rdflib.plugins.stores.sparqlstore import SPARQLStore
 from rdflib.term import Identifier, Literal
@@ -96,6 +96,7 @@ class Harvester:
         self.concepts = ConceptsHarvester(self)
         self.public_services = PublicServicesHarvester(self)
         self.public_organisations = PublicOrganisationsHarvester(self)
+        self.locations = LocationsHarvester(self)
 
     def query(self, q) -> Generator[Dict[str, Identifier], None, None]:
         """
@@ -117,6 +118,7 @@ class Provider(Harvester):
         self.concepts = ConceptsProvider(self)
         self.public_services = PublicServicesProvider(self)
         self.public_organisations = PublicOrganisationsProvider(self)
+        self.locations = LocationsProvider(self)
 
 
 class SubHarvester(abc.ABC):
@@ -299,6 +301,35 @@ class ConceptsProvider(SubProvider, ConceptsHarvester):
         return uri_ref
 
 
+class LocationsHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        raise NotImplementedError()
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        raise NotImplementedError()
+
+
+class LocationsProvider(SubProvider, LocationsHarvester):
+    def add(self,
+            uri_spat: URIRef,
+            context=None) -> URIRef:
+        """
+        Like <dct:Location rdf:about="http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli">
+        """
+
+        self.provider.graph.add((uri_spat, RDF.type, DCTERMS.Location, context))
+
+        try:
+            tmp_graph = Graph()
+            tmp_graph.parse(str(uri_spat), format='xml')
+            for label in list(tmp_graph.objects(URIRef(uri_spat), SKOS.prefLabel)):
+                self.provider.graph.add((uri_spat, SKOS.prefLabel, label, context))
+        except:
+            warnings.warn('Did not succeed in extracting ATU info.')
+
+        return uri_spat
+
+
 class PublicOrganisationsHarvester(SubHarvester):
     def get_all(self) -> List[URIRef]:
         raise NotImplementedError()
@@ -387,8 +418,12 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
         else:
             raise ValueError(f'{pref_label} Should be str or dict')
 
+        # Spatial
         for uri_spat in obj.spatial:
-            self.provider.graph.add((uri_ref, DCTERMS.spatial, URIRef(uri_spat), context))
+            uri_spat = URIRef(uri_spat)
+            self.provider.graph.add((uri_ref, DCTERMS.spatial, uri_spat, context))
+
+            self.provider.locations.add(uri_spat, context=context)
 
         return uri_ref
 

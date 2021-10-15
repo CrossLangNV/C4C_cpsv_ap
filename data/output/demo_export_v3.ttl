@@ -4,13 +4,16 @@
 @prefix ns1: <http://data.europa.eu/m8g/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-c4c:PublicServicef0ad89df6da44f7b9872f4020854b475 a cpsv:PublicService ;
-    ns1:hasCompetentAuthority c4c:PublicOrganisation87d2e103c2ce4873945c949866e77040 ;
+c4c:PublicService1148fe92b951456c8e1d4d7dccce794c a cpsv:PublicService ;
+    ns1:hasCompetentAuthority c4c:PublicOrganisationf4b1389f3aba4a39a7f34e7a37a7825f ;
     dct:description "Die Stadt Wien - Finanzwesen fördert in subsidiärer Generalkompetenz (das bedeutet wenn keine andere Fachabteilung der Stadt dafür zuständig ist) Vorhaben, an denen ein erhebliches öffentliches Interesse sowie ein unmittelbarer Bezug zur Stadt Wien in inhaltlicher, institutioneller und geographischer Sicht bestehen." ;
     dct:identifier "https://www.wien.gv.at/amtshelfer/finanzielles/finanzwesen/foerderung/oeffentliches-interesse.html" ;
     dct:title "Förderansuchen für Vorhaben mit einem Wien-Bezug im öffentlichen Interesse" .
 
-c4c:PublicOrganisation87d2e103c2ce4873945c949866e77040 a ns1:PublicOrganisation ;
+c4c:PublicOrganisationf4b1389f3aba4a39a7f34e7a37a7825f a ns1:PublicOrganisation ;
     dct:spatial <http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05> ;
-    skos:prefLabel "Finance"@en .
+    skos:prefLabel "Finance - Head of Service"@en .
+
+<http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05> a dct:Location ;
+    skos:prefLabel "Wien 5. Margareten"@de .
 

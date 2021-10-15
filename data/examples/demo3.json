@@ -23,10 +23,12 @@
     ],
     "public_organisation": {
       "label": {
-        "en": "Finance",
-        "de": "Finanzwesen"
+        "en": "Finance - Head of Service",
+        "de": "Finanzwesen - Dienststellenleitung"
       },
-      "spatial": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05"
+      "spatial": {
+        "uri": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05"
+      }
     }
   }
 ]

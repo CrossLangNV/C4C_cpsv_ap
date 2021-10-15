@@ -2,7 +2,19 @@
   {
     "@graph": [
       {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation87d2e103c2ce4873945c949866e77040",
+        "@id": "http://publications.europa.eu/resource/authority/atu/AUT_GBK_VIE05",
+        "@type": [
+          "http://purl.org/dc/terms/Location"
+        ],
+        "http://www.w3.org/2004/02/skos/core#prefLabel": [
+          {
+            "@language": "de",
+            "@value": "Wien 5. Margareten"
+          }
+        ]
+      },
+      {
+        "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationf4b1389f3aba4a39a7f34e7a37a7825f",
         "@type": [
           "http://data.europa.eu/m8g/PublicOrganisation"
         ],
@@ -14,18 +26,18 @@
         "http://www.w3.org/2004/02/skos/core#prefLabel": [
           {
             "@language": "en",
-            "@value": "Finance"
+            "@value": "Finance - Head of Service"
           }
         ]
       },
       {
-        "@id": "http://cefat4cities.crosslang.com/content/PublicServicef0ad89df6da44f7b9872f4020854b475",
+        "@id": "http://cefat4cities.crosslang.com/content/PublicService1148fe92b951456c8e1d4d7dccce794c",
         "@type": [
           "http://purl.org/vocab/cpsv#PublicService"
         ],
         "http://data.europa.eu/m8g/hasCompetentAuthority": [
           {
-            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisation87d2e103c2ce4873945c949866e77040"
+            "@id": "http://cefat4cities.crosslang.com/content/PublicOrganisationf4b1389f3aba4a39a7f34e7a37a7825f"
           }
         ],
         "http://purl.org/dc/terms/description": [
