@@ -1,59 +1,159 @@
 {
   "info": {
-    "_postman_id": "2c085299-2546-4627-a584-d6ee25b102cf",
+    "_postman_id": "cf665016-444a-4f49-a716-34adee075acf",
     "name": "CONTEXT BROKER",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Creating context data",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"id\": \"urn:ngsi-ld:Concept:bc83bfd3ad9b4690bbb1d3913420d320\",\r\n    \"type\": \"Concept\",\r\n    \"prefLabel\":\r\n        {\r\n            \"value\": \"Finanzielles\"\r\n        }\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
+      "name": "JSON-LD example",
+      "item": [
+        {
+          "name": "Try from JSON-LD",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
             }
-          }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/ld+json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": \"c4c:Conceptbc83bfd3ad9b4690bbb1d3913420d320\",\r\n    \"type\": \"skos:Concept\",\r\n    \"skos:prefLabel\": [\r\n        {\r\n            \"type\": \"Property\",\r\n            \"value\": \"Finanzielles\"\r\n        }\r\n    ],\r\n    \"c4c:blabla\" : {            \"type\": \"Property\",\r\n            \"value\": \"bap\"},\r\n    \"@context\": {\r\n        \"c4c\": \"http://cefat4cities.crosslang.com/content\",\r\n        \"skos\": \"http://www.w3.org/2004/02/skos/core#\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:1026/ngsi-ld/v1/entities",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1026",
+              "path": [
+                "ngsi-ld",
+                "v1",
+                "entities"
+              ]
+            }
+          },
+          "response": []
         },
-        "url": {
-          "raw": "http://localhost:1026/v2/entities",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "1026",
-          "path": [
-            "v2",
-            "entities"
-          ]
+        {
+          "name": "Delete the example",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1026/v2/entities/c4c:content:Conceptbc83bfd3ad9b4690bbb1d3913420d320",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1026",
+              "path": [
+                "v2",
+                "entities",
+                "c4c:content:Conceptbc83bfd3ad9b4690bbb1d3913420d320"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Query all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1026/v2/entities",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1026",
+              "path": [
+                "v2",
+                "entities"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete the example all (WIP)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1026/v2/entities/c4c:content:Conceptbc83bfd3ad9b4690bbb1d3913420d320",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1026",
+              "path": [
+                "v2",
+                "entities",
+                "c4c:content:Conceptbc83bfd3ad9b4690bbb1d3913420d320"
+              ]
+            }
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Query context data by id",
+      "name": "Version",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:Concept:bc83bfd3ad9b4690bbb1d3913420d320",
+          "raw": "http://localhost:1026/version",
           "protocol": "http",
           "host": [
             "localhost"
           ],
           "port": "1026",
           "path": [
-            "v2",
-            "entities",
-            "urn:ngsi-ld:Concept:bc83bfd3ad9b4690bbb1d3913420d320"
+            "version"
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "name": "Version response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:1026/version",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "1026",
+              "path": [
+                "version"
+              ]
+            }
+          },
+          "_postman_previewlanguage": null,
+          "header": null,
+          "cookie": [],
+          "body": "{\r\n    \"orion\": {\r\n        \"version\": \"1.15.0-next\",\r\n        \"uptime\": \"0 d, 3 h, 1 m, 51 s\",\r\n        \"git_hash\": \"af440c6e316075266094c2a5f3f4e4f8e3bb0668\",\r\n        \"compile_time\": \"Tue Jul 16 15:46:18 UTC 2019\",\r\n        \"compiled_by\": \"root\",\r\n        \"compiled_in\": \"51b4d802385a\",\r\n        \"release_date\": \"Tue Jul 16 15:46:18 UTC 2019\",\r\n        \"doc\": \"https://fiware-orion.readthedocs.org/en/master/\"\r\n    }\r\n}"
+        }
+      ]
     },
     {
       "name": "Query context data by type",
