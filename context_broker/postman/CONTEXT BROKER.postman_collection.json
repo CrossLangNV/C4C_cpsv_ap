@@ -1,0 +1,85 @@
+{
+  "info": {
+    "_postman_id": "2c085299-2546-4627-a584-d6ee25b102cf",
+    "name": "CONTEXT BROKER",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Creating context data",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": \"urn:ngsi-ld:Concept:bc83bfd3ad9b4690bbb1d3913420d320\",\r\n    \"type\": \"Concept\",\r\n    \"prefLabel\":\r\n        {\r\n            \"value\": \"Finanzielles\"\r\n        }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:1026/v2/entities",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1026",
+          "path": [
+            "v2",
+            "entities"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Query context data by id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:1026/v2/entities/urn:ngsi-ld:Concept:bc83bfd3ad9b4690bbb1d3913420d320",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1026",
+          "path": [
+            "v2",
+            "entities",
+            "urn:ngsi-ld:Concept:bc83bfd3ad9b4690bbb1d3913420d320"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Query context data by type",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:1026/v2/entities?type=Concept",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "1026",
+          "path": [
+            "v2",
+            "entities"
+          ],
+          "query": [
+            {
+              "key": "type",
+              "value": "Concept"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
