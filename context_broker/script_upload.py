@@ -1,5 +1,6 @@
 import json
 import os
+import warnings
 
 import requests
 
@@ -21,8 +22,6 @@ HEADERS = {"Content-Type": "application/ld+json"}
 
 
 def post_example():
-    headers = {"Content-Type": "application/ld+json"}
-
     json_post = {
         "@id": ID,
         "@type": f"{SKOS}:Concept",
@@ -39,7 +38,7 @@ def post_example():
     }
 
     r = requests.post(URL_POST_ITEM,
-                      headers=headers,
+                      headers=HEADERS,
                       json=json_post)
     return r
 
@@ -55,20 +54,145 @@ class Connector:
         pass
 
 
-class ItemContextBroker(dict):
+class Item(dict):
+
+    def __str__(self):
+        return json.dumps(self)
+
+
+class ItemContextBroker(Item):
+    context: dict = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.context = self["@context"] = {}
 
     @classmethod
     def from_RDF(cls, d_rdf: dict):
-        return cls()
+
+        cb = cls()
+
+        context = {}
+
+        # clean up dict
+        for key, value in d_rdf.items():
+
+            def clean_value(key, value):
+
+                if key == '@type':
+                    # TODO Context Broker should allow multiple types
+                    if isinstance(value, list):  # and len(value) == 1:
+                        value_clean = value[0]
+                    else:
+                        value_clean = value
+                else:
+                    # TODO
+                    value_clean = value
+
+                del value  # Makes sure we use the correct variable
+
+                # Clean the value
+                if isinstance(value_clean, str):  # e.g. key == "@id"
+                    value_clean = cb._replace_namespace(value_clean)
+
+                elif isinstance(value_clean, list):
+
+                    def update_d_value(d: dict):
+
+                        d_ = {}
+                        for k, v in d.items():
+                            if not v:
+                                # TODO remove
+                                d_rdf
+                                value_clean
+                                v
+                            d_[k.replace('@', '')] = cb._replace_namespace(v) if isinstance(v, str) else v
+
+                        VALUE = "value"
+                        if VALUE in d_:
+                            v_value = d_[VALUE]
+                            # Add type
+                            if isinstance(v_value, int):  # If integer, try to add type Integer
+                                v_type = "Integer"
+                            else:
+                                v_type = "Property"
+
+                            d_["type"] = v_type
+
+                        elif "id" in d_:
+
+                            d_["object"] = d_.pop("id")
+                            d_["type"] = "Relationship"
+
+                        else:
+                            warnings.warn(f"Unexpected items: {d_}", UserWarning)
+
+                        return d_
+
+                    def process_l(l: list):
+                        l_ = []
+
+                        for a in l:
+
+                            if isinstance(a, str):
+                                a_ = cb._replace_namespace(a)
+                            elif isinstance(a, dict):
+                                a_ = update_d_value(a)
+                            else:
+                                warnings.warn(f"Unexpected type: {a}", UserWarning)
+                                a_ = a
+
+                            l_.append(a_)
+
+                        return l_
+
+                    value_clean = process_l(value_clean)
+
+                return value_clean
+
+            def clean_key(key, value=None):
+
+                # Clean the key
+                key_clean = cb._replace_namespace(key)
+
+                return key_clean
+
+            value_clean = clean_value(key, value)
+            key_clean = clean_key(key, value)
+
+            # Update dict
+            cb[key_clean] = value_clean
+
+        cb.context = context
+
+        return cb
+
+    def get_context(self):
+        return self.context
+
+    def _replace_namespace(self, s: str):
+
+        assert isinstance(s, str), s
+
+        s_replace = s
+        for ns_short, ns_url in NAMESPACES.items():
+            if ns_url in s_replace:  # We can shorten it
+
+                self.context[ns_short] = ns_url
+
+                s_replace = s_replace.replace(ns_url, ns_short + ":")
+
+        return s_replace
 
 
-class ItemRDF(dict):
+class ItemRDF(Item):
     @classmethod
     def from_context_broker(cls, d_cb: dict):
         return cls()
 
 
-def parse_json_ld(filename, debug=True):
+def parse_json_ld(filename, debug=False):
     with open(filename) as f:
         j = json.load(f)
 
@@ -84,76 +208,25 @@ def parse_json_ld(filename, debug=True):
             if debug:
                 print(json.dumps(item))
 
-            context = {}
-
-            def replace_namespace(s: str):
-
-                s_replace = s
-                for ns_short, ns_url in NAMESPACES.items():
-                    if ns_url in s_replace:  # We can shorten it
-
-                        context[ns_short] = ns_url
-
-                        s_replace = s_replace.replace(ns_url, ns_short + ":")
-
-                return s_replace
-
-            # clean up dict
-            item_clean = {}
-            for key, value in item.items():
-
-                if key == '@type':
-                    # List with single item.
-                    if isinstance(value, list) and len(value) == 1:
-                        value = value[0]
-
-                # Clean the value
-                if isinstance(value, str):  # e.g. key == "@id"
-                    value_clean = replace_namespace(value)
-
-                elif isinstance(value, list):
-                    value_clean = list(map(replace_namespace, value))
-
-                    def add_type(d):
-
-                        return
-
-                    value_clean2 = []
-                    for sub in value_clean:
-
-                        if isinstance(sub, dict):
-                            sub2 = {}
-                            for k, v in sub.items():
-                                sub2[k.replace('@', '')] = v
-
-                            if "value" in sub2:
-                                # Add type
-                                sub2["type"] = "Property"
-                            else:
-                                sub2 = sub
-
-                        value_clean2.append(sub2)
-
-                    value_clean = value_clean2
-
-
-                else:
-                    value_clean = value
-
-                # Clean the key
-                key_clean = replace_namespace(key)
-
-                # Update dict
-                item_clean[key_clean] = value_clean
-
-            item_clean["@context"] = context
+            item_clean = ItemContextBroker.from_RDF(item)
 
             r = requests.post(URL_POST_ITEM,
                               headers=HEADERS,
                               json=item_clean)
 
             if not r.ok:
-                print(r.content)
+                # print(r.content)
+                if debug:
+                    print(item_clean)
+
+                    try:
+                        s = r.json()
+                    except:
+                        pass
+                    else:
+                        s = r.content
+
+                    warnings.warn(s)
 
                 n_not_ok += 1
             else:
@@ -165,23 +238,41 @@ def parse_json_ld(filename, debug=True):
     return
 
 
-def delete_all():
+def delete_all(debug=False):
     # Get all links
-    json_all = requests.get(URL_V2).json()
-
-    l_id = [d["id"] for d in json_all]
+    r = requests.get(URL_V2,
+                     params={
+                         "options": "count",
+                         "limit": "1"}
+                     )
+    n_count = int(r.headers['Fiware-Total-Count'])
 
     n_ok = 0
     n_not_ok = 0
-    # Delete every link
-    for s_id in l_id:
-        r = requests.delete(URL_V2 + s_id)
 
-        if not r.ok:
-            print("Something went wrong.")
-            n_not_ok += 1
-        else:
-            n_ok += 1
+    limit = 10  # 100
+    for offset in range(0, n_count, limit):
+        r = requests.get(URL_V2,
+                         params={
+                             "limit": str(limit),
+                             "offset": str(offset)
+                         }
+                         )
+
+        json_all = r.json()
+
+        l_id = [d["id"] for d in json_all]
+
+        # Delete every link
+        for s_id in l_id:
+            r = requests.delete(URL_V2 + s_id)
+
+            if not r.ok:
+                if debug:
+                    warnings.warn("Something went wrong.")
+                n_not_ok += 1
+            else:
+                n_ok += 1
 
     print(f'    # ok: {n_ok}\n'
           f'# not ok: {n_not_ok}\n')
@@ -189,23 +280,29 @@ def delete_all():
     return
 
 
-def main():
+def main_example():
     delete_all()  # Clean slate.
 
     parse_json_ld(os.path.join(os.path.dirname(__file__), 'examples/demo_context_broker.jsonld'))
 
     r = post_example()
-    r.status_code
-    r.content
-    r.json()
+    try:
+        print(r.status_code)
+        print(r.content)
+        print(r.json())
+    except:
+        pass
 
     r = delete_example()
-    r.status_code
-    r.content
-    r.json()
+    try:
+        print(r.status_code)
+        print(r.content)
+        print(r.json())
+    except:
+        pass
 
     print('Script has finished.')
 
 
 if __name__ == '__main__':
-    main()
+    main_example()
