@@ -50,7 +50,25 @@ def delete_example():
     return r
 
 
-def parse_json_ld(filename):
+class Connector:
+    def __init__(self):
+        pass
+
+
+class ItemContextBroker(dict):
+
+    @classmethod
+    def from_RDF(cls, d_rdf: dict):
+        return cls()
+
+
+class ItemRDF(dict):
+    @classmethod
+    def from_context_broker(cls, d_cb: dict):
+        return cls()
+
+
+def parse_json_ld(filename, debug=True):
     with open(filename) as f:
         j = json.load(f)
 
@@ -62,6 +80,9 @@ def parse_json_ld(filename):
         graph["@graph"]
 
         for item in graph["@graph"]:
+
+            if debug:
+                print(json.dumps(item))
 
             context = {}
 
@@ -144,7 +165,33 @@ def parse_json_ld(filename):
     return
 
 
+def delete_all():
+    # Get all links
+    json_all = requests.get(URL_V2).json()
+
+    l_id = [d["id"] for d in json_all]
+
+    n_ok = 0
+    n_not_ok = 0
+    # Delete every link
+    for s_id in l_id:
+        r = requests.delete(URL_V2 + s_id)
+
+        if not r.ok:
+            print("Something went wrong.")
+            n_not_ok += 1
+        else:
+            n_ok += 1
+
+    print(f'    # ok: {n_ok}\n'
+          f'# not ok: {n_not_ok}\n')
+
+    return
+
+
 def main():
+    delete_all()  # Clean slate.
+
     parse_json_ld(os.path.join(os.path.dirname(__file__), 'examples/demo_context_broker.jsonld'))
 
     r = post_example()

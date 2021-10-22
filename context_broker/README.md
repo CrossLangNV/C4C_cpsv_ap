@@ -11,4 +11,5 @@ Notes converting JSON-LD to NGSI-LD:
 
 * [ ] [Adding multiple items](https://fiware-tutorials.readthedocs.io/en/latest/crud-operations.html#batch-create-new-data-entities-or-attributes)
 * [ ] !How to retrieve context? For the id we don't retrieve the namespace.
-* [ ] Can we validate the data?
+* [ ] Can we validate the
+  data? [TODO research this link.](https://fiware-tutorials.readthedocs.io/en/latest/administrating-xacml.html)
