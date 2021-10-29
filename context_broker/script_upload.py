@@ -1,17 +1,19 @@
 import json
 import os
+import urllib
 import warnings
 
 import requests
 
-URL_POST_ITEM = "http://localhost:1026/ngsi-ld/v1/entities"
-
+URL_V1 = "http://localhost:1026/ngsi-ld/v1/entities/"
 URL_V2 = "http://localhost:1026/v2/entities/"
 EXAMPLE_ID = "Conceptbc83bfd3ad9b4690bbb1d3913420d320"
 C4C = "c4c"
 C4C_URL = "http://cefat4cities.crosslang.com/content/"
 SKOS = "skos"
 SKOS_URL = "http://www.w3.org/2004/02/skos/core#"
+
+PROPERTY = "Property"
 
 NAMESPACES = {C4C: C4C_URL,
               SKOS: SKOS_URL}
@@ -27,7 +29,7 @@ def post_example():
         "@type": f"{SKOS}:Concept",
         "skos:prefLabel": [
             {
-                "type": "Property",
+                "type": PROPERTY,
                 "value": "Finanzielles"
             }
         ],
@@ -37,7 +39,7 @@ def post_example():
         }
     }
 
-    r = requests.post(URL_POST_ITEM,
+    r = requests.post(URL_V1,
                       headers=HEADERS,
                       json=json_post)
     return r
@@ -116,7 +118,7 @@ class ItemContextBroker(Item):
                             if isinstance(v_value, int):  # If integer, try to add type Integer
                                 v_type = "Integer"
                             else:
-                                v_type = "Property"
+                                v_type = PROPERTY
 
                             d_["type"] = v_type
 
@@ -189,7 +191,62 @@ class ItemContextBroker(Item):
 class ItemRDF(Item):
     @classmethod
     def from_context_broker(cls, d_cb: dict):
-        return cls()
+
+        json_ld = cls()
+
+        def clean(a):
+
+            if isinstance(a, str):
+                return json_ld._replace_prefix(a)
+
+            elif isinstance(a, dict):
+
+                if "type" in a:
+                    t = a.pop("type")
+                else:
+                    t = None  # TODO
+
+                d_ = {}
+                #     return {"@value": ""}
+                for k_, v_ in a.items():
+
+                    if k_ == "value" and t.lower() == PROPERTY:
+                        k_ = "@value"
+                    elif k_ == "object" and t.lower() == "Relationship":
+                        k_ = "@id"
+
+                    d_[k_] = json_ld._replace_prefix(v_)
+
+                return d_
+
+            elif isinstance(a, list):
+                return [clean(b) for b in a]
+
+            return a  # Do nothing
+
+        for key, value in d_cb.items():
+            if key == "@context":  # Skip
+                continue
+
+            value_clean = clean(value)
+
+            json_ld[key] = value_clean
+
+        return json_ld
+
+    @staticmethod
+    def _replace_prefix(value):
+        if ":" in value:
+            ns, end = value.split(':', 1)
+
+            ns_full = NAMESPACES.get(ns)
+            if ns_full is None:
+                value_clean = value
+            else:
+                value_clean = ns_full + end
+        else:
+            value_clean = value
+        return value_clean
 
 
 def parse_json_ld(filename, debug=False):
@@ -210,7 +267,7 @@ def parse_json_ld(filename, debug=False):
 
             item_clean = ItemContextBroker.from_RDF(item)
 
-            r = requests.post(URL_POST_ITEM,
+            r = requests.post(URL_V1,
                               headers=HEADERS,
                               json=item_clean)
 
@@ -261,11 +318,34 @@ def delete_all(debug=False):
 
         json_all = r.json()
 
-        l_id = [d["id"] for d in json_all]
-
         # Delete every link
-        for s_id in l_id:
-            r = requests.delete(URL_V2 + s_id)
+        for item in json_all:
+            s_id = item["id"]
+            s_type = item["type"]
+
+            if 1:
+
+                b = 0
+                if b:
+
+                    r = requests.delete(URL_V1 + urllib.parse.quote_plus(s_id))
+                else:
+                    r = requests.delete(URL_V1 + s_id)
+
+            else:
+                body = f"""
+                {{
+                  "actionType":"delete",
+                  "entities":[
+                    {{
+                      "id":"{s_id}", "type":"{s_type}"
+                    }}
+                  ]
+                }}
+                """
+                r = requests.post("http://localhost:1026/v2/op/update",
+                                  headers={"Content-Type": "application/json"},  # HEADERS
+                                  json=body)
 
             if not r.ok:
                 if debug:
@@ -283,23 +363,25 @@ def delete_all(debug=False):
 def main_example():
     delete_all()  # Clean slate.
 
-    parse_json_ld(os.path.join(os.path.dirname(__file__), 'examples/demo_context_broker.jsonld'))
+    filename = os.path.join(os.path.dirname(__file__), 'examples/demo_context_broker.jsonld')
+    parse_json_ld(filename)
 
-    r = post_example()
-    try:
-        print(r.status_code)
-        print(r.content)
-        print(r.json())
-    except:
-        pass
+    if 0:
+        r = post_example()
+        try:
+            print(r.status_code)
+            print(r.content)
+            print(r.json())
+        except:
+            pass
 
-    r = delete_example()
-    try:
-        print(r.status_code)
-        print(r.content)
-        print(r.json())
-    except:
-        pass
+        r = delete_example()
+        try:
+            print(r.status_code)
+            print(r.content)
+            print(r.json())
+        except:
+            pass
 
     print('Script has finished.')
 
