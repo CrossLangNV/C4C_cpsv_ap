@@ -18,7 +18,12 @@ AT_VALUE = "@value"
 AT_ID = "@id"
 
 NAMESPACES = {C4C: C4C_URL,
-              SKOS: SKOS_URL}
+              SKOS: SKOS_URL,
+              "sioc": "http://rdfs.org/sioc/ns#",
+              "rdf": "http://www.w3.org/2000/01/rdf-schema#",
+              "cpsv": "http://purl.org/vocab/cpsv#",
+              "locn": "http://www.w3.org/ns/locn#",
+              "dcat": "http://www.w3.org/ns/dcat#"}
 
 ID = f"{C4C}:{EXAMPLE_ID}"
 
@@ -77,7 +82,17 @@ class ItemContextBroker(Item):
         self.context = self["@context"] = {}
 
     @classmethod
-    def from_RDF(cls, d_rdf: dict):
+    def from_RDF(cls, d_rdf: dict,
+                 ignore: bool = True):
+        """
+
+        Args:
+            d_rdf:
+            ignore: Flag to ignore properties unknown by NGSI. E.g. language.
+
+        Returns:
+
+        """
 
         cb = cls()
 
@@ -95,7 +110,7 @@ class ItemContextBroker(Item):
                 for k, v in a.items():
                     if AT_VALUE == k:
                         if isinstance(v, int):  # If integer, try to add type Integer
-                            v_type = "Integer"
+                            v_type = PROPERTY  # "Integer" # does not seem to be working
                         else:
                             v_type = PROPERTY
                         d_["value"] = v
@@ -105,9 +120,11 @@ class ItemContextBroker(Item):
                         d_["object"] = list(map(cb._replace_namespace, v)) if isinstance(v, list) else \
                             cb._replace_namespace(v)
                         d_["type"] = "Relationship"
-
                     else:
-                        d_[k.replace('@', '')] = clean(v)
+                        if ignore:
+                            pass  # Ignore
+                        else:
+                            d_[k.replace('@', '')] = clean(v)
 
                 return d_
 
@@ -314,61 +331,71 @@ def delete_all(debug=False):
         return n_count
 
     n_count = get_n_count()
+    print(f"# Before = {n_count}. Trying to get to 0.")
 
     n_ok = 0
     n_not_ok = 0
 
     limit = 10  # 100
-    for offset in range(0, n_count, limit):
-        r = requests.get(URL_V2,
-                         params={
-                             "limit": str(limit),
-                             "offset": str(offset)
-                         }
-                         )
 
-        json_all = r.json()
+    def get_json_all():
 
-        # Delete every link
-        for item in json_all:
-            s_id = item["id"]
-            s_type = item["type"]
+        json_all = []
 
-            if 1:
+        for offset in range(0, n_count, limit):
+            r = requests.get(URL_V2,
+                             params={
+                                 "limit": str(limit),
+                                 "offset": str(offset)
+                             }
+                             )
 
-                b = 0
-                if b:
+            json_all += r.json()
 
-                    r = requests.delete(URL_V1 + urllib.parse.quote_plus(s_id))
-                else:
-                    r = requests.delete(URL_V1 + s_id)
+        return json_all
 
+    json_all = get_json_all()
+
+    # Delete every link
+    for item in json_all:
+        s_id = item["id"]
+        s_type = item["type"]
+
+        if 1:
+
+            b = 0
+            if b:
+
+                r = requests.delete(URL_V1 + urllib.parse.quote_plus(s_id))
             else:
-                body = f"""
+                r = requests.delete(URL_V1 + s_id)
+
+        else:
+            body = f"""
+            {{
+              "actionType":"delete",
+              "entities":[
                 {{
-                  "actionType":"delete",
-                  "entities":[
-                    {{
-                      "id":"{s_id}", "type":"{s_type}"
-                    }}
-                  ]
+                  "id":"{s_id}", "type":"{s_type}"
                 }}
-                """
-                r = requests.post("http://localhost:1026/v2/op/update",
-                                  headers={"Content-Type": "application/json"},  # HEADERS
-                                  json=body)
+              ]
+            }}
+            """
+            r = requests.post("http://localhost:1026/v2/op/update",
+                              headers={"Content-Type": "application/json"},  # HEADERS
+                              json=body)
 
-            if not r.ok:
-                if debug:
-                    warnings.warn("Something went wrong.")
-                n_not_ok += 1
-            else:
-                n_ok += 1
+        if not r.ok:
+            if debug:
+                warnings.warn("Something went wrong.")
+            n_not_ok += 1
+        else:
+            n_ok += 1
 
     print(f'    # ok: {n_ok}\n'
           f'# not ok: {n_not_ok}\n')
 
-    print(f"# Count = {get_n_count()}. Should be equal to # not ok")
+    print(f"# Count = {get_n_count()}. Should be *Before* - *#OK* = *#Not ok.*")
 
     return
 
