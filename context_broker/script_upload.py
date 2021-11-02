@@ -14,6 +14,8 @@ SKOS = "skos"
 SKOS_URL = "http://www.w3.org/2004/02/skos/core#"
 
 PROPERTY = "Property"
+AT_VALUE = "@value"
+AT_ID = "@id"
 
 NAMESPACES = {C4C: C4C_URL,
               SKOS: SKOS_URL}
@@ -63,6 +65,10 @@ class Item(dict):
 
 
 class ItemContextBroker(Item):
+    """
+    TODO:
+     * Multiple types
+    """
     context: dict = None
 
     def __init__(self, *args, **kwargs):
@@ -77,94 +83,156 @@ class ItemContextBroker(Item):
 
         context = {}
 
-        # clean up dict
-        for key, value in d_rdf.items():
+        def clean(a):
 
-            def clean_value(key, value):
+            if isinstance(a, str):
+                pass
 
-                if key == '@type':
-                    # TODO Context Broker should allow multiple types
-                    if isinstance(value, list):  # and len(value) == 1:
-                        value_clean = value[0]
-                    else:
-                        value_clean = value
-                else:
-                    # TODO
-                    value_clean = value
+            elif isinstance(a, dict):
 
-                del value  # Makes sure we use the correct variable
+                d_ = {}
 
-                # Clean the value
-                if isinstance(value_clean, str):  # e.g. key == "@id"
-                    value_clean = cb._replace_namespace(value_clean)
-
-                elif isinstance(value_clean, list):
-
-                    def update_d_value(d: dict):
-
-                        d_ = {}
-                        for k, v in d.items():
-                            if not v:
-                                # TODO remove
-                                d_rdf
-                                value_clean
-                                v
-                            d_[k.replace('@', '')] = cb._replace_namespace(v) if isinstance(v, str) else v
-
-                        VALUE = "value"
-                        if VALUE in d_:
-                            v_value = d_[VALUE]
-                            # Add type
-                            if isinstance(v_value, int):  # If integer, try to add type Integer
-                                v_type = "Integer"
-                            else:
-                                v_type = PROPERTY
-
-                            d_["type"] = v_type
-
-                        elif "id" in d_:
-
-                            d_["object"] = d_.pop("id")
-                            d_["type"] = "Relationship"
-
+                for k, v in a.items():
+                    if AT_VALUE == k:
+                        if isinstance(v, int):  # If integer, try to add type Integer
+                            v_type = "Integer"
                         else:
-                            warnings.warn(f"Unexpected items: {d_}", UserWarning)
+                            v_type = PROPERTY
+                        d_["value"] = v
+                        d_["type"] = v_type
+                    elif AT_ID == k:
 
-                        return d_
+                        d_["object"] = cb._replace_namespace(v)
+                        d_["type"] = "Relationship"
 
-                    def process_l(l: list):
-                        l_ = []
+                    else:
+                        d_[k] = clean(v)
 
-                        for a in l:
+                return d_
 
-                            if isinstance(a, str):
-                                a_ = cb._replace_namespace(a)
-                            elif isinstance(a, dict):
-                                a_ = update_d_value(a)
-                            else:
-                                warnings.warn(f"Unexpected type: {a}", UserWarning)
-                                a_ = a
+            elif isinstance(a, list):
 
-                            l_.append(a_)
+                if len(a) == 1:
+                    return clean(a[0])
+                else:
+                    # Join
+                    a0 = a[0]
+                    if isinstance(a0, dict):
+                        return clean({k0: [d_i[k0] for d_i in a] for k0 in a0})
 
-                        return l_
+            # All other cases: Do nothing
+            return a
 
-                    value_clean = process_l(value_clean)
+        for key, value in d_rdf.items():
+            if key in ['@id', '@type']:
+                if isinstance(value, list):
+                    value = value[0]  # TODO allow multiple types
+                value_clean = cb._replace_namespace(value)
+            else:
+                value_clean = clean(value)
 
-                return value_clean
+            cb[cb._replace_namespace(key)] = value_clean
 
-            def clean_key(key, value=None):
-
-                # Clean the key
-                key_clean = cb._replace_namespace(key)
-
-                return key_clean
-
-            value_clean = clean_value(key, value)
-            key_clean = clean_key(key, value)
-
-            # Update dict
-            cb[key_clean] = value_clean
+        # # clean up dict
+        # for key, value in d_rdf.items():
+        #
+        #     def clean_value(key, value):
+        #
+        #         if key == '@type':
+        #             # TODO Context Broker should allow multiple types
+        #             if isinstance(value, list):  # and len(value) == 1:
+        #                 value_clean = value[0]
+        #             else:
+        #                 value_clean = value
+        #         else:
+        #             # TODO
+        #             value_clean = value
+        #
+        #         del value  # Makes sure we use the correct variable
+        #
+        #         # Clean the value
+        #         if isinstance(value_clean, str):  # e.g. key == "@id"
+        #             value_clean = cb._replace_namespace(value_clean)
+        #
+        #         elif isinstance(value_clean, list):
+        #
+        #             def update_d_value(d: dict):
+        #
+        #                 d_ = {}
+        #                 for k, v in d.items():
+        #                     if not v:
+        #                         # TODO remove
+        #                         d_rdf
+        #                         value_clean
+        #                         v
+        #                     d_[k.replace('@', '')] = cb._replace_namespace(v) if isinstance(v, str) else v
+        #
+        #                 VALUE = "value"
+        #                 if VALUE in d_:
+        #                     v_value = d_[VALUE]
+        #                     # Add type
+        #                     if isinstance(v_value, int):  # If integer, try to add type Integer
+        #                         v_type = "Integer"
+        #                     else:
+        #                         v_type = PROPERTY
+        #
+        #                     d_["type"] = v_type
+        #
+        #                 elif "id" in d_:
+        #
+        #                     d_["object"] = d_.pop("id")
+        #                     d_["type"] = "Relationship"
+        #
+        #                 else:
+        #                     warnings.warn(f"Unexpected items: {d_}", UserWarning)
+        #
+        #                 return d_
+        #
+        #             def process_l(l: list):
+        #                 l_ = []
+        #
+        #                 for a in l:
+        #
+        #                     if isinstance(a, str):
+        #                         a_ = cb._replace_namespace(a)
+        #                     elif isinstance(a, dict):
+        #                         a_ = update_d_value(a)
+        #                     else:
+        #                         warnings.warn(f"Unexpected type: {a}", UserWarning)
+        #                         a_ = a
+        #
+        #                     l_.append(a_)
+        #
+        #                 return l_
+        #
+        #             # if len(value_clean) == 1:
+        #             #     # Convert from list to single item
+        #             #     value_clean = value_clean[0]
+        #             # elif isinstance(value_clean[0], dict):
+        #             #     # Should we expect all elements to be a dictionary?
+        #             #     value_clean = {key: clean_value(key, [d_i[key] for d_i in value_clean]) for key in value_clean[0]}
+        #             #
+        #             #     # return value_clean
+        #             # else:
+        #             value_clean = process_l(value_clean)
+        #
+        #         # elif isinstance(value_clean, dict):
+        #
+        #
+        #         return value_clean
+        #
+        #     def clean_key(key, value=None):
+        #
+        #         # Clean the key
+        #         key_clean = cb._replace_namespace(key)
+        #
+        #         return key_clean
+        #
+        #     value_clean = clean_value(key, value)
+        #     key_clean = clean_key(key, value)
+        #
+        #     # Update dict
+        #     cb[key_clean] = value_clean
 
         cb.context = context
 
@@ -201,25 +269,58 @@ class ItemRDF(Item):
 
             elif isinstance(a, dict):
 
-                if "type" in a:
-                    t = a.pop("type")
+                a_ = a.copy()
+
+                if "type" in a_:
+                    t = a_.pop("type")
                 else:
                     t = None  # TODO
 
-                d_ = {}
-                #     return {"@value": ""}
-                for k_, v_ in a.items():
+                # values
+                if t.lower() == PROPERTY.lower():
 
-                    if k_ == "value" and t.lower() == PROPERTY:
+                    v_ = a_["value"]
+                    # Returns a list
+                    if isinstance(v_, list):
+                        return [{"@value": v_i} for v_i in v_]
+                    else:
+                        return [{"@value": v_}]
+
+                elif t.lower() == "Relationship".lower():
+                    v_ = a_["object"]
+                    # Returns a list
+
+                    if isinstance(v_, list):
+                        return [{"@id": json_ld._replace_prefix(v_i)} for v_i in v_]
+                    else:
+                        return [{"@id": json_ld._replace_prefix(v_)}]
+                else:  # None
+                    return {k_: clean(v_) for k_, v_ in a_.items()}
+
+                # Convert {value: [a, b]} -> [{value: a}, {value: b}]
+
+                l_ = []
+
+                d_ = {}
+                for k_, v_ in a_.items():
+
+                    # we double check, is this necessary?
+                    if k_ == "value" and t.lower() == PROPERTY.lower():
                         k_ = "@value"
-                    elif k_ == "object" and t.lower() == "Relationship":
+                    elif k_ == "object" and t.lower() == "Relationship".lower():
                         k_ = "@id"
 
-                    d_[k_] = json_ld._replace_prefix(v_)
+                    if isinstance(v_, list):
+                        print('')
+                        ...
+                        pass
 
-                return d_
+                    d_[k_] = clean(v_)
+
+                return [d_]
 
             elif isinstance(a, list):
+
                 return [clean(b) for b in a]
 
             return a  # Do nothing
@@ -228,7 +329,10 @@ class ItemRDF(Item):
             if key == "@context":  # Skip
                 continue
 
-            value_clean = clean(value)
+            if key == '@type':
+                value_clean = [json_ld._replace_prefix(value)]
+            else:
+                value_clean = clean(value)
 
             json_ld[key] = value_clean
 
