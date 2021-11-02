@@ -102,11 +102,12 @@ class ItemContextBroker(Item):
                         d_["type"] = v_type
                     elif AT_ID == k:
 
-                        d_["object"] = cb._replace_namespace(v)
+                        d_["object"] = list(map(cb._replace_namespace, v)) if isinstance(v, list) else \
+                            cb._replace_namespace(v)
                         d_["type"] = "Relationship"
 
                     else:
-                        d_[k] = clean(v)
+                        d_[k.replace('@', '')] = clean(v)
 
                 return d_
 
@@ -132,107 +133,6 @@ class ItemContextBroker(Item):
                 value_clean = clean(value)
 
             cb[cb._replace_namespace(key)] = value_clean
-
-        # # clean up dict
-        # for key, value in d_rdf.items():
-        #
-        #     def clean_value(key, value):
-        #
-        #         if key == '@type':
-        #             # TODO Context Broker should allow multiple types
-        #             if isinstance(value, list):  # and len(value) == 1:
-        #                 value_clean = value[0]
-        #             else:
-        #                 value_clean = value
-        #         else:
-        #             # TODO
-        #             value_clean = value
-        #
-        #         del value  # Makes sure we use the correct variable
-        #
-        #         # Clean the value
-        #         if isinstance(value_clean, str):  # e.g. key == "@id"
-        #             value_clean = cb._replace_namespace(value_clean)
-        #
-        #         elif isinstance(value_clean, list):
-        #
-        #             def update_d_value(d: dict):
-        #
-        #                 d_ = {}
-        #                 for k, v in d.items():
-        #                     if not v:
-        #                         # TODO remove
-        #                         d_rdf
-        #                         value_clean
-        #                         v
-        #                     d_[k.replace('@', '')] = cb._replace_namespace(v) if isinstance(v, str) else v
-        #
-        #                 VALUE = "value"
-        #                 if VALUE in d_:
-        #                     v_value = d_[VALUE]
-        #                     # Add type
-        #                     if isinstance(v_value, int):  # If integer, try to add type Integer
-        #                         v_type = "Integer"
-        #                     else:
-        #                         v_type = PROPERTY
-        #
-        #                     d_["type"] = v_type
-        #
-        #                 elif "id" in d_:
-        #
-        #                     d_["object"] = d_.pop("id")
-        #                     d_["type"] = "Relationship"
-        #
-        #                 else:
-        #                     warnings.warn(f"Unexpected items: {d_}", UserWarning)
-        #
-        #                 return d_
-        #
-        #             def process_l(l: list):
-        #                 l_ = []
-        #
-        #                 for a in l:
-        #
-        #                     if isinstance(a, str):
-        #                         a_ = cb._replace_namespace(a)
-        #                     elif isinstance(a, dict):
-        #                         a_ = update_d_value(a)
-        #                     else:
-        #                         warnings.warn(f"Unexpected type: {a}", UserWarning)
-        #                         a_ = a
-        #
-        #                     l_.append(a_)
-        #
-        #                 return l_
-        #
-        #             # if len(value_clean) == 1:
-        #             #     # Convert from list to single item
-        #             #     value_clean = value_clean[0]
-        #             # elif isinstance(value_clean[0], dict):
-        #             #     # Should we expect all elements to be a dictionary?
-        #             #     value_clean = {key: clean_value(key, [d_i[key] for d_i in value_clean]) for key in value_clean[0]}
-        #             #
-        #             #     # return value_clean
-        #             # else:
-        #             value_clean = process_l(value_clean)
-        #
-        #         # elif isinstance(value_clean, dict):
-        #
-        #
-        #         return value_clean
-        #
-        #     def clean_key(key, value=None):
-        #
-        #         # Clean the key
-        #         key_clean = cb._replace_namespace(key)
-        #
-        #         return key_clean
-        #
-        #     value_clean = clean_value(key, value)
-        #     key_clean = clean_key(key, value)
-        #
-        #     # Update dict
-        #     cb[key_clean] = value_clean
 
         cb.context = context
 
@@ -401,12 +301,19 @@ def parse_json_ld(filename, debug=False):
 
 def delete_all(debug=False):
     # Get all links
-    r = requests.get(URL_V2,
-                     params={
-                         "options": "count",
-                         "limit": "1"}
-                     )
-    n_count = int(r.headers['Fiware-Total-Count'])
+
+    def get_n_count() -> int:
+
+        r = requests.get(URL_V2,
+                         params={
+                             "options": "count",
+                             "limit": "1"
+                         }
+                         )
+        n_count = int(r.headers['Fiware-Total-Count'])
+        return n_count
+
+    n_count = get_n_count()
 
     n_ok = 0
     n_not_ok = 0
@@ -460,6 +367,8 @@ def delete_all(debug=False):
 
     print(f'    # ok: {n_ok}\n'
           f'# not ok: {n_not_ok}\n')
+
+    print(f"# Count = {get_n_count()}. Should be equal to # not ok")
 
     return
 
