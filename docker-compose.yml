@@ -16,7 +16,7 @@ services:
     volumes:
       - ".:/app"
     env_file:
-      - ./secrets/cspv_ap.env
+      - secrets/cpsv_ap.env
 
 
 

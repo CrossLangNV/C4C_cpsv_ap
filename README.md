@@ -55,6 +55,10 @@ Example code to generate RDFLib graph for the concepts:
 
 * [https://github.com/catalogue-of-services-isa/RDF_transformation](https://github.com/catalogue-of-services-isa/RDF_transformation)
 
+# Connector
+
+In order to make the connector work, make sure to first have a RDF enpoint available and added to [environment file](secrets/cpsv_ap.env)
+
 # Other sources
 
 The following services are found
