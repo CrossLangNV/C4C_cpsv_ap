@@ -6,7 +6,7 @@ networks:
 
 services:
   cpsv_ap:
-    container_name: cpsv_ap
+    container_name: cpsv_ap_python
     build:
       context: .
     networks:
