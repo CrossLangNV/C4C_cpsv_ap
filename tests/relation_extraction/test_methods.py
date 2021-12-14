@@ -2,7 +2,7 @@ import os
 import unittest
 import codecs
 from relation_extraction.methods import foo, get_public_service
-from tests.relation_extraction.ES_connector import ElasticSearchConnector
+from relation_extraction.ES_connector import ElasticSearchConnector
 
 FILENAME_HTML = os.path.join(os.path.dirname(__file__),
                              'Financial plan_ how to prepare an effective financial plan.html')
