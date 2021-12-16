@@ -1,9 +1,12 @@
+import os.path
+
 from relation_extraction.methods import RelationExtractor
 from tests.relation_extraction.test_methods import FILENAME_HTML, get_html
 
 
 def main(filename=FILENAME_HTML,
-         context="https://1819.brussels"):
+         context="https://1819.brussels",
+         filename_rdf=os.path.join(os.path.dirname(__file__), 'example_html_extraction_cpsv-ap.rdf')):
     """
     (for DEMO)
     We want to extract relations from a webpage as found in the CPSV Application Profile.
@@ -28,7 +31,7 @@ def main(filename=FILENAME_HTML,
     relation_extractor.extract_public_service()
 
     # Save in RDF
-    relation_extractor.export()
+    relation_extractor.export(filename_rdf)
 
     # Optional: Visualise results
     return

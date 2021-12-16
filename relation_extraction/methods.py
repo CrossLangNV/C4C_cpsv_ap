@@ -31,7 +31,7 @@ class RelationExtractor:
         """
 
         public_service = PublicService(name=get_public_service_name(self.html),
-                                       description="#TODO",
+                                       description=get_public_service_description(self.html),
                                        identifier="#TODO",
                                        has_competent_authority=self.public_org
                                        )
@@ -39,12 +39,12 @@ class RelationExtractor:
         self.provider.public_services.add(public_service=public_service,
                                           context=self.context)
 
-    def export(self):
+    def export(self, destination=None):
         """
         Export to RDF
         """
 
-        print(self.provider.graph.serialize())
+        print(self.provider.graph.serialize(destination))
 
 
 def get_public_service_name(html: str) -> str:
@@ -62,10 +62,12 @@ def get_public_service_name(html: str) -> str:
     return title
 
 
-def get_public_service_description(html):
+def get_public_service_description(html) -> str:
     """
     Idea: We can find the section with the description based on
     XX is ... . This does mean that we have to know what XX is.
+
+    Algorithm: the first paragraph <p/> is returned.
 
     TODO
      * Implement noun phrase extraction?
@@ -76,7 +78,13 @@ def get_public_service_description(html):
 
     main_noun_phrase = None  # TODO
 
-    return
+    soup = BeautifulSoup(html, "html.parser")
+    first_paragraph = soup.findAll('p', text=True)[0]  # Paragraph
+
+    text = first_paragraph.get_text()
+    text_clean = _clean_text(text)
+
+    return text_clean
 
 
 def get_requirements(html: str) -> str:
