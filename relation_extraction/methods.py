@@ -8,7 +8,7 @@ from cassis.typesystem import load_typesystem
 from cassis.xmi import load_cas_from_xmi
 
 from c4c_cpsv_ap.connector.hierarchy import Provider
-from c4c_cpsv_ap.models import PublicService, PublicOrganisation, ContactPoint
+from c4c_cpsv_ap.models import PublicService, PublicOrganisation, ContactPoint, Concept
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
 CONTACT_PARAGRAPH_TYPE = "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.ContactParagraph"
@@ -40,11 +40,14 @@ class RelationExtractor:
         """
 
         contact_info = self.extract_contact_info()
+        concepts = self.extract_concepts()
 
-        self.extract_public_service(contact_info=contact_info)
+        self.extract_public_service(contact_info=contact_info,
+                                    concepts=concepts)
 
     def extract_public_service(self,
-                               contact_info: ContactPoint) -> PublicService:
+                               contact_info: ContactPoint,
+                               concepts=List[Concept]) -> PublicService:
         """
         Extract all public service information
 
@@ -56,7 +59,8 @@ class RelationExtractor:
                                        description=get_public_service_description(self.html),
                                        identifier="#TODO",
                                        has_competent_authority=self.public_org,
-                                       has_contact_point=contact_info
+                                       has_contact_point=contact_info,
+                                       is_classified_by=concepts,
                                        )
 
         self.provider.public_services.add(public_service=public_service,
@@ -76,8 +80,12 @@ class RelationExtractor:
 
         return contact_info
 
-    def extract_concepts(self):
-        return
+    def extract_concepts(self) -> List[Concept]:
+        l_label = get_concepts(self.html)
+
+        l_concept_cpsv_ap = [Concept(pref_label=label) for label in l_label]
+
+        return l_concept_cpsv_ap
 
     def export(self, destination=None):
         """
@@ -167,17 +175,9 @@ def get_contact_info_stuff(html: str,
     }
     r = requests.post(TERM_EXTRACTION + "/extract_contact_info",
                       json=j)
+    j_r = r.json()
 
-    # print(r.json()["text"])
-
-    def get_decoded_cas_content(cas_content: str):
-        return base64.b64decode(cas_content).decode('utf-8')
-
-    decoded_cas_content = get_decoded_cas_content(r.json()["cas_content"])
-
-    cas = load_cas_from_xmi(decoded_cas_content,
-                            typesystem=TYPESYSTEM,
-                            trusted=True)
+    cas = cas_from_cas_content(j_r['cas_content'])
 
     l_contact_typesystem = cas.get_view(SOFA_ID).select(CONTACT_PARAGRAPH_TYPE)
 
@@ -190,8 +190,23 @@ def get_contact_info_stuff(html: str,
     return list(set(map(lambda ts: ts.content, l_contact_typesystem)))
 
 
-def get_concepts(html: str):
-    return
+def get_concepts(html: str,
+                 language="en"):
+    j = {
+        "html": html,
+        "language": language
+    }
+    r = requests.post(TERM_EXTRACTION + "/extract_terms",
+                      json=j)
+    j_r = r.json()
+
+    cas = cas_from_cas_content(j_r['cas_content'])
+
+    l_term_typesystem = cas.get_view(SOFA_ID).select("cassis.Token")
+
+    l_term = list(set(map(lambda ts: ts.lemma, l_term_typesystem)))
+
+    return l_term
 
 
 def generator_html(html: str) -> Generator[str, None, None]:
@@ -298,3 +313,17 @@ def _split_contact_info(l_info_text: List[str]) -> Tuple[List[str], List[str], L
                 telephone.append(text)
 
     return email, telephone, opening_hours
+
+
+def get_decoded_cas_content(cas_content: str):
+    return base64.b64decode(cas_content).decode('utf-8')
+
+
+def cas_from_cas_content(cas_content):
+    decoded_cas_content = get_decoded_cas_content(cas_content)
+
+    cas = load_cas_from_xmi(decoded_cas_content,
+                            typesystem=TYPESYSTEM,
+                            trusted=True)
+
+    return cas

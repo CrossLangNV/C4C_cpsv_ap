@@ -5,21 +5,129 @@
 @prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-c4c:PublicService006f4dd30f3e4ada923628b4992b53c5 a cpsv:PublicService ;
-    cv:hasCompetentAuthority c4c:PublicOrganisation0aecc124370b4dd896d3e017d3951fd1 ;
-    cv:hasContactPoint c4c:ContactPointb0bcf68a806043a894200fcd14aa931e ;
+c4c:PublicServicec4fcc672964e4b6e966d01ea2cbd66cf a cpsv:PublicService ;
+    cv:hasCompetentAuthority c4c:PublicOrganisationa86d796664394c868c1f88ecf9535faa ;
+    cv:hasContactPoint c4c:ContactPoint30858e2b7d9d4d419605688bd87709c9 ;
+    cv:isClassifiedBy c4c:Concept0cb3d3da711f40ba820a8229bdff90ec,
+        c4c:Concept2b5922f50b764248b3fe03cb2c5e34fe,
+        c4c:Concept2eb1e834891b4b0b83658eac2839cadf,
+        c4c:Concept41bdf65f6b154170b6bdaee39c677960,
+        c4c:Concept61e174378e9d4f3a8024d2408bbef398,
+        c4c:Concept693aeece4145442da5d4d6aaf6ca09e5,
+        c4c:Concept71d0fee5504d4e958fba0cffe2e814aa,
+        c4c:Concept74cda60e47544004b278ef0d8cd0ed39,
+        c4c:Concept76f1e2665599484bb68d00990054758e,
+        c4c:Concept7786f8420cc848c88bda11f12878d249,
+        c4c:Concept81a69ee8ee634ef98a2bcf12a04a6b85,
+        c4c:Concept89e4b66cd4cf4e33b235df854ed4b813,
+        c4c:Concept9408936fd1274cdfaac81708c0a152ee,
+        c4c:Conceptab60cf1a8b1d404390d6ec76596bddb0,
+        c4c:Conceptad16d10c3daf49c9841394f48d48a7d7,
+        c4c:Conceptb5e230051b8742e7ab1e89acbdfe3210,
+        c4c:Conceptbffbad738c304c958fb3b538a18c0c2c,
+        c4c:Conceptc4ca0143c1124c3ab74bf8de35b206a3,
+        c4c:Conceptc7f53bf47ddf4454970dc2f7dfc74e08,
+        c4c:Conceptd65ed20ea5494f4992a2e10727758868,
+        c4c:Conceptdd8c6954a61a45d1a8815819e404647b,
+        c4c:Concepte4e9cd213658403fa1c979ca10f98fa6,
+        c4c:Concepte5570e0d68894a50a71df816d6b146c4,
+        c4c:Conceptec1125aac62b412cbcc1d7ec30fb52d6,
+        c4c:Conceptf41d6e0389544ca0a2c8c498d82fd1c4,
+        c4c:Conceptf963d27261e34f13bed98feeb7c30efd,
+        c4c:Conceptfd6059dc02d546139d50b353bec7f203 ;
     dct:description "The financial plan is a dynamic instrument and an essential management tool.  What should it include?  Who can help?" ;
     dct:identifier "#TODO" ;
     dct:title "Financial plan: how to prepare an effective financial plan" .
 
-c4c:ContactPointb0bcf68a806043a894200fcd14aa931e a schema:ContactPoint ;
+c4c:Concept0cb3d3da711f40ba820a8229bdff90ec a skos:Concept ;
+    skos:prefLabel "point" .
+
+c4c:Concept2b5922f50b764248b3fe03cb2c5e34fe a skos:Concept ;
+    skos:prefLabel "track" .
+
+c4c:Concept2eb1e834891b4b0b83658eac2839cadf a skos:Concept ;
+    skos:prefLabel "business" .
+
+c4c:Concept41bdf65f6b154170b6bdaee39c677960 a skos:Concept ;
+    skos:prefLabel "single information point" .
+
+c4c:Concept61e174378e9d4f3a8024d2408bbef398 a skos:Concept ;
+    skos:prefLabel "business in brussels" .
+
+c4c:Concept693aeece4145442da5d4d6aaf6ca09e5 a skos:Concept ;
+    skos:prefLabel "charge" .
+
+c4c:Concept71d0fee5504d4e958fba0cffe2e814aa a skos:Concept ;
+    skos:prefLabel "project a real success" .
+
+c4c:Concept74cda60e47544004b278ef0d8cd0ed39 a skos:Concept ;
+    skos:prefLabel "point for anyone who want to start" .
+
+c4c:Concept76f1e2665599484bb68d00990054758e a skos:Concept ;
+    skos:prefLabel "partner" .
+
+c4c:Concept7786f8420cc848c88bda11f12878d249 a skos:Concept ;
+    skos:prefLabel "project" .
+
+c4c:Concept81a69ee8ee634ef98a2bcf12a04a6b85 a skos:Concept ;
+    skos:prefLabel "brussels agency for business support" .
+
+c4c:Concept89e4b66cd4cf4e33b235df854ed4b813 a skos:Concept ;
+    skos:prefLabel "business support" .
+
+c4c:Concept9408936fd1274cdfaac81708c0a152ee a skos:Concept ;
+    skos:prefLabel "single information point for anyone who want to start" .
+
+c4c:Conceptab60cf1a8b1d404390d6ec76596bddb0 a skos:Concept ;
+    skos:prefLabel "right track" .
+
+c4c:Conceptad16d10c3daf49c9841394f48d48a7d7 a skos:Concept ;
+    skos:prefLabel "help" .
+
+c4c:Conceptb5e230051b8742e7ab1e89acbdfe3210 a skos:Concept ;
+    skos:prefLabel "help to do" .
+
+c4c:Conceptbffbad738c304c958fb3b538a18c0c2c a skos:Concept ;
+    skos:prefLabel "manner" .
+
+c4c:Conceptc4ca0143c1124c3ab74bf8de35b206a3 a skos:Concept ;
+    skos:prefLabel "support" .
+
+c4c:Conceptc7f53bf47ddf4454970dc2f7dfc74e08 a skos:Concept ;
+    skos:prefLabel "platform" .
+
+c4c:Conceptd65ed20ea5494f4992a2e10727758868 a skos:Concept ;
+    skos:prefLabel "brussels agency" .
+
+c4c:Conceptdd8c6954a61a45d1a8815819e404647b a skos:Concept ;
+    skos:prefLabel "information" .
+
+c4c:Concepte4e9cd213658403fa1c979ca10f98fa6 a skos:Concept ;
+    skos:prefLabel "success" .
+
+c4c:Concepte5570e0d68894a50a71df816d6b146c4 a skos:Concept ;
+    skos:prefLabel "professional manner" .
+
+c4c:Conceptec1125aac62b412cbcc1d7ec30fb52d6 a skos:Concept ;
+    skos:prefLabel "brussels" .
+
+c4c:Conceptf41d6e0389544ca0a2c8c498d82fd1c4 a skos:Concept ;
+    skos:prefLabel "agency for business support" .
+
+c4c:Conceptf963d27261e34f13bed98feeb7c30efd a skos:Concept ;
+    skos:prefLabel "agency" .
+
+c4c:Conceptfd6059dc02d546139d50b353bec7f203 a skos:Concept ;
+    skos:prefLabel "service" .
+
+c4c:ContactPoint30858e2b7d9d4d419605688bd87709c9 a schema:ContactPoint ;
     schema:email "info@1819.brussels" ;
     schema:telephone """Chaussée de Charleroi 110
 1060 Brussels""",
         "Chaussée de Charleroi 110, 1060 Brussels",
         "Various models exist and all have the same objective.   For example, you can use the model developed by 1819: www.monbusinessplan.brussels . The tool is designed as a compromise between the professionalism expected from financial contacts and the ease of use that you yourself require." .
 
-c4c:PublicOrganisation0aecc124370b4dd896d3e017d3951fd1 a cv:PublicOrganisation ;
+c4c:PublicOrganisationa86d796664394c868c1f88ecf9535faa a cv:PublicOrganisation ;
     dct:spatial <https://1819.brussels> ;
     skos:prefLabel "TODO" .
 

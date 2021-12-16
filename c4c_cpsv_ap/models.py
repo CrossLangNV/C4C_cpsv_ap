@@ -18,14 +18,6 @@ class CPSVAPModel(abc.ABC, BaseModel):
     pass
 
 
-class ContactPoint(CPSVAPModel):
-    """
-    CPSV-AP Contact Point
-    """
-    pass
-    # TODO
-
-
 class Concept(CPSVAPModel):
     """
     SKOS Concept
@@ -35,6 +27,9 @@ class Concept(CPSVAPModel):
 
 
 class ContactPoint(CPSVAPModel):
+    """
+    CPSV-AP Contact Point
+    """
     email: List[str] = None
     telephone: List[str] = None
     opening_hours: List[str] = None

@@ -3,7 +3,7 @@ import unittest
 from data.html import FILENAME_HTML, get_html
 from relation_extraction.ES_connector import ElasticSearchConnector
 from relation_extraction.methods import get_requirements, get_public_service_name, generator_html, \
-    get_public_service_description, get_contact_info_stuff
+    get_public_service_description, get_contact_info_stuff, get_concepts
 
 
 class TestExtraction(unittest.TestCase):
