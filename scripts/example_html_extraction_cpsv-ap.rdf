@@ -5,21 +5,21 @@
 @prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-c4c:PublicService810c501619074fe8a8db92d5a053d781 a cpsv:PublicService ;
-    cv:hasCompetentAuthority c4c:PublicOrganisation1108951fd83c4cf3b9e50126f768f511 ;
-    cv:hasContactPoint c4c:ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1 ;
+c4c:PublicService006f4dd30f3e4ada923628b4992b53c5 a cpsv:PublicService ;
+    cv:hasCompetentAuthority c4c:PublicOrganisation0aecc124370b4dd896d3e017d3951fd1 ;
+    cv:hasContactPoint c4c:ContactPointb0bcf68a806043a894200fcd14aa931e ;
     dct:description "The financial plan is a dynamic instrument and an essential management tool.  What should it include?  Who can help?" ;
     dct:identifier "#TODO" ;
     dct:title "Financial plan: how to prepare an effective financial plan" .
 
-c4c:ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1 a schema:ContactPoint ;
+c4c:ContactPointb0bcf68a806043a894200fcd14aa931e a schema:ContactPoint ;
     schema:email "info@1819.brussels" ;
     schema:telephone """Chaussée de Charleroi 110
 1060 Brussels""",
         "Chaussée de Charleroi 110, 1060 Brussels",
         "Various models exist and all have the same objective.   For example, you can use the model developed by 1819: www.monbusinessplan.brussels . The tool is designed as a compromise between the professionalism expected from financial contacts and the ease of use that you yourself require." .
 
-c4c:PublicOrganisation1108951fd83c4cf3b9e50126f768f511 a cv:PublicOrganisation ;
+c4c:PublicOrganisation0aecc124370b4dd896d3e017d3951fd1 a cv:PublicOrganisation ;
     dct:spatial <https://1819.brussels> ;
     skos:prefLabel "TODO" .
 

@@ -38,25 +38,19 @@ class RelationExtractor:
         """
         TODO add more in the future
         """
-        self.extract_public_service()
 
-    def extract_public_service(self):
+        contact_info = self.extract_contact_info()
+
+        self.extract_public_service(contact_info=contact_info)
+
+    def extract_public_service(self,
+                               contact_info: ContactPoint) -> PublicService:
         """
         Extract all public service information
 
         TODO
-         * add the description extraction results
          * add the identifier extraction results
         """
-
-        ci_info = get_contact_info_stuff(self.html)
-
-        email, telephone, opening_hours = _split_contact_info(ci_info)
-
-        contact_info = ContactPoint(email=email,  # TODO
-                                    telephone=telephone,  # TODO
-                                    opening_hours=opening_hours  # TODO
-                                    )
 
         public_service = PublicService(name=get_public_service_name(self.html),
                                        description=get_public_service_description(self.html),
@@ -67,6 +61,23 @@ class RelationExtractor:
 
         self.provider.public_services.add(public_service=public_service,
                                           context=self.context)
+
+        return public_service
+
+    def extract_contact_info(self) -> ContactPoint:
+        l_info_text = get_contact_info_stuff(self.html)
+
+        email, telephone, opening_hours = _split_contact_info(l_info_text)
+
+        contact_info = ContactPoint(email=email,  # TODO
+                                    telephone=telephone,  # TODO
+                                    opening_hours=opening_hours  # TODO
+                                    )
+
+        return contact_info
+
+    def extract_concepts(self):
+        return
 
     def export(self, destination=None):
         """
@@ -136,7 +147,7 @@ def get_requirements(html: str) -> str:
 def get_contact_info_stuff(html: str,
                            language: str = "en",
 
-                           ) -> List:
+                           ) -> List[str]:
     """
 
     Args:
@@ -144,9 +155,7 @@ def get_contact_info_stuff(html: str,
         language:
 
     Returns:
-        [TYPESYSTEM.get_type(CONTACT_PARAGRAPH_TYPE)]
-        l_contact_typesystem[0].content_context
-        l_contact_typesystem[0].content
+        List of contact info text.
 
     TODO
      * Rename method
@@ -172,7 +181,17 @@ def get_contact_info_stuff(html: str,
 
     l_contact_typesystem = cas.get_view(SOFA_ID).select(CONTACT_PARAGRAPH_TYPE)
 
-    return l_contact_typesystem
+    """
+    [TYPESYSTEM.get_type(CONTACT_PARAGRAPH_TYPE)]
+    l_contact_typesystem[0].content_context
+    l_contact_typesystem[0].content
+    """
+
+    return list(set(map(lambda ts: ts.content, l_contact_typesystem)))
+
+
+def get_concepts(html: str):
+    return
 
 
 def generator_html(html: str) -> Generator[str, None, None]:
@@ -229,7 +248,7 @@ def _get_children_text(soup) -> list:
         yield text_clean
 
 
-def _split_contact_info(l_ci_info: list) -> Tuple[List[str], List[str], List[str]]:
+def _split_contact_info(l_info_text: List[str]) -> Tuple[List[str], List[str], List[str]]:
     """
     Split up contact info into email, telephone and opening hours.
     Args:
@@ -262,9 +281,7 @@ def _split_contact_info(l_ci_info: list) -> Tuple[List[str], List[str], List[str
                 return True
         return False
 
-    for info_i in l_ci_info:
-        # info_i.content_context
-        text = info_i.content
+    for text in l_info_text:
 
         # TODO Implement a proper classifier
         if "@" in text:

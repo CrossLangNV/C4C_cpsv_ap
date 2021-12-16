@@ -53,10 +53,16 @@ class TestExtraction(unittest.TestCase):
     def test_get_contact_info_stuff(self):
         ci_stuff = get_contact_info_stuff(self.html)
 
+        self.assertIsInstance(ci_stuff, list)
+
         for i, ci_stuff_i in enumerate(ci_stuff):
             with self.subTest(f"#{i}"):
-                self.assertTrue(ci_stuff_i.content)
-                self.assertTrue(ci_stuff_i.content_context)
+                self.assertIsInstance(ci_stuff_i, str)
+
+    def test_get_concepts(self):
+        concepts = get_concepts(self.html)
+
+        self.assertEqual(0, 1)
 
 
 class TestElasticSearch(unittest.TestCase):
