@@ -132,6 +132,19 @@ class PublicService(CPSVAPModel):
         for event in self.is_grouped_by:
             event.add_related_service(self)
 
+    @validator("has_contact_point", pre=True)
+    def spatial_list(cls, v: Union[ContactPoint, List[ContactPoint]]) -> List[ContactPoint]:
+        """
+        When a single contact point is given, put it in a list
+
+        Returns:
+            Contact point within a list
+        """
+        if isinstance(v, ContactPoint):
+            return [v]
+        else:
+            return v
+
 
 def _id_generator() -> str:
     """

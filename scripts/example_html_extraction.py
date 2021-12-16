@@ -1,7 +1,7 @@
 import os.path
 
+from data.html import FILENAME_HTML, get_html
 from relation_extraction.methods import RelationExtractor
-from tests.relation_extraction.test_methods import FILENAME_HTML, get_html
 
 
 def main(filename=FILENAME_HTML,
@@ -28,7 +28,7 @@ def main(filename=FILENAME_HTML,
     # Apply relation extraction
     relation_extractor = RelationExtractor(html, context=context)
 
-    relation_extractor.extract_public_service()
+    relation_extractor.extract_all()
 
     # Save in RDF
     relation_extractor.export(filename_rdf)

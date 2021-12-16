@@ -1,9 +1,22 @@
-from typing import Generator
+import base64
+import os
+from typing import Generator, List, Tuple
 
+import requests
 from bs4 import BeautifulSoup
+from cassis.typesystem import load_typesystem
+from cassis.xmi import load_cas_from_xmi
 
 from c4c_cpsv_ap.connector.hierarchy import Provider
-from c4c_cpsv_ap.models import PublicService, PublicOrganisation
+from c4c_cpsv_ap.models import PublicService, PublicOrganisation, ContactPoint
+
+TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
+CONTACT_PARAGRAPH_TYPE = "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.ContactParagraph"
+SOFA_ID = "html2textView"
+
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), '../data')
+with open(os.path.join(MEDIA_ROOT, 'typesystem.xml'), 'rb') as f:
+    TYPESYSTEM = load_typesystem(f)
 
 
 class RelationExtractor:
@@ -21,6 +34,12 @@ class RelationExtractor:
                                              spatial=context)  # TODO
         self.provider.public_organisations.add(self.public_org, context=context)
 
+    def extract_all(self):
+        """
+        TODO add more in the future
+        """
+        self.extract_public_service()
+
     def extract_public_service(self):
         """
         Extract all public service information
@@ -30,10 +49,20 @@ class RelationExtractor:
          * add the identifier extraction results
         """
 
+        ci_info = get_contact_info_stuff(self.html)
+
+        email, telephone, opening_hours = _split_contact_info(ci_info)
+
+        contact_info = ContactPoint(email=email,  # TODO
+                                    telephone=telephone,  # TODO
+                                    opening_hours=opening_hours  # TODO
+                                    )
+
         public_service = PublicService(name=get_public_service_name(self.html),
                                        description=get_public_service_description(self.html),
                                        identifier="#TODO",
-                                       has_competent_authority=self.public_org
+                                       has_competent_authority=self.public_org,
+                                       has_contact_point=contact_info
                                        )
 
         self.provider.public_services.add(public_service=public_service,
@@ -104,6 +133,48 @@ def get_requirements(html: str) -> str:
             yield section
 
 
+def get_contact_info_stuff(html: str,
+                           language: str = "en",
+
+                           ) -> List:
+    """
+
+    Args:
+        html:
+        language:
+
+    Returns:
+        [TYPESYSTEM.get_type(CONTACT_PARAGRAPH_TYPE)]
+        l_contact_typesystem[0].content_context
+        l_contact_typesystem[0].content
+
+    TODO
+     * Rename method
+    """
+
+    j = {
+        "html": html,
+        "language": language
+    }
+    r = requests.post(TERM_EXTRACTION + "/extract_contact_info",
+                      json=j)
+
+    # print(r.json()["text"])
+
+    def get_decoded_cas_content(cas_content: str):
+        return base64.b64decode(cas_content).decode('utf-8')
+
+    decoded_cas_content = get_decoded_cas_content(r.json()["cas_content"])
+
+    cas = load_cas_from_xmi(decoded_cas_content,
+                            typesystem=TYPESYSTEM,
+                            trusted=True)
+
+    l_contact_typesystem = cas.get_view(SOFA_ID).select(CONTACT_PARAGRAPH_TYPE)
+
+    return l_contact_typesystem
+
+
 def generator_html(html: str) -> Generator[str, None, None]:
     """
     Make a generator from the HTML to go over all text in a pyramid-like manner:
@@ -156,3 +227,57 @@ def _get_children_text(soup) -> list:
 
         text_clean = _clean_text(text)
         yield text_clean
+
+
+def _split_contact_info(l_ci_info: list) -> Tuple[List[str], List[str], List[str]]:
+    """
+    Split up contact info into email, telephone and opening hours.
+    Args:
+        l_ci_info:
+
+    Returns:
+
+    """
+    email = []
+    telephone = []
+    opening_hours = []
+
+    def filter_func_opening_hours(text) -> bool:
+
+        text_lower = text.lower()
+
+        whitelist = [
+            "week"
+            "day",  # And all days: Monday, Tuesday...
+            # Mon.Mo.
+            # Tue.Tu.
+            # Wed.We.
+            # Thu.Th.
+            # Fri.Fr.
+            # Sat.Sa.
+            # Sun.Su
+        ]
+        for day in whitelist:
+            if day in text_lower:
+                return True
+        return False
+
+    for info_i in l_ci_info:
+        # info_i.content_context
+        text = info_i.content
+
+        # TODO Implement a proper classifier
+        if "@" in text:
+            # Filter unique
+            if text not in email:
+                email.append(text)
+
+        elif filter_func_opening_hours(text):
+            if text not in opening_hours:
+                opening_hours.append(text)
+
+        else:
+            if text not in telephone:
+                telephone.append(text)
+
+    return email, telephone, opening_hours

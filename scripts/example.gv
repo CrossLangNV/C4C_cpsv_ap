@@ -2,25 +2,37 @@ digraph {
   charset="utf-8";
 
   // Edges
-  "Rhttp://cefat4cities.crosslang.com/content/PublicService2332cad0086444deb320c950877b21c1" -> "Rhttp://purl.org/vocab/cpsv#PublicService" [label="rdf:type"];
-  "Rhttp://cefat4cities.crosslang.com/content/PublicService2332cad0086444deb320c950877b21c1" -> "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation993c9cb3bf32490d836af8251d8c782c" [label=""];
-  "Rhttp://cefat4cities.crosslang.com/content/PublicService2332cad0086444deb320c950877b21c1" -> "LThe financial plan is a dynamic instrument and an essential management tool.  What should it include?  Who can help?" [label="dc:description"];
-  "Rhttp://cefat4cities.crosslang.com/content/PublicService2332cad0086444deb320c950877b21c1" -> "L#TODO" [label="dc:identifier"];
-  "Rhttp://cefat4cities.crosslang.com/content/PublicService2332cad0086444deb320c950877b21c1" -> "LFinancial plan: how to prepare an effective financial plan" [label="dc:title"];
-  "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation993c9cb3bf32490d836af8251d8c782c" -> "Rhttp://data.europa.eu/m8g/PublicOrganisation" [label="rdf:type"];
-  "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation993c9cb3bf32490d836af8251d8c782c" -> "Rhttps://1819.brussels" [label="dc:spatial"];
-  "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation993c9cb3bf32490d836af8251d8c782c" -> LTODO [label="skos:prefLabel"];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicService810c501619074fe8a8db92d5a053d781" -> "Rhttp://purl.org/vocab/cpsv#PublicService" [label="rdf:type"];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicService810c501619074fe8a8db92d5a053d781" -> "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation1108951fd83c4cf3b9e50126f768f511" [label=""];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicService810c501619074fe8a8db92d5a053d781" -> "Rhttp://cefat4cities.crosslang.com/content/ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1" [label=""];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicService810c501619074fe8a8db92d5a053d781" -> "LThe financial plan is a dynamic instrument and an essential management tool.  What should it include?  Who can help?" [label="dc:description"];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicService810c501619074fe8a8db92d5a053d781" -> "L#TODO" [label="dc:identifier"];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicService810c501619074fe8a8db92d5a053d781" -> "LFinancial plan: how to prepare an effective financial plan" [label="dc:title"];
+  "Rhttp://cefat4cities.crosslang.com/content/ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1" -> "Rhttps://schema.org/ContactPoint" [label="rdf:type"];
+  "Rhttp://cefat4cities.crosslang.com/content/ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1" -> "Linfo@1819.brussels" [label=""];
+  "Rhttp://cefat4cities.crosslang.com/content/ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1" -> "LChaussée de Charleroi 110\n1060 Brussels" [label=""];
+  "Rhttp://cefat4cities.crosslang.com/content/ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1" -> "LChaussée de Charleroi 110, 1060 Brussels" [label=""];
+  "Rhttp://cefat4cities.crosslang.com/content/ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1" -> "LVarious models exist and all have the same objective.   For example, you can use the model developed by 1819: www.monbusinessplan.brussels . The tool is designed as a compromise between the professionalism expected from financial contacts and the ease of use that you yourself require." [label=""];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation1108951fd83c4cf3b9e50126f768f511" -> "Rhttp://data.europa.eu/m8g/PublicOrganisation" [label="rdf:type"];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation1108951fd83c4cf3b9e50126f768f511" -> "Rhttps://1819.brussels" [label="dc:spatial"];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation1108951fd83c4cf3b9e50126f768f511" -> LTODO [label="skos:prefLabel"];
   "Rhttps://1819.brussels" -> "Rhttp://purl.org/dc/terms/Location" [label="rdf:type"];
 
   // Nodes
   "L#TODO" [label="#TODO",shape=record];
+  "LChaussée de Charleroi 110\n1060 Brussels" [label="Chaussée de Charleroi 110\n1060 Brussels",shape=record];
+  "LChaussée de Charleroi 110, 1060 Brussels" [label="Chaussée de Charleroi 110, 1060 Brussels",shape=record];
   "LFinancial plan: how to prepare an effective financial plan" [label="Financial plan: how to prepare an effective financial plan",shape=record];
   LTODO [label=TODO,shape=record];
   "LThe financial plan is a dynamic instrument and an essential management tool.  What should it include?  Who can help?" [label="The financial plan is a dynamic instrument and an essential management tool.  What should it include?  Who can help?",shape=record];
-  "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation993c9cb3bf32490d836af8251d8c782c" [URL="http://cefat4cities.crosslang.com/content/PublicOrganisation993c9cb3bf32490d836af8251d8c782c",label="http://cefat4cities.crosslang.com/content/PublicOrganisation993c9cb3bf32490d836af8251d8c782c",shape=ellipse,color=blue];
-  "Rhttp://cefat4cities.crosslang.com/content/PublicService2332cad0086444deb320c950877b21c1" [URL="http://cefat4cities.crosslang.com/content/PublicService2332cad0086444deb320c950877b21c1",label="http://cefat4cities.crosslang.com/content/PublicService2332cad0086444deb320c950877b21c1",shape=ellipse,color=blue];
+  "LVarious models exist and all have the same objective.   For example, you can use the model developed by 1819: www.monbusinessplan.brussels . The tool is designed as a compromise between the professionalism expected from financial contacts and the ease of use that you yourself require." [label="Various models exist and all have the same objective.   For example, you can use the model developed by 1819: www.monbusinessplan.brussels . The tool is designed as a compromise between the professionalism expected from financial contacts and the ease of use that you yourself require.",shape=record];
+  "Linfo@1819.brussels" [label="info@1819.brussels",shape=record];
+  "Rhttp://cefat4cities.crosslang.com/content/ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1" [URL="http://cefat4cities.crosslang.com/content/ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1",label="http://cefat4cities.crosslang.com/content/ContactPoint5a1da0a3a3204e4e93918a88a67d8ed1",shape=ellipse,color=blue];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicOrganisation1108951fd83c4cf3b9e50126f768f511" [URL="http://cefat4cities.crosslang.com/content/PublicOrganisation1108951fd83c4cf3b9e50126f768f511",label="http://cefat4cities.crosslang.com/content/PublicOrganisation1108951fd83c4cf3b9e50126f768f511",shape=ellipse,color=blue];
+  "Rhttp://cefat4cities.crosslang.com/content/PublicService810c501619074fe8a8db92d5a053d781" [URL="http://cefat4cities.crosslang.com/content/PublicService810c501619074fe8a8db92d5a053d781",label="http://cefat4cities.crosslang.com/content/PublicService810c501619074fe8a8db92d5a053d781",shape=ellipse,color=blue];
   "Rhttp://data.europa.eu/m8g/PublicOrganisation" [URL="http://data.europa.eu/m8g/PublicOrganisation",label="http://data.europa.eu/m8g/PublicOrganisation",shape=ellipse,color=blue];
   "Rhttp://purl.org/dc/terms/Location" [URL="http://purl.org/dc/terms/Location",label="dc:Location",shape=ellipse,color=blue];
   "Rhttp://purl.org/vocab/cpsv#PublicService" [URL="http://purl.org/vocab/cpsv#PublicService",label="http://purl.org/vocab/cpsv#PublicService",shape=ellipse,color=blue];
   "Rhttps://1819.brussels" [URL="https://1819.brussels",label="https://1819.brussels",shape=ellipse,color=blue];
+  "Rhttps://schema.org/ContactPoint" [URL="https://schema.org/ContactPoint",label="https://schema.org/ContactPoint",shape=ellipse,color=blue];
 }

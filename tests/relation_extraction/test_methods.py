@@ -1,18 +1,9 @@
-import codecs
-import os
 import unittest
 
+from data.html import FILENAME_HTML, get_html
 from relation_extraction.ES_connector import ElasticSearchConnector
 from relation_extraction.methods import get_requirements, get_public_service_name, generator_html, \
-    get_public_service_description
-
-FILENAME_HTML = os.path.join(os.path.dirname(__file__),
-                             'Financial plan_ how to prepare an effective financial plan.html')
-
-
-def get_html(filename, encoding='utf-8') -> str:
-    with codecs.open(filename, 'r', encoding=encoding) as f:
-        return f.read()
+    get_public_service_description, get_contact_info_stuff
 
 
 class TestExtraction(unittest.TestCase):
@@ -58,6 +49,14 @@ class TestExtraction(unittest.TestCase):
         pass
 
         self.assertEqual(0, 1)
+
+    def test_get_contact_info_stuff(self):
+        ci_stuff = get_contact_info_stuff(self.html)
+
+        for i, ci_stuff_i in enumerate(ci_stuff):
+            with self.subTest(f"#{i}"):
+                self.assertTrue(ci_stuff_i.content)
+                self.assertTrue(ci_stuff_i.content_context)
 
 
 class TestElasticSearch(unittest.TestCase):

@@ -7,3 +7,6 @@ requests==2.26.0
 
 # Parsing
 beautifulsoup4 == 4.10.0
+
+# Cas parsing
+dkpro-cassis==0.5.1
