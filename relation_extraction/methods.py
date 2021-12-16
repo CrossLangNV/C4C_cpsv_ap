@@ -2,8 +2,52 @@ from typing import Generator
 
 from bs4 import BeautifulSoup
 
+from c4c_cpsv_ap.connector.hierarchy import Provider
+from c4c_cpsv_ap.models import PublicService, PublicOrganisation
 
-def get_public_service(html: str) -> str:
+
+class RelationExtractor:
+    def __init__(self, html, context):
+        # Save data
+        self.html = html
+        self.context = context
+
+        # Init provider
+        self.provider = Provider()
+
+        # Prefered label can most likely be extracted from the name of the service
+        # within the contact information.
+        self.public_org = PublicOrganisation(pref_label=f"TODO",  # TODO
+                                             spatial=context)  # TODO
+        self.provider.public_organisations.add(self.public_org, context=context)
+
+    def extract_public_service(self):
+        """
+        Extract all public service information
+
+        TODO
+         * add the description extraction results
+         * add the identifier extraction results
+        """
+
+        public_service = PublicService(name=get_public_service_name(self.html),
+                                       description="#TODO",
+                                       identifier="#TODO",
+                                       has_competent_authority=self.public_org
+                                       )
+
+        self.provider.public_services.add(public_service=public_service,
+                                          context=self.context)
+
+    def export(self):
+        """
+        Export to RDF
+        """
+
+        print(self.provider.graph.serialize())
+
+
+def get_public_service_name(html: str) -> str:
     """
     Returns the public service of an HTML
 
@@ -12,9 +56,27 @@ def get_public_service(html: str) -> str:
     # urllib2.urlopen("https://www.google.com")
     soup = BeautifulSoup(html, "html.parser")
 
-    title = soup.title.string
+    # Cast to string instead of using NavigableString
+    title = str(soup.title.string)
 
     return title
+
+
+def get_public_service_description(html):
+    """
+    Idea: We can find the section with the description based on
+    XX is ... . This does mean that we have to know what XX is.
+
+    TODO
+     * Implement noun phrase extraction?
+     * After noun-phrase extraction, Find section with description.
+    """
+
+    title = get_public_service_name(html)
+
+    main_noun_phrase = None  # TODO
+
+    return
 
 
 def get_requirements(html: str) -> str:
@@ -42,7 +104,7 @@ def generator_html(html: str) -> Generator[str, None, None]:
 
     soup = _get_soup_text(html)
 
-    for text in  _get_children_text(soup):
+    for text in _get_children_text(soup):
         yield text
 
 

@@ -1,8 +1,10 @@
+import codecs
 import os
 import unittest
-import codecs
-from relation_extraction.methods import get_requirements, get_public_service, generator_html
+
 from relation_extraction.ES_connector import ElasticSearchConnector
+from relation_extraction.methods import get_requirements, get_public_service_name, generator_html, \
+    get_public_service_description
 
 FILENAME_HTML = os.path.join(os.path.dirname(__file__),
                              'Financial plan_ how to prepare an effective financial plan.html')
@@ -13,12 +15,12 @@ def get_html(filename, encoding='utf-8') -> str:
         return f.read()
 
 
-class TestFoo(unittest.TestCase):
+class TestExtraction(unittest.TestCase):
 
     def setUp(self) -> None:
         self.html = get_html(FILENAME_HTML)
 
-    def test_foo(self):
+    def test_get_requirements(self):
         # Get an HTML with x in.
 
         requirement = next(get_requirements(self.html))
@@ -26,9 +28,36 @@ class TestFoo(unittest.TestCase):
         self.assertTrue(requirement)
 
     def test_get_public_service(self):
-        title = get_public_service(self.html)
+        title = get_public_service_name(self.html)
 
-        self.assertIn("financial plan".lower(), title.lower(), "Expected title to contain this")
+        with self.subTest("Matching substring"):
+            self.assertIn("financial plan".lower(), title.lower(), "Expected title to contain this")
+
+        with self.subTest("Exact results"):
+            self.assertEqual(title, "Financial plan: how to prepare an effective financial plan",
+                             "Unexpected public service name.")
+
+    def test_get_public_service_description(self):
+        description = get_public_service_description(self.html)
+
+        with self.subTest("Matching substring"):
+            self.assertIn("The financial plan is a dynamic instrument".lower(),
+                          description)
+
+        with self.subTest("begin"):
+            s_begin = "The financial plan is a dynamic instrument"
+
+            self.assertEqual(s_begin, description[:len(s_begin)],
+                             "Expected the description to start with this sentence")
+
+        with self.subTest("end"):
+            s_end = "the project should be seriously re-examined."
+
+            self.assertEqual(s_begin, description[-len(s_end):], "Expected the description to start with this sentence")
+
+        pass
+
+        self.assertEqual(0, 1)
 
 
 class TestElasticSearch(unittest.TestCase):
@@ -37,7 +66,7 @@ class TestElasticSearch(unittest.TestCase):
         html = connector.get_random_html()
 
         with self.subTest("Retrieve html"):
-            title = get_public_service(html)
+            title = get_public_service_name(html)
 
         self.assertTrue(title, "Assert the return value is non-empty")
 
