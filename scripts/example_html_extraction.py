@@ -4,9 +4,9 @@ from data.html import FILENAME_HTML, get_html
 from relation_extraction.methods import RelationExtractor
 
 
-def main(filename=FILENAME_HTML,
-         context="https://1819.brussels",
-         filename_rdf=os.path.join(os.path.dirname(__file__), 'example_html_extraction_cpsv-ap.rdf')):
+def main(filename: str,  # input filename html
+         context: str,  # URL
+         filename_rdf: str):  # output filename
     """
     (for DEMO)
     We want to extract relations from a webpage as found in the CPSV Application Profile.
@@ -36,5 +36,9 @@ def main(filename=FILENAME_HTML,
     # Optional: Visualise results
     return
 
+
 if __name__ == '__main__':
-    main()
+    # TODO convert to user-script
+    main(filename=FILENAME_HTML,
+         context="https://1819.brussels",
+         filename_rdf=os.path.join(os.path.dirname(__file__), 'example_html_extraction_cpsv-ap.rdf'))
