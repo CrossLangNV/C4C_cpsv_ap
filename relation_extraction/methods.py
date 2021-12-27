@@ -6,7 +6,8 @@ from bs4 import BeautifulSoup
 
 from c4c_cpsv_ap.connector.hierarchy import Provider
 from c4c_cpsv_ap.models import PublicService, PublicOrganisation, ContactPoint, Concept
-from connectors.utils import cas_from_cas_content, CONTACT_PARAGRAPH_TYPE, SOFA_ID
+from connectors.term_extraction import ConnectorTermExtraction
+from connectors.utils import cas_from_cas_content, SOFA_ID
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
 
@@ -61,7 +62,10 @@ class RelationExtractor:
         return public_service
 
     def extract_contact_info(self) -> ContactPoint:
-        l_info_text = get_contact_info_stuff(self.html)
+        conn = ConnectorTermExtraction(TERM_EXTRACTION)
+        l_info_text = conn.post_contact_info(html=self.html,
+                                             # language=language
+                                             )
 
         email, telephone, opening_hours = _split_contact_info(l_info_text)
 
@@ -142,45 +146,6 @@ def get_requirements(html: str) -> str:
 
         if "required" in section.text():
             yield section
-
-
-def get_contact_info_stuff(html: str,
-                           language: str = "en",
-
-                           ) -> List[str]:
-    """
-
-    Args:
-        html:
-        language:
-
-    Returns:
-        List of contact info text.
-
-    TODO
-     * Rename method
-    """
-
-    j = {
-        "html": html,
-        "language": language
-    }
-    # TODO move to term extraction connector
-    r = requests.post(TERM_EXTRACTION + "/extract_contact_info",
-                      json=j)
-    j_r = r.json()
-
-    cas = cas_from_cas_content(j_r['cas_content'])
-
-    l_contact_typesystem = cas.get_view(SOFA_ID).select(CONTACT_PARAGRAPH_TYPE)
-
-    """
-    [TYPESYSTEM.get_type(CONTACT_PARAGRAPH_TYPE)]
-    l_contact_typesystem[0].content_context
-    l_contact_typesystem[0].content
-    """
-
-    return list(set(map(lambda ts: ts.content, l_contact_typesystem)))
 
 
 def get_concepts(html: str,

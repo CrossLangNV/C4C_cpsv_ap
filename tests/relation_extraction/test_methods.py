@@ -3,7 +3,7 @@ import unittest
 from connectors.elastic_search import ElasticSearchConnector
 from data.html import FILENAME_HTML, get_html
 from relation_extraction.methods import get_requirements, get_public_service_name, generator_html, \
-    get_public_service_description, get_contact_info_stuff, get_concepts
+    get_public_service_description, get_concepts
 
 
 class TestExtraction(unittest.TestCase):
@@ -49,15 +49,6 @@ class TestExtraction(unittest.TestCase):
         pass
 
         self.assertEqual(0, 1)
-
-    def test_get_contact_info_stuff(self):
-        ci_stuff = get_contact_info_stuff(self.html)
-
-        self.assertIsInstance(ci_stuff, list)
-
-        for i, ci_stuff_i in enumerate(ci_stuff):
-            with self.subTest(f"#{i}"):
-                self.assertIsInstance(ci_stuff_i, str)
 
     def test_get_concepts(self):
         concepts = get_concepts(self.html)
