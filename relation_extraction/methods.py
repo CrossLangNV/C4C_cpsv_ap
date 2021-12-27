@@ -1,22 +1,14 @@
-import base64
 import os
 from typing import Generator, List, Tuple
 
 import requests
 from bs4 import BeautifulSoup
-from cassis.typesystem import load_typesystem
-from cassis.xmi import load_cas_from_xmi
 
 from c4c_cpsv_ap.connector.hierarchy import Provider
 from c4c_cpsv_ap.models import PublicService, PublicOrganisation, ContactPoint, Concept
+from connectors.utils import cas_from_cas_content, CONTACT_PARAGRAPH_TYPE, SOFA_ID
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
-CONTACT_PARAGRAPH_TYPE = "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.ContactParagraph"
-SOFA_ID = "html2textView"
-
-MEDIA_ROOT = os.path.join(os.path.dirname(__file__), '../data')
-with open(os.path.join(MEDIA_ROOT, 'typesystem.xml'), 'rb') as f:
-    TYPESYSTEM = load_typesystem(f)
 
 
 class RelationExtractor:
@@ -173,6 +165,7 @@ def get_contact_info_stuff(html: str,
         "html": html,
         "language": language
     }
+    # TODO move to term extraction connector
     r = requests.post(TERM_EXTRACTION + "/extract_contact_info",
                       json=j)
     j_r = r.json()
@@ -313,17 +306,3 @@ def _split_contact_info(l_info_text: List[str]) -> Tuple[List[str], List[str], L
                 telephone.append(text)
 
     return email, telephone, opening_hours
-
-
-def get_decoded_cas_content(cas_content: str):
-    return base64.b64decode(cas_content).decode('utf-8')
-
-
-def cas_from_cas_content(cas_content):
-    decoded_cas_content = get_decoded_cas_content(cas_content)
-
-    cas = load_cas_from_xmi(decoded_cas_content,
-                            typesystem=TYPESYSTEM,
-                            trusted=True)
-
-    return cas
