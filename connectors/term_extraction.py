@@ -1,9 +1,10 @@
 import warnings
 from typing import List
 
-import cassis.cas
+import cassis
 import requests
 
+from connectors.term_extraction_utils.models import ChunkModel
 from connectors.utils import cas_from_cas_content, CONTACT_PARAGRAPH_TYPE, SOFA_ID
 
 KEY_CAS_CONTENT = 'cas_content'
@@ -36,7 +37,20 @@ class ConnectorTermExtraction:
     def post_chunking(self,
                       html: str,
                       language: str = 'en'):
-        pass
+
+        j = {
+            "html": html,
+            "language": language
+        }
+
+        r = requests.post(self.url + "/chunking",
+                          json=j)
+        j_r = r.json()
+
+        j_r_dehyphenated = {key.replace("-", "_"): value for key, value in j_r.items()}
+        chunk = ChunkModel(**j_r_dehyphenated)
+
+        return
 
     def post_contact_info(self,
                           html: str,
@@ -75,7 +89,7 @@ class ConnectionWarning(Warning):
     """
 
 
-def _get_content(cas: cassis.cas.Cas, annotation: str,
+def _get_content(cas: cassis.Cas, annotation: str,
                  sofa_id=SOFA_ID) -> List[str]:
     """
     Returns list of annotated objects within the CAS.
