@@ -11,5 +11,5 @@ RUN pip3 install -r requirements.txt
 
 # Packages from CrossLang
 RUN pip3 install git+https://github.com/CrossLangNV/DGFISMA_RDF.git@e2712bbe48c2791f28d80d9f950c18fbfda8be29 \
-    --ignore-installed beautifulsoup4 \
+    --ignore-installed beautifulsoup4
 
