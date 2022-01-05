@@ -15,13 +15,38 @@ class TestConnectorTermExtraction(unittest.TestCase):
 
         self.assertEqual(conn.url, TERM_EXTRACTION)
 
+    def test_good_connection(self):
+
+        try:
+            with self.assertWarns(ConnectionWarning) as cm:
+
+                ConnectorTermExtraction(TERM_EXTRACTION,
+                                        test_connection=True)
+
+        except AssertionError as e:
+            # Great! We were able to connect to the API.
+            pass
+        else:
+            self.fail(f"Should not raised a warning.\n{cm.warning}")
+
     def test_bad_connection(self):
-        with self.assertWarns(ConnectionWarning):
+        with self.assertWarns(ConnectionWarning) as cm:
             ConnectorTermExtraction("https://no_connection.io",
                                     test_connection=True)
 
-        ConnectorTermExtraction("https://no_connection.io",
-                                test_connection=True)
+        w = cm.warning
+
+        with self.subTest("Test return value"):
+            self.assertTrue(w, "Expected a warning")
+
+        with self.subTest("Number of warnings"):
+            self.assertEqual(len(cm.warnings), 1, "expected one warning")
+
+        with self.subTest("Type of warning"):
+            self.assertIsInstance(w, ConnectionWarning)
+
+        with self.subTest("Message"):
+            self.assertIn("connection", str(w).lower())
 
 
 class TestConnectorTermExtractionContactInfo(unittest.TestCase):

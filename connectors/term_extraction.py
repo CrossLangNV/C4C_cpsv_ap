@@ -50,7 +50,7 @@ class ConnectorTermExtraction:
         j_r_dehyphenated = {key.replace("-", "_"): value for key, value in j_r.items()}
         chunk = ChunkModel(**j_r_dehyphenated)
 
-        return
+        return chunk
 
     def post_contact_info(self,
                           html: str,
