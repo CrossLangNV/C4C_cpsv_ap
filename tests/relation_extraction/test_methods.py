@@ -14,7 +14,8 @@ class TestExtraction(unittest.TestCase):
     def test_get_requirements(self):
         # Get an HTML with x in.
 
-        requirement = next(get_requirements(self.html))
+        reqs = get_requirements(self.html)
+        requirement = next(reqs)
 
         self.assertTrue(requirement)
 
@@ -32,28 +33,30 @@ class TestExtraction(unittest.TestCase):
         description = get_public_service_description(self.html)
 
         with self.subTest("Matching substring"):
-            self.assertIn("The financial plan is a dynamic instrument".lower(),
-                          description)
+            s_sub = "The financial plan is a dynamic instrument"
+
+            self.assertIn(s_sub.lower(),
+                          description.lower())
 
         with self.subTest("begin"):
             s_begin = "The financial plan is a dynamic instrument"
 
-            self.assertEqual(s_begin, description[:len(s_begin)],
+            self.assertEqual(s_begin.lower(), description[:len(s_begin)].lower(),
                              "Expected the description to start with this sentence")
 
         with self.subTest("end"):
-            s_end = "the project should be seriously re-examined."
+            s_end = "What should it include? Who can help?"
 
-            self.assertEqual(s_begin, description[-len(s_end):], "Expected the description to start with this sentence")
-
-        pass
-
-        self.assertEqual(0, 1)
+            self.assertEqual(s_end.lower(), description[-len(s_end):].lower(),
+                             "Expected the description to start with this sentence")
 
     def test_get_concepts(self):
         concepts = get_concepts(self.html)
 
-        self.assertEqual(0, 1)
+        for concept_expected in ["business",
+                                 "project"]:
+            with self.subTest(f"Concept: '{concept_expected}'"):
+                self.assertIn(concept_expected, concepts)
 
 
 class TestElasticSearch(unittest.TestCase):

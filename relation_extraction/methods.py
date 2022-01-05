@@ -108,27 +108,16 @@ def get_public_service_name(html: str) -> str:
 
 def get_public_service_description(html) -> str:
     """
-    Idea: We can find the section with the description based on
-    XX is ... . This does mean that we have to know what XX is.
-
-    Algorithm: the first paragraph <p/> is returned.
-
-    TODO
-     * Implement noun phrase extraction?
-     * After noun-phrase extraction, Find section with description.
+    Use description from chunk extraction API.
     """
 
-    title = get_public_service_name(html)
+    conn = ConnectorTermExtraction(TERM_EXTRACTION)
+    chunk = conn.post_chunking(html=html,
+                               # language=language # TODO
+                               )
+    description = chunk.excerpt
 
-    main_noun_phrase = None  # TODO
-
-    soup = BeautifulSoup(html, "html.parser")
-    first_paragraph = soup.findAll('p', text=True)[0]  # Paragraph
-
-    text = first_paragraph.get_text()
-    text_clean = _clean_text(text)
-
-    return text_clean
+    return description
 
 
 def get_requirements(html: str) -> str:
@@ -183,6 +172,9 @@ def get_requirements(html):
     """
     For Criterion Requirements.
     """
+
+    # TODO use Chunk.
+
     soup = _get_soup_text(html)
     for section in _get_children_text(soup):
 

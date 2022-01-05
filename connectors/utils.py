@@ -24,7 +24,8 @@ def cas_from_cas_content(cas_content: str):
 
     cas = load_cas_from_xmi(decoded_cas_content,
                             typesystem=TYPESYSTEM,
-                            trusted=True)
+                            # trusted=True # TODO fix "TypeError: load_cas_from_xmi() got an unexpected keyword argument 'trusted'"
+                            )
 
     return cas
 
