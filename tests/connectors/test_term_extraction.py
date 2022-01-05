@@ -2,6 +2,7 @@ import os
 import unittest
 
 from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning
+from connectors.term_extraction_utils.models import ChunkModel
 from data.html import get_html, FILENAME_HTML
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
@@ -96,4 +97,5 @@ class TestConnectorTermExtractionChunking(unittest.TestCase):
         cas = self.conn.post_chunking(self.html,
                                       )
 
-        self.assertEqual(0, 1)
+        self.assertTrue(cas, "Expected something back.")
+        self.assertIsInstance(cas, ChunkModel)
