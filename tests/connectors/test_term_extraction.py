@@ -94,8 +94,8 @@ class TestConnectorTermExtractionChunking(unittest.TestCase):
         self.html = get_html(FILENAME_HTML)
 
     def test_return(self):
-        cas = self.conn.post_chunking(self.html,
-                                      )
+        chunk = self.conn.post_chunking(self.html,
+                                        )
 
-        self.assertTrue(cas, "Expected something back.")
-        self.assertIsInstance(cas, ChunkModel)
+        self.assertTrue(chunk, "Expected something back.")
+        self.assertIsInstance(chunk, ChunkModel)
