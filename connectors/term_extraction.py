@@ -4,7 +4,7 @@ from typing import List
 import cassis
 import requests
 
-from connectors.term_extraction_utils.models import ChunkModel
+from connectors.term_extraction_utils.models import ChunkModel, ContactInfo
 from connectors.utils import cas_from_cas_content, CONTACT_PARAGRAPH_TYPE, SOFA_ID
 
 KEY_CAS_CONTENT = 'cas_content'
@@ -52,9 +52,9 @@ class ConnectorTermExtraction:
 
         return chunk
 
-    def post_contact_info(self,
-                          html: str,
-                          language: str = 'en') -> List[str]:
+    def get_contact_info(self,
+                         html: str,
+                         language: str = 'en') -> List[str]:
         """
         Extracts the contact info from a webpage.
 
@@ -64,7 +64,31 @@ class ConnectorTermExtraction:
                 en, fr, de...
 
         Returns:
-            contact info, saved in a CAS object.
+            contact info, saved as list of strings.
+        """
+
+        contact_info_response = self._post_contact_info(html,
+                                                        language=language)
+
+        cas = cas_from_cas_content(contact_info_response.cas_content)
+
+        l_contact = _get_content(cas, CONTACT_PARAGRAPH_TYPE)
+
+        return l_contact
+
+    def _post_contact_info(self,
+                           html: str,
+                           language: str = 'en') -> ContactInfo:
+        """
+        Post request for Contact Info Extraction.
+
+        Args:
+            html: HTML of a webpage, classified as containing a public service procedure.
+            language:
+                en, fr, de...
+
+        Returns:
+            json
         """
 
         j = {
@@ -76,11 +100,9 @@ class ConnectorTermExtraction:
                           json=j)
         j_r = r.json()
 
-        cas = cas_from_cas_content(j_r[KEY_CAS_CONTENT])
+        contact_info_response = ContactInfo(**j_r)
 
-        l_contact = _get_content(cas, CONTACT_PARAGRAPH_TYPE)
-
-        return l_contact
+        return contact_info_response
 
 
 class ConnectionWarning(Warning):

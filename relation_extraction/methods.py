@@ -63,9 +63,9 @@ class RelationExtractor:
 
     def extract_contact_info(self) -> ContactPoint:
         conn = ConnectorTermExtraction(TERM_EXTRACTION)
-        l_info_text = conn.post_contact_info(html=self.html,
-                                             # language=language
-                                             )
+        l_info_text = conn.get_contact_info(html=self.html,
+                                            # language=language
+                                            )
 
         email, telephone, opening_hours = _split_contact_info(l_info_text)
 

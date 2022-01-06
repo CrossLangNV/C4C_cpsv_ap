@@ -17,3 +17,9 @@ class ChunkModel(BaseModel):
 
     def get_cas(self) -> cassis.Cas:
         return cas_from_cas_content(self.cas_content)
+
+
+class ContactInfo(BaseModel):
+    text: str
+    cas_content: str
+    language: str

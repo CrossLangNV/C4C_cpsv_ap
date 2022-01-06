@@ -1,4 +1,5 @@
 import os
+import re
 import unittest
 
 from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning
@@ -58,8 +59,8 @@ class TestConnectorTermExtractionContactInfo(unittest.TestCase):
         self.html = get_html(FILENAME_HTML)
 
     def test_return(self):
-        l_contact_info = self.conn.post_contact_info(self.html,
-                                                     )
+        l_contact_info = self.conn.get_contact_info(self.html,
+                                                    )
 
         with self.subTest("type"):
             self.assertIsInstance(l_contact_info, list)
@@ -99,3 +100,37 @@ class TestConnectorTermExtractionChunking(unittest.TestCase):
 
         self.assertTrue(chunk, "Expected something back.")
         self.assertIsInstance(chunk, ChunkModel)
+
+
+class TestConnectorTermExtractionText(unittest.TestCase):
+    """
+    For some files, the returned text within the CAS is lackluster.
+    Within these tests, this content is tested to be equal between the different requests.
+    """
+
+    def setUp(self) -> None:
+        self.conn = ConnectorTermExtraction(TERM_EXTRACTION,
+                                            test_connection=False)
+
+        self.html = get_html(FILENAME_HTML)
+
+    def test_(self):
+        # Text from
+        chunk = self.conn.post_chunking(self.html)
+        text_chunking = chunk.text
+
+        # Text from TIKA parsing
+        contact_info = self.conn._post_contact_info(self.html)
+        text_contact_info = contact_info.text
+
+        def clean_text_concat(s: str) -> str:
+            lines = [line.strip() for line in s.splitlines()]
+            concat = " ".join(lines)
+
+            concat_clean = re.sub('\s+', ' ', concat)
+            # concat_clean = concat.replace("  "," ") # Remove double spaces
+
+            return concat_clean
+
+        self.assertIn(clean_text_concat(text_chunking),
+                      clean_text_concat(text_contact_info))
