@@ -1,6 +1,7 @@
 import base64
 import os
 
+import cassis
 from cassis import load_cas_from_xmi, load_typesystem
 
 CONTACT_PARAGRAPH_TYPE = "de.tudarmstadt.ukp.dkpro.core.api.segmentation.type.ContactParagraph"
@@ -11,7 +12,7 @@ with open(os.path.join(MEDIA_ROOT, 'typesystem.xml'), 'rb') as f:
     TYPESYSTEM = load_typesystem(f)
 
 
-def cas_from_cas_content(cas_content: str):
+def cas_from_cas_content(cas_content: str) -> cassis.Cas:
     """
 
     Args:
