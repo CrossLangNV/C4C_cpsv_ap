@@ -2,8 +2,9 @@ import os
 import re
 import unittest
 
-from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning
+from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning, _get_content
 from connectors.term_extraction_utils.models import ChunkModel
+from connectors.utils import PARAGRAPH_TYPE, cas_from_cas_content
 from data.html import get_html, FILENAME_HTML
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
@@ -134,3 +135,11 @@ class TestConnectorTermExtractionText(unittest.TestCase):
 
         self.assertIn(clean_text_concat(text_chunking),
                       clean_text_concat(text_contact_info))
+
+    def test_get_paragraphs(self):
+        contact_info = self.conn._post_contact_info(self.html)
+
+        cas = cas_from_cas_content(contact_info.cas_content)
+        l_par = _get_content(cas, PARAGRAPH_TYPE)
+
+        self.assertEqual(0, 1)

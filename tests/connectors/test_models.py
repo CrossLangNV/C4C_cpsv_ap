@@ -1,10 +1,8 @@
 import unittest
 
-import cassis
-
 from connectors.term_extraction_utils.models import ChunkModel
 # Example of chunking response
-from connectors.utils import cas_from_cas_content, SOFA_ID
+from connectors.utils import CasChunk
 
 J_R = {'title': 'Financial plan: how to prepare an effective financial plan', 'tags': '',
        'excerpt': 'The financial plan is a dynamic instrument and an essential management tool. What should it include? Who can help?',
@@ -43,38 +41,9 @@ class TestChunkModel(unittest.TestCase):
     def test_cas(self):
         chunk = ChunkModel(**J_R_Dehyphen)
 
-        # TODO move correct file.
-        class CasChunk(cassis.Cas):
-
-            @classmethod
-            def from_cas_content(cls, cas_content: str):
-                return cls.from_cas(cas_from_cas_content(cas_content))
-
-            @classmethod
-            def from_cas(cls, cas: cassis.Cas):
-                """
-                Make a copy of a cassis.Cas object to this class .
-                based on https://stackoverflow.com/questions/60920784/python-how-to-convert-an-existing-parent-class-object-to-child-class-object
-
-                Args:
-                    cas:
-
-                Returns:
-
-                """
-                _self = cls(typesystem=cas.typesystem,
-                            lenient=cas._lenient)
-
-                _self.__dict__.update(cas.__dict__)
-
-                return _self
-
-        # get_decoded_cas_content(chunk.cas_content)
-
         cas_chunk = CasChunk.from_cas_content(chunk.cas_content)
 
-        v = cas_chunk.get_view(SOFA_ID)
-        t = v.get_covered_text()
+        t = cas_chunk.get_all_text()
 
         self.assertEqual(chunk.text,
                          t)
