@@ -138,11 +138,17 @@ class TestConnectorTermExtractionText(unittest.TestCase):
         self.assertIn(clean_text_concat(text_chunking),
                       clean_text_concat(text_contact_info))
 
-    def test_get_paragraphs(self):
+    def test_get_paragraphs(self, update_file=False):
+        if update_file:
+            # Run contact info extraction from connector and export to xml.
+            contact_info = self.conn._post_contact_info(self.html)
+            cas_wrapper = CasWrapper.from_cas_content(contact_info.cas_content)
+            cas_wrapper.to_xmi(self.filename_cas)
+
         cas_wrapper_contact_info = CasWrapper.from_xmi(self.filename_cas)
 
         with self.subTest("contact paragraphs"):
-            l_par__contact_info = cas_wrapper_contact_info.get_contact_paragraph()
+            l_par__contact_info = cas_wrapper_contact_info.get_paragraphs()
             self.assertEqual(141, len(l_par__contact_info))
 
         with self.subTest("contact paragraphs"):
@@ -161,6 +167,3 @@ class TestConnectorTermExtractionText(unittest.TestCase):
         # This is indeed all the text within the HTML
         print(cas_wrapper_contact_info.get_all_text())
         # More for debugging
-        print(cas_wrapper_contact_info.to_xmi('cas_contact_info_example.xml'))
-
-        self.assertEqual(0, 1)
