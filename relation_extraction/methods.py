@@ -112,9 +112,9 @@ def get_public_service_description(html) -> str:
     """
 
     conn = ConnectorTermExtraction(TERM_EXTRACTION)
-    chunk = conn.post_chunking(html=html,
-                               # language=language # TODO
-                               )
+    chunk = conn._post_chunking(html=html,
+                                # language=language # TODO
+                                )
     description = chunk.excerpt
 
     return description
@@ -176,9 +176,9 @@ def get_requirements(html):
     # TODO use Chunks.
 
     conn = ConnectorTermExtraction(TERM_EXTRACTION)
-    chunk = conn.post_chunking(html=html,
-                               # language=language # TODO
-                               )
+    chunk = conn._post_chunking(html=html,
+                                # language=language # TODO
+                                )
     # chunk.
     description = chunk.excerpt
 

@@ -4,7 +4,7 @@ import unittest
 
 from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning
 from connectors.term_extraction_utils.cas_utils import CasWrapper
-from connectors.term_extraction_utils.models import ChunkModel
+from connectors.term_extraction_utils.models import ChunkModel, TermsModel, QuestionAnswersModel
 from data.html import get_html, FILENAME_HTML
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
@@ -96,11 +96,41 @@ class TestConnectorTermExtractionChunking(unittest.TestCase):
         self.html = get_html(FILENAME_HTML)
 
     def test_return(self):
-        chunk = self.conn.post_chunking(self.html,
-                                        )
+        chunk = self.conn._post_chunking(self.html,
+                                         )
 
         self.assertTrue(chunk, "Expected something back.")
         self.assertIsInstance(chunk, ChunkModel)
+
+
+class TestConnectorTermExtractionTerms(unittest.TestCase):
+    def setUp(self) -> None:
+        self.conn = ConnectorTermExtraction(TERM_EXTRACTION,
+                                            test_connection=False)
+
+        self.html = get_html(FILENAME_HTML)
+
+    def test_return(self):
+        terms = self.conn._post_extract_terms(self.html,
+                                              )
+
+        self.assertTrue(terms, "Expected something back.")
+        self.assertIsInstance(terms, TermsModel)
+
+
+class TestConnectorTermExtractionQuestionsAnswers(unittest.TestCase):
+    def setUp(self) -> None:
+        self.conn = ConnectorTermExtraction(TERM_EXTRACTION,
+                                            test_connection=False)
+
+        self.html = get_html(FILENAME_HTML)
+
+    def test_return(self):
+        qa = self.conn._post_extract_questions_answers(self.html,
+                                                       )
+
+        self.assertTrue(qa, "Expected something back.")
+        self.assertIsInstance(qa, QuestionAnswersModel)
 
 
 class TestConnectorTermExtractionText(unittest.TestCase):
@@ -119,11 +149,11 @@ class TestConnectorTermExtractionText(unittest.TestCase):
 
     def test_(self):
         # Text from
-        chunk = self.conn.post_chunking(self.html)
+        chunk = self.conn._post_chunking(self.html)
         text_chunking = chunk.text
 
         # Text from TIKA parsing
-        contact_info = self.conn._post_contact_info(self.html)
+        contact_info = self.conn._post_extract_contact_info(self.html)
         text_contact_info = contact_info.text
 
         def clean_text_concat(s: str) -> str:
@@ -141,7 +171,7 @@ class TestConnectorTermExtractionText(unittest.TestCase):
     def test_get_paragraphs(self, update_file=False):
         if update_file:
             # Run contact info extraction from connector and export to xml.
-            contact_info = self.conn._post_contact_info(self.html)
+            contact_info = self.conn._post_extract_contact_info(self.html)
             cas_wrapper = CasWrapper.from_cas_content(contact_info.cas_content)
             cas_wrapper.to_xmi(self.filename_cas)
 

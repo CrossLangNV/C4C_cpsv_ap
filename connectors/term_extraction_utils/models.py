@@ -23,3 +23,11 @@ class ContactInfo(BaseModel):
     text: str
     cas_content: str
     language: str
+
+
+class TermsModel(BaseModel):
+    pass
+
+
+class QuestionAnswersModel(BaseModel):
+    pass
