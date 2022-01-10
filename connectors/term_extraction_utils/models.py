@@ -1,7 +1,7 @@
 import cassis
 from pydantic import BaseModel
 
-from connectors.utils import cas_from_cas_content
+from connectors.term_extraction_utils.cas_utils import cas_from_cas_content
 
 
 class ChunkModel(BaseModel):

@@ -2,9 +2,9 @@ import os
 import re
 import unittest
 
-from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning, _get_content
+from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning
+from connectors.term_extraction_utils.cas_utils import CasWrapper
 from connectors.term_extraction_utils.models import ChunkModel
-from connectors.utils import PARAGRAPH_TYPE, cas_from_cas_content
 from data.html import get_html, FILENAME_HTML
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
@@ -115,6 +115,8 @@ class TestConnectorTermExtractionText(unittest.TestCase):
 
         self.html = get_html(FILENAME_HTML)
 
+        self.filename_cas = os.path.join(os.path.dirname(__file__), "cas_contact_info_example.xml")
+
     def test_(self):
         # Text from
         chunk = self.conn.post_chunking(self.html)
@@ -137,9 +139,28 @@ class TestConnectorTermExtractionText(unittest.TestCase):
                       clean_text_concat(text_contact_info))
 
     def test_get_paragraphs(self):
-        contact_info = self.conn._post_contact_info(self.html)
+        cas_wrapper_contact_info = CasWrapper.from_xmi(self.filename_cas)
 
-        cas = cas_from_cas_content(contact_info.cas_content)
-        l_par = _get_content(cas, PARAGRAPH_TYPE)
+        with self.subTest("contact paragraphs"):
+            l_par__contact_info = cas_wrapper_contact_info.get_contact_paragraph()
+            self.assertEqual(141, len(l_par__contact_info))
+
+        with self.subTest("contact paragraphs"):
+            l_contact_par__contact_info = cas_wrapper_contact_info.get_contact_paragraph()
+            self.assertEqual(7, len(l_contact_par__contact_info))
+
+        with self.subTest("get_sentences"):
+            l_sentence = cas_wrapper_contact_info.get_sentences()
+
+        with self.subTest("Number of elements"):
+            self.assertGreaterEqual(len(l_sentence), len(l_par__contact_info))
+            self.assertGreaterEqual(len(l_par__contact_info), len(l_contact_par__contact_info))
+
+        # TODO check if text is covered by all the paragraphs
+        print(l_par__contact_info)
+        # This is indeed all the text within the HTML
+        print(cas_wrapper_contact_info.get_all_text())
+        # More for debugging
+        print(cas_wrapper_contact_info.to_xmi('cas_contact_info_example.xml'))
 
         self.assertEqual(0, 1)

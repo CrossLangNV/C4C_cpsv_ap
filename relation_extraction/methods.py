@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from c4c_cpsv_ap.connector.hierarchy import Provider
 from c4c_cpsv_ap.models import PublicService, PublicOrganisation, ContactPoint, Concept
 from connectors.term_extraction import ConnectorTermExtraction
-from connectors.utils import cas_from_cas_content, SOFA_ID
+from connectors.term_extraction_utils.cas_utils import cas_from_cas_content, SOFA_ID
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
 
@@ -173,7 +173,14 @@ def get_requirements(html):
     For Criterion Requirements.
     """
 
-    # TODO use Chunk.
+    # TODO use Chunks.
+
+    conn = ConnectorTermExtraction(TERM_EXTRACTION)
+    chunk = conn.post_chunking(html=html,
+                               # language=language # TODO
+                               )
+    # chunk.
+    description = chunk.excerpt
 
     soup = _get_soup_text(html)
     for section in _get_children_text(soup):

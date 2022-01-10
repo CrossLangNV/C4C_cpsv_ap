@@ -1,11 +1,10 @@
 import warnings
 from typing import List
 
-import cassis
 import requests
 
+from connectors.term_extraction_utils.cas_utils import cas_from_cas_content, CONTACT_PARAGRAPH_TYPE, _get_content
 from connectors.term_extraction_utils.models import ChunkModel, ContactInfo
-from connectors.utils import cas_from_cas_content, CONTACT_PARAGRAPH_TYPE, SOFA_ID
 
 KEY_CAS_CONTENT = 'cas_content'
 
@@ -72,7 +71,7 @@ class ConnectorTermExtraction:
 
         cas = cas_from_cas_content(contact_info_response.cas_content)
 
-        l_contact = _get_content(cas, CONTACT_PARAGRAPH_TYPE)
+        l_contact = _get_content(cas, CONTACT_PARAGRAPH_TYPE, remove_duplicate=True)
 
         return l_contact
 
@@ -111,27 +110,3 @@ class ConnectionWarning(Warning):
     """
 
 
-def _get_content(cas: cassis.Cas, annotation: str,
-                 sofa_id=SOFA_ID) -> List[str]:
-    """
-    Returns list of annotated objects within the CAS.
-
-    Args:
-        cas:
-        annotation: (str) annotation found in cas object.
-        sofa_id: uses default SOFA_ID.
-
-    Returns:
-
-    """
-    l_annotation_typesystem = cas.get_view(sofa_id).select(annotation)
-
-    """
-    [TYPESYSTEM.get_type(CONTACT_PARAGRAPH_TYPE)]
-    l_contact_typesystem[0].content_context
-    l_contact_typesystem[0].content
-    """
-
-    l_annotation = list(set(map(lambda ts: ts.content, l_annotation_typesystem)))
-
-    return l_annotation

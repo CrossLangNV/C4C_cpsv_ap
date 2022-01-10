@@ -1,8 +1,8 @@
 import unittest
 
-from connectors.term_extraction_utils.models import ChunkModel
 # Example of chunking response
-from connectors.utils import CasChunk
+from connectors.term_extraction_utils.cas_utils import CasWrapper
+from connectors.term_extraction_utils.models import ChunkModel
 
 J_R = {'title': 'Financial plan: how to prepare an effective financial plan', 'tags': '',
        'excerpt': 'The financial plan is a dynamic instrument and an essential management tool. What should it include? Who can help?',
@@ -41,7 +41,7 @@ class TestChunkModel(unittest.TestCase):
     def test_cas(self):
         chunk = ChunkModel(**J_R_Dehyphen)
 
-        cas_chunk = CasChunk.from_cas_content(chunk.cas_content)
+        cas_chunk = CasWrapper.from_cas_content(chunk.cas_content)
 
         t = cas_chunk.get_all_text()
 
