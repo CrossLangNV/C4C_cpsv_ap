@@ -3,7 +3,7 @@ import re
 import unittest
 
 from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning
-from connectors.term_extraction_utils.cas_utils import CasWrapper, cas_from_cas_content, _get_content, \
+from connectors.term_extraction_utils.cas_utils import CasWrapper, cas_from_cas_content, _get_annotation_text, \
     CONTACT_PARAGRAPH_TYPE
 from connectors.term_extraction_utils.models import ChunkModel, TermsModel, QuestionAnswersModel
 from data.html import get_html, FILENAME_HTML
@@ -94,18 +94,41 @@ class TestConnectorTermExtractionContactInfo(unittest.TestCase):
 
             cas = cas_from_cas_content(contact_info_response.cas_content)
 
-            l_contact = _get_content(cas, CONTACT_PARAGRAPH_TYPE, remove_duplicate=True)
+            l_contact = _get_annotation_text(cas,
+                                             CONTACT_PARAGRAPH_TYPE,
+                                             remove_duplicate=True,
+                                             strip=True)
+
+            def clean(s):
+                # Replace double newlines
+
+                s_lines = s.splitlines()
+                # Removes empty lines
+                s = "\n".join(filter(lambda l: l, s_lines))
+
+                return s
+
+            # cleaning + sorting
+            l_contact = list(sorted(map(clean, l_contact)))
 
             return l_contact
 
         with self.subTest("Sanity check: baseline contacts"):
             l_contact_baseline = get_baseline()
 
-            self.assertGreater(len(l_contact_baseline), 0)
+            self.assertLess(0, len(l_contact_baseline))
 
         l_contact = self.conn.get_contact_info(self.html)
 
-        self.assertListEqual(l_contact, l_contact_baseline)
+        with self.subTest("Length"):
+            self.assertEqual(len(l_contact_baseline), len(l_contact))
+
+        with self.subTest("Identical content"):
+            self.assertSetEqual(set(l_contact_baseline), set(l_contact), )
+
+        # Not important for now.
+        # with self.subTest("Identical order/sorting"):
+        #     self.assertListEqual(l_contact_baseline, l_contact)
 
     def assert_substring_in_list(self, l: list, substring: str):
         b_found = False

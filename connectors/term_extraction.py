@@ -3,8 +3,7 @@ from typing import List
 
 import requests
 
-from connectors.term_extraction_utils.cas_utils import cas_from_cas_content, CONTACT_PARAGRAPH_TYPE, _get_content, \
-    CasWrapper
+from connectors.term_extraction_utils.cas_utils import CasWrapper
 from connectors.term_extraction_utils.models import ChunkModel, ContactInfo, TermsModel, Document
 
 KEY_CAS_CONTENT = 'cas_content'
@@ -38,7 +37,8 @@ class ConnectorTermExtraction:
 
     def get_contact_info(self,
                          html: str,
-                         language: str = None) -> List[str]:
+                         language: str = None,
+                         unique: bool = True) -> List[str]:
         """
         Extracts the contact info from a webpage.
 
@@ -54,13 +54,12 @@ class ConnectorTermExtraction:
         contact_info_response = self._post_extract_contact_info(html,
                                                                 language=language)
 
-        cas = cas_from_cas_content(contact_info_response.cas_content)
-
-        l_contact = _get_content(cas, CONTACT_PARAGRAPH_TYPE, remove_duplicate=True)
-
-        # TODO use cas_wrapper instead
         # TODO use cleaned version of contact
         # TODO test that cleaned version returns the same values.
+
+        cas = CasWrapper.from_cas_content(contact_info_response.cas_content)
+
+        l_contact = cas.get_contact_paragraph(unique=unique)
 
         return l_contact
 

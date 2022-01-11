@@ -1,9 +1,8 @@
 import base64
 import os
-from typing import List
+from typing import List, Generator
 
-import cassis
-from cassis import load_cas_from_xmi, load_typesystem
+from cassis import load_cas_from_xmi, load_typesystem, Cas, typesystem
 
 # [Annotation]
 TAG_TYPE = "com.crosslang.uimahtmltotext.uima.type.ValueBetweenTagType"
@@ -20,7 +19,7 @@ with open(os.path.join(MEDIA_ROOT, 'typesystem.xml'), 'rb') as f:
     TYPESYSTEM = load_typesystem(f)
 
 
-def cas_from_cas_content(cas_content: str) -> cassis.Cas:
+def cas_from_cas_content(cas_content: str) -> Cas:
     """
 
     Args:
@@ -43,7 +42,7 @@ def get_decoded_cas_content(cas_content: str):
     return base64.b64decode(cas_content).decode('utf-8')
 
 
-class CasWrapper(cassis.Cas):
+class CasWrapper(Cas):
     """
     wrapper around cas for our cas objects for easier extraction of content.
     """
@@ -62,7 +61,7 @@ class CasWrapper(cassis.Cas):
         return cls.from_cas(cas_from_cas_content(cas_content))
 
     @classmethod
-    def from_cas(cls, cas: cassis.Cas):
+    def from_cas(cls, cas: Cas):
         """
         Make a copy of a cassis.Cas object to this class .
         based on https://stackoverflow.com/questions/60920784/python-how-to-convert-an-existing-parent-class-object-to-child-class-object
@@ -93,19 +92,31 @@ class CasWrapper(cassis.Cas):
         return t
 
     def get_paragraphs(self) -> List[str]:
-        l_par = _get_content(self, PARAGRAPH_TYPE, remove_duplicate=False)
+        l_par = _get_annotation_text(self, PARAGRAPH_TYPE, remove_duplicate=False)
 
         return l_par
 
-    def get_contact_paragraph(self):
+    def get_contact_paragraph(self,
+                              clean: bool = True,
+                              unique: bool = False):
         """
 
-        It could be possible that this is not available in all CAS files
+        TODO
+         - It could be possible that this is not available in all CAS files
+
+        Args:
+            clean: Instead of taking the text, use the pre-processed content contained within.
+            unique:
+
         Returns:
 
         """
 
-        l_contact_paragraph = _get_content(self, CONTACT_PARAGRAPH_TYPE, remove_duplicate=False)
+        if clean:
+            l_contact_paragraph = _get_annotation_content(self, CONTACT_PARAGRAPH_TYPE, remove_duplicate=unique)
+
+        else:
+            l_contact_paragraph = _get_annotation_text(self, CONTACT_PARAGRAPH_TYPE, remove_duplicate=unique)
 
         return l_contact_paragraph
 
@@ -117,7 +128,7 @@ class CasWrapper(cassis.Cas):
         Returns:
             List with sentences as strings.
         """
-        l_sentence = _get_content(self, SENTENCE_TYPE)
+        l_sentence = _get_annotation_text(self, SENTENCE_TYPE)
 
         return l_sentence
 
@@ -129,7 +140,7 @@ class CasWrapper(cassis.Cas):
 
         """
 
-        l_NER = _get_content(self, NER_TYPE)
+        l_NER = _get_annotation_text(self, NER_TYPE)
 
         return l_NER
 
@@ -143,7 +154,7 @@ class CasWrapper(cassis.Cas):
 
         """
 
-        return _get_content(self, QUESTION_PARAGRAPH_TYPE)
+        return _get_annotation_text(self, QUESTION_PARAGRAPH_TYPE)
 
     def _get_tag(self):
         """
@@ -152,7 +163,7 @@ class CasWrapper(cassis.Cas):
         Returns:
 
         """
-        return _get_content(self, TAG_TYPE)
+        return _get_annotation_text(self, TAG_TYPE)
 
     def _get_tokens(self) -> List[str]:
         """
@@ -162,16 +173,18 @@ class CasWrapper(cassis.Cas):
             list of all terms, as found in the HTML. Does contain duplicates.
 
         TODO
-         - Could be interesting to return term, lemma etc (as defined in typesystem)
+         - Could be interesting to return term, lemma etc (as defined in feature structures (see typesystem)
          - Implement extra methods for cleaned 'term', 'lemma'. With cleaned I mean, removal of duplicates
         """
 
-        return _get_content(self, TOKEN_TYPE, remove_duplicate=True)
+        return _get_annotation_text(self, TOKEN_TYPE, remove_duplicate=True)
 
 
-def _get_content(cas: cassis.Cas, annotation: str,
-                 sofa_id=SOFA_ID,
-                 remove_duplicate: bool = False) -> List[str]:
+def _get_annotation_text(cas: Cas,
+                         annotation: str,
+                         sofa_id=SOFA_ID,
+                         remove_duplicate: bool = False,
+                         strip: bool = True) -> List[str]:
     """
     Returns list of annotated objects within the CAS.
 
@@ -179,22 +192,20 @@ def _get_content(cas: cassis.Cas, annotation: str,
         cas:
         annotation: (str) annotation found in cas object.
         sofa_id: uses default SOFA_ID.
+        strip: flag to strip the strings.
 
     Returns:
 
     """
-    l_annotation_typesystem = cas.get_view(sofa_id).select(annotation)
-
-    """
-    [TYPESYSTEM.get_type(CONTACT_PARAGRAPH_TYPE)]
-    l_contact_typesystem[0].content_context
-    l_contact_typesystem[0].content
-    """
 
     l_annotation = []
 
-    for ts in l_annotation_typesystem:
+    for ts in _get_list_feature_structure(cas, annotation):
         s = ts.get_covered_text()
+
+        if strip:
+            s = s.strip()
+
         l_annotation.append(s)
 
     if remove_duplicate:
@@ -202,3 +213,56 @@ def _get_content(cas: cassis.Cas, annotation: str,
         return list(set(l_annotation))
 
     return l_annotation
+
+
+def _get_annotation_content(cas: Cas,
+                            annotation: str,
+                            sofa_id=SOFA_ID,
+                            remove_duplicate: bool = False) -> List[str]:
+    """
+    As defined in the typesystem, most structures contain a content feature with cleaned text.
+
+    Args:
+        cas:
+        annotation: (str) annotation found in cas object.
+        sofa_id: uses default SOFA_ID.
+
+    Returns:
+        List of cleaned content found within each annotation
+
+    """
+
+    l_annotation = []
+
+    """
+    [TYPESYSTEM.get_type(CONTACT_PARAGRAPH_TYPE)]
+    l_contact_typesystem[0].content_context
+    l_contact_typesystem[0].content
+    """
+
+    for fs in _get_list_feature_structure(cas, annotation):
+        s = fs.content
+        l_annotation.append(s)
+
+    if remove_duplicate:
+        # Remove duplicates (and sorts as a consequence)
+        return list(set(l_annotation))
+
+    return l_annotation
+
+
+def _get_list_feature_structure(cas: Cas,
+                                annotation: str,
+                                sofa_id=SOFA_ID
+                                ) -> Generator[typesystem.FeatureStructure, None, None]:
+    """
+    Iterates over the default view and returns all the typesystems.
+    This allows for further processing, such as receiving the contained text or features.
+
+    Returns:
+        List (generator) with Feature structures.
+        These are defined in the typesystem.
+    """
+
+    l_feature_structure = cas.get_view(sofa_id).select(annotation)
+    return l_feature_structure
