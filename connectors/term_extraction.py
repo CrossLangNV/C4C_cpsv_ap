@@ -4,7 +4,7 @@ from typing import List
 import requests
 
 from connectors.term_extraction_utils.cas_utils import CasWrapper
-from connectors.term_extraction_utils.models import ChunkModel, ContactInfo, TermsModel, Document
+from connectors.term_extraction_utils.models import ChunkModel, ContactInfo, Document, QuestionAnswersModel, TermsModel
 
 KEY_CAS_CONTENT = 'cas_content'
 
@@ -15,6 +15,7 @@ class ConnectorTermExtraction:
     """
 
     _PATH_EXTRACT_TERMS = "/extract_terms"
+    _PATH_EXTRACT_QA = "/extract_questions_answers"
 
     def __init__(self, url,
                  test_connection: bool = True):
@@ -146,19 +147,22 @@ class ConnectorTermExtraction:
     def _post_extract_questions_answers(self, html: str,
                                         language: str = None):
         """
-        TODO
+
         Returns:
 
         """
-        raise NotImplementedError()
+
         doc = Document(html=html,
                        language=language
                        )
 
-        r = requests.post(self.url + "/extract_contact_info",
+        r = requests.post(self.url + self._PATH_EXTRACT_QA,
                           json=doc.dict())
         j_r = r.json()
-        return
+
+        qa_response = QuestionAnswersModel.from_json(j_r)
+
+        return qa_response
 
 
 class ConnectionWarning(Warning):

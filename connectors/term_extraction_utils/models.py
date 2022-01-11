@@ -61,6 +61,5 @@ class TermsModel(ChunkModel):
     pass
 
 
-class QuestionAnswersModel(BaseModel):
-    # TODO
+class QuestionAnswersModel(ExtractModel):
     pass

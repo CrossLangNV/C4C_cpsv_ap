@@ -2,11 +2,11 @@ import os
 import re
 import unittest
 
-from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning
-from connectors.term_extraction_utils.cas_utils import CasWrapper, cas_from_cas_content, _get_annotation_text, \
+from connectors.term_extraction import ConnectionWarning, ConnectorTermExtraction
+from connectors.term_extraction_utils.cas_utils import _get_annotation_text, cas_from_cas_content, CasWrapper, \
     CONTACT_PARAGRAPH_TYPE
-from connectors.term_extraction_utils.models import ChunkModel, TermsModel, QuestionAnswersModel
-from data.html import get_html, FILENAME_HTML
+from connectors.term_extraction_utils.models import ChunkModel, QuestionAnswersModel, TermsModel
+from data.html import FILENAME_HTML, get_html
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
 
