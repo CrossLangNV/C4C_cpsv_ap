@@ -3,7 +3,8 @@ import re
 import unittest
 
 from connectors.term_extraction import ConnectorTermExtraction, ConnectionWarning
-from connectors.term_extraction_utils.cas_utils import CasWrapper
+from connectors.term_extraction_utils.cas_utils import CasWrapper, cas_from_cas_content, _get_content, \
+    CONTACT_PARAGRAPH_TYPE
 from connectors.term_extraction_utils.models import ChunkModel, TermsModel, QuestionAnswersModel
 from data.html import get_html, FILENAME_HTML
 
@@ -79,6 +80,33 @@ class TestConnectorTermExtractionContactInfo(unittest.TestCase):
 
             self.assert_substring_in_list(l_contact_info, address)
 
+    def test_cleaned_contact_info(self):
+        """
+        Within the CAS
+
+        Returns:
+
+        """
+
+        def get_baseline():
+            contact_info_response = self.conn._post_extract_contact_info(self.html,
+                                                                         )
+
+            cas = cas_from_cas_content(contact_info_response.cas_content)
+
+            l_contact = _get_content(cas, CONTACT_PARAGRAPH_TYPE, remove_duplicate=True)
+
+            return l_contact
+
+        with self.subTest("Sanity check: baseline contacts"):
+            l_contact_baseline = get_baseline()
+
+            self.assertGreater(len(l_contact_baseline), 0)
+
+        l_contact = self.conn.get_contact_info(self.html)
+
+        self.assertListEqual(l_contact, l_contact_baseline)
+
     def assert_substring_in_list(self, l: list, substring: str):
         b_found = False
         for item in l:
@@ -109,6 +137,7 @@ class TestConnectorTermExtractionTerms(unittest.TestCase):
                                             test_connection=False)
 
         self.html = get_html(FILENAME_HTML)
+        self.language = "en"
 
     def test_return(self):
         terms = self.conn._post_extract_terms(self.html,
@@ -116,6 +145,27 @@ class TestConnectorTermExtractionTerms(unittest.TestCase):
 
         self.assertTrue(terms, "Expected something back.")
         self.assertIsInstance(terms, TermsModel)
+
+    def test_get_terms(self):
+        """
+        Test that you get a list of terms within a webpage
+
+        Returns:
+
+        """
+
+        l_terms = self.conn.get_terms(self.html,
+                                      self.language)
+
+        with self.subTest("Type"):
+            self.assertIsInstance(l_terms, list)
+
+        with self.subTest("Non-empty"):
+            self.assertTrue(len(l_terms), "Should be non-empty")
+
+        with self.subTest("List of strings"):
+            for s in l_terms:
+                self.assertIsInstance(s, str)
 
 
 class TestConnectorTermExtractionQuestionsAnswers(unittest.TestCase):

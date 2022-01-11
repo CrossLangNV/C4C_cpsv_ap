@@ -154,16 +154,19 @@ class CasWrapper(cassis.Cas):
         """
         return _get_content(self, TAG_TYPE)
 
-    def _get_tokens(self):
+    def _get_tokens(self) -> List[str]:
         """
-
-        TODO test on file with tokens
+        Otherwise known as terms.
 
         Returns:
+            list of all terms, as found in the HTML. Does contain duplicates.
 
+        TODO
+         - Could be interesting to return term, lemma etc (as defined in typesystem)
+         - Implement extra methods for cleaned 'term', 'lemma'. With cleaned I mean, removal of duplicates
         """
 
-        return _get_content(self, TOKEN_TYPE)
+        return _get_content(self, TOKEN_TYPE, remove_duplicate=True)
 
 
 def _get_content(cas: cassis.Cas, annotation: str,

@@ -1,24 +1,21 @@
 import warnings
-from typing import List, Union
+from typing import List
 
 import requests
-from pydantic import BaseModel
 
-from connectors.term_extraction_utils.cas_utils import cas_from_cas_content, CONTACT_PARAGRAPH_TYPE, _get_content
-from connectors.term_extraction_utils.models import ChunkModel, ContactInfo
+from connectors.term_extraction_utils.cas_utils import cas_from_cas_content, CONTACT_PARAGRAPH_TYPE, _get_content, \
+    CasWrapper
+from connectors.term_extraction_utils.models import ChunkModel, ContactInfo, TermsModel, Document
 
 KEY_CAS_CONTENT = 'cas_content'
-
-
-class Document(BaseModel):
-    html: str
-    language: Union[str, type(None)]
 
 
 class ConnectorTermExtraction:
     """
     Connects to the Term Extraction API
     """
+
+    _PATH_EXTRACT_TERMS = "/extract_terms"
 
     def __init__(self, url,
                  test_connection: bool = True):
@@ -41,7 +38,7 @@ class ConnectorTermExtraction:
 
     def get_contact_info(self,
                          html: str,
-                         language: str = 'en') -> List[str]:
+                         language: str = None) -> List[str]:
         """
         Extracts the contact info from a webpage.
 
@@ -61,11 +58,28 @@ class ConnectorTermExtraction:
 
         l_contact = _get_content(cas, CONTACT_PARAGRAPH_TYPE, remove_duplicate=True)
 
+        # TODO use cas_wrapper instead
+        # TODO use cleaned version of contact
+        # TODO test that cleaned version returns the same values.
+
         return l_contact
+
+    def get_terms(self, html: str,
+                  language: str = "en") -> List[str]:
+
+        terms_return = self._post_extract_terms(html,
+                                                language=language)
+
+        cas = CasWrapper.from_cas_content(terms_return.cas_content)
+
+        # TODO use cleaned list of terms/lemmas
+        l_terms = cas._get_tokens()
+
+        return l_terms
 
     def _post_chunking(self,
                        html: str,
-                       language: str = 'en'):
+                       language: str = None):
 
         doc = Document(html=html,
                        language=language
@@ -75,31 +89,37 @@ class ConnectorTermExtraction:
                           json=doc.dict())
         j_r = r.json()
 
-        j_r_dehyphenated = {key.replace("-", "_"): value for key, value in j_r.items()}
-        chunk = ChunkModel(**j_r_dehyphenated)
+        chunk = ChunkModel.from_json(j_r)
 
         return chunk
 
-    def _post_extract_terms(self):
+    def _post_extract_terms(self, html: str,
+                            language: str = "en") -> TermsModel:
         """
-        TODO
+
+        Args:
+            html:
+            language: In this post request, it is required to provide the language code.
+
         Returns:
 
         """
 
-        raise NotImplementedError()
+        if language is None:
+            warnings.warn("Language should be not-None", UserWarning)
+
         doc = Document(html=html,
                        language=language
                        )
 
-        r = requests.post(self.url + "/extract_contact_info",
+        r = requests.post(self.url + self._PATH_EXTRACT_TERMS,
                           json=doc.dict())
         j_r = r.json()
-        return
+        return TermsModel.from_json(j_r)
 
     def _post_extract_contact_info(self,
                                    html: str,
-                                   language: str = 'en') -> ContactInfo:
+                                   language: str = None) -> ContactInfo:
         """
         Post request for Contact Info Extraction.
 
@@ -124,7 +144,8 @@ class ConnectorTermExtraction:
 
         return contact_info_response
 
-    def _post_extract_questions_answers(self):
+    def _post_extract_questions_answers(self, html: str,
+                                        language: str = None):
         """
         TODO
         Returns:
