@@ -9,6 +9,8 @@ services:
     container_name: cpsv_ap_python
     build:
       context: .
+      args:
+        - GIT_TOKEN=$GIT_TOKEN
     networks:
       c4cnet:
     ports:
