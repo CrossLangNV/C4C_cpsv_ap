@@ -2,6 +2,7 @@ import warnings
 from typing import List
 
 import requests
+from pydantic import BaseModel
 
 from connectors.term_extraction_utils.cas_utils import CasWrapper
 from connectors.term_extraction_utils.models import ChunkModel, ContactInfo, Document, QuestionAnswersModel, TermsModel
@@ -9,14 +10,7 @@ from connectors.term_extraction_utils.models import ChunkModel, ContactInfo, Doc
 KEY_CAS_CONTENT = 'cas_content'
 
 
-class ConnectorTermExtraction:
-    """
-    Connects to the Term Extraction API
-    """
-
-    _PATH_EXTRACT_TERMS = "/extract_terms"
-    _PATH_EXTRACT_QA = "/extract_questions_answers"
-
+class Connector:
     def __init__(self, url,
                  test_connection: bool = True):
         """
@@ -35,6 +29,15 @@ class ConnectorTermExtraction:
                 requests.get(url)
             except requests.exceptions.ConnectionError as e:
                 warnings.warn(f"Can't reach API.\n{e}", ConnectionWarning)
+
+
+class ConnectorTermExtraction(Connector):
+    """
+    Connects to the Term Extraction API
+    """
+
+    _PATH_EXTRACT_TERMS = "/extract_terms"
+    _PATH_EXTRACT_QA = "/extract_questions_answers"
 
     def get_contact_info(self,
                          html: str,
@@ -66,7 +69,6 @@ class ConnectorTermExtraction:
 
     def get_terms(self, html: str,
                   language: str = "en") -> List[str]:
-
         terms_return = self._post_extract_terms(html,
                                                 language=language)
 
@@ -80,7 +82,6 @@ class ConnectorTermExtraction:
     def _post_chunking(self,
                        html: str,
                        language: str = None):
-
         doc = Document(html=html,
                        language=language
                        )
@@ -163,6 +164,50 @@ class ConnectorTermExtraction:
         qa_response = QuestionAnswersModel.from_json(j_r)
 
         return qa_response
+
+
+class Sentence(BaseModel):
+    string: str
+
+
+class Label(BaseModel):
+    name: str
+
+
+class ConnectorContactInfoClassification(Connector):
+    # TODO this should actually be implemented in the API repo and installed from there!
+
+    _PATH_CLASSIFY_CONTACT_TYPE = "/classify_contact_type"
+    _PATH_CLASSIFY_EMAIL = "/classify_contact_type/email"
+    _PATH_CLASSIFY_LABELS = "/classify_contact_type/labels"
+
+    def _post_classify_contact_type(self,
+                                    s: str) -> Label:
+        sent = Sentence(string=s)
+
+        r = requests.post(self.url + self._PATH_CLASSIFY_CONTACT_TYPE,
+                          json=sent.dict())
+        j_r = r.json()
+
+        label = Label(**j_r)
+
+        return label
+
+    def _get_classify_contact_type_labels(self) -> List[str]:
+        r = requests.get(self.url + self._PATH_CLASSIFY_LABELS)
+        l = r.json()
+
+        return l
+
+    def _post_classify_contact_type_email(self,
+                                          s: str) -> bool:
+        sent = Sentence(string=s)
+
+        r = requests.post(self.url + self._PATH_CLASSIFY_EMAIL,
+                          json=sent.dict())
+        b = r.json()
+
+        return b
 
 
 class ConnectionWarning(Warning):

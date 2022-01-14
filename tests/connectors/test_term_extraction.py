@@ -2,13 +2,15 @@ import os
 import re
 import unittest
 
-from connectors.term_extraction import ConnectionWarning, ConnectorTermExtraction
+from connectors.term_extraction import ConnectionWarning, ConnectorContactInfoClassification, ConnectorTermExtraction, \
+    Label
 from connectors.term_extraction_utils.cas_utils import _get_annotation_text, cas_from_cas_content, CasWrapper, \
     CONTACT_PARAGRAPH_TYPE
 from connectors.term_extraction_utils.models import ChunkModel, QuestionAnswersModel, TermsModel
 from data.html import FILENAME_HTML, get_html
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
+CONTACT_CLASSIFICATION = os.environ["CONTACT_CLASSIFICATION"]
 
 
 class TestConnectorTermExtraction(unittest.TestCase):
@@ -270,3 +272,42 @@ class TestConnectorTermExtractionText(unittest.TestCase):
         # This is indeed all the text within the HTML
         print(cas_wrapper_contact_info.get_all_text())
         # More for debugging
+
+
+class TestConnectorContactInfoClassification(unittest.TestCase):
+    s_email = "This is an email@host.com"
+
+    label_email = "EMAIL"
+
+    def test_connect(self):
+
+        try:
+            with self.assertWarns(ConnectionWarning) as cm:
+
+                ConnectorContactInfoClassification(CONTACT_CLASSIFICATION,
+                                                   test_connection=True)
+
+        except AssertionError as e:
+            # Great! We were able to connect to the API.
+            pass
+        else:
+            self.fail(f"Should not raised a warning.\n{cm.warning}")
+
+    def test_classify_contact_type(self):
+        conn = ConnectorContactInfoClassification(CONTACT_CLASSIFICATION)
+        label = conn._post_classify_contact_type(self.s_email)
+
+        self.assertIsInstance(label, Label)
+        self.assertEqual(self.label_email, label.name)
+
+    def test_labels(self):
+        conn = ConnectorContactInfoClassification(CONTACT_CLASSIFICATION)
+        labels = conn._get_classify_contact_type_labels()
+
+        self.assertIn(self.label_email, labels)
+
+    def test_classify_email(self):
+        conn = ConnectorContactInfoClassification(CONTACT_CLASSIFICATION)
+        b = conn._post_classify_contact_type_email(self.s_email)
+
+        self.assertEqual(True, b)
