@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from c4c_cpsv_ap.connector.hierarchy import Provider
-from c4c_cpsv_ap.models import PublicService, PublicOrganisation, ContactPoint, Concept
+from c4c_cpsv_ap.models import Concept, ContactPoint, PublicOrganisation, PublicService
 from connectors.term_extraction import ConnectorTermExtraction
 from connectors.term_extraction_utils.cas_utils import cas_from_cas_content, SOFA_ID
 
@@ -67,6 +67,8 @@ class RelationExtractor:
                                             # language=language
                                             )
 
+        # TODO use API instead.
+        # TODO move these classifiers to the API.
         email, telephone, opening_hours = _split_contact_info(l_info_text)
 
         contact_info = ContactPoint(email=email,  # TODO
