@@ -6,6 +6,7 @@ from relation_extraction.methods import RelationExtractor
 
 def main(filename: str,  # input filename html
          context: str,  # URL
+         country_code: str,  # ISO 3166
          filename_rdf: str):  # output filename
     """
     (for DEMO)
@@ -26,7 +27,9 @@ def main(filename: str,  # input filename html
     html = get_html(filename)
 
     # Apply relation extraction
-    relation_extractor = RelationExtractor(html, context=context)
+    relation_extractor = RelationExtractor(html,
+                                           context=context,
+                                           country_code=country_code)
 
     relation_extractor.extract_all()
 
@@ -41,4 +44,5 @@ if __name__ == '__main__':
     # TODO convert to user-script
     main(filename=FILENAME_HTML,
          context="https://1819.brussels",
+         country_code="BE",
          filename_rdf=os.path.join(os.path.dirname(__file__), 'example_html_extraction_cpsv-ap.rdf'))

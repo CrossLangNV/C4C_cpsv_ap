@@ -1,22 +1,27 @@
 import os
-from typing import Generator, List, Tuple
+import warnings
+from typing import Generator, List
 
 import requests
 from bs4 import BeautifulSoup
+from pydantic import BaseModel
 
 from c4c_cpsv_ap.connector.hierarchy import Provider
 from c4c_cpsv_ap.models import Concept, ContactPoint, PublicOrganisation, PublicService
-from connectors.term_extraction import ConnectorTermExtraction
+from connectors.term_extraction import ConnectorContactInfoClassification, ConnectorTermExtraction, TypesContactInfo
 from connectors.term_extraction_utils.cas_utils import cas_from_cas_content, SOFA_ID
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
+CONTACT_CLASSIFICATION = os.environ["CONTACT_CLASSIFICATION"]
 
 
 class RelationExtractor:
-    def __init__(self, html, context):
+    def __init__(self, html, context,
+                 country_code: str):
         # Save data
         self.html = html
         self.context = context
+        self.country_code = country_code
 
         # Init provider
         self.provider = Provider()
@@ -67,14 +72,15 @@ class RelationExtractor:
                                             # language=language
                                             )
 
-        # TODO use API instead.
-        # TODO move these classifiers to the API.
-        email, telephone, opening_hours = _split_contact_info(l_info_text)
+        contact_info_split = _split_contact_info(l_info_text, country_code=self.country_code)
 
-        contact_info = ContactPoint(email=email,  # TODO
-                                    telephone=telephone,  # TODO
-                                    opening_hours=opening_hours  # TODO
+        contact_info = ContactPoint(email=contact_info_split.email,
+                                    telephone=contact_info_split.telephone,
+                                    opening_hours=contact_info_split.opening_hours
                                     )
+
+        # TODO something with this info.
+        contact_info_split.address
 
         return contact_info
 
@@ -222,7 +228,59 @@ def _get_children_text(soup) -> list:
         yield text_clean
 
 
-def _split_contact_info(l_info_text: List[str]) -> Tuple[List[str], List[str], List[str]]:
+class ContactInfoSplit(BaseModel):
+    """
+    Contains all info regarding the contact info
+    """
+    email: List[str] = []
+    telephone: List[str] = []
+    opening_hours: List[str] = []
+    address: List[str] = []
+
+    def add_email(self, s: str, unique=True):
+        self._add_x(s=s, unique=unique, el=self.email)
+        # if unique and s in self.email:
+        #     return
+        # self.email.append(s)
+
+    def add_telephone(self, s: str, unique=True):
+        self._add_x(s=s, unique=unique, el=self.telephone)
+        # if unique and s in self.telephone:
+        #     return
+        # self.telephone.append(s)
+
+    def add_opening_hours(self, s: str, unique=True):
+        self._add_x(s=s, unique=unique, el=self.opening_hours)
+        # if unique and s in self.opening_hours:
+        #     return
+        # self.opening_hours.append(s)
+
+    def add_address(self, s: str, unique=True):
+        self._add_x(s=s, unique=unique, el=self.address)
+        # if unique and s in self.address:
+        #     return
+        # self.address.append(s)
+
+    @staticmethod
+    def _add_x(s: str, unique: bool, el) -> None:
+        """
+        private class to add a sentence/string to the element (el)
+
+        Args:
+            s: sentence/string to add to the list.
+            unique: flag to check for duplicates.
+            el: one of parameters of this class.
+
+        Returns:
+            None
+        """
+        if unique and s in el:
+            return
+        el.append(s)
+
+
+def _split_contact_info(l_info_text: List[str],
+                        country_code: str) -> ContactInfoSplit:
     """
     Split up contact info into email, telephone and opening hours.
     Args:
@@ -231,44 +289,30 @@ def _split_contact_info(l_info_text: List[str]) -> Tuple[List[str], List[str], L
     Returns:
 
     """
-    email = []
-    telephone = []
-    opening_hours = []
 
-    def filter_func_opening_hours(text) -> bool:
+    contact_info_split = ContactInfoSplit()
 
-        text_lower = text.lower()
-
-        whitelist = [
-            "week"
-            "day",  # And all days: Monday, Tuesday...
-            # Mon.Mo.
-            # Tue.Tu.
-            # Wed.We.
-            # Thu.Th.
-            # Fri.Fr.
-            # Sat.Sa.
-            # Sun.Su
-        ]
-        for day in whitelist:
-            if day in text_lower:
-                return True
-        return False
+    conn = ConnectorContactInfoClassification(CONTACT_CLASSIFICATION)
 
     for text in l_info_text:
 
-        # TODO Implement a proper classifier
-        if "@" in text:
-            # Filter unique
-            if text not in email:
-                email.append(text)
+        l_labels = conn._post_classify_contact_type(text,
+                                                    country_code=country_code)
 
-        elif filter_func_opening_hours(text):
-            if text not in opening_hours:
-                opening_hours.append(text)
+        if len(l_labels) == 0:
+            warnings.warn(f"Could not find a type of contact info: {text}")
 
-        else:
-            if text not in telephone:
-                telephone.append(text)
+        for label in l_labels:
+            if label.name == TypesContactInfo.EMAIL.name:
+                contact_info_split.add_email(text)
 
-    return email, telephone, opening_hours
+            if label.name == TypesContactInfo.PHONE.name:
+                contact_info_split.add_telephone(text)
+
+            if label.name == TypesContactInfo.HOURS.name:
+                contact_info_split.add_opening_hours(text)
+
+            if label.name == TypesContactInfo.ADDRESS.name:
+                contact_info_split.add_address(text)
+
+    return contact_info_split

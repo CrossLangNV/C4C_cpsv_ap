@@ -1,8 +1,9 @@
 import warnings
+from enum import auto, Enum
 from typing import List
 
 import requests
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
 from connectors.term_extraction_utils.cas_utils import CasWrapper
 from connectors.term_extraction_utils.models import ChunkModel, ContactInfo, Document, QuestionAnswersModel, TermsModel
@@ -170,28 +171,64 @@ class Sentence(BaseModel):
     string: str
 
 
+class SentenceCountry(Sentence):
+    country_code: str
+
+
+class TypesContactInfo(Enum):
+    """
+    Using auto, because we don't need a value.
+
+    """
+    EMAIL = auto()
+    PHONE = auto()
+    HOURS = auto()
+    ADDRESS = auto()
+
+
 class Label(BaseModel):
     name: str
+
+    @validator("name")
+    def name_is_valid(cls, v: str) -> str:
+        """
+        Check if name is one of contact info types
+
+        Args:
+            v:
+
+        Returns:
+
+        """
+        if v not in [t.name for t in TypesContactInfo]:
+            raise ValueError(f"Must be in {TypesContactInfo}, got '{v}'.")
+        return v
 
 
 class ConnectorContactInfoClassification(Connector):
     # TODO this should actually be implemented in the API repo and installed from there!
 
     _PATH_CLASSIFY_CONTACT_TYPE = "/classify_contact_type"
-    _PATH_CLASSIFY_EMAIL = "/classify_contact_type/email"
     _PATH_CLASSIFY_LABELS = "/classify_contact_type/labels"
 
+    _PATH_CLASSIFY_EMAIL = "/classify_contact_type/email"
+    _PATH_CLASSIFY_HOURS = "/classify_contact_type/hours"
+    _PATH_CLASSIFY_TELEPHONE = "/classify_contact_type/telephone"
+    _PATH_CLASSIFY_ADDRESS = "/classify_contact_type/address"
+
     def _post_classify_contact_type(self,
-                                    s: str) -> Label:
-        sent = Sentence(string=s)
+                                    s: str,
+                                    country_code: str) -> List[Label]:
+        sent = SentenceCountry(string=s,
+                               country_code=country_code)
 
         r = requests.post(self.url + self._PATH_CLASSIFY_CONTACT_TYPE,
                           json=sent.dict())
         j_r = r.json()
 
-        label = Label(**j_r)
+        labels = [Label(**label) for label in j_r]
 
-        return label
+        return labels
 
     def _get_classify_contact_type_labels(self) -> List[str]:
         r = requests.get(self.url + self._PATH_CLASSIFY_LABELS)
@@ -204,6 +241,38 @@ class ConnectorContactInfoClassification(Connector):
         sent = Sentence(string=s)
 
         r = requests.post(self.url + self._PATH_CLASSIFY_EMAIL,
+                          json=sent.dict())
+        b = r.json()
+
+        return b
+
+    def _post_classify_contact_type_hours(self,
+                                          s: str) -> bool:
+        sent = Sentence(string=s)
+
+        r = requests.post(self.url + self._PATH_CLASSIFY_HOURS,
+                          json=sent.dict())
+        b = r.json()
+
+        return b
+
+    def _post_classify_contact_type_telephone(self,
+                                              s: str,
+                                              country_code: str) -> bool:
+        sent = SentenceCountry(string=s,
+                               country_code=country_code)
+
+        r = requests.post(self.url + self._PATH_CLASSIFY_TELEPHONE,
+                          json=sent.dict())
+        b = r.json()
+
+        return b
+
+    def _post_classify_contact_type_address(self,
+                                            s: str) -> bool:
+        sent = Sentence(string=s, )
+
+        r = requests.post(self.url + self._PATH_CLASSIFY_ADDRESS,
                           json=sent.dict())
         b = r.json()
 
