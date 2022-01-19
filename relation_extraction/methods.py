@@ -15,6 +15,45 @@ TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
 CONTACT_CLASSIFICATION = os.environ["CONTACT_CLASSIFICATION"]
 
 
+class ContactInfoSplit(BaseModel):
+    """
+    Contains all info regarding the contact info
+    """
+    email: List[str] = []
+    telephone: List[str] = []
+    opening_hours: List[str] = []
+    address: List[str] = []
+
+    def add_email(self, s: str, unique=True):
+        self._add_x(s=s, unique=unique, el=self.email)
+
+    def add_telephone(self, s: str, unique=True):
+        self._add_x(s=s, unique=unique, el=self.telephone)
+
+    def add_opening_hours(self, s: str, unique=True):
+        self._add_x(s=s, unique=unique, el=self.opening_hours)
+
+    def add_address(self, s: str, unique=True):
+        self._add_x(s=s, unique=unique, el=self.address)
+
+    @staticmethod
+    def _add_x(s: str, unique: bool, el) -> None:
+        """
+        private class to add a sentence/string to the element (el)
+
+        Args:
+            s: sentence/string to add to the list.
+            unique: flag to check for duplicates.
+            el: one of parameters of this class.
+
+        Returns:
+            None
+        """
+        if unique and s in el:
+            return
+        el.append(s)
+
+
 class RelationExtractor:
     def __init__(self, html, context,
                  country_code: str):
@@ -26,26 +65,37 @@ class RelationExtractor:
         # Init provider
         self.provider = Provider()
 
-        # Prefered label can most likely be extracted from the name of the service
-        # within the contact information.
-        self.public_org = PublicOrganisation(pref_label=f"TODO",  # TODO
-                                             spatial=context)  # TODO
-        self.provider.public_organisations.add(self.public_org, context=context)
-
     def extract_all(self):
         """
-        TODO add more in the future
         """
 
         contact_info = self.extract_contact_info()
+        public_org = self.extract_public_organisation()
         concepts = self.extract_concepts()
 
         self.extract_public_service(contact_info=contact_info,
+                                    public_org=public_org,
                                     concepts=concepts)
+
+    def extract_public_organisation(self):
+        contact_info_split = self.get_contact_info_split()
+        l_address = contact_info_split.address
+        address = '\n'.join(l_address)
+
+        # Prefered label can most likely be extracted from the name of the service
+        # within the contact information.
+        public_org = PublicOrganisation(pref_label=f"# TODO",  # TODO
+                                        spatial=self.context,
+                                        has_address=address)  # TODO
+        self.provider.public_organisations.add(public_org, context=self.context)
+
+        return public_org
 
     def extract_public_service(self,
                                contact_info: ContactPoint,
-                               concepts=List[Concept]) -> PublicService:
+                               public_org: PublicOrganisation,
+                               concepts: List[Concept]
+                               ) -> PublicService:
         """
         Extract all public service information
 
@@ -56,7 +106,7 @@ class RelationExtractor:
         public_service = PublicService(name=get_public_service_name(self.html),
                                        description=get_public_service_description(self.html),
                                        identifier="#TODO",
-                                       has_competent_authority=self.public_org,
+                                       has_competent_authority=public_org,
                                        has_contact_point=contact_info,
                                        is_classified_by=concepts,
                                        )
@@ -67,22 +117,22 @@ class RelationExtractor:
         return public_service
 
     def extract_contact_info(self) -> ContactPoint:
-        conn = ConnectorTermExtraction(TERM_EXTRACTION)
-        l_info_text = conn.get_contact_info(html=self.html,
-                                            # language=language
-                                            )
-
-        contact_info_split = _split_contact_info(l_info_text, country_code=self.country_code)
+        contact_info_split = self.get_contact_info_split()
 
         contact_info = ContactPoint(email=contact_info_split.email,
                                     telephone=contact_info_split.telephone,
                                     opening_hours=contact_info_split.opening_hours
                                     )
 
-        # TODO something with this info.
-        contact_info_split.address
-
         return contact_info
+
+    def get_contact_info_split(self) -> ContactInfoSplit:
+        conn = ConnectorTermExtraction(TERM_EXTRACTION)
+        l_info_text = conn.get_contact_info(html=self.html,
+                                            # language=language
+                                            )
+        contact_info_split = _split_contact_info(l_info_text, country_code=self.country_code)
+        return contact_info_split
 
     def extract_concepts(self) -> List[Concept]:
         l_label = get_concepts(self.html)
@@ -226,57 +276,6 @@ def _get_children_text(soup) -> list:
 
         text_clean = _clean_text(text)
         yield text_clean
-
-
-class ContactInfoSplit(BaseModel):
-    """
-    Contains all info regarding the contact info
-    """
-    email: List[str] = []
-    telephone: List[str] = []
-    opening_hours: List[str] = []
-    address: List[str] = []
-
-    def add_email(self, s: str, unique=True):
-        self._add_x(s=s, unique=unique, el=self.email)
-        # if unique and s in self.email:
-        #     return
-        # self.email.append(s)
-
-    def add_telephone(self, s: str, unique=True):
-        self._add_x(s=s, unique=unique, el=self.telephone)
-        # if unique and s in self.telephone:
-        #     return
-        # self.telephone.append(s)
-
-    def add_opening_hours(self, s: str, unique=True):
-        self._add_x(s=s, unique=unique, el=self.opening_hours)
-        # if unique and s in self.opening_hours:
-        #     return
-        # self.opening_hours.append(s)
-
-    def add_address(self, s: str, unique=True):
-        self._add_x(s=s, unique=unique, el=self.address)
-        # if unique and s in self.address:
-        #     return
-        # self.address.append(s)
-
-    @staticmethod
-    def _add_x(s: str, unique: bool, el) -> None:
-        """
-        private class to add a sentence/string to the element (el)
-
-        Args:
-            s: sentence/string to add to the list.
-            unique: flag to check for duplicates.
-            el: one of parameters of this class.
-
-        Returns:
-            None
-        """
-        if unique and s in el:
-            return
-        el.append(s)
 
 
 def _split_contact_info(l_info_text: List[str],
