@@ -18,6 +18,14 @@
 ![Example CPSV-AP Graph](file.png)
 ![Example CPSV-AP Graph](example_html_extraction.png)
 
+# Visualisation
+
+## RDF Grapher
+
+[https://www.ldf.fi/service/rdf-grapher](https://www.ldf.fi/service/rdf-grapher)
+
+Make sure to enable: 'Send form as HTTP POST (needed for large RDF data)'
+
 ## *Graphviz
 
 To visualise, and be able to run the above scrpit, Graphviz has to be installed and added to your path.
