@@ -1,5 +1,8 @@
 import os.path
+import tempfile
+from urllib.request import urlopen
 
+from connectors.elastic_search import ElasticSearchConnector
 from data.html import FILENAME_HTML, get_html
 from relation_extraction.methods import RelationExtractor
 
@@ -7,7 +10,8 @@ from relation_extraction.methods import RelationExtractor
 def main(filename: str,  # input filename html
          context: str,  # URL
          country_code: str,  # ISO 3166
-         filename_rdf: str):  # output filename
+         filename_rdf: str,
+         extract_concepts=True):  # output filename
     """
     (for DEMO)
     We want to extract relations from a webpage as found in the CPSV Application Profile.
@@ -31,7 +35,7 @@ def main(filename: str,  # input filename html
                                            context=context,
                                            country_code=country_code)
 
-    relation_extractor.extract_all()
+    relation_extractor.extract_all(extract_concepts=extract_concepts)
 
     # Save in RDF
     relation_extractor.export(filename_rdf)
@@ -42,7 +46,44 @@ def main(filename: str,  # input filename html
 
 if __name__ == '__main__':
     # TODO convert to user-script
-    main(filename=FILENAME_HTML,
-         context="https://1819.brussels",
-         country_code="BE",
-         filename_rdf=os.path.join(os.path.dirname(__file__), 'example_html_extraction_cpsv-ap.rdf'))
+
+    case = 2
+    if case == 1:
+        es_conn = ElasticSearchConnector()
+        html = es_conn.get_random_html(lang="en")
+
+        # Get from elasticsearch, problem is that these are all identified as English.
+        with tempfile.TemporaryDirectory() as d:
+            FILENAME_TMP = os.path.join(d, "test.html")
+
+            with open(FILENAME_TMP, "w") as f:
+                f.write(html)
+
+            main(filename=FILENAME_TMP,
+                 context="https://1819.brussels",
+                 country_code="BE",
+                 filename_rdf=os.path.join(os.path.dirname(__file__), 'example_html_extraction_cpsv-ap.rdf'),
+                 extract_concepts=False)
+
+    elif case == 2:
+        url = "https://diplomatie.belgium.be/en/about_the_organisation/contact/getting_there_opening_hours"
+        html = urlopen(url).read().decode()
+
+        with tempfile.TemporaryDirectory() as d:
+            FILENAME_TMP = os.path.join(d, "test.html")
+
+            with open(FILENAME_TMP, "w") as f:
+                f.write(html)
+
+            main(filename=FILENAME_TMP,
+                 context="https://1819.brussels",
+                 country_code="BE",
+                 filename_rdf=os.path.join(os.path.dirname(__file__), 'example_html_extraction_cpsv-ap.rdf'),
+                 extract_concepts=False)
+
+    else:
+        main(filename=FILENAME_HTML,
+             context="https://1819.brussels",
+             country_code="BE",
+             filename_rdf=os.path.join(os.path.dirname(__file__), 'example_html_extraction_cpsv-ap.rdf'),
+             extract_concepts=False)

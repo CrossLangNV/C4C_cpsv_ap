@@ -65,13 +65,18 @@ class RelationExtractor:
         # Init provider
         self.provider = Provider()
 
-    def extract_all(self):
+    def extract_all(self,
+                    extract_concepts=True):
         """
         """
 
         contact_info = self.extract_contact_info()
         public_org = self.extract_public_organisation()
-        concepts = self.extract_concepts()
+
+        if extract_concepts:
+            concepts = self.extract_concepts()
+        else:
+            concepts = []
 
         self.extract_public_service(contact_info=contact_info,
                                     public_org=public_org,

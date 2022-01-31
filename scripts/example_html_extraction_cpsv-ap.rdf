@@ -6,166 +6,48 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService46410d95f8da4f9eb7620c522f57ec76">
-    <dct:identifier>#TODO</dct:identifier>
-    <dct:description>The financial plan is a dynamic instrument and an essential management tool. What should it include? Who can help?</dct:description>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptaa1843dc3d6c490ba65d8de14994f952"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept40229d0ecd0944a1aab980351e35112a"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept946040c6afcb45c6bab06f2fb2f4ec95"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept928947326f4c4bcf93436cf1416f7cd6"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0e2c85941a594fa8a68f893e0084ba34"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf81e55c759a64dafa1b4757c2b6dedf4"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd593f49688ef4323bd9b8889dd635397"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept86b149aa9f894273932a2f6fe17d65ce"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept18e415838d794d6a8de203577d3245b3"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept676f199bc0d948fda1e5ab1ca57719c9"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6da1c9ec3a5d402faf4dd6dda820473e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept367f48d1d7c349d4a736d3587eee1082"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept231dbbaaa12c425ba3a0cb6cf38a8be3"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta8d8e56aedd04c288cd645cc15ab9ebc"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept7019746d11eb4f70a9b89c3c219517ce"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept799efb2a59e54739bc4a7a59d4da57a1"/>
-    <dct:title>Financial plan: how to prepare an effective financial plan</dct:title>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept072fbfb790e2491f811d9201926bcdd1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb09de3df73134b6caeafdb6635fc27f6"/>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept995df0b98cea45f682b082f6c43c200b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc9f031b12a5048209664b83a4b983676"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9fa127e3d87240fdaafde1b75557cea1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc0085afd96e6409694df6c1a85220da1"/>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationceb8150126bf4069894a508b31a63a44"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptba4315c9b52a4d63aa240ba834482f40"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept62bd47c37b28434b8a780eccebd80fa3"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb70ece67df4a489daebdbba18dd16b1b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept8b407d0b6cc245f28c6232deb13c0f3b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept358347dfc3184a899ac95c855988539d"/>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint75a2eb878ebb494fa3499868c91ed519"/>
+  <rdf:Description rdf:nodeID="N2b63f1e601ad4ebf92ef2a1ed1baa394">
+    <skos:prefLabel>Address
+rue des Petits Carmes / Karmelietenstraat 15 1000 Brussels, Belgium
+General phone number: +32 (0)2 501 81 11
+every working day from 8:00 to 17:00: + 32 (0) 2 501 32 00
+For the legalisation of documents, you can turn to our office window of the legalisation department situated in the Rue des Petits Carmes / Karmelietenstraat 27, 1000 Brussels. Opening hours: from 9 a.m. to 12.00 p.m. (by appointment only). Make an appointment here.
+The window of our department Special Passports is situated in the Rue des Petits Carmes / Karmelietenstraat  15, 1000 Brussels; opening hours: only by appointment.
+Dispatching Office: 23 rue des Petits Carmes / Karmelietenstraat
+Train: railway station Bruxelles Central - Brussel Centraal
+Tram: 92 and 94 (Place Royale - Koningsplein)
+Metro: lines 2 and 6 (Porte de Namur - Naamsepoort)
+Bus: lines 27, 38, 71 or 95 (Place Royale - Koningsplein); lines 34, 54, 71 or 80 (Porte de Namur - Naamsepoort)
+Other services: 15 rue des Petits Carmes / Karmelietenstraat
+Archives: see this page</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint75a2eb878ebb494fa3499868c91ed519">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint2ac87ec507eb49b59ac868b97f8f63f8">
+    <schema:telephone>every working day from 8:00 to 17:00: + 32 (0) 2 501 32 00</schema:telephone>
+    <schema:telephone>rue des Petits Carmes / Karmelietenstraat 15 1000 Brussels, Belgium
+General phone number: +32 (0)2 501 81 11</schema:telephone>
     <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:email>info@1819.brussels</schema:email>
+    <schema:hoursAvailable rdf:resource="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification5438ec04129b42fc92690ec128393ded"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServicecc09909011754c59b9b73aece298314d">
+    <dct:description>Address FPS Foreign Affairs, Foreign Trade and Development Cooperation rue des Petits Carmes / Karmelietenstraat 15 1000 Brussels, Belgium General phone number: +32 (0)2 501 81 11 For questions related to consular affairs: every working day from 8:00 to 17:00: + 32 (0) 2 501 32 00</dct:description>
+    <dct:title>Address and opening hours | Federal Public Service Foreign Affairs</dct:title>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation5c13e187db6d4f4eb10c2e5f1b4249f1"/>
+    <dct:identifier>#TODO</dct:identifier>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint2ac87ec507eb49b59ac868b97f8f63f8"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://1819.brussels">
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept995df0b98cea45f682b082f6c43c200b">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>success</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification5438ec04129b42fc92690ec128393ded">
+    <schema:description>every working day from 8:00 to 17:00: + 32 (0) 2 501 32 00</schema:description>
+    <rdf:type rdf:resource="https://schema.org/OpeningHoursSpecification"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc9f031b12a5048209664b83a4b983676">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>agency</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationceb8150126bf4069894a508b31a63a44">
-    <cv:hasAddress rdf:nodeID="Nfef80a88da5d442f85d2b40d9ec8d7eb"/>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation5c13e187db6d4f4eb10c2e5f1b4249f1">
     <skos:prefLabel># TODO</skos:prefLabel>
     <dct:spatial rdf:resource="https://1819.brussels"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept8b407d0b6cc245f28c6232deb13c0f3b">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>right track</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept18e415838d794d6a8de203577d3245b3">
-    <skos:prefLabel>professional manner</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta8d8e56aedd04c288cd645cc15ab9ebc">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>service</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept358347dfc3184a899ac95c855988539d">
-    <skos:prefLabel>brussels agency for business support</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept40229d0ecd0944a1aab980351e35112a">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>point for anyone who want to start</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept676f199bc0d948fda1e5ab1ca57719c9">
-    <skos:prefLabel>platform</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept7019746d11eb4f70a9b89c3c219517ce">
-    <skos:prefLabel>business in brussels</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept231dbbaaa12c425ba3a0cb6cf38a8be3">
-    <skos:prefLabel>business support</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc0085afd96e6409694df6c1a85220da1">
-    <skos:prefLabel>information</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept072fbfb790e2491f811d9201926bcdd1">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>brussels</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd593f49688ef4323bd9b8889dd635397">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>project a real success</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept946040c6afcb45c6bab06f2fb2f4ec95">
-    <skos:prefLabel>track</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptaa1843dc3d6c490ba65d8de14994f952">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>project</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6da1c9ec3a5d402faf4dd6dda820473e">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>business</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0e2c85941a594fa8a68f893e0084ba34">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>help</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept799efb2a59e54739bc4a7a59d4da57a1">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>help to do</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nfef80a88da5d442f85d2b40d9ec8d7eb">
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
-    <skos:prefLabel>Chaussée de Charleroi 110, 1060 Brussels
-Chaussée de Charleroi 110
-1060 Brussels</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept62bd47c37b28434b8a780eccebd80fa3">
-    <skos:prefLabel>partner</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept86b149aa9f894273932a2f6fe17d65ce">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>manner</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb09de3df73134b6caeafdb6635fc27f6">
-    <skos:prefLabel>agency for business support</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept367f48d1d7c349d4a736d3587eee1082">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>support</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptba4315c9b52a4d63aa240ba834482f40">
-    <skos:prefLabel>charge</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb70ece67df4a489daebdbba18dd16b1b">
-    <skos:prefLabel>brussels agency</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept928947326f4c4bcf93436cf1416f7cd6">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>single information point for anyone who want to start</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf81e55c759a64dafa1b4757c2b6dedf4">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>point</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9fa127e3d87240fdaafde1b75557cea1">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>single information point</skos:prefLabel>
+    <cv:hasAddress rdf:nodeID="N2b63f1e601ad4ebf92ef2a1ed1baa394"/>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
   </rdf:Description>
 </rdf:RDF>

@@ -1,7 +1,7 @@
-from typing import Union
+from typing import Optional, Union
 
 import cassis
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
 from connectors.term_extraction_utils.cas_utils import cas_from_cas_content
 
@@ -22,11 +22,12 @@ class ExtractModel(BaseModel):
     """
     title: str
     tags: str
-    excerpt: str  # description of a webpage, see Package "trafilatura"
+    # description of a webpage, see Package "trafilatura"
+    excerpt: str
     text: str
-    hostname: str
+    hostname: Optional[str]  # TODO check if optional
     source_hostname: str  # Make sure to de-hyphenate
-    source: str
+    source: Optional[str]  # TODO check if optional
     language: Union[str, type(None)]  # str
     cas_content: str
 
@@ -45,6 +46,12 @@ class ExtractModel(BaseModel):
 
     def get_cas(self) -> cassis.Cas:
         return cas_from_cas_content(self.cas_content)
+
+    @validator('excerpt', pre=True)
+    def not_none(cls, v: str):
+        if v is None:
+            return ''
+        return v
 
 
 class ChunkModel(ExtractModel):
