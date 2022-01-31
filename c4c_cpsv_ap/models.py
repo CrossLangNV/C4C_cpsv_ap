@@ -5,7 +5,7 @@ As defined in SC2015DI07446_D02.02_CPSV-AP-2.2.1_v1.00.pdf
 https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/solution/core-public-service-vocabulary-application-profile/distribution/cpsv-ap-specification-v221-pdf
 """
 import abc
-from typing import Optional, List, Dict, Union
+from typing import Dict, List, Optional, Union
 from uuid import uuid4
 
 from pydantic import BaseModel, validator
@@ -18,14 +18,6 @@ class CPSVAPModel(abc.ABC, BaseModel):
     pass
 
 
-class ContactPoint(CPSVAPModel):
-    """
-    CPSV-AP Contact Point
-    """
-    pass
-    # TODO
-
-
 class Concept(CPSVAPModel):
     """
     SKOS Concept
@@ -35,6 +27,9 @@ class Concept(CPSVAPModel):
 
 
 class ContactPoint(CPSVAPModel):
+    """
+    CPSV-AP Contact Point
+    """
     email: List[str] = None
     telephone: List[str] = None
     opening_hours: List[str] = None
@@ -67,6 +62,14 @@ class LifeEvent(Event):
     pass
 
 
+class Address(CPSVAPModel):
+    """
+    TODO
+
+    could be an VCARD. Should at least have a string represenation for street etc.
+    """
+
+
 class PublicOrganisation(CPSVAPModel):
     """
     The CPSV-AP reuses the Core Public Organisation Vocabulary that defines the
@@ -84,6 +87,10 @@ class PublicOrganisation(CPSVAPModel):
     # Units Named Authority List maintained by the Publications Office's Metadata Registry
     # spatial: Union[str, List[str]]
     spatial: List[str]
+
+    # This property represents an Address related to an Agent. Asserting the address
+    # relationship implies that the Agent has an Address.
+    has_address: Optional[str]  # TODO link to address
 
     @validator("spatial", pre=True)
     def spatial_list(cls, v: Union[str, List[str]]):
@@ -131,6 +138,19 @@ class PublicService(CPSVAPModel):
 
         for event in self.is_grouped_by:
             event.add_related_service(self)
+
+    @validator("has_contact_point", pre=True)
+    def spatial_list(cls, v: Union[ContactPoint, List[ContactPoint]]) -> List[ContactPoint]:
+        """
+        When a single contact point is given, put it in a list
+
+        Returns:
+            Contact point within a list
+        """
+        if isinstance(v, ContactPoint):
+            return [v]
+        else:
+            return v
 
 
 def _id_generator() -> str:

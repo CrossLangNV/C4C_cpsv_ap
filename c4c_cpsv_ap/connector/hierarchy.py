@@ -1,16 +1,15 @@
 import abc
 import warnings
-from typing import List, Generator, Dict, Union
+from typing import Dict, Generator, List, Union
 
+import rdflib
 from rdflib.graph import ConjunctiveGraph, Graph
 from rdflib.namespace import DCAT, DCTERMS, RDF, SKOS
 from rdflib.plugins.stores.sparqlstore import SPARQLStore
-from rdflib.term import Identifier, Literal
-from rdflib.term import URIRef
-from rdflib.term import _serial_number_generator
+from rdflib.term import _serial_number_generator, Identifier, Literal, URIRef
 
-from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel, PublicOrganisation, BusinessEvent, LifeEvent
-from c4c_cpsv_ap.namespace import CPSV, VCARD, C4C, SCHEMA, CV
+from c4c_cpsv_ap.models import BusinessEvent, Concept, CPSVAPModel, LifeEvent, PublicOrganisation, PublicService
+from c4c_cpsv_ap.namespace import C4C, CPSV, CV, SCHEMA, VCARD
 
 SUBJ = "subj"
 PRED = "pred"
@@ -425,6 +424,20 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
             self.provider.graph.add((uri_ref, DCTERMS.spatial, uri_spat, context))
 
             self.provider.locations.add(uri_spat, context=context)
+
+        # Address
+        if obj.has_address:
+            if 0:
+                self.provider.graph.add((uri_ref, CV.hasAddress, Literal(obj.has_address), context))
+            else:
+                # Link to VCARD entity instead
+                _bnode = rdflib.BNode()
+                self.provider.graph.add((uri_ref, CV.hasAddress, _bnode, context))
+                self.provider.graph.add((_bnode, RDF.type, VCARD.Address, context))
+
+                # TODO address info: street, locality, postal-code, country-name
+                #  see https://www.w3.org/2006/vcard/ns# https://www.w3.org/TR/vcard-rdf/
+                self.provider.graph.add((_bnode, SKOS.prefLabel, Literal(obj.has_address), context))
 
         return uri_ref
 

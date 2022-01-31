@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:cv="http://data.europa.eu/m8g/"
+   xmlns:dct="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:schema="https://schema.org/"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:nodeID="N2b63f1e601ad4ebf92ef2a1ed1baa394">
+    <skos:prefLabel>Address
+rue des Petits Carmes / Karmelietenstraat 15 1000 Brussels, Belgium
+General phone number: +32 (0)2 501 81 11
+every working day from 8:00 to 17:00: + 32 (0) 2 501 32 00
+For the legalisation of documents, you can turn to our office window of the legalisation department situated in the Rue des Petits Carmes / Karmelietenstraat 27, 1000 Brussels. Opening hours: from 9 a.m. to 12.00 p.m. (by appointment only). Make an appointment here.
+The window of our department Special Passports is situated in the Rue des Petits Carmes / Karmelietenstraat  15, 1000 Brussels; opening hours: only by appointment.
+Dispatching Office: 23 rue des Petits Carmes / Karmelietenstraat
+Train: railway station Bruxelles Central - Brussel Centraal
+Tram: 92 and 94 (Place Royale - Koningsplein)
+Metro: lines 2 and 6 (Porte de Namur - Naamsepoort)
+Bus: lines 27, 38, 71 or 95 (Place Royale - Koningsplein); lines 34, 54, 71 or 80 (Porte de Namur - Naamsepoort)
+Other services: 15 rue des Petits Carmes / Karmelietenstraat
+Archives: see this page</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint2ac87ec507eb49b59ac868b97f8f63f8">
+    <schema:telephone>every working day from 8:00 to 17:00: + 32 (0) 2 501 32 00</schema:telephone>
+    <schema:telephone>rue des Petits Carmes / Karmelietenstraat 15 1000 Brussels, Belgium
+General phone number: +32 (0)2 501 81 11</schema:telephone>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:hoursAvailable rdf:resource="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification5438ec04129b42fc92690ec128393ded"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServicecc09909011754c59b9b73aece298314d">
+    <dct:description>Address FPS Foreign Affairs, Foreign Trade and Development Cooperation rue des Petits Carmes / Karmelietenstraat 15 1000 Brussels, Belgium General phone number: +32 (0)2 501 81 11 For questions related to consular affairs: every working day from 8:00 to 17:00: + 32 (0) 2 501 32 00</dct:description>
+    <dct:title>Address and opening hours | Federal Public Service Foreign Affairs</dct:title>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation5c13e187db6d4f4eb10c2e5f1b4249f1"/>
+    <dct:identifier>#TODO</dct:identifier>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint2ac87ec507eb49b59ac868b97f8f63f8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://1819.brussels">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification5438ec04129b42fc92690ec128393ded">
+    <schema:description>every working day from 8:00 to 17:00: + 32 (0) 2 501 32 00</schema:description>
+    <rdf:type rdf:resource="https://schema.org/OpeningHoursSpecification"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation5c13e187db6d4f4eb10c2e5f1b4249f1">
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <dct:spatial rdf:resource="https://1819.brussels"/>
+    <cv:hasAddress rdf:nodeID="N2b63f1e601ad4ebf92ef2a1ed1baa394"/>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+  </rdf:Description>
+</rdf:RDF>
