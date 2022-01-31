@@ -5,8 +5,9 @@ import warnings
 
 import requests
 
-URL_V1 = "http://localhost:1026/ngsi-ld/v1/entities/"
-URL_V2 = "http://localhost:1026/v2/entities/"
+URL_ORION = os.environ["URL_ORION"]
+URL_V1 = URL_ORION + "/ngsi-ld/v1/entities/"
+URL_V2 = URL_ORION + "/v2/entities/"
 EXAMPLE_ID = "Conceptbc83bfd3ad9b4690bbb1d3913420d320"
 C4C = "c4c"
 C4C_URL = "http://cefat4cities.crosslang.com/content/"
@@ -16,6 +17,36 @@ SKOS_URL = "http://www.w3.org/2004/02/skos/core#"
 PROPERTY = "Property"
 AT_VALUE = "@value"
 AT_ID = "@id"
+
+
+class OrionConnector:
+    """
+    Connector to FIWARE Orion
+    """
+    PATH_V2 = "/v2/entities/"
+
+    def __init__(self, url):
+        self.url = url
+
+        response = requests.get(url + "/v2")
+        if not response.ok:
+            warnings.warn(f"Could not connect to {url}", UserWarning)
+
+    def count_entities(self) -> int:
+        """ Counts the number of entities in Orion.
+
+        Returns:
+
+        """
+        r = requests.get(self.url + self.PATH_V2,
+                         params={
+                             "options": "count",
+                             "limit": "1"
+                         }
+                         )
+        n_count = int(r.headers['Fiware-Total-Count'])
+        return n_count
+
 
 NAMESPACES = {C4C: C4C_URL,
               SKOS: SKOS_URL,
@@ -319,18 +350,9 @@ def parse_json_ld(filename, debug=False):
 def delete_all(debug=False):
     # Get all links
 
-    def get_n_count() -> int:
+    conn = OrionConnector(URL_ORION)
 
-        r = requests.get(URL_V2,
-                         params={
-                             "options": "count",
-                             "limit": "1"
-                         }
-                         )
-        n_count = int(r.headers['Fiware-Total-Count'])
-        return n_count
-
-    n_count = get_n_count()
+    n_count = conn.count_entities()
     print(f"# Before = {n_count}. Trying to get to 0.")
 
     n_ok = 0
@@ -395,7 +417,7 @@ def delete_all(debug=False):
     print(f'    # ok: {n_ok}\n'
           f'# not ok: {n_not_ok}\n')
 
-    print(f"# Count = {get_n_count()}. Should be *Before* - *#OK* = *#Not ok.*")
+    print(f"# Count = {n_count}. Should be *Before* - *#OK* = *#Not ok.*")
 
     return
 

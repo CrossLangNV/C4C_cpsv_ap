@@ -20,5 +20,30 @@ services:
     env_file:
       - secrets/cpsv_ap.env
 
+  mongo-db:
+    image: mongo:4.4
+    hostname: mongo-db
+    container_name: db-mongo
+    expose:
+      - "27017"
+    ports:
+      - "27017:27017"
+    networks:
+      - c4cnet
+    command: --nojournal
 
+  orion:
+    image: fiware/orion-ld
+    hostname: orion
+    container_name: fiware-orion
+    depends_on:
+      - mongo-db
+    networks:
+      - c4cnet
+    ports:
+      - "1026:1026"
+    #    command: -dbhost mongo-db
+    command: -dbhost mongo-db -logLevel DEBUG
+    healthcheck:
+      test: curl --fail -s http://orion:1026/version || exit 1
 
