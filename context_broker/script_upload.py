@@ -43,13 +43,13 @@ class OrionConnector:
 
         class Params(BaseModel):
             options: str
-            limit: int
+            limit: str
 
         params = Params(options="count",
                         limit="1")
 
         r = requests.get(self.url + self.PATH_V2,
-                         params=params.json()
+                         params=params.dict()
                          )
         n_count = int(r.headers['Fiware-Total-Count'])
         return n_count
