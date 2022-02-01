@@ -4,6 +4,7 @@ import urllib
 import warnings
 
 import requests
+from pydantic import BaseModel
 
 URL_ORION = os.environ["URL_ORION"]
 URL_V1 = URL_ORION + "/ngsi-ld/v1/entities/"
@@ -39,11 +40,16 @@ class OrionConnector:
         Returns:
 
         """
+
+        class Params(BaseModel):
+            options: str
+            limit: int
+
+        params = Params(options="count",
+                        limit="1")
+
         r = requests.get(self.url + self.PATH_V2,
-                         params={
-                             "options": "count",
-                             "limit": "1"
-                         }
+                         params=params.json()
                          )
         n_count = int(r.headers['Fiware-Total-Count'])
         return n_count

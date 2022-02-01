@@ -1,7 +1,7 @@
 import json
 import unittest
 
-from context_broker.script_upload import ItemContextBroker, ItemRDF
+from context_broker.script_upload import ItemContextBroker, ItemRDF, OrionConnector, URL_ORION
 
 
 class TestConversion(unittest.TestCase):
@@ -146,3 +146,8 @@ class TestConversion2(TestConversion):
 
     def test_from_rdf_to_cb(self):
         super(TestConversion2, self).test_from_rdf_to_cb()
+
+
+class TestOrionConnector(unittest.TestCase):
+    def test_init(self):
+        conn = OrionConnector(URL_ORION)
