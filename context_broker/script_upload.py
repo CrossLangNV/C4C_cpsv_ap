@@ -17,6 +17,7 @@ SKOS_URL = "http://www.w3.org/2004/02/skos/core#"
 PROPERTY = "Property"
 AT_VALUE = "@value"
 AT_ID = "@id"
+AT_LANG = "@language"
 
 
 class OrionConnector:
@@ -151,9 +152,53 @@ class ItemContextBroker(Item):
                         d_["object"] = list(map(cb._replace_namespace, v)) if isinstance(v, list) else \
                             cb._replace_namespace(v)
                         d_["type"] = "Relationship"
+                    elif AT_LANG == k:
+                        """
+                        Suggestion from Fernando Lopez
+                        
+                        * ETSI CIM NGSI-LD LanguageProperty
+                        'label': {
+                            'type': 'LanguageProperty',
+                            'LanguageMap': {
+                                'en': 'a sentence',
+                                'fr': 'une phrase'
+                            }
+                        }
+                        * Workaround
+                        'label': {
+                            'type': 'Property',
+                            'value': {
+                                'en': 'a sentence',
+                                'fr': 'une phrase'
+                            }
+                        }
+                        
+                        """
+                        # TODO test
+
+                        if 0:
+                            # ETSI CIM NGSI-LD LanguageProperty
+                            # TODO This specification is still not implemented in the Context Broker
+                            d__ = {
+                                "type": "LanguageProperty",
+                                "LanguagMap": {
+                                    a[AT_LANG]: a[AT_VALUE]
+                                }
+                            }
+                            return d__
+
+                        else:
+                            d__ = {
+                                "type": "Property",
+                                "value": {
+                                    a[AT_LANG]: a[AT_VALUE]
+                                }
+                            }
+                            return d__
+
                     else:
                         if ignore:
-                            pass  # Ignore
+                            pass  # TODO implement
                         else:
                             d_[k.replace('@', '')] = clean(v)
 
@@ -314,8 +359,8 @@ def parse_json_ld(filename, debug=False):
 
         for item in graph["@graph"]:
 
-            if debug:
-                print(json.dumps(item))
+            # if debug:
+            #     print(json.dumps(item))
 
             item_clean = ItemContextBroker.from_RDF(item)
 
@@ -414,10 +459,11 @@ def delete_all(debug=False):
         else:
             n_ok += 1
 
-    print(f'    # ok: {n_ok}\n'
-          f'# not ok: {n_not_ok}\n')
+    print(f'#     ok = {n_ok}\n'
+          f'# not ok = {n_not_ok}')
 
-    print(f"# Count = {n_count}. Should be *Before* - *#OK* = *#Not ok.*")
+    n_count_after = conn.count_entities()
+    print(f"#  After = {n_count_after}. (Should be *Before* - *#OK* = *#Not ok.*)")
 
     return
 
