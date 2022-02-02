@@ -1,6 +1,8 @@
 import json
 import unittest
 
+import requests
+
 from context_broker.script_upload import ItemContextBroker, ItemRDF, OrionConnector, URL_ORION
 
 
@@ -149,5 +151,36 @@ class TestConversion2(TestConversion):
 
 
 class TestOrionConnector(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.conn = OrionConnector(URL_ORION)
+
     def test_init(self):
         conn = OrionConnector(URL_ORION)
+
+        response = requests.get(conn.url + conn.PATH_V2)
+        self.assertTrue(response.ok)
+
+    def test_add_item(self):
+        d = {'@context': {'c4c': 'http://cefat4cities.crosslang.com/content/',
+                          'skos': 'http://www.w3.org/2004/02/skos/core#'},
+             '@id': 'c4c:Conceptbc83bfd3ad9b4690bbb1d3913420d320',
+             '@type': 'skos:Concept',
+             'skos:prefLabel': {'value': 'Finanzielles', 'type': 'Property'}}
+
+        with self.subTest("Sanity check, not yet exists"):
+            r_remove = self.conn.remove_item(id=d["@id"])
+
+            self.assertTrue(r_remove.ok or r_remove.json().get('title') == "Entity not found",
+                            f"Failed to make sure item is deleted: {r_remove.text}.")
+
+        r = self.conn.add_item(d)
+
+        self.assertTrue(r.ok)
+
+    def test_add_item_fail(self):
+        d = {"foo": "bar"}
+
+        r = self.conn.add_item(d)
+
+        self.assertFalse(r.ok)

@@ -2,9 +2,11 @@ import json
 import os
 import urllib
 import warnings
+from typing import Union
 
 import requests
 from pydantic import BaseModel
+from requests import Response
 
 URL_ORION = os.environ["URL_ORION"]
 URL_V1 = URL_ORION + "/ngsi-ld/v1/entities/"
@@ -19,41 +21,6 @@ PROPERTY = "Property"
 AT_VALUE = "@value"
 AT_ID = "@id"
 AT_LANG = "@language"
-
-
-class OrionConnector:
-    """
-    Connector to FIWARE Orion
-    """
-    PATH_V2 = "/v2/entities/"
-
-    def __init__(self, url):
-        self.url = url
-
-        response = requests.get(url + "/v2")
-        if not response.ok:
-            warnings.warn(f"Could not connect to {url}", UserWarning)
-
-    def count_entities(self) -> int:
-        """ Counts the number of entities in Orion.
-
-        Returns:
-
-        """
-
-        class Params(BaseModel):
-            options: str
-            limit: str
-
-        params = Params(options="count",
-                        limit="1")
-
-        r = requests.get(self.url + self.PATH_V2,
-                         params=params.dict()
-                         )
-        n_count = int(r.headers['Fiware-Total-Count'])
-        return n_count
-
 
 NAMESPACES = {C4C: C4C_URL,
               SKOS: SKOS_URL,
@@ -94,11 +61,6 @@ def delete_example():
     r = requests.delete(os.path.join(URL_V2, ID))
 
     return r
-
-
-class Connector:
-    def __init__(self):
-        pass
 
 
 class Item(dict):
@@ -352,9 +314,74 @@ class ItemRDF(Item):
         return value_clean
 
 
+class OrionConnector:
+    """
+    Connector to FIWARE Orion
+    """
+
+    PATH_V1 = "/ngsi-ld/v1/entities/"
+    PATH_V2 = "/v2/entities/"
+
+    def __init__(self, url):
+
+        if url[-1] == '/':
+            # Remove trailing / if there.
+            url = url[:-1]
+
+        self.url = url
+
+        response = requests.get(url + "/v2")
+        if not response.ok:
+            warnings.warn(f"Could not connect to {url}", UserWarning)
+
+    def add_item(self, item: Union[dict, ItemContextBroker]) -> Response:
+        """
+
+        Args:
+            item: A dictionary (or more specific a Context Broker Item) in NGSI-LD format.
+
+        Returns:
+
+        """
+
+        response = requests.post(self.url + self.PATH_V1,
+                                 headers=HEADERS,
+                                 json=item)
+
+        return response
+
+    def remove_item(self, id: str) -> Response:
+
+        r = requests.delete(URL_V1 + id)
+
+        return r
+
+    def count_entities(self) -> int:
+        """ Counts the number of entities in Orion.
+
+        Returns:
+
+        """
+
+        class Params(BaseModel):
+            options: str
+            limit: str
+
+        params = Params(options="count",
+                        limit="1")
+
+        r = requests.get(self.url + self.PATH_V2,
+                         params=params.dict()
+                         )
+        n_count = int(r.headers['Fiware-Total-Count'])
+        return n_count
+
+
 def parse_json_ld(filename, debug=False):
     with open(filename) as f:
         j = json.load(f)
+
+    conn = OrionConnector(URL_ORION)
 
     n_ok = 0
     n_not_ok = 0
@@ -370,9 +397,7 @@ def parse_json_ld(filename, debug=False):
 
             item_clean = ItemContextBroker.from_RDF(item)
 
-            r = requests.post(URL_V1,
-                              headers=HEADERS,
-                              json=item_clean)
+            r = conn.add_item(item_clean)
 
             if not r.ok:
                 # print(r.content)
