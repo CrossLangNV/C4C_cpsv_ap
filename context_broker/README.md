@@ -28,3 +28,11 @@ Notes converting JSON-LD to NGSI-LD:
 | schema | http://schema.org/ |
 | locn | http://www.w3.org/ns/locn# |
 | foaf | http://xmlns.com/foaf/0.1/ |
+
+## CPSV-AP
+
+For the data scheme, the following files could be useful:
+
+- Contains
+  @context [https://github.com/catalogue-of-services-isa/CPSV-AP/blob/master/releases/2.2.1/CPSV-AP_v2.2.1.jsonld](https://github.com/catalogue-of-services-isa/CPSV-AP/blob/master/releases/2.2.1/CPSV-AP_v2.2.1.jsonld)
+- [https://github.com/catalogue-of-services-isa/CPSV-AP/blob/master/releases/2.2.1/SC2015DI07446_D02.02_CPSV-AP_v2.2.1_RDF_Schema_v1.00.ttl](https://github.com/catalogue-of-services-isa/CPSV-AP/blob/master/releases/2.2.1/SC2015DI07446_D02.02_CPSV-AP_v2.2.1_RDF_Schema_v1.00.ttl)

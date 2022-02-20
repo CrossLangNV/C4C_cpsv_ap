@@ -321,6 +321,7 @@ class OrionConnector:
 
     PATH_V1 = "/ngsi-ld/v1/entities/"
     PATH_V2 = "/v2/entities/"
+    PATH_VERSION = "/version"
 
     def __init__(self, url):
 
@@ -330,7 +331,7 @@ class OrionConnector:
 
         self.url = url
 
-        response = requests.get(url + "/v2")
+        response = requests.get(url + self.PATH_VERSION)
         if not response.ok:
             warnings.warn(f"Could not connect to {url}", UserWarning)
 
