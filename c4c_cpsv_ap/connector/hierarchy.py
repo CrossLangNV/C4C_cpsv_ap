@@ -8,7 +8,8 @@ from rdflib.namespace import DCAT, DCTERMS, RDF, SKOS
 from rdflib.plugins.stores.sparqlstore import SPARQLStore
 from rdflib.term import _serial_number_generator, Identifier, Literal, URIRef
 
-from c4c_cpsv_ap.models import BusinessEvent, Concept, CPSVAPModel, LifeEvent, PublicOrganisation, PublicService
+from c4c_cpsv_ap.models import BusinessEvent, Concept, CPSVAPModel, CriterionRequirement, LifeEvent, PublicOrganisation, \
+    PublicService
 from c4c_cpsv_ap.namespace import C4C, CPSV, CV, SCHEMA, VCARD
 
 SUBJ = "subj"
@@ -119,6 +120,7 @@ class Provider(Harvester):
         self.public_services = PublicServicesProvider(self)
         self.public_organisations = PublicOrganisationsProvider(self)
         self.locations = LocationsProvider(self)
+        self.criterion_requirements = CriterionRequirementProvider(self)
 
 
 class SubHarvester(abc.ABC):
@@ -299,6 +301,45 @@ class ConceptsProvider(SubProvider, ConceptsHarvester):
         self.provider.graph.add((uri_ref, SKOS.prefLabel, Literal(concept.pref_label), context))
 
         return uri_ref
+
+
+class CriterionRequirementHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        # TODO
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        # TODO
+        pass
+
+
+class CriterionRequirementProvider(SubProvider, CriterionRequirementHarvester):
+    def add(self,
+            crit_req: CriterionRequirement,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+        """
+        """
+
+        if uri is None:
+            if crit_req.identifier:
+                uri = URIRef(crit_req.identifier, base=C4C)
+            else:
+                uri = uriref_generator("CriterionRequirement", C4C)
+
+        uri_cr = URIRef(uri)
+
+        self.provider.graph.add((uri_cr, RDF.type, CV.CriterionRequirement, context))
+
+        self.provider.graph.add((uri_cr, DCTERMS.identifier, Literal(crit_req.identifier), context))
+        if crit_req.description:
+            self.provider.graph.add((uri_cr, DCTERMS.description, Literal(crit_req.description), context))
+        # name
+        self.provider.graph.add((uri_cr, DCTERMS.title, Literal(crit_req.name), context))
+
+        # TODO add other relations.
+
+        return uri_cr
 
 
 class LocationsHarvester(SubHarvester):
@@ -611,6 +652,16 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
                 self.provider.graph.add((uri_opening_hours_specification, SCHEMA.description, Literal(hours), context))
 
         return uri_ps
+
+    def add_criterion(self,
+                      uri_ps: URIRef,
+                      uri_crit_req: URIRef,
+                      context: URIRef):
+
+        self.provider.graph.add((uri_ps,
+                                 CV.hasCriterion,
+                                 uri_crit_req,
+                                 context))
 
 
 def id_generator() -> str:

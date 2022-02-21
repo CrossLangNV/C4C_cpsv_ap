@@ -22,7 +22,7 @@ class AffligemParser(CityParser):
         soup = BeautifulSoup(s_html, 'html.parser')
 
         def clean_text(text):
-            return text.strip(" \n\r\xa0")
+            return text.strip(" \n\r\xa0\t")
 
         def get_title(link: bs4.element.Tag):
             title = link.text
@@ -56,7 +56,7 @@ class AffligemParser(CityParser):
 
         l = self.parse_page(s_html)
 
-        d = Relations
+        d = Relations()
 
         for l_sub in l:
             title = l_sub[0]

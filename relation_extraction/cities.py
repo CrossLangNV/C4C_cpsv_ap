@@ -5,8 +5,10 @@ For Belgium see:
 """
 import abc
 import urllib.request
+from typing import Optional
 
 import chardet
+from pydantic import BaseModel
 
 
 class CityParser(abc.ABC):
@@ -51,8 +53,8 @@ class CityParser(abc.ABC):
         return mystr
 
 
-class Relations:
-    criterionRequirement: str
-    rule: str
-    evidence: str
-    cost: str
+class Relations(BaseModel):
+    criterionRequirement: Optional[str]
+    rule: Optional[str]
+    evidence: Optional[str]
+    cost: Optional[str]

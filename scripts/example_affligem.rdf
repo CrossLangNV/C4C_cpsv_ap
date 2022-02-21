@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:cv="http://data.europa.eu/m8g/"
+   xmlns:dct="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:schema="https://schema.org/"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:nodeID="N19d2b828dd744a689742eae17efe6a80">
+    <skos:prefLabel>Bellestraat 99, 1790 Affligem
+T 053-64 00 01
+F 053-68 04 80
+bevolking@affligem.be</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServiceb363f64466ab4905a1c917b516fc7854">
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation8276d9828bc24b0288fc621cb31a424f"/>
+    <dct:title>&#13;
+		Affligem.be wettiging van handtekening&#13;
+	</dct:title>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint3dea120390654377b9974970805e8d6a"/>
+    <dct:identifier>PublicServicea1a62e6d04d242dba023fcbcfe17993b</dct:identifier>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirementfb4820b5f5b34955ae799ec0f23c77b9"/>
+    <dct:description></dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation8276d9828bc24b0288fc621cb31a424f">
+    <cv:hasAddress rdf:nodeID="N19d2b828dd744a689742eae17efe6a80"/>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <dct:spatial rdf:resource="https://www.affligem.be"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirementfb4820b5f5b34955ae799ec0f23c77b9">
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:identifier>CriterionRequirementfb4820b5f5b34955ae799ec0f23c77b9</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:description>• De persoon van wie de handtekening gewettigd moet worden, moet zijn&#13;
+										woonplaats
+hebben in een Belgische gemeente.
+• Het document mag niet bestemd zijn voor immorele, bedrieglijke of
+strafbare oogmerken.
+• De formaliteit moet nuttig of nodig zijn. Het mag bijgevolg niet gaan om&#13;
+										een louter
+private akte (een eigenhandig geschreven testament bijvoorbeeld).</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.affligem.be">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint3dea120390654377b9974970805e8d6a">
+    <schema:email>Bellestraat 99, 1790 Affligem
+T 053-64 00 01
+F 053-68 04 80
+bevolking@affligem.be</schema:email>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:telephone>Bellestraat 99, 1790 Affligem
+T 053-64 00 01
+F 053-68 04 80
+bevolking@affligem.be</schema:telephone>
+  </rdf:Description>
+</rdf:RDF>

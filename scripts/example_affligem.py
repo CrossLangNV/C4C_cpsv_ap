@@ -25,17 +25,17 @@ def main(filename: str,  # input filename html
                                            context=context,
                                            country_code=country_code)
 
-    relation_extractor.extract_all(extract_concepts=extract_concepts)
+    uri_ps = relation_extractor.extract_all(extract_concepts=extract_concepts)
 
     # TODO add new relations
 
     DEFAULT_NAME = "DEFAULT NAME"
 
-    critReq = CriterionRequirement(identifier=None,
-                                   name=DEFAULT_NAME,
-                                   type=[],
-                                   description=d_relations.criterionRequirement
-                                   )
+    crit_req = CriterionRequirement(identifier=None,
+                                    name=DEFAULT_NAME,
+                                    type=[],
+                                    description=d_relations.criterionRequirement
+                                    )
     rule = Rule(identifier=None,
                 description=d_relations.rule,
                 name=DEFAULT_NAME
@@ -48,12 +48,14 @@ def main(filename: str,  # input filename html
                 description=d_relations.cost
                 )
 
-    relation_extractor
+    uri_cr = relation_extractor.provider.criterion_requirements.add(crit_req, context=context)
+    relation_extractor.provider.public_services.add_criterion(uri_ps=uri_ps,
+                                                              uri_crit_req=uri_cr,
+                                                              context=context)
 
-    # # Save in RDF
-    # relation_extractor.export(filename_rdf)
-    #
-    # # Optional: Visualise results
+    # -- Save in RDF --
+    relation_extractor.export(filename_rdf)
+
     return
 
 

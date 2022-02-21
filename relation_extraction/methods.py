@@ -5,6 +5,7 @@ from typing import Generator, List
 import requests
 from bs4 import BeautifulSoup
 from pydantic import BaseModel
+from rdflib import URIRef
 
 from c4c_cpsv_ap.connector.hierarchy import Provider
 from c4c_cpsv_ap.models import Concept, ContactPoint, PublicOrganisation, PublicService
@@ -66,7 +67,7 @@ class RelationExtractor:
         self.provider = Provider()
 
     def extract_all(self,
-                    extract_concepts=True):
+                    extract_concepts=True) -> URIRef:
         """
         """
 
@@ -78,9 +79,9 @@ class RelationExtractor:
         else:
             concepts = []
 
-        self.extract_public_service(contact_info=contact_info,
-                                    public_org=public_org,
-                                    concepts=concepts)
+        return self.extract_public_service(contact_info=contact_info,
+                                           public_org=public_org,
+                                           concepts=concepts)
 
     def extract_public_organisation(self):
         contact_info_split = self.get_contact_info_split()
@@ -100,7 +101,7 @@ class RelationExtractor:
                                contact_info: ContactPoint,
                                public_org: PublicOrganisation,
                                concepts: List[Concept]
-                               ) -> PublicService:
+                               ) -> URIRef:
         """
         Extract all public service information
 
@@ -116,10 +117,10 @@ class RelationExtractor:
                                        is_classified_by=concepts,
                                        )
 
-        self.provider.public_services.add(public_service=public_service,
-                                          context=self.context)
+        ps_uri = self.provider.public_services.add(public_service=public_service,
+                                                   context=self.context)
 
-        return public_service
+        return ps_uri
 
     def extract_contact_info(self) -> ContactPoint:
         contact_info_split = self.get_contact_info_split()
