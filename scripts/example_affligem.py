@@ -53,6 +53,21 @@ def main(filename: str,  # input filename html
                                                               uri_crit_req=uri_cr,
                                                               context=context)
 
+    uri_rule = relation_extractor.provider.rules.add(rule, context=context)
+    relation_extractor.provider.public_services.add_rule(uri_ps=uri_ps,
+                                                         uri_rule=uri_rule,
+                                                         context=context)
+
+    uri_evi = relation_extractor.provider.evidences.add(evidence, context=context)
+    relation_extractor.provider.public_services.add_evidence(uri_ps=uri_ps,
+                                                             uri_evi=uri_evi,
+                                                             context=context)
+
+    uri_cost = relation_extractor.provider.costs.add(cost, context=context)
+    relation_extractor.provider.public_services.add_cost(uri_ps=uri_ps,
+                                                         uri_cost=uri_cost,
+                                                         context=context)
+
     # -- Save in RDF --
     relation_extractor.export(filename_rdf)
 

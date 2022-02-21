@@ -8,8 +8,9 @@ from rdflib.namespace import DCAT, DCTERMS, RDF, SKOS
 from rdflib.plugins.stores.sparqlstore import SPARQLStore
 from rdflib.term import _serial_number_generator, Identifier, Literal, URIRef
 
-from c4c_cpsv_ap.models import BusinessEvent, Concept, CPSVAPModel, CriterionRequirement, LifeEvent, PublicOrganisation, \
-    PublicService
+from c4c_cpsv_ap.models import BusinessEvent, Concept, Cost, CPSVAPModel, CriterionRequirement, Evidence, LifeEvent, \
+    PublicOrganisation, \
+    PublicService, Rule
 from c4c_cpsv_ap.namespace import C4C, CPSV, CV, SCHEMA, VCARD
 
 SUBJ = "subj"
@@ -121,6 +122,9 @@ class Provider(Harvester):
         self.public_organisations = PublicOrganisationsProvider(self)
         self.locations = LocationsProvider(self)
         self.criterion_requirements = CriterionRequirementProvider(self)
+        self.rules = RuleProvider(self)
+        self.evidences = EvidenceProvider(self)
+        self.costs = CostProvider(self)
 
 
 class SubHarvester(abc.ABC):
@@ -303,6 +307,42 @@ class ConceptsProvider(SubProvider, ConceptsHarvester):
         return uri_ref
 
 
+class CostHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        # TODO
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        # TODO
+        pass
+
+
+class CostProvider(SubProvider, CostHarvester):
+    def add(self, cost: Cost,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+
+        if uri is None:
+            if cost.identifier:
+                uri = URIRef(cost.identifier, base=C4C)
+            else:
+                uri = uriref_generator("Cost", C4C)
+
+        uri_c = URIRef(uri)
+
+        self.provider.graph.add((uri_c, RDF.type, CV.Cost, context))
+
+        self.provider.graph.add((uri_c, DCTERMS.identifier, Literal(cost.identifier), context))
+        if cost.value:
+            self.provider.graph.add((uri_c, CV.value, Literal(cost.value), context))
+        if cost.currency:
+            self.provider.graph.add((uri_c, CV.currency, Literal(cost.value), context))
+        if cost.description:
+            self.provider.graph.add((uri_c, DCTERMS.description, Literal(cost.description), context))
+
+        return uri_c
+
+
 class CriterionRequirementHarvester(SubHarvester):
     def get_all(self) -> List[URIRef]:
         # TODO
@@ -337,9 +377,48 @@ class CriterionRequirementProvider(SubProvider, CriterionRequirementHarvester):
         # name
         self.provider.graph.add((uri_cr, DCTERMS.title, Literal(crit_req.name), context))
 
-        # TODO add other relations.
+        # TODO add optional relations
 
         return uri_cr
+
+
+class EvidenceHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        # TODO
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        # TODO
+        pass
+
+
+class EvidenceProvider(SubProvider, EvidenceHarvester):
+
+    def add(self,
+            evidence: Evidence,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+        """
+        """
+
+        if uri is None:
+            if evidence.identifier:
+                uri = URIRef(evidence.identifier, base=C4C)
+            else:
+                uri = uriref_generator("Evidence", C4C)
+
+        uri_e = URIRef(uri)
+
+        self.provider.graph.add((uri_e, RDF.type, CV.Evidence, context))
+
+        self.provider.graph.add((uri_e, DCTERMS.identifier, Literal(evidence.identifier), context))
+        if evidence.description:
+            self.provider.graph.add((uri_e, DCTERMS.description, Literal(evidence.description), context))
+        self.provider.graph.add((uri_e, DCTERMS.title, Literal(evidence.name), context))
+
+        # TODO add optional relations
+
+        return uri_e
 
 
 class LocationsHarvester(SubHarvester):
@@ -653,6 +732,15 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
 
         return uri_ps
 
+    def add_cost(self,
+                 uri_ps: URIRef,
+                 uri_cost: URIRef,
+                 context: URIRef):
+        self.provider.graph.add((uri_ps,
+                                 CV.hasCost,
+                                 uri_cost,
+                                 context))
+
     def add_criterion(self,
                       uri_ps: URIRef,
                       uri_crit_req: URIRef,
@@ -662,6 +750,61 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
                                  CV.hasCriterion,
                                  uri_crit_req,
                                  context))
+
+    def add_evidence(self,
+                     uri_ps: URIRef,
+                     uri_evi: URIRef,
+                     context: URIRef):
+
+        self.provider.graph.add((uri_ps,
+                                 CPSV.hasInput,
+                                 uri_evi,
+                                 context))
+
+    def add_rule(self,
+                 uri_ps: URIRef,
+                 uri_rule: URIRef,
+                 context: URIRef):
+
+        self.provider.graph.add((uri_ps,
+                                 CPSV.follows,
+                                 uri_rule,
+                                 context))
+
+
+class RuleHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        pass
+
+
+class RuleProvider(SubProvider, RuleHarvester):
+    def add(self,
+            rule: Rule,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+        """
+        """
+
+        if uri is None:
+            if rule.identifier:
+                uri = URIRef(rule.identifier, base=C4C)
+            else:
+                uri = uriref_generator("Rule", C4C)
+
+        uri_r = URIRef(uri)
+
+        self.provider.graph.add((uri_r, RDF.type, CPSV.Rule, context))
+
+        self.provider.graph.add((uri_r, DCTERMS.identifier, Literal(rule.identifier), context))
+        self.provider.graph.add((uri_r, DCTERMS.description, Literal(rule.description), context))
+        self.provider.graph.add((uri_r, DCTERMS.title, Literal(rule.name), context))
+
+        # TODO add optional relations
+
+        return uri_r
 
 
 def id_generator() -> str:

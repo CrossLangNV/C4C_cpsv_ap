@@ -18,6 +18,11 @@ class CPSV(DefinedNamespace):
 
     # http://purl.org/vocab/cpsv#
     PublicService: URIRef
+    hasInput: URIRef
+    produces: URIRef
+    follows: URIRef
+
+    Rule: URIRef
 
     _NS = Namespace("http://purl.org/vocab/cpsv#")
 
