@@ -49,3 +49,9 @@ class TestAffligem(unittest.TestCase):
             s_true = "Het wettigen van een handtekening is gratis."
             s = d_relations.cost
             self.assertEqual(s_true, s)
+
+    # def test_publish_cpsv_ap(self):
+    #     with open(FILENAME_AFFLIGEM_HANDTEKENING, "r") as fp:
+    #         html = fp.read()
+    #
+    #     d_relations = self.parser.extract_relations(html)

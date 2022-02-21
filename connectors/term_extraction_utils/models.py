@@ -26,7 +26,7 @@ class ExtractModel(BaseModel):
     excerpt: str
     text: str
     hostname: Optional[str]  # TODO check if optional
-    source_hostname: str  # Make sure to de-hyphenate
+    source_hostname: Optional[str]  # Make sure to de-hyphenate key
     source: Optional[str]  # TODO check if optional
     language: Union[str, type(None)]  # str
     cas_content: str

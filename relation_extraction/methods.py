@@ -110,7 +110,7 @@ class RelationExtractor:
 
         public_service = PublicService(name=get_public_service_name(self.html),
                                        description=get_public_service_description(self.html),
-                                       identifier="#TODO",
+                                       identifier=None,
                                        has_competent_authority=public_org,
                                        has_contact_point=contact_info,
                                        is_classified_by=concepts,

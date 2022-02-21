@@ -12,8 +12,6 @@ import chardet
 class CityParser(abc.ABC):
     """
     Abstract class for city procedure parsers
-
-    TODO move to general file.
     """
 
     @abc.abstractmethod

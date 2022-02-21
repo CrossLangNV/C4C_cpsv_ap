@@ -15,7 +15,45 @@ class CPSVAPModel(abc.ABC, BaseModel):
     """
     Abstract class for the RDF object models.
     """
-    pass
+
+    @validator("identifier", pre=True, check_fields=False)
+    def create_identifier(cls, v: Union[str, None]) -> str:
+        """
+        Automatically generates an ID if not provided.
+        """
+        if not v:
+            return cls.__name__ + _id_generator()
+
+        return v
+
+
+class Event(CPSVAPModel, abc.ABC):
+    """
+    Event
+    """
+
+    identifier: str
+    name: str
+
+    description: Optional[str] = None
+    type: Optional[int] = None
+
+    # Links
+    ## PublicService
+    related_service: Optional[List] = []
+
+    def add_related_service(self, public_service):
+        self.related_service.append(public_service)
+
+
+class Code(str):
+    """
+    A series of alpha-numeric or other
+    characters
+    E.g. a microchip code, access code,
+    social security number, enterprise
+    number
+    """
 
 
 class Concept(CPSVAPModel):
@@ -35,23 +73,39 @@ class ContactPoint(CPSVAPModel):
     opening_hours: List[str] = None
 
 
-class Event(CPSVAPModel):
-    """
-    Event
-    """
+class Cost(CPSVAPModel):
+    identifier: str
 
+    # Optional
+    currency: Optional[Code]
+    description: Optional[str]
+    value: Optional[float]
+
+
+class CriterionRequirement(CPSVAPModel):
+    """
+    CPSV-AP Criterion Requirement
+    """
+    identifier: str
+    name: str
+    # Code [0..n] TODO find definition
+    type: List[Code]
+
+    # Optional:
+    description: Optional[str]
+
+
+class Evidence(CPSVAPModel):
     identifier: str
     name: str
 
-    description: Optional[str] = None
-    type: Optional[int] = None
-
-    # Links
-    ## PublicService
-    related_service: Optional[List] = []
-
-    def add_related_service(self, public_service):
-        self.related_service.append(public_service)
+    # -- Optional --
+    description: Optional[str]
+    # Linguistic system
+    language: Optional[List[str]]
+    # Document
+    relatedDocumentation: Optional[List[str]]
+    type: Optional[Code]
 
 
 class BusinessEvent(Event):
@@ -151,6 +205,16 @@ class PublicService(CPSVAPModel):
             return [v]
         else:
             return v
+
+
+class Rule(CPSVAPModel):
+    description: str
+    identifier: str
+    name: str
+
+    # -- Optional --
+    # Language: Linguistic system
+    language: Optional[List[Code]]
 
 
 def _id_generator() -> str:
