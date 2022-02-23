@@ -40,6 +40,9 @@ class TestQuery(unittest.TestCase):
                 with self.subTest(i):
                     self.assertTrue(a.content_html)
 
+    def test_query_example(self):
+        l = self.es_conn.query_example()
+
 
 class TestAalter(unittest.TestCase):
 

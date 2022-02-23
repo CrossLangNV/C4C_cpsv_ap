@@ -96,8 +96,11 @@ class ElasticSearchConnector:
             "query": {
                 "match": {
                     "title": "Aalterbon - Gemeente Aalter"
-                },
-            }
+                }
+            },
+            "sort": [
+                {"_id": "asc"}
+            ]
         }
 
         response = requests.get(self.url,
@@ -106,6 +109,10 @@ class ElasticSearchConnector:
                                 headers=self.HEADERS)
 
         j = response.json()["hits"]["hits"]
+
+        # Languages
+        l_lang = [doc["_source"]["language"] for doc in j]
+        s_lang = set(l_lang)
 
         return j
 
