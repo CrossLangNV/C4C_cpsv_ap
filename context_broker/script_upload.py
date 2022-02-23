@@ -2,11 +2,15 @@ import json
 import os
 import urllib
 import warnings
+from typing import Union
 
 import requests
+from pydantic import BaseModel
+from requests import Response
 
-URL_V1 = "http://localhost:1026/ngsi-ld/v1/entities/"
-URL_V2 = "http://localhost:1026/v2/entities/"
+URL_ORION = os.environ["URL_ORION"]
+URL_V1 = URL_ORION + "/ngsi-ld/v1/entities/"
+URL_V2 = URL_ORION + "/v2/entities/"
 EXAMPLE_ID = "Conceptbc83bfd3ad9b4690bbb1d3913420d320"
 C4C = "c4c"
 C4C_URL = "http://cefat4cities.crosslang.com/content/"
@@ -16,6 +20,7 @@ SKOS_URL = "http://www.w3.org/2004/02/skos/core#"
 PROPERTY = "Property"
 AT_VALUE = "@value"
 AT_ID = "@id"
+AT_LANG = "@language"
 
 NAMESPACES = {C4C: C4C_URL,
               SKOS: SKOS_URL,
@@ -56,11 +61,6 @@ def delete_example():
     r = requests.delete(os.path.join(URL_V2, ID))
 
     return r
-
-
-class Connector:
-    def __init__(self):
-        pass
 
 
 class Item(dict):
@@ -120,9 +120,53 @@ class ItemContextBroker(Item):
                         d_["object"] = list(map(cb._replace_namespace, v)) if isinstance(v, list) else \
                             cb._replace_namespace(v)
                         d_["type"] = "Relationship"
+                    elif AT_LANG == k:
+                        """
+                        Suggestion from Fernando Lopez
+                        
+                        * ETSI CIM NGSI-LD LanguageProperty
+                        'label': {
+                            'type': 'LanguageProperty',
+                            'LanguageMap': {
+                                'en': 'a sentence',
+                                'fr': 'une phrase'
+                            }
+                        }
+                        * Workaround
+                        'label': {
+                            'type': 'Property',
+                            'value': {
+                                'en': 'a sentence',
+                                'fr': 'une phrase'
+                            }
+                        }
+                        
+                        """
+                        # TODO test
+
+                        if 0:
+                            # ETSI CIM NGSI-LD LanguageProperty
+                            # TODO This specification is still not implemented in the Context Broker
+                            d__ = {
+                                "type": "LanguageProperty",
+                                "LanguagMap": {
+                                    a[AT_LANG]: a[AT_VALUE]
+                                }
+                            }
+                            return d__
+
+                        else:
+                            d__ = {
+                                "type": "Property",
+                                "value": {
+                                    a[AT_LANG]: a[AT_VALUE]
+                                }
+                            }
+                            return d__
+
                     else:
                         if ignore:
-                            pass  # Ignore
+                            pass  # TODO implement
                         else:
                             d_[k.replace('@', '')] = clean(v)
 
@@ -270,9 +314,75 @@ class ItemRDF(Item):
         return value_clean
 
 
+class OrionConnector:
+    """
+    Connector to FIWARE Orion
+    """
+
+    PATH_V1 = "/ngsi-ld/v1/entities/"
+    PATH_V2 = "/v2/entities/"
+    PATH_VERSION = "/version"
+
+    def __init__(self, url):
+
+        if url[-1] == '/':
+            # Remove trailing / if there.
+            url = url[:-1]
+
+        self.url = url
+
+        response = requests.get(url + self.PATH_VERSION)
+        if not response.ok:
+            warnings.warn(f"Could not connect to {url}", UserWarning)
+
+    def add_item(self, item: Union[dict, ItemContextBroker]) -> Response:
+        """
+
+        Args:
+            item: A dictionary (or more specific a Context Broker Item) in NGSI-LD format.
+
+        Returns:
+
+        """
+
+        response = requests.post(self.url + self.PATH_V1,
+                                 headers=HEADERS,
+                                 json=item)
+
+        return response
+
+    def remove_item(self, id: str) -> Response:
+
+        r = requests.delete(URL_V1 + id)
+
+        return r
+
+    def count_entities(self) -> int:
+        """ Counts the number of entities in Orion.
+
+        Returns:
+
+        """
+
+        class Params(BaseModel):
+            options: str
+            limit: str
+
+        params = Params(options="count",
+                        limit="1")
+
+        r = requests.get(self.url + self.PATH_V2,
+                         params=params.dict()
+                         )
+        n_count = int(r.headers['Fiware-Total-Count'])
+        return n_count
+
+
 def parse_json_ld(filename, debug=False):
     with open(filename) as f:
         j = json.load(f)
+
+    conn = OrionConnector(URL_ORION)
 
     n_ok = 0
     n_not_ok = 0
@@ -283,14 +393,12 @@ def parse_json_ld(filename, debug=False):
 
         for item in graph["@graph"]:
 
-            if debug:
-                print(json.dumps(item))
+            # if debug:
+            #     print(json.dumps(item))
 
             item_clean = ItemContextBroker.from_RDF(item)
 
-            r = requests.post(URL_V1,
-                              headers=HEADERS,
-                              json=item_clean)
+            r = conn.add_item(item_clean)
 
             if not r.ok:
                 # print(r.content)
@@ -319,18 +427,9 @@ def parse_json_ld(filename, debug=False):
 def delete_all(debug=False):
     # Get all links
 
-    def get_n_count() -> int:
+    conn = OrionConnector(URL_ORION)
 
-        r = requests.get(URL_V2,
-                         params={
-                             "options": "count",
-                             "limit": "1"
-                         }
-                         )
-        n_count = int(r.headers['Fiware-Total-Count'])
-        return n_count
-
-    n_count = get_n_count()
+    n_count = conn.count_entities()
     print(f"# Before = {n_count}. Trying to get to 0.")
 
     n_ok = 0
@@ -392,10 +491,11 @@ def delete_all(debug=False):
         else:
             n_ok += 1
 
-    print(f'    # ok: {n_ok}\n'
-          f'# not ok: {n_not_ok}\n')
+    print(f'#     ok = {n_ok}\n'
+          f'# not ok = {n_not_ok}')
 
-    print(f"# Count = {get_n_count()}. Should be *Before* - *#OK* = *#Not ok.*")
+    n_count_after = conn.count_entities()
+    print(f"#  After = {n_count_after}. (Should be *Before* - *#OK* = *#Not ok.*)")
 
     return
 

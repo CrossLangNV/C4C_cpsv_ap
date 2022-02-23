@@ -1,0 +1,1739 @@
+[
+  {
+    "@id": "http://data.europa.eu/eli/ontology#LegalResource",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. This class represents the legislation, policy or policies that lie behind the Rules that govern the service. The definition and properties of the Legal Resource class in the CPSV-AP are aligned with the ontology included in “Council conclusions inviting the introduction of the European Legislation Identifier (ELI)”. For describing the attributes of a Legal Resource (labels, preferred labels, alternative labels, definition …) we refer to the ELI ontology.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LegalResource",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/BusinessEvent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Optional class. This class represents a Business Event, which specialises Event. A Business Event is a specific situation or event in the lifecycle of a business that fulfils one or more needs or (legal) obligations of that business at this specific point in time. A Business Event requires a set of public services to be delivered and consumed in order for the associated business need(s) or obligation(s) to be fulfilled. Business Events are defined within the context of a particular Member State. In other words, a Business Event groups together a number of public services that need to be delivered for completing that particular event.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "BusinessEvent",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/Channel",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Optional class. The Channel class represents the medium through which an Agent provides, uses or interacts in another way with a Public Service. Typical examples include online services, phone, walk-in centres etc.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://data.europa.eu/m8g/cpsvap"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Channel",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/Cost",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Optional class. The Cost class represents any costs related to the execution of a Public Service that the Agent consuming it needs to pay.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://data.europa.eu/m8g/cpsvap"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Cost",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/CriterionRequirement",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. Not all public services are needed or usable by everyone. For example, the visa service operated by European countries is not needed by European citizens but is needed by some citizens from elsewhere, or public services offering unemployment benefits and grants are targeting specific societal groups. The CPSV reuses the Core Criterion and Core Evidence Vocabulary  for this class. The CCCEV provides more details but the CriterionRequirement class has three mandatory properties.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://data.europa.eu/m8g/cccev"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "CriterionRequirement",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/Event",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Optional class. This class represents an event that can be of any type that triggers, makes use of, or in some way is related to, a Public Service.  It is not expected to be used directly, rather, one or other of its subclasses should be used. The properties of the class are, of course, inherited by those subclasses.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://data.europa.eu/m8g/cpsvap"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Event",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/Evidence",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. Evidence can be any resource - document, artefact – anything needed for executing the Public Service. In the context of Public Services, Evidence is usually administrative documents or completed application forms. A specific Public Service may require the presence of certain Evidence or combinations of Evidence in order to be delivered. In some cases, the Output of one service will be Evidence for another service. Such relationships should be described in the associated Rule(s).",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://data.europa.eu/m8g/cccev"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Evidence",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/LifeEvent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Optional class. The Life Event class represents an important event or situations in a citizen's life where public services may be required. Note the scope: an individual will encounter any number of 'events' in the general sense of the word. In the context of the CPSV-AP, the Life Event class only represents an event for which a Public Service is related. For example, a couple becoming engaged is not a CPSV-AP Life Event, getting married is, since only the latter has any relevance to public services.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "LifeEvent",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/Output",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Optional class. Outputs can be any resource - document, artefact – anything produced by the Public Service. In the context of a Public Service, the output provides an official document or other artefact of the Competent Authority (Public Organisation) that permits/authorises/entitles an Agent to (do) something.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://data.europa.eu/m8g/cpsvap"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Output",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/Participation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. The CPSV-AP recognises a common role  connected with public services, i.e. the Competent Authority. However, this simple structure does not allow statements to be made about those participants, such the start and end date of a contract, nor does it support the inclusion of other roles. The Participation class supports this extra complexity if required, for instance, the description of a service user or a service provider. The model is consistent with the CPOV which in turn is based on the W3C Organization Ontology that supports the common cases simply but allows the complex cases where necessary. The Participation class can be mapped to the Organization Ontology’s Membership class that allows more complex relationships and richer metadata to be applied to a role filled by a given Agent.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://data.europa.eu/m8g/cpov"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Participation",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/PublicOrganisation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Mandatory class. The CPSV-AP reuses the Core Public Organisation Vocabulary that defines the concept of a Public Organisation and associated properties and relationships. It is largely based on the W3C Organization Ontology.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://data.europa.eu/m8g/cpov"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "PublicOrganisation",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/PublicServiceDataset",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. The CPSV-AP reuses the Data Catalog Vocabulary (DCAT) for the creation of the Public Service Dataset class. The Public Service Dataset, is a specialisation of the Dataset class of the Data Catalog Vocabulary (DCAT) and inherits all its properties. The class describes the metadata of where the dataset is being described, for instance on a regional public service portal or a national eGovernment portal.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "PublicServiceDataset",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/cccev"
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/cpov"
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/cpsvap",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Ontology",
+      "http://www.w3.org/2002/07/owl#NamedIndividual",
+      "http://www.w3.org/ns/adms#Asset"
+    ],
+    "http://purl.org/vocab/vann/preferredNamespacePrefix": [
+      {
+        "@value": "cpsvap"
+      }
+    ],
+    "http://purl.org/dc/terms/creator": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/corporate-body/DIGIT"
+      }
+    ],
+    "http://purl.org/dc/terms/status": [
+      {
+        "@id": "http://purl.org/adms/status/Completed"
+      }
+    ],
+    "http://xmlns.com/foaf/0.1/homepage": [
+      {
+        "@id": "https://joinup.ec.europa.eu/asset/cpsv-ap/home"
+      }
+    ],
+    "http://purl.org/dc/terms/created": [
+      {
+        "@value": "2018-07-09",
+        "@type": "http://www.w3.org/2001/XMLSchema#date"
+      }
+    ],
+    "http://purl.org/dc/terms/publisher": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/corporate-body/DIGIT"
+      }
+    ],
+    "http://purl.org/dc/terms/type": [
+      {
+        "@id": "http://purl.org/adms/assettype/Ontology"
+      }
+    ],
+    "http://purl.org/dc/terms/description": [
+      {
+        "@value": "The original CPSV-AP was prepared in the context of Action 1.3 – Accessing Member State information resources at European level – Catalogue of Services  of the European Commission’s Interoperability for European Public Administrations (ISA) programme. The CPSV-AP has been seen as a first step for creating a model for describing public services related to business events, to facilitate the set-up of catalogues of services in the context of the Services Directive. Update to version 2.2 finds its motivation in the experience of implementing version 2.1 of the CPSV-AP by different MSs and stakeholders and consequent requests received from them, as detailed in https://github.com/catalogue-of-services-isa/CPSV-AP/issues.",
+        "@language": "en"
+      }
+    ],
+    "http://purl.org/dc/terms/title": [
+      {
+        "@value": "Core Public Service Vocabulary Application Profile",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/currency",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "The CPSV-AP v2.0 recommends to use as controlled vocabulary the European Publications Office's Currencies Named Authority List (NAL) (http://publications.europa.eu/mdr/authority/currency/index.html).",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..1]. This property represents the currency in which the Cost needs to be paid and the value of the Cost is expressed. The possible values for this property are described in a controlled vocabulary.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "currency",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/hasAddress",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/ns/locn#Address"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..1]. This property represents an Address related to an Agent. Asserting the address relationship implies that the Agent has an Address.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasAddress",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/hasChannel",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/Channel"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. This property links the Public Service to any Channel through which an Agent provides, uses or otherwise interacts with the Public Service, such as an online service, phone number or office.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasChannel",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/hasCompetentAuthority",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/PublicOrganisation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [1..1]. This property links a Public Service to a Public Organisation, which is the responsible Agent for the delivery of the Public Service. Whether the particular Public Organisation provides the public service directly or outsources it is not relevant. The Public Organisation that is the Competent Authority of the service is the one that is ultimately responsible for managing and providing the public service.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasCompetentAuthority",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/hasContactPoint",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://schema.org/ContactPoint"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. A contact point for the service is almost always helpful. The value of this property, the contact information itself, should be provided using VCard. Note that the contact information should be relevant to the Public Service which may not be the same as contact information for the Competent Authority or any Participant.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasContactPoint",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/hasCost",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/Cost"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. The Has Cost property links a Public Service to one or more instances of the Cost class. It indicates the costs related to the execution of a Public Service for the citizen or business related to the execution of the particular Public Service. Where the cost varies depending on the channel through which the service is accessed, it can be linked to the channel using the If Accessed Through relationship.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasCost",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/hasCriterion",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/CriterionRequirement"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. Links a Public Service to a class that describes the criteria for needing or using the service, such as residency in a given location, being over a certain age etc. The Criterion class is defined in the Core Criterion and Core Evidence Vocabulary.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasCriterion",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/hasLegalResource",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#LegalResource"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. The Has Legal Resource property links a Public Service to a Legal Resource. It indicates the Legal Resource (e.g. legislation) to which the Public Service relates, operates or has its legal basis.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasLegalResource",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/hasParticipation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/Participation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. The CPSV-AP defines the three basic roles of Competent Authority, Service Provider and Service User but this simple model can be extended if required using the Has Participation property that links to the Participation class .",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasParticipation",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/ifAccessedThrough",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/Channel"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..1]. Where the cost varies depending on the channel used, for example, if accessed through an online service cf. accessed at a physical location, the cost can be linked to the channel using the If Accessed Through property.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "ifAccesseThrough",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/isClassifiedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. The Is Classified By property allows to classify the Public Service with any Concept, other than those already foreseen and defined explicitely in the CPSV-AP (Thematic Area, Sector, …). It is a generic property which can be further specialised to make the classification explicit, for instance for classifying public services according level of digitisation, type of audience … The Concept is at its turn related to a Collection, which groups the different concepts into a controlled vocabulary.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "isClassifiedBy",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/isDefinedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/PublicOrganisation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. This property links the Cost class with one or more instances of the Public Organisation class. This property indicates which Public Organisation is the Competent Authority for defining the costs associated with the delivery of a particular Public Service.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "isDefinedBy",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/isDescribedAt",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/PublicServiceDataset"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. The Is Described At property links a Public Service to the dataset where it belongs to. It is used to track the metadata of the origin of the public service descriptions.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "isDescribedAt",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/isGroupedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/Event"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. This property links the Public Service to the Event class. Several Public Services may be associated with a particular Event and, likewise, the same Public Service may be associated with several different Events.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "isGroupedBy",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/ownedBy",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/PublicOrganisation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. This property links the Channel class with one or more instances of the Public Organisation class. This property indicates the owner of a specific Channel through which a Public Service is being delivered.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "ownedBy",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/playsRole",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/Participation"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. This property links an Agent to the Participation class. The Participation class facilitates the detailed description of how an Agent participates in or interacts with a Public Service and may include temporal and spatial constraints on that participation.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "playsRole",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/processingTime",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..1]. The value of this property is the (estimated) time needed for executing a Public Service. The actual information is provided using the ISO8601 syntax for durations.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "processingTime",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/role",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [1..n]. Provides the role played. This should be provided using a controlled vocabulary. Since this is an extension mechanism for the CPSV-AP, the controlled vocabulary should be decided to suit local implementations.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "role",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/sector",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "The CPSV-AP v2.0 recommends to use as controlled vocabulary the List of NACE codes (http://ec.europa.eu/competition/mergers/cases/index/nace_all.html).",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. This property represents the industry or sector a Public Service relates to, or is intended for. For example: environment, safety, housing. Note that a single Public Service may relate to multiple sectors. The possible values for this property are provided as a controlled vocabulary.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "sector",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/thematicArea",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. This property represents the Thematic Area of a Public Service as described in a controlled vocabulary, for instance social protection, health, recreation, culture and religion, family, traveling economic affairs, tax, staff, environment...",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "thematicArea",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://data.europa.eu/m8g/value",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2001/XMLSchema#double"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..1]. This property represents a numeric value indicating the amount of the Cost.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "value",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://dublincore.org/usage/terms/history/#identifierT-001"
+  },
+  {
+    "@id": "http://publications.europa.eu/resource/authority/corporate-body/DIGIT",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual"
+    ]
+  },
+  {
+    "@id": "http://purl.org/adms/assettype/Ontology",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#NamedIndividual"
+    ]
+  },
+  {
+    "@id": "http://purl.org/adms/status/Completed"
+  },
+  {
+    "@id": "http://purl.org/dc/terms/"
+  },
+  {
+    "@id": "http://purl.org/dc/terms/Agent",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. The Agent class is any resource that acts or has the power to act. This includes people, organisations and groups. The Public Organisation class, defined in the Core Public Organisation Vocabulary, is a notable sub class of Agent.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://data.europa.eu/m8g/cpov"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Agent",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/LinguisticSystem",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/Location",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/description",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..1]. This property represents a free text Description of the Output.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..1]. This property represents a free text Description of the piece of Evidence.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..1]. This property represents a free text description of the Cost.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..1]. This property represents a free text description of the Event. The description is likely to be the text that a business or citizen sees for that specific Event when looking for relevant Public Services. Public administrations are therefore encouraged to include a reasonable level of detail in the description.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. A free text description of the Participation.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents a free text Description of the Public Service. The description is likely to be the text that potential users of the Public Service see in any public service catalogue. Public administrations are encouraged to include a reasonable level of detail in the description, for instance including basic eligibility requirements for the particular Public Service and contact information.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents a free text Description of the Rule.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "description",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/hasVersion",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/identifier",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty",
+      "http://www.w3.org/2002/07/owl#NamedIndividual"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    ],
+    "http://purl.org/dc/terms/description": [
+      {
+        "@value": "Recommended best practice is to identify the resource by means of a string conforming to a formal identification system. ",
+        "@language": "en"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the Cost.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the Participation.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the Output.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the Event.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the Agent.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the Public Service Dataset.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the Channel.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the Criterion Requirement.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the piece of Evidence.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents an Identifier for the Rule.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents a formally-issued Identifier for the Public Service.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Identifier",
+        "@language": "en"
+      }
+    ],
+    "http://purl.org/dc/terms/hasVersion": [
+      {
+        "@id": "http://dublincore.org/usage/terms/history/#identifierT-001"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+      {
+        "@id": "http://purl.org/dc/terms/"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "An unambiguous reference to the resource within a given context.",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/language",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://purl.org/dc/terms/LinguisticSystem"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. Indicates the language(s) in which the Evidence must be provided. The CPSV-AP v2.0 recommends to use as controlled vocabulary the European Publications Office's Languages Named Authority List (NAL) (http://publications.europa.eu/mdr/authority/language/index.html).",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..n]. This property represents the language(s) in which the Public Service is available. This could be one language or multiple languages, for instance in countries with more than one official language. The possible values for this property are described in a controlled vocabulary. The CPSV-AP v2.0 recommends to use as controlled vocabulary the European Publications Office's Languages Named Authority List (NAL) (http://publications.europa.eu/mdr/authority/language/index.html).",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..n]. This property represents the language(s) in which the Rule is available. This could be one or multiple languages, for instance in countries with more than one official language. The possible values for this property are described in a controlled vocabulary. The CPSV-AP v2.0 recommends to use as controlled vocabulary the European Publications Office's Languages Named Authority List (NAL) (http://publications.europa.eu/mdr/authority/language/index.html).",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "language",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/publisher",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://purl.org/dc/terms/Agent"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [1..1]. This property represents the Publisher of the Public Service Dataset, i.e. an entity (organisation) responsible for making the Public Service Dataset available.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "publisher",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/relation",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#LegalResource"
+      },
+      {
+        "@id": "http://purl.org/vocab/cpsv#PublicService"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. This property links an event directly to a public service that is related to it.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..n]. This property represents a Public Service related to the particular instance of the Public Service class.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..n]. This property represents another instance of the Legal Resource class that is related to the particular Legal Resource being described.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "related",
+        "@language": "en"
+      },
+      {
+        "@value": "relatedService",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/requires",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://purl.org/vocab/cpsv#PublicService"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. One Public Service may require, or in some way make use of, the output of one or several other Public Services. In this case, for a Public Service to be executed, another Public Service must be executed beforehand. The nature of the requirement will be described in the associated Rule or Input.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "requires",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/spatial",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://purl.org/dc/terms/Location"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. A Public Service is likely to be available only within a given area, typically the area covered by a particular public authority. A common usage of the spatial property will be to define the Administrative Territorial Unit(s) – typically a country or region – in which a Public Service is available. The Publications Office of the European Union offers a URI set  that is suitable for this purpose, e.g. Malta is identified by http://publications.europa.eu/resource/authority/atu/MLT, West Flanders by http://publications.europa.eu/resource/authority/atu/BEL_PR_WVL and so on. N.B. The spatial restriction is not meant to be used to describe eligibility or the speed of operation of the service. These aspects will be covered by the Criterion class.\r\n The CPSV-AP v2.2 recommends to use as controlled vocabulary the MDR Continents Named Authority List (http://publications.europa.eu/mdr/authority/continent/index.html), MDR Countries Named Authority List (http://publications.europa.eu/mdr/authority/country/), MDR Places Named Authority List (http://publications.europa.eu/mdr/authority/place/index.html), Geonames (http://sws.geonames.org/).",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..n]. A Public Organisation has to be associated to one or multiple locations.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "spatial",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/title",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [1..1]. This property represents the Name (or title) of the Event.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents the Name of the Agent.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents the name of the Rule.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents the official Name of the Criterion Requirement.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents the official Name of the Output.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents the official Name of the Public Service.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [1..1]. This property represents the official Name of the piece of Evidence.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [1..n]. This property contains a name given to the Public Service Dataset. This property can be repeated for parallel language versions of the name.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "name",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/dc/terms/type",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..1]. This property represents the type of Channel as defined in a controlled vocabulary. The CPSV-AP v2.0 recommends to use as controlled vocabulary the CPSV-AP list of Channels.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..1]. This property represents the type of Evidence as described in a controlled vocabulary.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..n]. The type property links an Event to a controlled vocabulary of event types and it is the nature of those controlled vocabularies that is the major difference between a business event, such as creating the business in the first place and a life event, such as the birth of a child. The CPSV-AP v2.0 recommends to use as controlled vocabulary the CPSV-AP list of Life Events and Business Events.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..n]. This property represents the type of Criterion Requirement as described in a controlled vocabulary.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..n]. This property represents the type of Output as defined in a controlled vocabulary. The CPSV-AP v2.0 recommends to use as controlled vocabulary the CPSV-AP list of Outputs.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..n]. This property represents the type of a Public Service as described in a controlled vocabulary, for instance social protection, health, recreation, culture and religion, economic affairs... The CPSV-AP v2.0 recommends to use as controlled vocabulary the COFOG taxonomy (http://unstats.un.org/unsd/cr/registry/regcst.asp?Cl=4).",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "type",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/vocab/cpsv#PublicService",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Mandatory class. This class represents the Public Service itself, as it is described in a public service catalogue. A Public Service is a mandatory or discretionary set of activities performed, or able to be performed, by or on behalf of a public organisation, publicly funded and arise from public policy. Services may be for the benefit of an individual, a business, or other public authority, or groups of any of these. A service exists whether it is used or not, and the term 'benefit' may apply in the sense of enabling the fulfilment of an obligation. As defined in the revised version of the European Interoperability Framework, a European public service comprises any service provided by public administrations in Europe, or by other organisations on their behalf, to businesses, citizens or others public administrations.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "PublicService",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/vocab/cpsv#Rule",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. The Rule class represents a document that sets out the specific rules, guidelines or procedures that the Public Service follows. It includes the terms of service, licence, and authentication requirements of the Public Service.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Rule",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/vocab/cpsv#follows",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://purl.org/vocab/cpsv#Rule"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. The follows property links a Public Service to the Rule(s) under which it operates. The definition of the Rule class is very broad. In a typical case, the competent authority that provides the public service will also define the rules that will implement its own policies. The CPSV-AP is flexible to allow for significant variation in such a scenario.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "follows",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/vocab/cpsv#hasInput",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/Evidence"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. The Has Input property links a Public Service to one or more instances of the Evidence class. A specific Public Service may require the presence of certain pieces of Evidence in order to be delivered. If the evidence required to make use of a service varies according to the channel through which it is accessed, then Has Input should be at the level of the Channel.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [0..n]. In the majority of cases, the evidence required to use a Public Service will be independent of the channel through which the service is accessed. The Has Input property should normally be used to link a Public Service directly to one or more pieces of Evidence. However, where the type of Evidence required varies according to the channel used to access the Public Service, then the Has Input property may be used at the Channel level. For example, a digital signature may be required for an online channel, whereas a physical signature may be required for a face to face service provision.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasInput",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/vocab/cpsv#implements",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#LegalResource"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. The Implements property links a Rule to relevant legislation or policy documents i.e. the Formal Framework under which the Rules are being defined.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "implements",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/vocab/cpsv#produces",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://data.europa.eu/m8g/Output"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. The Produces property links a Public Service to one or more instances of the Output class, describing the actual result of executing a given Public Service. Outputs can be any resource, for instance a document, artefact or anything else being produced as a result of executing the Public Service.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "produces",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://purl.org/vocab/vann/usageNote",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#AnnotationProperty"
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+  },
+  {
+    "@id": "http://www.w3.org/2001/XMLSchema#double"
+  },
+  {
+    "@id": "http://www.w3.org/2002/07/owl#AnnotationProperty"
+  },
+  {
+    "@id": "http://www.w3.org/2002/07/owl#Class"
+  },
+  {
+    "@id": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+  },
+  {
+    "@id": "http://www.w3.org/2002/07/owl#NamedIndividual"
+  },
+  {
+    "@id": "http://www.w3.org/2002/07/owl#ObjectProperty"
+  },
+  {
+    "@id": "http://www.w3.org/2002/07/owl#Ontology"
+  },
+  {
+    "@id": "http://www.w3.org/2002/07/owl#Thing"
+  },
+  {
+    "@id": "http://www.w3.org/2004/02/skos/core#Collection",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. This class represents the Collection to which a Concept belongs. Grouping different concepts defines a controlled vocabulary. In this context the CPSV-AP reuses the Collection  class as defined in the SKOS Simple Knowledge Organization System . For describing the attributes of a Collection (labels, preferred labels, alternative labels, definition …) we refer to SKOS.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Collection",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/2004/02/skos/core#Concept",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. This class represents any concept that can be used for classifying the Public Service and which relates to the Public Service through the property Is Classified By. This class has been added in the CPSV-AP to complement the need for adding other ways of classifying the Public Service, which have not been explicitely defined in the CPSV-AP. In this context the CPSV-AP reuses the Concept  class as defined in the SKOS Simple Knowledge Organization System . For describing the attributes of a Concept (labels, preferred labels, alternative labels, definition …) we refer to SKOS. The Concept may or may not belong to (member) a certain Collection.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "Concept",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/2004/02/skos/core#member",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. The Member property, as defined in SKOS, allows to indicate the Concepts that are part of a Collection.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "member",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/2004/02/skos/core#prefLabel",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [1..1].",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "preferredLabel",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/adms#Asset",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/adms#status",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2004/02/skos/core#Concept"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..1]. Indicates whether a Public Service is active, inactive, under development etc. according to a controlled vocabulary. The CPSV-AP v2.0 recommends to use as controlled vocabulary the ADMS Status vocabulary (http://purl.org/adms/status/).",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "status",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/dcat#keyword",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. This property represents a keyword, term or phrase to describe the Public Service.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "keyword",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/dcat#landingPage",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://xmlns.com/foaf/0.1/Document"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#comment": [
+      {
+        "@value": "Cardinality [1..n]. This property refers to a web page that provides access to the Public Service Dataset. It is intended to point to a landing page at the original data provider, not to a page on a site of a third party, such as an aggregator.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "landingPage",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "http://www.w3.org/ns/locn#Address",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ]
+  },
+  {
+    "@id": "http://xmlns.com/foaf/0.1/Document",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ]
+  },
+  {
+    "@id": "http://xmlns.com/foaf/0.1/page",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#domain": [
+      {
+        "@id": "http://www.w3.org/2002/07/owl#Thing"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://xmlns.com/foaf/0.1/Document"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. This property represents documentation that contains information related to the Evidence, for instance a particular template for an administrative document, an application or a guide on formatting the Input.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "relatedDocumentation",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "https://joinup.ec.europa.eu/asset/cpsv-ap/home"
+  },
+  {
+    "@id": "https://schema.org/ContactPoint",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Optional class. This class represents the contact information for a Public Service, Channel, Public Organisation etc. It is defined in the Core Public Organisation Vocabulary and is usually provided as a VCard.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "ContactPoint",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "https://schema.org/OpeningHoursSpecification",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#Class"
+    ]
+  },
+  {
+    "@id": "https://schema.org/email",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n].",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasEmail",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "https://schema.org/hoursAvailable",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#ObjectProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "https://schema.org/OpeningHoursSpecification"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..1]. This property links a channel to information about when the channel is not available, overriding the general opening hours information. The details are provided using the Opening Hours Specification class.",
+        "@language": "en"
+      },
+      {
+        "@value": "Cardinality [0..n].",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "availabilityRestriction",
+        "@language": "en"
+      },
+      {
+        "@value": "openingHours",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "https://schema.org/openingHours",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n]. This property represents the normal opening hours of a channel. The value should follow the flexible format defined for schema.org's opening hours property. Following that structure, days of the week are represented by two letter codes (Mo, Tu, We, Th, Fr, Sa, Su). Lists should be comma separated (for example: Mo, We, Fr) and periods separated by a hyphen.",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "openingHours",
+        "@language": "en"
+      }
+    ]
+  },
+  {
+    "@id": "https://schema.org/telephone",
+    "@type": [
+      "http://www.w3.org/2002/07/owl#DatatypeProperty"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#range": [
+      {
+        "@id": "http://www.w3.org/2000/01/rdf-schema#Literal"
+      }
+    ],
+    "http://purl.org/vocab/vann/usageNote": [
+      {
+        "@value": "Cardinality [0..n].",
+        "@language": "en"
+      }
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "hasTelephone",
+        "@language": "en"
+      }
+    ]
+  }
+]

@@ -7,7 +7,7 @@ def main_example():
     delete_all()  # Clean slate.
 
     filename = os.path.join(os.path.dirname(__file__), 'examples/demo_context_broker.jsonld')
-    parse_json_ld(filename)
+    parse_json_ld(filename, debug=True)
 
     if 0:
         r = post_example()
