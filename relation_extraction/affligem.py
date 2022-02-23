@@ -1,6 +1,5 @@
 from typing import List
 
-import bs4.element
 from bs4 import BeautifulSoup
 
 from relation_extraction.cities import CityParser, Relations
@@ -22,13 +21,7 @@ class AffligemParser(CityParser):
         soup = BeautifulSoup(s_html, 'html.parser')
 
         def clean_text(text):
-            return text.strip(" \n\r\xa0\t")
-
-        def get_title(link: bs4.element.Tag):
-            title = link.text
-
-            title = clean_text(title)
-            return title
+            return text.strip(" \n\r\xa0\t").replace("\xa0", " ")
 
         h1 = soup.find('h1')
         page_procedure = h1.parent
@@ -41,10 +34,10 @@ class AffligemParser(CityParser):
             if not text:
                 continue
 
-            if tag.name in ['h1', 'h2']:  # title
+            if tag.name in ['h1', 'h2', "h3"]:  # title
                 l.append([text])
 
-            else:
+            elif tag.name in ["div"]:
                 l[-1].append(text)
 
         # Filter empty subs:

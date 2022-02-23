@@ -11,6 +11,13 @@ import chardet
 from pydantic import BaseModel
 
 
+class Relations(BaseModel):
+    criterionRequirement: Optional[str]
+    rule: Optional[str]
+    evidence: Optional[str]
+    cost: Optional[str]
+
+
 class CityParser(abc.ABC):
     """
     Abstract class for city procedure parsers
@@ -30,7 +37,7 @@ class CityParser(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def extract_relations(self, s_html) -> dict:
+    def extract_relations(self, s_html) -> Relations:
         pass
 
     def url2html(self, url, filename=None):
@@ -51,10 +58,3 @@ class CityParser(abc.ABC):
                 fp.write(mystr)
 
         return mystr
-
-
-class Relations(BaseModel):
-    criterionRequirement: Optional[str]
-    rule: Optional[str]
-    evidence: Optional[str]
-    cost: Optional[str]

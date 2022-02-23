@@ -48,8 +48,26 @@ class TestAffligem(unittest.TestCase):
             s = d_relations.cost
             self.assertEqual(s_true, s)
 
-    # def test_publish_cpsv_ap(self):
-    #     with open(FILENAME_HTML_AFFLIGEM, "r") as fp:
-    #         html = fp.read()
-    #
-    #     d_relations = self.parser.extract_relations(html)
+    def test_attest_gezinssamenstelling(self):
+        url = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/aanvraag-samenstelling-van-het-gezin/page.aspx/825"
+        html = self.parser.url2html(url)
+
+        d_relations = self.parser.extract_relations(html)
+
+        with self.subTest("criterionRequirement"):
+            s_true = "De volgende partijen kunnen het attest met betrekking tot jou aanvragen:\n" \
+                     "•  jij zelf (enkel voor je eigen gezin)\n" \
+                     "•  je wettelijke vertegenwoordiger (bv. ouder of voogd)\n" \
+                     "•  bijzondere gemachtigden zoals een notaris of advocaat\n" \
+                     "•  derden (bv. publieke of private instellingen) als de afgifte ervan voorgeschreven is door of krachtens de wet\n" \
+                     "•  een derde persoon op voorwaarde dat die in het bezit is van een volmacht en de identiteitskaart (of kopie ervan) van de\n" \
+                     "aanvrager."
+
+            s = d_relations.criterionRequirement
+
+            with self.subTest("total"):
+                self.assertEqual(s_true, s)
+
+            for i, (s_i, s_i_true) in enumerate(zip(s_true.splitlines(), s.splitlines())):
+                with self.subTest(f"line {i + 1}"):
+                    self.assertEqual(s_i_true, s_i)
