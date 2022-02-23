@@ -1,9 +1,7 @@
-import os.path
 import unittest
 
+from data.html import FILENAME_HTML_AFFLIGEM
 from relation_extraction.affligem import AffligemParser
-
-FILENAME_AFFLIGEM_HANDTEKENING = os.path.join(os.path.dirname(__file__), "AFFLIGEM_HANDTEKENING.html")
 
 
 class TestAffligem(unittest.TestCase):
@@ -13,14 +11,14 @@ class TestAffligem(unittest.TestCase):
     def test_url2html(self):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/wettiging-van-handtekening/page.aspx/169#"
 
-        html = self.parser.url2html(url, FILENAME_AFFLIGEM_HANDTEKENING)
+        html = self.parser.url2html(url, FILENAME_HTML_AFFLIGEM)
 
         s_in = "Het wettigen of legaliseren van een handtekening betekent dat een daartoe bevoegde overheid de echtheid van een handtekening schriftelijk bevestigt. Deze wettiging heeft echter niet tot doel de echtheid van de inhoud van het document te bewijzen."
 
         self.assertIn(s_in, html)
 
     def test_extract(self):
-        with open(FILENAME_AFFLIGEM_HANDTEKENING, "r") as fp:
+        with open(FILENAME_HTML_AFFLIGEM, "r") as fp:
             html = fp.read()
 
         d_relations = self.parser.extract_relations(html)
@@ -51,7 +49,7 @@ class TestAffligem(unittest.TestCase):
             self.assertEqual(s_true, s)
 
     # def test_publish_cpsv_ap(self):
-    #     with open(FILENAME_AFFLIGEM_HANDTEKENING, "r") as fp:
+    #     with open(FILENAME_HTML_AFFLIGEM, "r") as fp:
     #         html = fp.read()
     #
     #     d_relations = self.parser.extract_relations(html)

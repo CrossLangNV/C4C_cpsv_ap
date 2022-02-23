@@ -1,4 +1,5 @@
 import itertools
+import json
 import os
 import warnings
 from typing import Generator, List, Optional, Union
@@ -9,6 +10,9 @@ from pydantic import BaseModel
 
 ES_LOGIN = os.environ.get("ES_LOGIN")
 ES_PASSW = os.environ.get("ES_PASSW")
+
+if (ES_LOGIN is None) or (ES_PASSW is None):
+    warnings.warn("Did not find any login information for Elastic Search.")
 
 
 class Source(BaseModel):
@@ -47,8 +51,12 @@ class Source(BaseModel):
 
 
 class ElasticSearchConnector:
+    HEADERS = {"content-type": "application/json"}
+    url = "https://elasticsearch.cefat4cities.crosslang.com/documents/_search?pretty=true"
+
     def __init__(self):
         pass
+        # self.elastic_client = Elasticsearch(hosts=["https://elasticsearch.cefat4cities.crosslang.com"])
 
     def query(self,
               municipality: str = None,
@@ -71,11 +79,35 @@ class ElasticSearchConnector:
 
         r = requests.get(query, auth=(ES_LOGIN, ES_PASSW))
 
+        assert r.ok, (r, r.text)
+
         j = r.json()
 
         hits = j["hits"]["hits"]
 
         return [Source(**hit["_source"]) for hit in hits]
+
+    def query_example(self):
+        """
+        TODO work out.
+        """
+
+        d = {
+            "query": {
+                "match": {
+                    "title": "Aalterbon - Gemeente Aalter"
+                },
+            }
+        }
+
+        response = requests.get(self.url,
+                                data=json.dumps(d),
+                                auth=(ES_LOGIN, ES_PASSW),
+                                headers=self.HEADERS)
+
+        j = response.json()["hits"]["hits"]
+
+        return j
 
     def generate_htmls(self, municipality="aalter",
                        min_acceptance=.5) -> Generator[Source, None, None]:
@@ -115,3 +147,29 @@ class ElasticSearchConnector:
         # backup/last one
         warnings.warn("Could not find an html with desired language.", UserWarning)
         return html
+
+    def get_languages(self) -> dict:
+        """
+        TODO language information does not seem to be saved atm in Elastic Search.
+        """
+
+        d = {
+            "size": 0,
+            "aggs": {
+                "langs": {
+                    "terms": {"field": "language.keyword",
+                              "size": 500}
+                }
+            }
+        }
+
+        HEADERS = {"content-type": "application/json"}
+        url = "https://elasticsearch.cefat4cities.crosslang.com/documents/_search?pretty=true"
+        response = requests.get(url,
+                                data=json.dumps(d),
+                                auth=(ES_LOGIN, ES_PASSW),
+                                headers=HEADERS)
+
+        j = response.json()["hits"]["hits"]
+
+        return j
