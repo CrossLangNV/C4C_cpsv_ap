@@ -127,9 +127,8 @@ class ElasticSearchConnector:
                                    min_acceptance=min_acceptance)
 
             for source in l_sources:
-
-                if source.content_html:
-                    yield source
+                # if source.content_html: # We should not have to check this here.
+                yield source
 
     def get_random_html(self,
                         lang: str = None):
