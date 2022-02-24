@@ -57,13 +57,6 @@ class SOLRConnector(pysolr.Solr):
         # Do a health check.
         self.ping()
 
-    def query(self):
-        pass
-
-    def random_query(self):
-
-        return
-
     def _get_accepted(self, debug=False) -> List[Result]:
         results = self.search(q="acceptance_state:Accepted")
 
