@@ -19,6 +19,8 @@ services:
       - ".:/app"
     env_file:
       - secrets/cpsv_ap.env
+    environment:
+      - URL_ORION=http://orion:1026
 
   mongo-db:
     image: mongo:4.4

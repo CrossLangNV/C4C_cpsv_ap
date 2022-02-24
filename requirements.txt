@@ -7,8 +7,10 @@ pydantic==1.8.2
 requests==2.26.0
 
 # Parsing
-beautifulsoup4 == 4.10.0
+beautifulsoup4==4.10.0
 
 # Cas parsing
 dkpro-cassis==0.7.0
 
+# Connectors
+pysolr>=3.9.0
