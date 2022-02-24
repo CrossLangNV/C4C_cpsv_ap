@@ -2,7 +2,8 @@ import itertools
 import json
 import os
 import warnings
-from typing import Generator, List, Optional, Union
+from collections import Counter
+from typing import Dict, Generator, List, Optional, Union
 
 import pydantic
 import requests
@@ -154,28 +155,50 @@ class ElasticSearchConnector:
         warnings.warn("Could not find an html with desired language.", UserWarning)
         return html
 
-    def get_languages(self) -> dict:
+    def get_languages(self, size=100) -> Dict[str, int]:
         """
         TODO language information does not seem to be saved atm in Elastic Search.
         """
 
-        d = {
-            "size": 0,
-            "aggs": {
-                "langs": {
-                    "terms": {"field": "language.keyword",
-                              "size": 500}
-                }
+        field = "language"
+
+        def process_single_item(l):
+            if isinstance(l, list) and len(l) == 1:
+                return l[0]
+            return l
+
+        lang_count = Counter()
+
+        for i in itertools.count():
+
+            _from = i * size
+
+            print(f"#{i}: {_from} -> {_from + size - 1} ")
+
+            d = {
+                "fields": [
+                    field
+                ],
+                "_source": False,  # We don't need the whole sources.
+                "from": _from,
+                "size": size
             }
-        }
 
-        HEADERS = {"content-type": "application/json"}
-        url = "https://elasticsearch.cefat4cities.crosslang.com/documents/_search?pretty=true"
-        response = requests.get(url,
-                                data=json.dumps(d),
-                                auth=(ES_LOGIN, ES_PASSW),
-                                headers=HEADERS)
+            HEADERS = {"content-type": "application/json"}
+            url = "https://elasticsearch.cefat4cities.crosslang.com/documents/_search?pretty=true"
+            response = requests.get(url,
+                                    data=json.dumps(d),
+                                    auth=(ES_LOGIN, ES_PASSW),
+                                    headers=HEADERS)
 
-        j = response.json()["hits"]["hits"]
+            try:
+                hits = response.json()["hits"]["hits"]
+            except:
+                # Finished
+                break
 
-        return j
+            lang_sub = [process_single_item(hit["fields"][field]) for hit in hits]
+
+            lang_count.update(lang_sub)
+
+        return lang_count

@@ -69,3 +69,12 @@ class TestAalter(unittest.TestCase):
 
             source.url
             source.content_html
+
+class TestGetLanguages(unittest.TestCase):
+    def setUp(self) -> None:
+        self.es_conn = ElasticSearchConnector()
+
+    def test_summary(self):
+        languages = self.es_conn.get_languages()
+        print(languages)
+        self.assertEqual(0, 1)
