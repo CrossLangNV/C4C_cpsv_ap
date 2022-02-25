@@ -17,6 +17,16 @@ class Relations(BaseModel):
     evidence: Optional[str]
     cost: Optional[str]
 
+    # Event
+    life_event: Optional[str]
+    business_event: Optional[str]
+
+    def get_life_event(self):
+        return self.life_event
+
+    def get_business_event(self):
+        return self.business_event
+
 
 class CityParser(abc.ABC):
     """

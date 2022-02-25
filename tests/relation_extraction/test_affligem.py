@@ -31,22 +31,22 @@ class TestAffligem(unittest.TestCase):
                      "• De formaliteit moet nuttig of nodig zijn. Het mag bijgevolg niet gaan om een louter\n" \
                      "private akte (een eigenhandig geschreven testament bijvoorbeeld)."
             s = d_relations.criterionRequirement
-            self.assertEqual(s_true, s)
+            self.assert_multiline(s_true, s)
 
         with self.subTest("rule"):
             s_true = "De burgemeester van de gemeente of zijn gemachtigde gaat na of de te legaliseren handtekening overeenstemt met die van de persoon van wie de identiteit wordt vastgesteld. Een handtekening op een wit vel papier kan nooit gelegaliseerd worden."
             s = d_relations.rule
-            self.assertEqual(s_true, s)
+            self.assert_multiline(s_true, s)
         with self.subTest("evidence"):
             s_true = "• het document waarop de handtekening moet gewettigd worden\n" \
                      "• je identiteitskaart\n" \
                      "Laat je de handtekening van iemand anders wettigen, dan moet je de identiteitskaart van deze persoon en een door hem of haar ondertekende volmacht meebrengen."
             s = d_relations.evidence
-            self.assertEqual(s_true, s)
+            self.assert_multiline(s_true, s)
         with self.subTest("cost"):
             s_true = "Het wettigen van een handtekening is gratis."
             s = d_relations.cost
-            self.assertEqual(s_true, s)
+            self.assert_multiline(s_true, s)
 
     def test_attest_gezinssamenstelling(self):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/aanvraag-samenstelling-van-het-gezin/page.aspx/825"
@@ -65,9 +65,26 @@ class TestAffligem(unittest.TestCase):
 
             s = d_relations.criterionRequirement
 
-            with self.subTest("total"):
-                self.assertEqual(s_true, s)
+            self.assert_multiline(s_true, s)
 
-            for i, (s_i, s_i_true) in enumerate(zip(s_true.splitlines(), s.splitlines())):
+    def test_adreswijziging(self):
+        url = "https://www.affligem.be/Affligem/Nederlands/Leven/bouwen-en-wonen/adresverandering/page.aspx/60"
+        html = self.parser.url2html(url)
+
+        d_relations = self.parser.extract_relations(html)
+
+        with self.subTest("Event"):
+            life_event = d_relations.get_life_event()
+
+            self.assertEqual("bouwen en wonen", life_event)
+
+    def assert_multiline(self, s_true, s_pred):
+
+        if s_true == s_pred:
+            # Small assertion.
+            self.assertEqual(s_true, s_pred)
+
+        else:
+            for i, (s_i, s_i_true) in enumerate(zip(s_true.splitlines(), s_pred.splitlines())):
                 with self.subTest(f"line {i + 1}"):
                     self.assertEqual(s_i_true, s_i)
