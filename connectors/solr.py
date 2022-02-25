@@ -75,12 +75,16 @@ class SOLRConnector(pysolr.Solr):
 
         """
 
+        field = "language"
+        return self.get_field(field,
+                              acceptance_state=acceptance_state)
+
         params_facet = {
             'facet': 'true',
             'facet.limit': 100,
             'facet.mincount': 1,
             'facet.sort': 'count',
-            'facet.field': ['language'],
+            'facet.field': [field],
             'fl': '*',
         }
 
@@ -96,9 +100,9 @@ class SOLRConnector(pysolr.Solr):
             q = "*:*"
             return q
 
-        def parse_language_facet(results: pysolr.Results) -> dict:
+        def parse_language_facet(results: pysolr.Results, field="language") -> dict:
             facet_fields = results.facets['facet_fields']
-            facet_language = facet_fields["language"]
+            facet_language = facet_fields[field]
             d_lang = {}
             for lang, n in zip(facet_language[::2], facet_language[1::2]):
                 d_lang[lang] = n
@@ -113,3 +117,51 @@ class SOLRConnector(pysolr.Solr):
         d_lang = parse_language_facet(results)
 
         return d_lang
+
+    def get_different_websites(self) -> Dict[str, int]:
+
+        d_website = self.get_field("website")
+
+        return d_website
+
+    def get_field(self, field: str,
+                  acceptance_state: bool = None) -> Dict[str, int]:
+
+        params_facet = {
+            'facet': 'true',
+            'facet.limit': 100,
+            'facet.mincount': 1,
+            'facet.sort': 'count',
+            'facet.field': [field],
+            'fl': '*',
+        }
+
+        def get_q(acceptance_state: bool):
+
+            if acceptance_state is not None:
+                if bool(acceptance_state):
+                    q = "acceptance_state:Accepted"
+                else:
+                    q = "acceptance_state:Rejected"
+                return q
+
+            q = "*:*"
+            return q
+
+        def parse_field_facet(results: pysolr.Results, field: str) -> dict:
+            facet_fields = results.facets['facet_fields']
+            facet_field_select = facet_fields[field]
+            d_field = {}
+            for text, n in zip(facet_field_select[::2], facet_field_select[1::2]):
+                d_field[text] = n
+
+            return d_field
+
+        q = get_q(acceptance_state=acceptance_state)
+
+        results = self.search(q=q,
+                              **params_facet)
+
+        d_field = parse_field_facet(results, field=field)
+
+        return d_field

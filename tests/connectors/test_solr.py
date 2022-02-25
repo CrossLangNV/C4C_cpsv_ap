@@ -1,3 +1,4 @@
+import csv
 import unittest
 
 from connectors.solr import SOLRConnector
@@ -90,3 +91,41 @@ class TestLanguageInfo(unittest.TestCase):
                 f_assert = self.assertEqual if hard_check else self.assertGreaterEqual
 
                 f_assert(n_tot, n_acc + n_not_acc, f"{n_tot} != {n_acc} + {n_not_acc}")
+
+
+class TestWebsiteInfo(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.connector = SOLRConnector()
+
+    def test_get_different_websites(self, debug=True):
+        websites = self.connector.get_different_websites()
+
+        if debug:
+            print(f"Municipality info: {websites}")
+
+            b = 0
+            if b:
+                # Write to CSV
+                with open('solr_websites.csv', "w") as f:
+                    writer = csv.writer(f)
+
+                    writer.writerow(["municipality", "number"])
+
+                    for k in sorted(websites):
+                        v = websites.get(k)
+
+                        _k = k.capitalize()
+
+                        writer.writerow([_k, v])
+
+        with self.subTest("Type"):
+            self.assertIsInstance(websites, dict)
+
+        with self.subTest("Type key"):
+            for code in websites.keys():
+                self.assertIsInstance(code, str)
+
+        with self.subTest("Type value"):
+            for n in websites.values():
+                self.assertIsInstance(n, int)
