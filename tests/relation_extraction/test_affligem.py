@@ -1,6 +1,6 @@
 import unittest
 
-from data.html import FILENAME_HTML_AFFLIGEM
+from data.html import FILENAME_HTML_AFFLIGEM, FILENAME_HTML_AFFLIGEM_SITEMAP, get_html, url2html
 from relation_extraction.affligem import AffligemParser
 
 
@@ -11,7 +11,7 @@ class TestAffligem(unittest.TestCase):
     def test_url2html(self):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/wettiging-van-handtekening/page.aspx/169#"
 
-        html = self.parser.url2html(url, FILENAME_HTML_AFFLIGEM)
+        html = url2html(url, FILENAME_HTML_AFFLIGEM)
 
         s_in = "Het wettigen of legaliseren van een handtekening betekent dat een daartoe bevoegde overheid de echtheid van een handtekening schriftelijk bevestigt. Deze wettiging heeft echter niet tot doel de echtheid van de inhoud van het document te bewijzen."
 
@@ -50,7 +50,7 @@ class TestAffligem(unittest.TestCase):
 
     def test_attest_gezinssamenstelling(self):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/aanvraag-samenstelling-van-het-gezin/page.aspx/825"
-        html = self.parser.url2html(url)
+        html = url2html(url)
 
         d_relations = self.parser.extract_relations(html)
 
@@ -67,9 +67,16 @@ class TestAffligem(unittest.TestCase):
 
             self.assert_multiline(s_true, s)
 
+    def test_extract_event(self):
+        url = "https://www.affligem.be/Affligem/Nederlands/Leven/bouwen-en-wonen/adresverandering/page.aspx/60"
+        html = url2html(url)
+        event = self.parser.extract_event(html, url)
+
+        self.assertEqual(event)
+
     def test_adreswijziging(self):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/bouwen-en-wonen/adresverandering/page.aspx/60"
-        html = self.parser.url2html(url)
+        html = url2html(url)
 
         d_relations = self.parser.extract_relations(html)
 
@@ -88,3 +95,56 @@ class TestAffligem(unittest.TestCase):
             for i, (s_i, s_i_true) in enumerate(zip(s_true.splitlines(), s_pred.splitlines())):
                 with self.subTest(f"line {i + 1}"):
                     self.assertEqual(s_i_true, s_i)
+
+
+class TestHierarcy(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.parser = AffligemParser()
+
+        b = 0
+        if b:
+            url_sitemap = "https://affligem.be/sitemap/page.aspx/182"
+            self.html_sitemap = url2html(url_sitemap, FILENAME_HTML_AFFLIGEM_SITEMAP)
+        else:
+
+            self.html_sitemap = get_html(FILENAME_HTML_AFFLIGEM_SITEMAP)
+
+    def test_extract_hierarchy(self):
+
+        hierarchy = self.parser.extract_hierarchy(self.html_sitemap)
+
+        # Base children
+        with self.subTest("Events"):
+            children = hierarchy.children
+
+            self.assertEqual(children[0].name.lower(), 'leven', children[0])
+
+            self.assertEqual(children[1].name.lower(), 'werken', children[1])
+
+        # sdf
+        with self.subTest("gemeentelijk Ruimtelijk Structuurplan"):
+            h1 = hierarchy.children[0]
+            self.assertEqual(h1.name.lower(), 'leven', h1)
+
+            h2 = h1.children[0]
+            self.assertEqual(h2.name.lower(), 'bouwen en wonen', h2)
+
+            h3 = h2.children[5]
+            self.assertEqual(h3.name.lower(), 'stedenbouw', h3)
+
+            h4 = h3.children[1]
+            self.assertEqual(h4.name.lower(), 'gemeentelijk ruimtelijk structuurplan', h4)
+
+    def test_wijk_werken_Affligem(self):
+        hierarchy = self.parser.extract_hierarchy(self.html_sitemap)
+
+        with self.subTest("h1"):
+            h1 = hierarchy.children[1]
+            self.assertEqual(h1.name.lower(), 'werken', h1)
+        with self.subTest("h2"):
+            h2 = h1.children[4]
+            self.assertEqual(h2.name.lower(), 'tewerkstelling', h2)
+        with self.subTest("h3"):
+            h3 = h2.children[0]
+            self.assertEqual(h3.name.lower(), 'wijk-werken affligem', h3)

@@ -4,10 +4,8 @@ For Belgium see:
  - https://data.vlaanderen.be/doc/applicatieprofiel/dienstencataloog/
 """
 import abc
-import urllib.request
 from typing import Optional
 
-import chardet
 from pydantic import BaseModel
 
 
@@ -50,21 +48,4 @@ class CityParser(abc.ABC):
     def extract_relations(self, s_html) -> Relations:
         pass
 
-    def url2html(self, url, filename=None):
-        def get_encoding(rawdata):
-            result = chardet.detect(rawdata)
-            charenc = result['encoding']
-            return charenc
 
-        with urllib.request.urlopen(url) as fp:
-            mybytes = fp.read()
-
-            enc = get_encoding(mybytes)
-
-            mystr = mybytes.decode(enc)
-
-        if filename:
-            with open(filename, "w", encoding="utf-8") as fp:
-                fp.write(mystr)
-
-        return mystr
