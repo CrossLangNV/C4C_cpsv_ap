@@ -1,6 +1,7 @@
 import unittest
 
-from data.html import FILENAME_HTML_AFFLIGEM, FILENAME_HTML_AFFLIGEM_SITEMAP, get_html, url2html
+from c4c_cpsv_ap.models import LifeEvent
+from data.html import FILENAME_HTML_AFFLIGEM, FILENAME_HTML_AFFLIGEM_SITEMAP, get_html, url2html, URL_HTML_AFFLIGEM
 from relation_extraction.affligem import AffligemParser
 
 
@@ -9,9 +10,8 @@ class TestAffligem(unittest.TestCase):
         self.parser = AffligemParser()
 
     def test_url2html(self):
-        url = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/wettiging-van-handtekening/page.aspx/169#"
 
-        html = url2html(url, FILENAME_HTML_AFFLIGEM)
+        html = url2html(URL_HTML_AFFLIGEM, FILENAME_HTML_AFFLIGEM)
 
         s_in = "Het wettigen of legaliseren van een handtekening betekent dat een daartoe bevoegde overheid de echtheid van een handtekening schriftelijk bevestigt. Deze wettiging heeft echter niet tot doel de echtheid van de inhoud van het document te bewijzen."
 
@@ -21,7 +21,7 @@ class TestAffligem(unittest.TestCase):
         with open(FILENAME_HTML_AFFLIGEM, "r") as fp:
             html = fp.read()
 
-        d_relations = self.parser.extract_relations(html)
+        d_relations = self.parser.extract_relations(html, url=URL_HTML_AFFLIGEM)
 
         with self.subTest("criterionRequirement"):
             s_true = "• De persoon van wie de handtekening gewettigd moet worden, moet zijn woonplaats\n" \
@@ -52,7 +52,7 @@ class TestAffligem(unittest.TestCase):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/aanvraag-samenstelling-van-het-gezin/page.aspx/825"
         html = url2html(url)
 
-        d_relations = self.parser.extract_relations(html)
+        d_relations = self.parser.extract_relations(html, url=url)
 
         with self.subTest("criterionRequirement"):
             s_true = "De volgende partijen kunnen het attest met betrekking tot jou aanvragen:\n" \
@@ -70,20 +70,27 @@ class TestAffligem(unittest.TestCase):
     def test_extract_event(self):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/bouwen-en-wonen/adresverandering/page.aspx/60"
         html = url2html(url)
-        event = self.parser.extract_event(html, url)
+        events = list(self.parser.extract_event(html, url))
 
-        self.assertEqual(event)
+        self.assertEqual(1, len(events))
+        event = events[0]
+
+        with self.subTest("Life Event"):
+            self.assertIsInstance(event, LifeEvent)
+
+        with self.subTest("Name"):
+            self.assertEqual(event.name, "bouwen en wonen")
 
     def test_adreswijziging(self):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/bouwen-en-wonen/adresverandering/page.aspx/60"
         html = url2html(url)
 
-        d_relations = self.parser.extract_relations(html)
+        d_relations = self.parser.extract_relations(html, url)
 
         with self.subTest("Event"):
-            life_event = d_relations.get_life_event()
+            life_event = d_relations.get_life_events()[0]
 
-            self.assertEqual("bouwen en wonen", life_event)
+            self.assertEqual("bouwen en wonen", life_event.name)
 
     def assert_multiline(self, s_true, s_pred):
 

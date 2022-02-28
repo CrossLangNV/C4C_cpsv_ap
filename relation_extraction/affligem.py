@@ -1,10 +1,42 @@
-import urllib
-from typing import Dict, List
+import warnings
+from typing import Dict, Generator, List
 
-import bs4
 from bs4 import BeautifulSoup
 
+from c4c_cpsv_ap.models import BusinessEvent, Event, LifeEvent
+from data.html import FILENAME_HTML_AFFLIGEM_SITEMAP, get_html
 from relation_extraction.cities import CityParser, Relations
+from relation_extraction.utils import clean_text
+
+
+class Sitemap:
+    name: str
+    url: str
+    level: int
+    children: List
+
+    def __init__(self, name,
+                 url,
+                 level,
+                 parent=None
+                 ):
+        self.name = name
+        self.url = url
+        self.level = level
+        self.children: List[Sitemap] = []
+
+        if parent is not None:
+            self.parent = parent
+            self.parent.add_child(self)
+
+    def add_child(self, child):
+        self.children.append(child)
+
+    def get_parent(self):
+        return self.parent
+
+    def __repr__(self):
+        return f'Sitemap(name={self.name}, url={self.url}, level={self.level})'
 
 
 class AffligemParser(CityParser):
@@ -19,11 +51,16 @@ class AffligemParser(CityParser):
 
     # e = "Uitzonderingen"
 
-    def parse_page(self, s_html) -> List[List[str]]:
-        soup = BeautifulSoup(s_html, 'html.parser')
+    def __init__(self, filename_hierarchy=FILENAME_HTML_AFFLIGEM_SITEMAP):
+        super(AffligemParser, self).__init__()
 
-        def clean_text(text):
-            return text.strip(" \n\r\xa0\t").replace("\xa0", " ")
+        if filename_hierarchy:
+            html_hierarhy = get_html(filename_hierarchy)
+            self.hierarchy = self.extract_hierarchy(html_hierarhy)
+
+    @staticmethod
+    def parse_page(s_html) -> List[List[str]]:
+        soup = BeautifulSoup(s_html, 'html.parser')
 
         h1 = soup.find('h1')
         page_procedure = h1.parent
@@ -47,11 +84,22 @@ class AffligemParser(CityParser):
 
         return l
 
-    def extract_relations(self, s_html) -> Relations:
+    def extract_relations(self, s_html, url) -> Relations:
+        """
 
+        Args:
+            s_html:
+            url:
+
+        Returns:
+
+        """
         l = self.parse_page(s_html)
 
         d = Relations()
+
+        events = list(self.extract_event(s_html, url))
+        d.events = events
 
         for l_sub in l:
             title = l_sub[0]
@@ -72,40 +120,87 @@ class AffligemParser(CityParser):
 
         return d
 
-    def extract_event(self, s_html, url: None):
+    def extract_event(self, s_html: str, url: str) -> Generator[None, None, Event]:
 
-        if url:
-            url_parsed = urllib.parse.urlparse(url)
-            url_parsed.path
-            return url_parsed.path
+        try:
+            # Check if hierarchy is extracted
+            self.hierarchy
+        except:
+            warnings.warn("Could not hierarcy. Make sure it is provided in init.", UserWarning)
+            return
 
-        soup = BeautifulSoup(s_html, 'html.parser')
+        # TODO
+        # Get life vs business event
+        # Get event name.
 
-        unordered_lists = soup.find_all('ul')
+        def match_url(url_actual, url_hierarchy):
+            # For affligem
 
-        ul_leven = [ul for ul in unordered_lists if ul]
+            return url_hierarchy in url_actual
 
-        hierarchy = {}
+        def iterate(sitemap: Sitemap):
 
-        a = soup.find('title')
+            for child in sitemap.children:
 
-        def f(tag: bs4.element.Tag) -> bool:
+                yield child
 
-            key_href = "href"
-            if not tag.has_attr(key_href):
-                return False
+                for subchild in iterate(child):
+                    yield subchild
 
-            href = tag.get(key_href)
+        for child in iterate(self.hierarchy):
 
-            return True
+            if match_url(url, child.url):
 
-        for _ in soup.find_all("a"):
-            href = _.get("href")
+                l = []
+                parent = child.get_parent()
+                while parent.name:
+                    l.append(parent.name)
 
-        for _ in soup.find("a").find_all(f):
-            _
+                    parent = parent.get_parent()
 
-        return
+                top = l[-1]
+                if top.lower() == "leven":
+                    # life event:
+                    event = LifeEvent(name=' - '.join(l[-2::-1]), identifier=None)
+                elif top.lower() == 'werken':
+                    event = BusinessEvent(name=' - '.join(l[-2::-1]), identifier=None)
+                else:
+                    event = Event(name=' - '.join(l[::-1]), identifier=None)
+
+                yield event
+
+        # if url:
+        #     url_parsed = urllib.parse.urlparse(url)
+        #     url_parsed.path
+        #     return url_parsed.path
+        #
+        # soup = BeautifulSoup(s_html, 'html.parser')
+        #
+        # unordered_lists = soup.find_all('ul')
+        #
+        # ul_leven = [ul for ul in unordered_lists if ul]
+        #
+        # hierarchy = {}
+        #
+        # a = soup.find('title')
+        #
+        # def f(tag: bs4.element.Tag) -> bool:
+        #
+        #     key_href = "href"
+        #     if not tag.has_attr(key_href):
+        #         return False
+        #
+        #     href = tag.get(key_href)
+        #
+        #     return True
+        #
+        # for _ in soup.find_all("a"):
+        #     href = _.get("href")
+        #
+        # for _ in soup.find("a").find_all(f):
+        #     _
+        #
+        # return
 
     def extract_hierarchy(self, html_sitemap):
         """
@@ -134,24 +229,7 @@ class AffligemParser(CityParser):
         # Get sitemap
         main_content = soup.find(lambda tag: tag.get("id") == "main_content")
 
-        class Sitemap:
-            name: str
-            url: str
-            level: int
-            children: List
-
-            def __init__(self, name,
-                         url,
-                         level):
-                self.name = name
-                self.url = url
-                self.level = level
-                self.children = []
-
-            def __repr__(self):
-                return f'Sitemap(name={self.name}, url={self.url}, level={self.level})'
-
-        sitemap = Sitemap("Sitemap",
+        sitemap = Sitemap(None,
                           None,
                           level=0)
 
@@ -161,15 +239,18 @@ class AffligemParser(CityParser):
         for li in main_content.find('ul').find_all('li'):
             class_ = li.get("class")[0]
             level = int(class_.rsplit('_', 1)[-1])
-            name = li.text
-            url = li.find('a').get("href")
 
-            new_sitemap = Sitemap(name=name,
-                                  url=url,
-                                  level=level)
+            hyperlink = li.find('a')
+            name = hyperlink.get_text()  # TODO clean.
+            url = hyperlink.get("href")
+
+            parent = d_latest_lvl[level - 1]
 
             # Update parents children
-            d_latest_lvl[new_sitemap.level - 1].children.append(new_sitemap)
+            new_sitemap = Sitemap(name=name,
+                                  url=url,
+                                  level=level,
+                                  parent=parent)
 
             # Update latest
             d_latest_lvl[new_sitemap.level] = new_sitemap

@@ -1,6 +1,7 @@
 import os
+import re
 import warnings
-from typing import Generator, List
+from typing import List
 
 import requests
 from bs4 import BeautifulSoup
@@ -11,6 +12,7 @@ from c4c_cpsv_ap.connector.hierarchy import Provider
 from c4c_cpsv_ap.models import Concept, ContactPoint, PublicOrganisation, PublicService
 from connectors.term_extraction import ConnectorContactInfoClassification, ConnectorTermExtraction, TypesContactInfo
 from connectors.term_extraction_utils.cas_utils import cas_from_cas_content, SOFA_ID
+from relation_extraction.utils import clean_text
 
 TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
 CONTACT_CLASSIFICATION = os.environ["CONTACT_CLASSIFICATION"]
@@ -184,23 +186,6 @@ def get_public_service_description(html) -> str:
     return description
 
 
-def get_requirements(html: str) -> str:
-    """
-    Extracts the x
-
-    TODO
-     * In the future we might add an annotation to the HTML.
-    """
-
-    # Get a pyramid with the tags. Return the part which is most likely.
-
-    soup = _get_soup_text(html)
-    for section in _get_children_text(soup):
-
-        if "required" in section.text():
-            yield section
-
-
 def get_concepts(html: str,
                  language="en"):
     j = {
@@ -220,7 +205,7 @@ def get_concepts(html: str,
     return l_term
 
 
-def generator_html(html: str) -> Generator[str, None, None]:
+def get_chunks(html: str) -> List[List[str]]:
     """
     Make a generator from the HTML to go over all text in a pyramid-like manner:
     Higher level tags will return all text contained within.
@@ -228,32 +213,60 @@ def generator_html(html: str) -> Generator[str, None, None]:
 
     soup = _get_soup_text(html)
 
-    for text in _get_children_text(soup):
-        yield text
+    header_pattern = '^h[1-6]$'
+
+    l = [[]]
+
+    for header in soup.find_all(re.compile(header_pattern)):
+
+        title = clean_text(header.get_text())
+
+        # Find all text till next header
+
+        l.append([title])
+
+        for sibling in header.next_siblings:
+
+            if isinstance(sibling, str):
+                text = clean_text(sibling)
+                l[-1].append(text)
+
+            elif sibling.name in ["div", "p"]:
+                text = clean_text(sibling.get_text())
+                l[-1].append(text)
+
+            elif re.match(header_pattern, sibling.name):
+                break
+
+    # Cleaning
+    l = [[sent for sent in par if sent] for par in l if par]
+
+    return l
 
 
-def get_requirements(html):
+def get_requirements(html: str) -> List[str]:
     """
     For Criterion Requirements.
     """
 
-    # TODO use Chunks.
+    l = get_chunks(html)
 
-    conn = ConnectorTermExtraction(TERM_EXTRACTION)
-    chunk = conn._post_chunking(html=html,
-                                # language=language # TODO
-                                )
-    # chunk.
-    description = chunk.excerpt
+    requirements = []
 
-    soup = _get_soup_text(html)
-    for section in _get_children_text(soup):
+    for l_sub in l:
+        title = l_sub[0]
 
-        if "required" in section.text():
-            yield section
+        # Classifier
+        if "required" in title.lower():
+            paragraphs = l_sub[1:]
+            paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
+
+            requirements.append(paragraphs_clean)
+
+    return requirements
 
 
-def _clean_text(text):
+def _clean_text(text: str) -> str:
     # break into lines and remove leading and trailing space on each
     lines = (line.strip() for line in text.splitlines())
     # break multi-headlines into a line each
@@ -274,7 +287,7 @@ def _get_soup_text(html: str) -> BeautifulSoup:
     return soup
 
 
-def _get_children_text(soup) -> list:
+def _get_children_text(soup) -> List[str]:
     # Goes over every tag.
     for child in soup.findChildren():
         text = child.get_text()

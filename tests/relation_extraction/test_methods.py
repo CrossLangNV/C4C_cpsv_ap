@@ -2,8 +2,8 @@ import unittest
 
 from connectors.elastic_search import ElasticSearchConnector
 from data.html import FILENAME_HTML, get_html
-from relation_extraction.methods import get_requirements, get_public_service_name, generator_html, \
-    get_public_service_description, get_concepts
+from relation_extraction.methods import get_chunks, get_concepts, get_public_service_description, \
+    get_public_service_name, get_requirements
 
 
 class TestExtraction(unittest.TestCase):
@@ -15,9 +15,12 @@ class TestExtraction(unittest.TestCase):
         # Get an HTML with x in.
 
         reqs = get_requirements(self.html)
-        requirement = next(reqs)
 
-        self.assertTrue(requirement)
+        self.assertEqual(1, len(reqs), reqs)
+
+        requirement0 = reqs[0]
+
+        self.assertTrue(requirement0)
 
     def test_get_public_service(self):
         title = get_public_service_name(self.html)
@@ -74,7 +77,10 @@ class TestGeneratorHTML(unittest.TestCase):
     def test_generator_HTML(self):
         html = get_html(FILENAME_HTML)
 
-        for _ in generator_html(html):
-            print(_)
+        chunks = get_chunks(html)
 
-        self.assertEqual(0, 1)
+        with self.subTest("Titles"):
+            for chunk in chunks:
+                title = chunk[0]
+
+                self.assertIsInstance(title, str)

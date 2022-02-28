@@ -4,9 +4,11 @@ For Belgium see:
  - https://data.vlaanderen.be/doc/applicatieprofiel/dienstencataloog/
 """
 import abc
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel
+
+from c4c_cpsv_ap.models import BusinessEvent, Event, LifeEvent
 
 
 class Relations(BaseModel):
@@ -16,14 +18,19 @@ class Relations(BaseModel):
     cost: Optional[str]
 
     # Event
-    life_event: Optional[str]
-    business_event: Optional[str]
+    events: Optional[List[Event]]
 
-    def get_life_event(self):
-        return self.life_event
+    # life_event: Optional[List[Event]]
+    # business_event: Optional[List[Event]]
 
-    def get_business_event(self):
-        return self.business_event
+    def get_events(self) -> List[Event]:
+        return self.events
+
+    def get_life_events(self) -> List[LifeEvent]:
+        return [event for event in self.events if isinstance(event, LifeEvent)]
+
+    def get_business_events(self) -> List[LifeEvent]:
+        return [event for event in self.events if isinstance(event, BusinessEvent)]
 
 
 class CityParser(abc.ABC):

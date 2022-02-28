@@ -9,6 +9,7 @@ FILENAME_HTML = os.path.join(os.path.dirname(__file__),
                              "relation_extraction",
                              'Financial plan_ how to prepare an effective financial plan.html')
 
+URL_HTML_AFFLIGEM = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/wettiging-van-handtekening/page.aspx/169#"
 FILENAME_HTML_AFFLIGEM = os.path.join(os.path.dirname(__file__),
                                       "relation_extraction",
                                       'AFFLIGEM_HANDTEKENING.html')
