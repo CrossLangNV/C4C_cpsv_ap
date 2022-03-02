@@ -38,7 +38,7 @@ def url2html(url, filename=None):
         mystr = mybytes.decode(enc)
 
     if filename:
-        with open(filename, "w", encoding="utf-8") as fp:
+        with open(filename, "w+", encoding="utf-8") as fp:
             fp.write(mystr)
 
     return mystr

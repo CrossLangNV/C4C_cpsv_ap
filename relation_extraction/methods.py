@@ -6,7 +6,6 @@ from typing import List
 import requests
 from bs4 import BeautifulSoup
 from pydantic import BaseModel
-from rdflib import URIRef
 
 from c4c_cpsv_ap.connector.hierarchy import Provider
 from c4c_cpsv_ap.models import Concept, ContactPoint, PublicOrganisation, PublicService
@@ -69,7 +68,7 @@ class RelationExtractor:
         self.provider = Provider()
 
     def extract_all(self,
-                    extract_concepts=True) -> URIRef:
+                    extract_concepts=True) -> PublicService:
         """
         """
 
@@ -103,7 +102,7 @@ class RelationExtractor:
                                contact_info: ContactPoint,
                                public_org: PublicOrganisation,
                                concepts: List[Concept]
-                               ) -> URIRef:
+                               ) -> PublicService:
         """
         Extract all public service information
 
@@ -119,10 +118,10 @@ class RelationExtractor:
                                        is_classified_by=concepts,
                                        )
 
-        ps_uri = self.provider.public_services.add(public_service=public_service,
-                                                   context=self.context)
+        self.provider.public_services.add(public_service=public_service,
+                                          context=self.context)
 
-        return ps_uri
+        return public_service
 
     def extract_contact_info(self) -> ContactPoint:
         contact_info_split = self.get_contact_info_split()

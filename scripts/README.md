@@ -1,6 +1,19 @@
 # Make an image of the graph
 
-1. Make a Graphviz* file
+## RDF Grapher
+
+[https://www.ldf.fi/service/rdf-grapher](https://www.ldf.fi/service/rdf-grapher)
+
+Make sure to enable: 'Send form as HTTP POST (needed for large RDF data)'
+
+## Graphviz
+
+! Only if above is not working.
+
+To visualise, and be able to run the above scrpit, Graphviz has to be installed and added to your path.
+See https://graphviz.org/ for install instruction.
+
+1. Make a Graphviz file
 
    1. https://github.com/fatestigma/ontology-visualization
    > python ./ontology_viz.py -o example_html_extraction.dot example_html_extraction_cpsv-ap.rdf
@@ -18,16 +31,4 @@
 ![Example CPSV-AP Graph](file.png)
 ![Example CPSV-AP Graph](example_html_extraction.png)
 
-# Visualisation
-
-## RDF Grapher
-
-[https://www.ldf.fi/service/rdf-grapher](https://www.ldf.fi/service/rdf-grapher)
-
-Make sure to enable: 'Send form as HTTP POST (needed for large RDF data)'
-
-## *Graphviz
-
-To visualise, and be able to run the above scrpit, Graphviz has to be installed and added to your path.
-See https://graphviz.org/ for install instruction.
 

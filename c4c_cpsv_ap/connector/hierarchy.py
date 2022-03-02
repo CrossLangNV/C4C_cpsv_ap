@@ -8,7 +8,8 @@ from rdflib.namespace import DCAT, DCTERMS, RDF, SKOS
 from rdflib.plugins.stores.sparqlstore import SPARQLStore
 from rdflib.term import _serial_number_generator, Identifier, Literal, URIRef
 
-from c4c_cpsv_ap.models import BusinessEvent, Concept, Cost, CPSVAPModel, CriterionRequirement, Evidence, LifeEvent, \
+from c4c_cpsv_ap.models import BusinessEvent, Concept, Cost, CPSVAPModel, CriterionRequirement, Event, Evidence, \
+    LifeEvent, \
     PublicOrganisation, \
     PublicService, Rule
 from c4c_cpsv_ap.namespace import C4C, CPSV, CV, SCHEMA, VCARD
@@ -125,6 +126,7 @@ class Provider(Harvester):
         self.rules = RuleProvider(self)
         self.evidences = EvidenceProvider(self)
         self.costs = CostProvider(self)
+        self.events = EventProvider(self)
 
 
 class SubHarvester(abc.ABC):
@@ -382,6 +384,43 @@ class CriterionRequirementProvider(SubProvider, CriterionRequirementHarvester):
         return uri_cr
 
 
+class EventHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        pass
+
+
+class EventProvider(SubProvider, EventHarvester):
+    def add(self, event: Event,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+        if uri is None:
+            if event.identifier:
+                uri = URIRef(event.identifier, base=C4C)
+            else:
+                uri = uriref_generator("Event", C4C)
+
+        uri_e = URIRef(uri)
+
+        self.provider.graph.add((uri_e, RDF.type, CV.Event, context))
+
+        self.provider.graph.add((uri_e, DCTERMS.identifier, Literal(event.identifier), context))
+
+        self.provider.graph.add((uri_e, DCTERMS.title, Literal(event.name), context))
+
+        if event.description:
+            self.provider.graph.add((uri_e, DCTERMS.description, Literal(event.description), context))
+        if event.type:
+            self.provider.graph.add((uri_e, DCTERMS.type, Literal(event.type), context))
+        if event.related_service:
+            for public_service in event.related_service:
+                self.provider.graph.add((uri_e, DCTERMS.relation, public_service.get_uri(), context))
+
+        return uri_e
+
+
 class EvidenceHarvester(SubHarvester):
     def get_all(self) -> List[URIRef]:
         # TODO
@@ -507,9 +546,9 @@ class PublicOrganisationsHarvester(SubHarvester):
 class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
     def add(self, obj: PublicOrganisation, context: str, uri: URIRef = None) -> URIRef:
 
+        # Has no identifier.
         if uri is None:
             uri = uriref_generator("PublicOrganisation", C4C)
-
         uri_ref = URIRef(uri)
 
         if not isinstance(context, URIRef):
@@ -639,7 +678,6 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
     def add(self,
             public_service: PublicService,
             context: str,
-            uri: str = None
             ) -> URIRef:
         """
 
@@ -652,10 +690,7 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
 
         """
 
-        if uri is None:
-            uri = uriref_generator("PublicService", C4C)
-
-        uri_ps = URIRef(uri)
+        uri_ps = public_service.get_uri()
 
         if not isinstance(context, URIRef):
             context = URIRef(context)
@@ -678,18 +713,14 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
 
         # Event:
         for event in public_service.is_grouped_by:
+            uri_event = event.get_uri()
 
-            if isinstance(event, BusinessEvent):
-                uri_event = uriref_generator("BusinessEvent", C4C)
-                self.provider.graph.add((uri_event, RDF.type, CV.BusinessEvent, context))
-            elif isinstance(event, LifeEvent):
-                uri_event = uriref_generator("LifeEvent", C4C)
-                self.provider.graph.add((uri_event, RDF.type, CV.LifeEvent, context))
-            else:  # Event
-                uri_event = uriref_generator("Event", C4C)
+            self.provider.graph.add((uri_event, RDF.type, CV.BusinessEvent, context))
 
-            # Type
-            self.provider.graph.add((uri_event, RDF.type, CV.Event, context))
+            type_event = CV.BusinessEvent if isinstance(event, BusinessEvent) \
+                else CV.LifeEvent if isinstance(event, LifeEvent) \
+                else CV.Event
+            self.provider.graph.add((uri_event, RDF.type, type_event, context))
 
             # Properties
             self.provider.graph.add((uri_event, DCTERMS.identifier, Literal(event.identifier), context))
@@ -750,6 +781,20 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
                                  CV.hasCriterion,
                                  uri_crit_req,
                                  context))
+
+    def add_event(self,
+                  uri_ps: URIRef,
+                  uri_event: URIRef,
+                  context: URIRef):
+
+        self.provider.graph.add((uri_ps,
+                                 CV.isGroupedBy,
+                                 uri_event,
+                                 context))
+
+        # TODO add related service?
+
+        pass
 
     def add_evidence(self,
                      uri_ps: URIRef,

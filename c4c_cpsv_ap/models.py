@@ -9,12 +9,17 @@ from typing import Dict, List, Optional, Union
 from uuid import uuid4
 
 from pydantic import BaseModel, validator
+from rdflib import URIRef
+
+from c4c_cpsv_ap.namespace import C4C
 
 
 class CPSVAPModel(abc.ABC, BaseModel):
     """
     Abstract class for the RDF object models.
     """
+
+    identifier: str
 
     @validator("identifier", pre=True, check_fields=False)
     def create_identifier(cls, v: Union[str, None]) -> str:
@@ -26,6 +31,9 @@ class CPSVAPModel(abc.ABC, BaseModel):
 
         return v
 
+    def get_uri(self, base=C4C) -> URIRef:
+        """ Generate a URI based on identifier """
+        return URIRef(self.identifier, base=base)
 
 class Event(CPSVAPModel, abc.ABC):
     """
@@ -40,9 +48,9 @@ class Event(CPSVAPModel, abc.ABC):
 
     # Links
     ## PublicService
-    related_service: Optional[List] = []
+    related_service: Optional[List[CPSVAPModel]] = []
 
-    def add_related_service(self, public_service):
+    def add_related_service(self, public_service: CPSVAPModel):
         self.related_service.append(public_service)
 
 
@@ -56,7 +64,7 @@ class Code(str):
     """
 
 
-class Concept(CPSVAPModel):
+class Concept(BaseModel):
     """
     SKOS Concept
     """
@@ -64,7 +72,7 @@ class Concept(CPSVAPModel):
     pref_label: str
 
 
-class ContactPoint(CPSVAPModel):
+class ContactPoint(BaseModel):
     """
     CPSV-AP Contact Point
     """
@@ -124,7 +132,7 @@ class Address(CPSVAPModel):
     """
 
 
-class PublicOrganisation(CPSVAPModel):
+class PublicOrganisation(BaseModel):
     """
     The CPSV-AP reuses the Core Public Organisation Vocabulary that defines the
     concept of a Public Organization and associated properties and relationships. It is
