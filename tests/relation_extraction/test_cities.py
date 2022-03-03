@@ -41,7 +41,8 @@ class TestDifferentCities(unittest.TestCase):
                  "https://www.wien.gv.at/amtshelfer/verkehr/fahrzeuge/aenderungen/einzelgenehmigung.html",
                  # Whole of Wien is quite ok.
                  "https://www.zagreb.hr/novcana-pomoc-za-opremu-novorodjenog-djeteta/5723",  # Not great.
-                 ""
+                 "https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/",
+                 # Acceptable site.
                  ]
 
         for page in pages:
