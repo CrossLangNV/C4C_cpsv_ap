@@ -31,7 +31,8 @@ class TestDifferentCities(unittest.TestCase):
                           "San Paolo",  # <- Italy, Italian
                           "Nova Gorica",  # <- Slovenia, Slovenian
                           "Wien",
-                          "Zagreb"
+                          "Zagreb",
+                          "Austrheim"
                           ]
         pages = ["https://www.aalter.be/eid", "https://www.aalter.be/verhuizen",  # Dutch
                  "https://www.comune.sanpaolo.bs.it/procedure%3As_italia%3Atrasferimento.residenza.estero%3Bdichiarazione?source=1104",
