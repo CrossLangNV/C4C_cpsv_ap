@@ -4,6 +4,7 @@ import unittest
 from data.html import get_html, url2html
 from relation_extraction.aalter import AalterParser
 from relation_extraction.affligem import AffligemParser
+from relation_extraction.austrheim import AustrheimParser
 from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.san_paolo import SanPaoloParser
 
@@ -69,6 +70,7 @@ class TestDifferentCities(unittest.TestCase):
                 parser = NovaGoricaParser()
             elif "austrheim" in filename.lower():
                 pass  # TODO next
+                parser = AustrheimParser()
             else:
                 # backup
                 parser = AffligemParser()
@@ -79,3 +81,20 @@ class TestDifferentCities(unittest.TestCase):
                 self.assertTrue(l)
 
                 self.assertGreaterEqual(len(l), 2, "Expected at least one other element besides Title.")
+
+    def test_austrheim(self):
+
+        def get_austrheim():
+            for filename in self.filenames:
+
+                if "austrheim" in filename.lower():
+                    return filename
+
+        filename = get_austrheim()
+        html = get_html(filename)
+
+        parser = AustrheimParser()
+
+        l = parser.parse_page(html)
+
+        self.assertTrue(l)

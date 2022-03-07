@@ -66,24 +66,3 @@ class NovaGoricaParser(CityParser):
                 return True
 
         return False
-
-#     @staticmethod
-#     def _filter_accordion_header(tag: Tag,
-#                                  ARG_CLASS="class",
-#                                  HEADER="header"
-#                                  ):
-#         """
-#         For San Paolo website and possibly most Italian websites, to work with these accordions.
-#
-#         Args:
-#             tag:
-#
-#         Returns:
-#
-#         """
-#
-#         # Get accordion header
-#         if tag.get(ARG_CLASS):
-#             for c in tag[ARG_CLASS]:
-#                 if HEADER in c.lower():
-#                     return True
