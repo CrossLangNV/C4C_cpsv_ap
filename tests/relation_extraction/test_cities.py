@@ -109,8 +109,8 @@ class TestDifferentCities(unittest.TestCase):
 class TestAustrheim(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.page = "https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/"
-        self.filename = url2filename(self.page)
+        self.url = "https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/"
+        self.filename = url2filename(self.url)
         self.html = get_html(self.filename)
 
         self.parser = AustrheimParser()
@@ -127,7 +127,26 @@ class TestAustrheim(unittest.TestCase):
 
     def test_extract_relations(self):
         d_relations = self.parser.extract_relations(self.html, url=self.url)
-        self.assertEqual(0, 1)
+
+        with self.subTest("criterionRequirement"):
+            crit_requirement = d_relations.criterionRequirement
+
+            self.assertTrue(crit_requirement)
+
+            self.assertIn("ha eit fysisk eller psykisk funksjonstap", crit_requirement)
+
+            # Check encoding!
+            self.assertIn("du må ha legeuttale", crit_requirement)
+
+        with self.subTest("rule"):
+            rule = d_relations.rule
+
+            self.assertTrue(rule)
+
+        with self.subTest("cost"):
+            cost = d_relations.cost
+
+            self.assertTrue(cost)
 
     def test_RelationExtractor(self,
                                debug=False):

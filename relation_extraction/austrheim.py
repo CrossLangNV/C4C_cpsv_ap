@@ -11,8 +11,44 @@ class AustrheimParser(CityParser):
     Parser for https://www.comune.sanpaolo.bs.it/
     """
 
+    criterionRequirement = "Krav til søkjar"
+    rule = "Kva skjer vidare?"
+    evidence = "NOT IMPLEMENTED YET"
+    cost = "Kva kostar det?"
+
     def extract_relations(self, s_html: str, url: str) -> Relations:
-        raise NotImplementedError()
+        """
+
+        Args:
+            s_html:
+            url:
+
+        Returns:
+
+        """
+        l = self.parse_page(s_html)
+
+        d = Relations()
+
+        # TODO implement events extraction
+        # events = list(self.extract_event(s_html, url))
+        # d.events = events
+
+        for l_sub in l:
+            title = l_sub[0]
+            paragraphs = l_sub[1:]
+            paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
+
+            if title == self.criterionRequirement:
+                d.criterionRequirement = paragraphs_clean
+
+            elif title == self.rule:
+                d.rule = paragraphs_clean
+
+            elif title == self.cost:
+                d.cost = paragraphs_clean
+
+        return d
 
     def parse_page(self, s_html) -> List[List[str]]:
         soup = BeautifulSoup(s_html, 'html.parser')
