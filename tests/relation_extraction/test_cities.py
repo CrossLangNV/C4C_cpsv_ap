@@ -4,6 +4,7 @@ import unittest
 from data.html import get_html, url2html
 from relation_extraction.aalter import AalterParser
 from relation_extraction.affligem import AffligemParser
+from relation_extraction.san_paolo import SanPaoloParser
 
 
 class TestDifferentCities(unittest.TestCase):
@@ -61,6 +62,8 @@ class TestDifferentCities(unittest.TestCase):
 
             if "aalter" in filename.lower():
                 parser = AalterParser()
+            elif "paolo" in filename.lower():
+                parser = SanPaoloParser()
             else:
                 # backup
                 parser = AffligemParser()
@@ -69,3 +72,5 @@ class TestDifferentCities(unittest.TestCase):
 
             with self.subTest(filename):
                 self.assertTrue(l)
+
+                self.assertGreaterEqual(len(l), 2, "Expected at least one other element besides Title.")

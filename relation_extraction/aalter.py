@@ -13,7 +13,7 @@ class AalterParser(CityParser):
     """
 
     def extract_relations(self, s_html) -> Relations:
-        pass
+        raise NotImplementedError()
 
     @staticmethod
     def parse_page(s_html) -> List[List[str]]:
