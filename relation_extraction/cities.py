@@ -53,5 +53,5 @@ class CityParser(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def extract_relations(self, s_html) -> Relations:
+    def extract_relations(self, s_html: str, url: str) -> Relations:
         pass

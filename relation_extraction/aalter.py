@@ -12,7 +12,7 @@ class AalterParser(CityParser):
     Parser for Aalter.be
     """
 
-    def extract_relations(self, s_html) -> Relations:
+    def extract_relations(self, s_html: str, url: str) -> Relations:
         raise NotImplementedError()
 
     @staticmethod

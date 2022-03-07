@@ -12,7 +12,7 @@ class NovaGoricaParser(CityParser):
     Parser for https://www.nova-gorica.si/
     """
 
-    def extract_relations(self, s_html) -> Relations:
+    def extract_relations(self, s_html: str, url: str) -> Relations:
         raise NotImplementedError()
 
     def parse_page(self, s_html) -> List[List[str]]:

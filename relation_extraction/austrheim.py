@@ -11,7 +11,7 @@ class AustrheimParser(CityParser):
     Parser for https://www.comune.sanpaolo.bs.it/
     """
 
-    def extract_relations(self, s_html) -> Relations:
+    def extract_relations(self, s_html: str, url: str) -> Relations:
         raise NotImplementedError()
 
     def parse_page(self, s_html) -> List[List[str]]:

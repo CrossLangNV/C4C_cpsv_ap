@@ -6,6 +6,7 @@ from data.html import get_html, url2html
 from relation_extraction.aalter import AalterParser
 from relation_extraction.affligem import AffligemParser
 from relation_extraction.austrheim import AustrheimParser
+from relation_extraction.methods import RelationExtractor
 from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.san_paolo import SanPaoloParser
 
@@ -110,15 +111,33 @@ class TestAustrheim(unittest.TestCase):
     def setUp(self) -> None:
         self.page = "https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/"
         self.filename = url2filename(self.page)
+        self.html = get_html(self.filename)
 
         self.parser = AustrheimParser()
 
-    def test_chunker(self):
-        html = get_html(self.filename)
+        self.context = "https://austrheim.kommune.no/"
 
-        l = self.parser.parse_page(html)
+    def test_chunker(self):
+        l = self.parser.parse_page(self.html)
 
         self.assertTrue(l)
 
         with self.subTest("Other headers"):
             self.assertGreaterEqual(len(l), 2, "Expected at least one other element besides Title.")
+
+    def test_extract_relations(self):
+        d_relations = self.parser.extract_relations(self.html, url=self.url)
+        self.assertEqual(0, 1)
+
+    def test_RelationExtractor(self,
+                               debug=False):
+        relation_extractor = RelationExtractor(self.html,
+                                               context=self.context,
+                                               country_code="NO")
+
+        ps = relation_extractor.extract_all(extract_concepts=True)
+
+        if debug:
+            print(relation_extractor.export())
+
+        self.assertTrue(ps)
