@@ -1,9 +1,10 @@
 import codecs
 import os
-# Example
-import urllib.request
 
-import chardet
+import requests
+from bs4 import BeautifulSoup
+
+# Example
 
 FILENAME_HTML = os.path.join(os.path.dirname(__file__),
                              "relation_extraction",
@@ -25,20 +26,32 @@ def get_html(filename, encoding='utf-8') -> str:
 
 
 def url2html(url, filename=None):
-    def get_encoding(rawdata):
-        result = chardet.detect(rawdata)
-        charenc = result['encoding']
-        return charenc
+    # def get_encoding(rawdata):
+    #     result = chardet.detect(rawdata)
+    #     charenc = result['encoding']
+    #     return charenc
+    #
+    # with urllib.request.urlopen(url) as fp:
+    #     mybytes = fp.read()
+    #
+    #     enc = get_encoding(mybytes)
+    #
+    #     s_html = mybytes.decode(enc)
 
-    with urllib.request.urlopen(url) as fp:
-        mybytes = fp.read()
+    headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Max-Age': '3600',
+        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0'
+    }
+    req = requests.get(url, headers)
+    soup = BeautifulSoup(req.content, 'html.parser')
 
-        enc = get_encoding(mybytes)
-
-        mystr = mybytes.decode(enc)
+    s_html = soup.prettify()
 
     if filename:
         with open(filename, "w+", encoding="utf-8") as fp:
-            fp.write(mystr)
+            fp.write(soup.prettify())
 
-    return mystr
+    return s_html
