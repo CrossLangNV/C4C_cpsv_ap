@@ -4,6 +4,7 @@ import unittest
 from data.html import get_html, url2html
 from relation_extraction.aalter import AalterParser
 from relation_extraction.affligem import AffligemParser
+from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.san_paolo import SanPaoloParser
 
 
@@ -64,6 +65,10 @@ class TestDifferentCities(unittest.TestCase):
                 parser = AalterParser()
             elif "paolo" in filename.lower():
                 parser = SanPaoloParser()
+            elif "gorica" in filename.lower():
+                parser = NovaGoricaParser()
+            elif "austrheim" in filename.lower():
+                pass  # TODO next
             else:
                 # backup
                 parser = AffligemParser()

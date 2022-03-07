@@ -18,43 +18,10 @@ class SanPaoloParser(CityParser):
     def parse_page(self, s_html) -> List[List[str]]:
         soup = BeautifulSoup(s_html, 'html.parser')
 
-        # def get_page_procedure(page_procedure_child, n_headers_min=2, n_headers_max=None):
-        #     """
-        #      Start from single element and go up untill multiple headers are returned.
-        #
-        #     Args:
-        #         page_procedure_child:
-        #         n_headers_min: Minimum number of headers to retrieve before returning
-        #         n_headers_max: Maximum number of headers to retrieve before returning
-        #
-        #      """
-        #
-        #     if n_headers_max is None:
-        #         n_headers_max = len(get_all_headers(soup))
-        #
-        #     page_procedure = page_procedure_child.parent
-        #
-        #     # Check that we can find other headers.
-        #     headers = get_all_headers(page_procedure)
-        #
-        #     n_headers = len(headers)
-        #     if n_headers >= n_headers_min:
-        #         return page_procedure
-        #
-        #     elif n_headers >= n_headers_max:
-        #         # Max number found
-        #         return page_procedure
-        #
-        #     else:
-        #         # recursively go up
-        #         # TODO check that we don't go too much up. Use n_headers_max!
-        #         return get_page_procedure(page_procedure)
-        #
-        #     return page_procedure
-
         # Find the Title
         h_title = soup.find_all('h1')[-1]
-        page_procedure = get_page_procedure(h_title)
+        page_procedure = get_page_procedure(h_title,
+                                            get_all_headers=self.get_all_headers)
 
         l = [[]]
 
@@ -91,9 +58,6 @@ class SanPaoloParser(CityParser):
         return l
 
     def get_all_headers(self, soup: Union[BeautifulSoup, Tag]) -> List[Tag]:
-
-        # TODO Also do something with accordion headers.
-
         return soup.find_all(self._filter_header)
 
     def _filter_header(self, tag: Tag):

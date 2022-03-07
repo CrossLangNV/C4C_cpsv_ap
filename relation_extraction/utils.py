@@ -12,7 +12,10 @@ def get_all_headers(soup: Union[BeautifulSoup, Tag]) -> List[Tag]:
     return soup.find_all(re.compile('^h[1-6]$'))
 
 
-def get_page_procedure(page_procedure_child: Tag, n_headers_min=2, n_headers_max=None) -> Tag:
+def get_page_procedure(page_procedure_child: Tag,
+                       n_headers_min=2,
+                       n_headers_max=None,
+                       get_all_headers=get_all_headers) -> Tag:
     """
     Start from single element and go up untill multiple headers are returned.
 
@@ -42,9 +45,10 @@ def get_page_procedure(page_procedure_child: Tag, n_headers_min=2, n_headers_max
 
     else:
         # recursively go up
-        # TODO check that we don't go too much up. Use n_headers_max!
         return get_page_procedure(page_procedure,
                                   n_headers_min=n_headers_min,
-                                  n_headers_max=n_headers_max)
+                                  n_headers_max=n_headers_max,
+                                  get_all_headers=get_all_headers)
 
+    # Fall back, should never reach this.
     return page_procedure
