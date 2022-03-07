@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html class="" lang="nl-be">
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="True" name="HandheldFriendly">
+    <meta content="320" name="MobileOptimized"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="Icordis CMS by LCP nv (http://www.lcp.be)" name="generator">
+    <title>
+        Elektronische identiteitskaart (eID) - Gemeente Aalter
+    </title>
+    <link data-css="Contrastskin-website" href="/css/skin-website.css?v=14022022104815" id="skin-stylesheet"
+          media="screen" rel="stylesheet" type="text/css"/>
+    <link href="/css/skin-print.css" media="print" rel="stylesheet" type="text/css"/>
+    <link href="/images/skin/favicon.ico?v=2" rel="icon" type="image/x-icon">
+    <link href="/images/skin/apple-touch-icon.png?v=2" rel="apple-touch-icon" sizes="180x180"/>
+    <link href="/images/skin/favicon-32x32.png?v=2" rel="icon" sizes="32x32" type="image/png"/>
+    <link href="/images/skin/favicon-16x16.png?v=2" rel="icon" sizes="16x16" type="image/png"/>
+    <link href="/images/skin/manifest.json?v=2" rel="manifest"/>
+    <link color="#5bbad5" href="/images/skin/safari-pinned-tab.svg?v=2" rel="mask-icon"/>
+    <meta content="#ffffff" name="msapplication-TileColor"/>
+    <meta content="/images/skin/mstile-144x144.png?v=2" name="msapplication-TileImage"/>
+    <meta content="#ffffff" name="theme-color"/>
+    <link href="/Nieuws/rss" rel="alternate" title="RSS nieuws" type="application/rss+xml">
+    <link href="/Events/rss" rel="alternate" title="RSS events" type="application/rss+xml">
+    <link href="https://www.aalter.be/eid" rel="canonical">
+    <meta content="Gemeente Aalter" property="og:site_name">
+    <meta content="Elektronische identiteitskaart (eID)" property="og:title">
+    <meta content="https://www.aalter.be/eid" property="og:url">
+    <meta content="website" property="og:type"/>
+    <meta content="summary" name="twitter:card"/>
+    <meta content="Elektronische identiteitskaart (eID)" property="twitter:title"/>
+    <meta content="https://www.aalter.be/images/skin/logo-og.png" property="og:image"/>
+    <meta content="https://www.aalter.be/images/skin/logo-og.png" name="twitter:image"/>
+    <script src="https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-polyfill/dist/index.js">
+    </script>
+    <script src="https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-client/dist/index.js">
+    </script>
+    </meta>
+    </meta>
+    </meta>
+    </link>
+    </link>
+    </link>
+    </link>
+    </meta>
+    </meta>
+</head>
+<body class="default portal-0" id="body">
+<script>
+    var burgerprofielUAC = false;
+    var burgerprofielAPIUrl = 'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/session/validate';
+</script>
+<div aria-hidden="true" class="widget-vlw-placeholder" id="global-header-placeholder">
+    <div class="lds-ellipsis">
+        <div>
+        </div>
+        <div>
+        </div>
+        <div>
+        </div>
+        <div>
+        </div>
+    </div>
+</div>
+<script>
+    var sessionding = null;
+    var wasAuthorized = false;
+    var loggedOutLocal = false;
+    vl.widget.client.bootstrap('https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/widget/c606c2a7-b7f8-4429-8bc7-1b42bce109f5')
+        .then(function (widget) {
+            var placeholder = document.getElementById('global-header-placeholder');
+            widget.setMountElement(placeholder);
+            widget.mount().catch(console.error.bind(console))
+            return widget;
+        })
+        .then(function (widget) {
+            vl.widget.client.capture((widget) => {
+                window.widget = widget
+            });
+            widget.getExtension('citizen_profile').then((citizen_profile) => {
+                var websiteHasAuthenticatedSession = burgerprofielUAC;
+                var session = citizen_profile.getSession();
+                session.configure({
+                    active: websiteHasAuthenticatedSession,
+                    endpoints: {
+                        loginUrl: '/login',
+                        logoutUrl: '/logout',
+                        loginRedirectUrl: window.location.href
+                    }
+                });
+                var state = citizen_profile.getSession().getState();
+                $('#profiellogout').on('click', function (e) {
+                    var state2 = citizen_profile.getSession().getState();
+                    if (state2 == 'authenticated') {
+                        e.preventDefault();
+                        citizen_profile.getSession().logout();
+                        loggedOutLocal = true;
+                    }
+                });
+                citizen_profile.addEventListener('session.update', (event) => {
+                    var state2 = citizen_profile.getSession().getState(); // of event.getSource().getState();
+                    if (state2 == 'authenticated') {
+                        wasAuthorized = true;
+                        $('#my-profile-link').removeClass('hidden');
+                        $('#my-profile-link').show();
+                    } else if (state2 == 'unauthenticated') {
+                        if (loggedOutLocal) {
+                            loggedOutLocal = false;
+                            window.location = '/logout?returnurl=/';
+                        }
+                        $('#my-profile-link').addClass('hidden');
+                        $('#my-profile-link').hide();
+                    }
+                });
+            })
+        })
+        .catch(console.error.bind(console));
+</script>
+<div id="outer-wrap">
+    <div id="inner-wrap">
+        <div class="cookie-complicance-wrapper" id="cookie-compliance">
+            <div class="container">
+                <form action="/cookies?url=%2feid%3fAccess-Control-Allow-Origin%3d%252A%26Access-Control-Allow-Methods%3dGET%26Access-Control-Allow-Headers%3dContent-Type%26Access-Control-Max-Age%3d3600%26User-Agent%3dMozilla%252F5.0%2b%2528X11%253B%2bUbuntu%253B%2bLinux%2bx86_64%253B%2brv%253A52.0%2529%2bGecko%252F20100101%2bFirefox%252F52.0"
+                      method="post">
+                    <div class="cookie-compliance-text">
+                        Deze website maakt gebruik van cookies om uw gebruikservaring te verbeteren.
+                        <a class="find-more-button eu-cookie-compliance-more-button find-more-button-processed"
+                           hide-when-empty="1" href="/cookies">
+         <span>
+          Meer informatie over cookies.
+         </span>
+                        </a>
+                    </div>
+                    <div class="cookie-compliance-actions">
+                        <a class="btn-primary btn-cookie-compliance btn-cookie-accept"
+                           href="/cookies?url=%2feid%3fAccess-Control-Allow-Origin%3d%252A%26Access-Control-Allow-Methods%3dGET%26Access-Control-Allow-Headers%3dContent-Type%26Access-Control-Max-Age%3d3600%26User-Agent%3dMozilla%252F5.0%2b%2528X11%253B%2bUbuntu%253B%2bLinux%2bx86_64%253B%2brv%253A52.0%2529%2bGecko%252F20100101%2bFirefox%252F52.0"
+                           rel="nofollow">
+                            Beheer mijn cookies
+                        </a>
+                        <input name="__RequestVerificationToken" type="hidden"
+                               value="Nh7hiCaxX5qA9RUkM6gqUAdseq2P898ezfS0kOPbbiEYrLuNPyDFfAjMt71fS6q2TYNVKsh615r8qgvGaGK7cnhEc6y6R46AMPU8bSdSrT01"/>
+                        <button class="btn-primary btn-cookie-compliance btn-cookie-decline" name="action" type="submit"
+                                value="acceptall">
+                            Alles aanvaarden
+                        </button>
+                        <button class="btn-primary btn-cookie-compliance btn-cookie-decline" name="action" type="submit"
+                                value="decline">
+                            Alleen essentiële cookies
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="skip" id="skip-content">
+            <a class="skip-navigation" data-scrollto="skip" href="#content-main">
+      <span>
+       Naar content
+      </span>
+            </a>
+        </div>
+        <header class="header" id="toppage">
+            <div class="header-main">
+                <div class="container">
+                    <div class="header-brand">
+                        <a class="brand" href="/" title="Terug naar startpagina">
+         <span class="brand-txt">
+          Gemeente Aalter
+         </span>
+                        </a>
+                    </div>
+                    <div class="header-right">
+                        <div class="header-topbar">
+                            <div class="header-toplinks">
+                                <ul class="nav-meta">
+                                    <li class="item">
+                                        <a href="/eloket">
+             <span>
+              Digitaal loket
+             </span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/diensten">
+             <span>
+              Diensten
+             </span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="/producten">
+             <span>
+              A-Z
+             </span>
+                                        </a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="http://stratenplan.aalter.be" target="_blank">
+             <span>
+              Stratenplan
+             </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="header-social-wrap">
+                                <ul class="list-social">
+                                    <li class="bullet-facebook">
+                                        <a class="external" href="https://www.facebook.com/gemeentebestuurAalter/"
+                                           target="_blank">
+             <span>
+              Facebook
+             </span>
+                                        </a>
+                                    </li>
+                                    <li class="bullet-twitter">
+                                        <a class="external" href="https://twitter.com/gemeenteaalter" target="_blank">
+             <span>
+              Twitter
+             </span>
+                                        </a>
+                                    </li>
+                                    <li class="bullet-youtube">
+                                        <a class="external"
+                                           href="https://www.youtube.com/channel/UCjaCtD7DajVv4FiGRYlkakw"
+                                           target="_blank">
+             <span>
+              Youtube
+             </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="header-search">
+                            <div class="search-top" id="search" role="search">
+                                <form action="/zoeken" class="search-form" id="searchForm" method="GET"
+                                      name="searchForm">
+                                    <div class="input-group">
+                                        <label class="hidden" for="txtkeyword">
+                                            Waarmee kunnen we je helpen?
+                                        </label>
+                                        <input autocomplete="off" class="form-control txt"
+                                               data-placeholder="Waarmee kunnen we je helpen?"
+                                               data-placeholder-mobile="Zoeken" id="txtkeyword" name="q"
+                                               placeholder="Waarmee kunnen we je helpen?"
+                                               title="Waarmee kunnen we je helpen?" type="text"/>
+                                        <span class="input-group-btn">
+             <input class="btn-search" id="btnSearch" title="Zoeken" type="submit" value="Zoek"/>
+            </span>
+                                        <div id="bar-loading">
+                                            <ul class="loading-element">
+                                                <li class="loading-element1 loading-child">
+                                                </li>
+                                                <li class="loading-element2 loading-child">
+                                                </li>
+                                                <li class="loading-element3 loading-child">
+                                                </li>
+                                                <li class="loading-element4 loading-child">
+                                                </li>
+                                                <li class="loading-element5 loading-child">
+                                                </li>
+                                                <li class="loading-element6 loading-child">
+                                                </li>
+                                                <li class="loading-element7 loading-child">
+                                                </li>
+                                                <li class="loading-element8 loading-child">
+                                                </li>
+                                                <li class="loading-element9 loading-child">
+                                                </li>
+                                                <li class="loading-element10 loading-child">
+                                                </li>
+                                                <li class="loading-element11 loading-child">
+                                                </li>
+                                                <li class="loading-element12 loading-child">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div id="suggestionsearch">
+                                    <ul class="list-suggestionsearch">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-profile-link hidden" id="my-profile-link">
+                        <a class="user-profile" href="/profiel" title="Mijn Aalter - Meld je aan">
+         <span class="user-link">
+          Mijn Aalter - Meld je aan
+         </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main class="page-container-wrapper" id="wrapper">
+            <div class="breadcrumb-wrapper sr_skip">
+                <div class="container fade-navs">
+                    <a class="btn-scroll next" href="#breadcrumbscrollleft">
+        <span class="sr_skip">
+         scroll naar links
+        </span>
+                    </a>
+                    <a class="btn-scroll prev" href="#breadcrumbscrollright">
+        <span class="sr_skip">
+         scroll naar rechts
+        </span>
+                    </a>
+                    <ol class="breadcrumb sr_skip" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                        <li class="breadcrumb-home" itemprop="itemListElement" itemscope=""
+                            itemtype="http://schema.org/ListItem">
+                            <a href="/home" itemprop="item">
+          <span itemprop="name">
+           Home
+          </span>
+                                <meta content="1" itemprop="position"/>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item" itemprop="itemListElement" itemscope=""
+                            itemtype="http://schema.org/ListItem">
+                            <a href="https://www.aalter.be/aanvragen-en-documenten" itemprop="item">
+          <span class="aCrumb" itemprop="name">
+           Aanvragen en documenten
+          </span>
+                                <meta content="2" itemprop="position"/>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item" itemprop="itemListElement" itemscope=""
+                            itemtype="http://schema.org/ListItem">
+                            <a href="https://www.aalter.be/identiteit-en-reizen" itemprop="item">
+          <span class="aCrumb" itemprop="name">
+           Identiteit en reizen
+          </span>
+                                <meta content="3" itemprop="position"/>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active">
+         <span class="aCrumb">
+          Elektronische identiteitskaart (eID)
+         </span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="page-inner" id="content-main">
+                <div class="visible-print sr_skip">
+                    <img alt="" src="/images/skin/logo-print.jpg"/>
+                </div>
+                <div class="heading-wrapper">
+                    <div class="container">
+                        <h1 class="page-heading">
+         <span>
+          Elektronische identiteitskaart (eID)
+         </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="readspeaker-wrapper">
+                    <div class="container">
+                        <div class="header-readspeaker">
+                            <div class="rs_skip rsbtn rs_preserve" id="readspeaker_button1">
+                                <a accesskey="L" class="rsbtn_play"
+                                   href="https://app-eu.readspeaker.com/cgi-bin/rsent?customerid=8181&amp;lang=nl_be&amp;readid=content-main&amp;url=www.aalter.be%2feid%3fAccess-Control-Allow-Origin%3d%252A%26Access-Control-Allow-Methods%3dGET%26Access-Control-Allow-Headers%3dContent-Type%26Access-Control-Max-Age%3d3600%26User-Agent%3dMozilla%252F5.0%2b%2528X11%253B%2bUbuntu%253B%2bLinux%2bx86_64%253B%2brv%253A52.0%2529%2bGecko%252F20100101%2bFirefox%252F52.0"
+                                   rel="nofollow" title="Laat de tekst voorlezen met ReadSpeaker">
+           <span class="rsbtn_left rspart">
+            <span class="rsbtn_text">
+             <span>
+              Lees voor
+             </span>
+            </span>
+           </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <section class="products-detail">
+                        <div class="container-wrapper">
+                            <div class="page-container page-column" data-show-or-hide-column="1">
+                                <div class="page-content">
+                                    <div class="info">
+                                        <div class="local-description">
+                                            <p>
+                                                <a class="btn-cta eloket-btn"
+                                                   href="https://afspraken.aalter.be/product=27" rel="noopener"
+                                                   target="_blank">
+                                                    Maak een afspraak
+                                                </a>
+                                            </p>
+                                            <p>
+                                                <a class="btn-cta eloket-btn"
+                                                   href="http://start.cevi.be/eloket/Formulier.aspx?FormId=108498&amp;tnr_site=259"
+                                                   rel="noopener" target="_blank">
+                                                    Aanvraag nieuwe pin- en pukcode
+                                                </a>
+                                            </p>
+                                            <hr/>
+                                            <p class="alert-info">
+                                                <strong>
+                                                    Wist-je-dat...
+                                                </strong>
+                                                de elektronische identiteitskaart sinds 2020 in een nieuw jasje steekt?
+                                                De kaart beschermt beter tegen identiteitsfraude en het ontwerp is
+                                                anders. Lees er meer over op
+                                                <a href="http://www.vernieuwde-eid.be" rel="noopener" target="_blank">
+                                                    www.vernieuwde-eid.be
+                                                </a>
+                                                .
+                                            </p>
+                                            <p>
+                                                In de elektronische identiteitskaart zit een microchip waarmee je:
+                                            </p>
+                                            <ul>
+                                                <li>
+                                                    jouw identiteit online kan bevestigen
+                                                </li>
+                                                <li>
+                                                    documenten elektronisch kan ondertekenen.
+                                                </li>
+                                            </ul>
+                                            <p>
+                                                <strong>
+                                                    Vanaf 15 jaar
+                                                </strong>
+                                                ben je
+                                                <strong>
+                                                    verplicht
+                                                </strong>
+                                                om jouw identiteitskaart altijd
+                                                <strong>
+                                                    bij je te hebben
+                                                </strong>
+                                                .
+                                            </p>
+                                            <h2>
+                                                Voorwaarden
+                                            </h2>
+                                            <p>
+                                                Vanaf
+                                                <strong>
+                                                    12 jaar
+                                                </strong>
+                                                krijgt elke Belg
+                                                <strong>
+                                                    automatisch een oproep voor de aanvraag van een identiteitskaart
+                                                </strong>
+                                                . Kinderen die 12 jaar worden en nog een geldige Kids-ID hebben, krijgen
+                                                pas automatisch een eID op het moment dat hun Kids-ID vervalt, ten
+                                                laatste op de leeftijd van 14 jaar en 9 maanden.
+                                            </p>
+                                            <p>
+                                                De
+                                                <strong>
+                                                    pasfoto
+                                                </strong>
+                                                die je meebrengt mag maximaal 6 maanden oud zijn en moet voldoen aan de
+                                                <a href="http://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/kaarten/eid/documentatie/2016_Matrice_NL.pdf"
+                                                   rel="noopener" target="_blank">
+                                                    normen van de International Civil Aviation Organization (pdf)
+                                                </a>
+                                                . Het is belangrijk dat jouw gezicht goed zichtbaar is. Je moet recht in
+                                                de lens kijken met een neutrale gezichtsuitdrukking (mond gesloten, geen
+                                                glimlach).
+                                            </p>
+                                            <h3>
+                                                Geldigheidsduur
+                                            </h3>
+                                            <p>
+                                                Sinds 1 maart 2014 is de
+                                                <strong>
+                                                    geldigheidsduur
+                                                </strong>
+                                                van een eID
+                                                <strong>
+                                                    10 jaar
+                                                </strong>
+                                                , uitgezonderd:
+                                            </p>
+                                            <ul>
+                                                <li>
+                                                    de eID voor jongeren van
+                                                    <strong>
+                                                        12 tot 18 jaar
+                                                    </strong>
+                                                    :
+                                                    <strong>
+                                                        6 jaar
+                                                    </strong>
+                                                    geldig.
+                                                </li>
+                                                <li>
+                                                    de eID voor personen
+                                                    <strong>
+                                                        vanaf 75 jaar
+                                                    </strong>
+                                                    :
+                                                    <strong>
+                                                        30 jaar
+                                                    </strong>
+                                                    geldig, maar het certificaat voor de elektronische handtekening moet
+                                                    wel om de 10 jaar vernieuwd worden.
+                                                </li>
+                                            </ul>
+                                            <p>
+                                                Je vindt de geldigheidsduur aan de voorzijde van jouw kaart.
+                                            </p>
+                                            <p>
+                                                Als Belg ben je altijd verantwoordelijk om jouw eigen
+                                                identiteitsdocumenten te beheren. Hou daarom zelf de vervaldatum in het
+                                                oog. Het is altijd mogelijk dat jouw oproepingskaart voor een nieuwe eID
+                                                verloren is gegaan. Heb je 3 weken voor de vervaldatum van jouw eID nog
+                                                geen oproepingskaart ontvangen? Vraag dan onmiddellijk zelf bij jouw
+                                                gemeente een nieuwe eID aan.
+                                            </p>
+                                            <hr/>
+                                            <h2>
+                                                Hoe aanvragen?
+                                            </h2>
+                                            <h3>
+                                                Met oproepingskaart of op eigen initiatief
+                                            </h3>
+                                            <ul>
+                                                <li>
+                                                    <strong>
+                                                        Vanaf 12 jaar
+                                                    </strong>
+                                                    krijg je, van de gemeente waar je woont,
+                                                    <strong>
+                                                        automatisch een oproepingskaart
+                                                    </strong>
+                                                    om jouw eID aan te vragen bij de cel Burgerzaken (behalve als je al
+                                                    in het bezit bent van een geldige Kids-ID).
+                                                    <br style="background-color: transparent; color: #000000; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; min-height: 0px;"/>
+                                                    Ook als de geldigheidsperiode van jouw eID verloopt, krijg je
+                                                    automatisch een oproepingskaart om een nieuwe eID aan te vragen.
+                                                </li>
+                                                <li>
+                                                    In een aantal gevallen kun je ook
+                                                    <strong>
+                                                        op eigen initiatief
+                                                    </strong>
+                                                    een eID aanvragen bij jouw gemeente:
+                                                    <ul>
+                                                        <li>
+                                                            als jouw eID verloren of beschadigd is
+                                                        </li>
+                                                        <li>
+                                                            als jouw pasfoto niet meer gelijkend is
+                                                        </li>
+                                                        <li>
+                                                            als je van naam of geslacht verandert
+                                                        </li>
+                                                        <li>
+                                                            bij een inschrijving na verblijf in het buitenland of
+                                                            ambtelijke schrapping
+                                                        </li>
+                                                        <li>
+                                                            als je een kaart aanvraagt in een andere landstaal.
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    Ga zelf met jouw oproepingskaart, een recente pasfoto en jouw
+                                                    huidige identiteitskaart
+                                                    <strong>
+                                                        naar jouw gemeente
+                                                    </strong>
+                                                    om de eID aan te vragen.
+                                                </li>
+                                            </ul>
+                                            <h3>
+                                                Afhalen
+                                            </h3>
+                                            <ul>
+                                                <li>
+                                                    Na 2 tot 3 weken krijg je per
+                                                    <strong>
+                                                        brief
+                                                    </strong>
+                                                    bericht dat jouw eID klaar ligt.
+                                                </li>
+                                                <li>
+                                                    Om de
+                                                    <strong>
+                                                        elektronische handtekening
+                                                    </strong>
+                                                    te kunnen gebruiken, staan in die brief ook een
+                                                    <strong>
+                                                        pincode
+                                                    </strong>
+                                                    en een
+                                                    <strong>
+                                                        pukcode
+                                                    </strong>
+                                                    .
+                                                    <ul>
+                                                        <li>
+                                                            Neem de brief met de codes mee naar het gemeentehuis als je
+                                                            jouw eID afhaalt.
+                                                        </li>
+                                                        <li>
+                                                            Jouw
+                                                            <strong>
+                                                                pincode
+                                                            </strong>
+                                                            kan je bij de afhaling nog wijzigen als je dat wenst
+                                                            (minimum 4, maximum 12 cijfers). Je hebt jouw
+                                                            <strong>
+                                                                pincode
+                                                            </strong>
+                                                            nodig elke keer je jouw eID wilt gebruiken.
+                                                        </li>
+                                                        <li>
+                                                            Je hebt jouw
+                                                            <strong>
+                                                                pukcode
+                                                            </strong>
+                                                            nodig om jouw pincode de eerste keer in te stellen of, als
+                                                            je jouw pincode niet meer kent, de pincode wilt wijzigen of
+                                                            deblokkeren.
+                                                        </li>
+                                                        <li>
+                                                            Breng ook je oude eID mee.
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <p>
+                                                Is jouw eID
+                                                <strong>
+                                                    gestolen
+                                                </strong>
+                                                ?
+                                                <strong>
+                                                    Meld de diefstal
+                                                </strong>
+                                                van jouw eID eerst bij de
+                                                <strong>
+                                                    politie
+                                                </strong>
+                                                van de plaats waar de diefstal heeft plaatsgevonden (of bij de lokale
+                                                politie van jouw gemeente) én daarna bij jouw
+                                                <strong>
+                                                    gemeente
+                                                </strong>
+                                                .
+                                            </p>
+                                            <p>
+                                                In
+                                                <strong>
+                                                    dringende gevallen
+                                                </strong>
+                                                kan je een
+                                                <strong>
+                                                    spoedprocedure
+                                                </strong>
+                                                aanvragen met levering binnen 1 of 2 dagen. Daarvoor betaal je wel een
+                                                <a href="http://www.ibz.rrn.fgov.be/nl/identiteitsdocumenten/eid/tarieven/"
+                                                   rel="noopener" target="_blank">
+                                                    hogere kostprijs
+                                                </a>
+                                                .
+                                            </p>
+                                            <p>
+                                                Neem voor meer info contact op met de cel Burgerzaken.
+                                            </p>
+                                            <h3>
+                                                Belgen in het buitenland
+                                            </h3>
+                                            <p>
+                                                Belgen ouder dan 12 jaar die in het buitenland wonen kunnen een eID
+                                                krijgen bij de Belgische consulaire beroepspost waar ze zijn
+                                                ingeschreven. De levertermijn is wel langer.
+                                            </p>
+                                            <hr/>
+                                            <h2>
+                                                Wat meebrengen?
+                                            </h2>
+                                            <p>
+                                                Bij de
+                                                <strong>
+                                                    aanvraag
+                                                </strong>
+                                                van jouw eID breng je volgende zaken mee:
+                                            </p>
+                                            <ul>
+                                                <li>
+                                                    jouw oproepingskaart
+                                                </li>
+                                                <li>
+                                                    een recente kleurenpasfoto (maximaal 6 maanden oud) die voldoet aan
+                                                    de
+                                                    <a href="http://www.ibz.rrn.fgov.be/fileadmin/user_upload/nl/kaarten/eid/documentatie/2016_Matrice_NL.pdf"
+                                                       rel="noopener" target="_blank">
+                                                        voorwaarden voor pasfoto's
+                                                    </a>
+                                                    , vermeld op de oproepingskaart
+                                                </li>
+                                                <li>
+                                                    jouw huidige identiteitskaart of (in geval van verlies of diefstal)
+                                                    het vervangingsattest.
+                                                </li>
+                                            </ul>
+                                            <p>
+                                                Bij het
+                                                <strong>
+                                                    afhalen
+                                                </strong>
+                                                van jouw eID:
+                                            </p>
+                                            <ul>
+                                                <li>
+                                                    jouw oude identiteitskaart
+                                                </li>
+                                                <li>
+                                                    de brief die je thuis kreeg met de vraag jouw identiteitskaart af te
+                                                    halen en waarop ook jouw pin- en pukcode vermeld staan.
+                                                </li>
+                                            </ul>
+                                            <hr/>
+                                            <h2>
+                                                Prijs
+                                            </h2>
+                                            <table width="100%">
+                                                <tbody>
+                                                <tr>
+                                                    <td style="width: 53%;">
+                                                        <strong>
+                                                            Type
+                                                        </strong>
+                                                    </td>
+                                                    <td style="width: 22.4269%;">
+                                                        <strong>
+                                                            Prijs
+                                                        </strong>
+                                                    </td>
+                                                    <td style="width: 17.5731%;">
+                                                        <strong>
+                                                            Geldigheid*
+                                                        </strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 53%;">
+                                                        Gewone procedure (3 weken)
+                                                    </td>
+                                                    <td style="width: 22.4269%;">
+                                                        21,70 euro
+                                                    </td>
+                                                    <td style="width: 17.5731%;">
+                                                        10 jaar
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 53%;">
+                                                        Spoed: levering gemeentehuis (1 dag)
+                                                    </td>
+                                                    <td style="width: 22.4269%;">
+                                                        127,90 euro
+                                                    </td>
+                                                    <td style="width: 17.5731%;">
+                                                        10 jaar
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 53%;">
+                                                        Spoed: levering rijksregister in Brussel (1 dag)
+                                                    </td>
+                                                    <td style="width: 22.4269%;">
+                                                        155,10 euro
+                                                    </td>
+                                                    <td style="width: 17.5731%;">
+                                                        10 jaar
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <ul>
+                                                <li>
+                                                    *Voor Belgische minderjarigen van 12 tot 18 jaar is de
+                                                    identiteitskaart 6 jaar geldig vanaf de datum van aanvraag.
+                                                </li>
+                                                <li>
+                                                    *Voor Belgische burgers van 75 jaar en ouder is de geldigheidsduur
+                                                    van de identiteitskaart 30 jaar.
+                                                </li>
+                                            </ul>
+                                            <hr/>
+                                            <h2>
+                                                Uitzonderingen
+                                            </h2>
+                                            <p>
+                                                Als je door gezondheidsproblemen niet meer zelf naar het gemeentehuis
+                                                kan gaan, kan je een alternatieve aanvraagprocedure vragen. Neem
+                                                daarvoor contact op.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="container-wrapper" data-check-empty="true">
+                                    </div>
+                                    <div class="announcements-category" id="announcements">
+                                        <h2 class="heading">
+             <span>
+              Reglementen
+             </span>
+                                        </h2>
+                                        <div class="box-block">
+                                            <ul class="list">
+                                                <li>
+                                                    <a href="/contantbelasting-op-afgifte-van-administratieve-stukken-">
+                                                        <h3 class="title">
+                 <span>
+                  Contantbelasting op afgifte van administratieve stukken
+                 </span>
+                                                        </h3>
+                                                        <div class="announcement-info">
+                                                            <div class="info-date">
+                  <span class="announcement-title">
+                   <span>
+                    Datum bekendmaking
+                   </span>
+                  </span>
+                                                                <span class="announcement-date">
+                   <span>
+                    do 12 maart 2020
+                   </span>
+                  </span>
+                                                            </div>
+                                                            <div class="info-date besluit">
+                  <span class="announcement-title">
+                   <span>
+                    Datum besluit
+                   </span>
+                  </span>
+                                                                <span class="announcement-date">
+                   <span>
+                    ma 09 maart 2020
+                   </span>
+                  </span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="side-bar">
+                                    <div class="box box-contact box box-contact">
+                                        <h2 class="box-title">
+             <span>
+              Contact
+             </span>
+                                        </h2>
+                                        <div class="box-block box-contact-block">
+                                            <div class="box-contact-block-row">
+                                                <div class="contact-content">
+                                                    <div class="contact-info-container">
+                                                        <h3 class="box-subtitle">
+                 <span>
+                  Burgerzaken
+                 </span>
+                                                        </h3>
+                                                        <dl class="contact-info">
+                                                            <dt class="lbl-address">
+                  <span>
+                   Adres
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-address">
+                  <span class="txt-streetnr">
+                   Europalaan 22
+                  </span>
+                                                                <span class="txt-postal">
+                   <span class="sr-only">
+                    ,
+                   </span>
+                   9880
+                  </span>
+                                                                <span class="txt-city">
+                   Aalter
+                  </span>
+                                                            </dd>
+                                                            <dt class="lbl-phone">
+                  <span>
+                   tel.
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-phone">
+                  <span data-label="tel.">
+                   <a class="phone" href="tel:093252200">
+                    09 325 22 00
+                   </a>
+                  </span>
+                                                            </dd>
+                                                            <dt class="lbl-fax">
+                  <span>
+                   Fax
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-fax">
+                  <span data-label="Fax">
+                   09 325 22 40
+                  </span>
+                                                            </dd>
+                                                            <dt class="lbl-mail">
+                  <span>
+                   E-mail
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-mail">
+                  <span data-label="E-mail">
+                   <a class="mail" href="mailto:%62%75%72%67%65%72%7a%61%6b%65%6e%40%61%61%6c%74%65%72%2e%62%65">
+                    burgerzaken@aalter.be
+                   </a>
+                  </span>
+                                                            </dd>
+                                                        </dl>
+                                                    </div>
+                                                    <div class="contact-hours-container">
+                                                        <h2 class="box-title">
+                 <span>
+                  Openingsuren
+                 </span>
+                                                        </h2>
+                                                        <div class="hours-info">
+                                                            <div class="hours-today">
+                                                                <div class="hours-block">
+                                                                    <h3 class="box-subtitle">
+                    <span>
+                     Vandaag
+                    </span>
+                                                                    </h3>
+                                                                    <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     8.30 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     12.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hours-tomorrow">
+                                                                <div class="hours-block">
+                                                                    <h3 class="box-subtitle">
+                    <span>
+                     Morgen
+                    </span>
+                                                                    </h3>
+                                                                    <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     8.30 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     12.00 u
+                    </span>
+                    <span class="txt-divider">
+                     &amp;
+                    </span>
+                    <span class="txt-from">
+                     16.00 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     19.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <a class="btn-primary btn-more-hours" href="/Burgerzaken">
+                                                            Meer openingsuren
+                                                        </a>
+                                                    </div>
+                                                    <div class="contact-hourinfo">
+                                                        <p>
+                                                            <strong>
+                                                                Opgelet corona-maatregel
+                                                            </strong>
+                                                            : het gemeentehuis en het OCMW in Aalter-centrum zijn enkel
+                                                            toegankelijk na afspraak. Maak een afspraak via
+                                                            <a href="http://www.aalter.be/afspraak" rel="noopener"
+                                                               target="_blank">
+                                                                www.aalter.be/afspraak
+                                                            </a>
+                                                            of tel. 09 325 22 00.
+                                                        </p>
+                                                        <p>
+                                                            Vraag akten en attesten online aan via
+                                                            <a href="http://www.aalter.be/eloket" rel="noopener"
+                                                               target="_blank">
+                                                                www.aalter.be/eloket
+                                                            </a>
+                                                            of
+                                                            <a href="https://www.aalter.be/mijn-burgerprofiel"
+                                                               rel="noopener" target="_blank">
+                                                                Mijn Burgerprofiel
+                                                            </a>
+                                                            . Zie
+                                                            <a href="http://www.aalter.be/corona">
+                                                                www.aalter.be/corona
+                                                            </a>
+                                                            .
+                                                        </p>
+                                                        <p>
+                                                            Telefonisch contact is mogelijk van maandag tot en met
+                                                            vrijdag van 8.30 u tot 12.00 u en van 13.30 u tot 17.00 u
+                                                            (op dinsdag tot 19.00 u). Op zaterdag van 9.00 u tot 12.00
+                                                            u.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="application/ld+json">
+                                            {
+                                                "@context": "http://schema.org",
+                                                "@type": "PostalAddress",
+                                                "addressLocality": "Aalter",
+                                                "postalCode": "9880",
+                                                "streetAddress": "Europalaan 22"
+                                            }
+                                        </script>
+                                    </div>
+                                    <div class="box box-contact box box-contact">
+                                        <h2 class="box-title">
+             <span>
+              Contact
+             </span>
+                                        </h2>
+                                        <div class="box-block box-contact-block">
+                                            <div class="box-contact-block-row">
+                                                <div class="contact-content">
+                                                    <div class="contact-info-container">
+                                                        <h3 class="box-subtitle">
+                 <span>
+                  Contactpunt Knesselare
+                 </span>
+                                                        </h3>
+                                                        <dl class="contact-info">
+                                                            <dt class="lbl-address">
+                  <span>
+                   Adres
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-address">
+                  <span class="txt-streetnr">
+                   De Plaats 14
+                  </span>
+                                                                <span class="txt-postal">
+                   <span class="sr-only">
+                    ,
+                   </span>
+                   9910
+                  </span>
+                                                                <span class="txt-city">
+                   Aalter
+                  </span>
+                                                            </dd>
+                                                            <dt class="lbl-phone">
+                  <span>
+                   tel.
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-phone">
+                  <span data-label="tel.">
+                   <a class="phone" href="tel:093252200">
+                    09 325 22 00
+                   </a>
+                  </span>
+                                                            </dd>
+                                                            <dt class="lbl-mail">
+                  <span>
+                   E-mail
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-mail">
+                  <span data-label="E-mail">
+                   <a class="mail" href="mailto:%67%65%6d%65%65%6e%74%65%40%61%61%6c%74%65%72%2e%62%65">
+                    gemeente@aalter.be
+                   </a>
+                  </span>
+                                                            </dd>
+                                                        </dl>
+                                                        <div class="contact-social">
+                                                            <h4 class="title">
+                  <span>
+                   Volg ons op
+                  </span>
+                                                            </h4>
+                                                            <ul class="list-social">
+                                                                <li class="bullet-facebook">
+                                                                    <a class="external"
+                                                                       href="https://www.facebook.com/gemeentebestuurAalter/"
+                                                                       target="_blank">
+                    <span>
+                     Facebook
+                    </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="bullet-twitter">
+                                                                    <a class="external"
+                                                                       href="https://twitter.com/gemeenteaalter"
+                                                                       target="_blank">
+                    <span>
+                     Twitter
+                    </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="bullet-youtube">
+                                                                    <a class="external"
+                                                                       href="https://www.youtube.com/channel/UCjaCtD7DajVv4FiGRYlkakw"
+                                                                       target="_blank">
+                    <span>
+                     Youtube
+                    </span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="contact-hours-container">
+                                                        <h2 class="box-title">
+                 <span>
+                  Openingsuren
+                 </span>
+                                                        </h2>
+                                                        <div class="hours-info">
+                                                            <div class="hours-today">
+                                                                <div class="hours-block">
+                                                                    <h3 class="box-subtitle">
+                    <span>
+                     Vandaag
+                    </span>
+                                                                    </h3>
+                                                                    <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     16.00 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     19.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hours-tomorrow">
+                                                                <div class="hours-block">
+                                                                    <h3 class="box-subtitle">
+                    <span>
+                     Morgen
+                    </span>
+                                                                    </h3>
+                                                                    <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     8.30 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     12.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <a class="btn-primary btn-more-hours"
+                                                           href="/contactpunt-knesselare">
+                                                            Meer openingsuren
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="application/ld+json">
+                                            {
+                                                "@context": "http://schema.org",
+                                                "@type": "PostalAddress",
+                                                "addressLocality": "Aalter",
+                                                "postalCode": "9910",
+                                                "streetAddress": "De Plaats 14"
+                                            }
+                                        </script>
+                                    </div>
+                                    <div class="box box-contact box box-contact">
+                                        <h2 class="box-title">
+             <span>
+              Contact
+             </span>
+                                        </h2>
+                                        <div class="box-block box-contact-block">
+                                            <div class="box-contact-block-row">
+                                                <div class="contact-content">
+                                                    <div class="contact-info-container">
+                                                        <h3 class="box-subtitle">
+                 <span>
+                  Eerste lijn (contactpunt Knesselare)
+                 </span>
+                                                        </h3>
+                                                        <dl class="contact-info">
+                                                            <dt class="lbl-address">
+                  <span>
+                   Adres
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-address">
+                  <span class="txt-streetnr">
+                   De Plaats 14
+                  </span>
+                                                                <span class="txt-postal">
+                   <span class="sr-only">
+                    ,
+                   </span>
+                   9910
+                  </span>
+                                                                <span class="txt-city">
+                   Aalter
+                  </span>
+                                                            </dd>
+                                                            <dt class="lbl-phone">
+                  <span>
+                   tel.
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-phone">
+                  <span data-label="tel.">
+                   <a class="phone" href="tel:093252200">
+                    09 325 22 00
+                   </a>
+                  </span>
+                                                            </dd>
+                                                            <dt class="lbl-fax">
+                  <span>
+                   Fax
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-fax">
+                  <span data-label="Fax">
+                   09 325 22 40
+                  </span>
+                                                            </dd>
+                                                            <dt class="lbl-mail">
+                  <span>
+                   E-mail
+                  </span>
+                                                            </dt>
+                                                            <dd class="txt-mail">
+                  <span data-label="E-mail">
+                   <a class="mail" href="mailto:%65%65%72%73%74%65%2e%6c%69%6a%6e%40%61%61%6c%74%65%72%2e%62%65">
+                    eerste.lijn@aalter.be
+                   </a>
+                  </span>
+                                                            </dd>
+                                                        </dl>
+                                                        <div class="contact-social">
+                                                            <h4 class="title">
+                  <span>
+                   Volg ons op
+                  </span>
+                                                            </h4>
+                                                            <ul class="list-social">
+                                                                <li class="bullet-facebook">
+                                                                    <a class="external"
+                                                                       href="https://www.facebook.com/gemeentebestuurAalter/"
+                                                                       target="_blank">
+                    <span>
+                     Facebook
+                    </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="bullet-twitter">
+                                                                    <a class="external"
+                                                                       href="https://twitter.com/gemeenteaalter"
+                                                                       target="_blank">
+                    <span>
+                     Twitter
+                    </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="bullet-youtube">
+                                                                    <a class="external"
+                                                                       href="https://www.youtube.com/channel/UCjaCtD7DajVv4FiGRYlkakw"
+                                                                       target="_blank">
+                    <span>
+                     Youtube
+                    </span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="contact-hours-container">
+                                                        <h2 class="box-title">
+                 <span>
+                  Openingsuren
+                 </span>
+                                                        </h2>
+                                                        <div class="hours-info">
+                                                            <div class="hours-today">
+                                                                <div class="hours-block">
+                                                                    <h3 class="box-subtitle">
+                    <span>
+                     Vandaag
+                    </span>
+                                                                    </h3>
+                                                                    <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     16.00 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     19.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hours-tomorrow">
+                                                                <div class="hours-block">
+                                                                    <h3 class="box-subtitle">
+                    <span>
+                     Morgen
+                    </span>
+                                                                    </h3>
+                                                                    <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     8.30 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     12.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <a class="btn-primary btn-more-hours"
+                                                           href="/eerste-lijn-knesselare">
+                                                            Meer openingsuren
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <script type="application/ld+json">
+                                            {
+                                                "@context": "http://schema.org",
+                                                "@type": "PostalAddress",
+                                                "addressLocality": "Aalter",
+                                                "postalCode": "9910",
+                                                "streetAddress": "De Plaats 14"
+                                            }
+                                        </script>
+                                    </div>
+                                    <div class="box box-moreinfo">
+                                        <h2 class="box-title">
+             <span>
+              Ook interessant
+             </span>
+                                        </h2>
+                                        <div class="box-block">
+                                            <ul class="list">
+                                                <li>
+                                                    <a href="/kids-id">
+                                                        Kids-ID
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <footer class="footer" id="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <ul class="list">
+                        <li class="politie">
+                            <a href="http://www.lokalepolitie.be/5423" target="_blank">
+          <span>
+           Politiezone Aalter
+          </span>
+                            </a>
+                        </li>
+                        <li class="hulpverlening">
+                            <a href="https://www.zonemeetjesland.be/" target="_blank">
+          <span>
+           Hulpverleningszone Meetjesland
+          </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container">
+                <div class="footer-inner">
+                    <div class="footer-left">
+                        <div class="iso">
+                            <a href="https://www.aalter.be/iso-9001">
+                            </a>
+                        </div>
+                        <div class="iso2">
+                            <a href="https://www.aalter.be/iso-37120">
+                            </a>
+                        </div>
+                        <ul class="list">
+                            <li class="footer-list-item">
+                                <a href="/proclaimer">
+                                    Proclaimer / privacybeleid
+                                </a>
+                            </li>
+                            <li class="footer-list-item">
+                                <a href="/cookiebeleid">
+                                    Cookiebeleid
+                                </a>
+                            </li>
+                            <li class="footer-list-item">
+                                <a href="/toegankelijkheidsverklaring">
+                                    Toegankelijkheidsverklaring
+                                </a>
+                            </li>
+                            <li class="footer-list-item">
+                                <a href="/sitemap">
+                                    Sitemap
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-right">
+                        <ul class="list">
+                            <li>
+                                <a class="lcplink" href="http://www.lcp.be/" rel="noopener" target="_blank"
+                                   title="e-gov en internet services door LCP">
+           <span>
+            lcp.nv 2022 ©
+           </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="toppos sr_skip">
+            <div id="totop">
+                <a class="btn-totop" data-scrollto="totop" href="#outer-wrap" title="Naar top">
+       <span>
+        Naar top
+       </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/bundles/website?v=9uNRdzvkG7DBJ5aAC2pTaIctUIac2Xu0kbhN-JR4iZA1">
+</script>
+<script type="text/javascript">
+    <!--
+    window.rsConf = {ui: {disableDetachment: true, displayDownload: false}, general: {usePost: true}};
+    //-->
+</script>
+<script src="//cdn1.readspeaker.com/script/8181/webReader/webReader.js?pids=wr&amp;noDefaultSkin=1¬ools=1"
+        type="text/javascript">
+</script>
+</body>
+</html>

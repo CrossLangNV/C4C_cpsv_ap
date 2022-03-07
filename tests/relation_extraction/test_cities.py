@@ -1,3 +1,4 @@
+import os.path
 import re
 import unittest
 
@@ -7,6 +8,10 @@ from relation_extraction.affligem import AffligemParser
 from relation_extraction.austrheim import AustrheimParser
 from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.san_paolo import SanPaoloParser
+
+DIR_EXAMPLE_FILES = os.path.join(os.path.dirname(__file__), "EXAMPLE_FILES")
+
+url2filename = lambda page: os.path.join(DIR_EXAMPLE_FILES, re.sub(r'\W+', '_', page) + ".html")
 
 
 class TestDifferentCities(unittest.TestCase):
@@ -38,7 +43,7 @@ class TestDifferentCities(unittest.TestCase):
                       # Acceptable site.
                       ]
 
-        self.filenames = list(map(lambda page: re.sub(r'\W+', '_', page) + ".html", self.pages))
+        self.filenames = list(map(url2filename, self.pages))
 
     def test_different_cities_list(self):
         """
@@ -98,3 +103,22 @@ class TestDifferentCities(unittest.TestCase):
         l = parser.parse_page(html)
 
         self.assertTrue(l)
+
+
+class TestAustrheim(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.page = "https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/"
+        self.filename = url2filename(self.page)
+
+        self.parser = AustrheimParser()
+
+    def test_chunker(self):
+        html = get_html(self.filename)
+
+        l = self.parser.parse_page(html)
+
+        self.assertTrue(l)
+
+        with self.subTest("Other headers"):
+            self.assertGreaterEqual(len(l), 2, "Expected at least one other element besides Title.")
