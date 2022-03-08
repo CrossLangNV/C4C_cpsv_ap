@@ -38,8 +38,9 @@ class CityParser(abc.ABC):
     Abstract class for city procedure parsers
     """
 
+    @staticmethod
     @abc.abstractmethod
-    def parse_page(self, s_html):
+    def parse_page(s_html):
         """
         Converts a html page to paragraphs with their title.
 
@@ -52,7 +53,5 @@ class CityParser(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def extract_relations(self, s_html) -> Relations:
+    def extract_relations(self, s_html: str, url: str) -> Relations:
         pass
-
-
