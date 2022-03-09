@@ -64,18 +64,18 @@ class AalterParser(CityParser):
 
             # Header text
             text_header = header.get_text(separator=" ", strip=True)
-            text_header = clean_text(text_header)
+            text_header = clean_text(text_header, remove_newlines=True)
             l_par.append(text_header)
 
             # All following text.
             for sib in header.find_next_siblings():
-                text = clean_text(sib.get_text(separator=" ", strip=True))
+                text = clean_text(sib.get_text(separator=" ", strip=True), remove_newlines=True)
                 if sib.name in ["div", "p"]:  # TODO <ul/> <li/> items
                     l_par.append(text)
                 elif sib.name == "ul":
 
                     for li in sib.findChildren("li"):
-                        text_li = clean_text(li.get_text(separator=" ", strip=True))
+                        text_li = clean_text(li.get_text(separator=" ", strip=True), remove_newlines=True)
 
                         l_par.append(f"* {text_li}")
 
