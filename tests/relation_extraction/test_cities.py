@@ -295,11 +295,18 @@ class TestNovaGorica(unittest.TestCase):
     Belgium, Dutch
     """
 
-    def setUp(self) -> None:
+    def setUp(self, write=False) -> None:
         self.url = "https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011101410574355/"
-        self.url2 = "https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011102511410147/"  # TODO
+        self.url2 = "https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011102511410147/"
         self.filename = url2filename(self.url)
+        self.filename2 = url2filename(self.url2)
+
+        if write:
+            for page, filename in zip([self.url, self.url2], [self.filename, self.filename2]):
+                url2html(page, filename=filename)
+
         self.html = get_html(self.filename)
+        self.html2 = get_html(self.filename2)
 
         self.parser = NovaGoricaParser()
         self.context = "https://www.nova-gorica.si/"
@@ -356,7 +363,7 @@ class TestNovaGorica(unittest.TestCase):
             self.assertEqual(s_in, crit_req)
 
         rule_birth = d_relations.rule
-        s_in = "Višina enkratne občinske denarne pomoči ob rojstvu otroka znaša 500,00 EUR."
+        s_in = "Višina enkratne občinske denarne pomoči ob rojstvu otroka znaša 500,00 EUR"
         with self.subTest("Rule"):
             self.assertTrue(rule_birth)
 
@@ -369,25 +376,43 @@ class TestNovaGorica(unittest.TestCase):
             self.assertEqual("Takse ni.",
                              cost_birth)
 
-    # def test_extract_relations2(self):
-    #     # Change in address
-    #     d_relations2 = self.parser.extract_relations(self.html2, url=self.url2)
-    #
-    #     with self.subTest("rule2"):
-    #         rule2 = d_relations2.rule
-    #
-    #         self.assertTrue(rule2)
-    #
-    #         s_in = "Na deze controle word je ingeschreven op het nieuwe adres en word je uitgenodigd om jouw identiteitskaart op het gemeentehuis te laten aanpassen."
-    #         self.assertIn(s_in, rule2)
-    #
-    #     with self.subTest("evidence"):
-    #         evidence = d_relations2.evidence
-    #
-    #         self.assertTrue(evidence)
-    #
-    #         self.assertIn("Pincode om de chip te updaten.", evidence)
-    #
+    def test_extract_relations2(self):
+        # Change in address
+        d_relations = self.parser.extract_relations(self.html2, url=self.url2)
+
+        crit_req = d_relations.criterionRequirement
+        with self.subTest("criterion requirement"):
+            self.assertTrue(crit_req)
+
+            s_in = "a prenehanja opravljanja dejavnosti avto-taksi prevozov"
+            self.assertIn(s_in, crit_req)
+
+        rule = d_relations.rule
+        with self.subTest("Rule"):
+            self.assertTrue(rule)
+
+            # different tags act weird, so separate test
+            s_in = "potrebna sprememba dovoljenja"
+            self.assertIn(s_in, rule)
+
+            s_in = " ko se spremeni katerikoli pogoj in s tem priloga k vlogi podani ob pridobitvi dovoljenja; vlogo za spremembo je potrebno podati v"
+            self.assertIn(s_in, rule)
+
+        evidence = d_relations.evidence
+        with self.subTest("Evidence"):
+            self.assertTrue(evidence)
+
+            s_in = "taksi (glej postopek Prijava obveznosti plačila občinske takse - Pri"
+
+            self.assertIn(s_in, evidence)
+
+        cost = d_relations.cost
+        with self.subTest("cost"):
+            self.assertTrue(cost)
+
+            self.assertIn("22,60 EUR.",
+                          cost)
+
     # def test_RelationExtractor(self,
     #                            debug=False):
     #     relation_extractor = RelationExtractor(self.html1,

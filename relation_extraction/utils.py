@@ -4,8 +4,12 @@ from typing import List, Union
 from bs4 import BeautifulSoup, Tag
 
 
-def clean_text(text):
-    return text.strip(" \n\r\xa0\t").replace("\xa0", " ")
+def clean_text(text, remove_newlines=False):
+    if remove_newlines:
+        return " ".join([clean_text(line, remove_newlines=False) for line in text.splitlines()])
+
+    text_clean = text.strip(" \n\r\xa0\t").replace("\xa0", " ")
+    return text_clean
 
 
 def get_all_headers(soup: Union[BeautifulSoup, Tag]) -> List[Tag]:
