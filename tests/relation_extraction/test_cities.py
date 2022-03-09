@@ -413,18 +413,18 @@ class TestNovaGorica(unittest.TestCase):
             self.assertIn("22,60 EUR.",
                           cost)
 
-    # def test_RelationExtractor(self,
-    #                            debug=False):
-    #     relation_extractor = RelationExtractor(self.html1,
-    #                                            context=self.context,
-    #                                            country_code="BE")
-    #
-    #     ps = relation_extractor.extract_all(extract_concepts=True)
-    #
-    #     if debug:
-    #         print(relation_extractor.export())
-    #
-    #     self.assertTrue(ps)
+    def test_RelationExtractor(self,
+                               debug=False):
+        relation_extractor = RelationExtractor(self.html,
+                                               context=self.context,
+                                               country_code="BE")
+
+        ps = relation_extractor.extract_all(extract_concepts=True)
+
+        if debug:
+            print(relation_extractor.export())
+
+        self.assertTrue(ps)
 
 
 class TestSanPaolo(unittest.TestCase):
