@@ -54,4 +54,14 @@ class CityParser(abc.ABC):
 
     @abc.abstractmethod
     def extract_relations(self, s_html: str, url: str) -> Relations:
+        """
+        Extracts important CPSV-AP relations from a webpage containing an administrative procedure.
+
+        Args:
+            s_html: HTML as string
+            url: original URL to the webpage
+
+        Returns:
+            extracted relations saved in Relations object.
+        """
         pass

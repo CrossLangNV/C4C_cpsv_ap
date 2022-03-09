@@ -29,8 +29,9 @@ class TestDifferentCities(unittest.TestCase):
         municipalities = ["Aalter",  # <- Belgium, Dutch
                           "San Paolo",  # <- Italy, Italian
                           "Nova Gorica",  # <- Slovenia, Slovenian
-                          "Wien",
-                          "Zagreb"
+                          "Wien",  # <- Austria, German
+                          "Zagreb",  # <- Croatia, Croatian
+                          "Austrheim",  # <- Norway, Norwegian
                           ]
         self.pages = ["https://www.aalter.be/eid", "https://www.aalter.be/verhuizen",  # Dutch
                       "https://www.comune.sanpaolo.bs.it/procedure%3As_italia%3Atrasferimento.residenza.estero%3Bdichiarazione?source=1104",
@@ -106,7 +107,130 @@ class TestDifferentCities(unittest.TestCase):
         self.assertTrue(l)
 
 
+class TestAalter(unittest.TestCase):
+    """
+    Belgium, Dutch
+    """
+
+    def setUp(self) -> None:
+        self.url1 = "https://www.aalter.be/eid"
+        self.url2 = "https://www.aalter.be/verhuizen"
+
+        self.filename1 = url2filename(self.url1)
+        self.filename2 = url2filename(self.url2)
+
+        self.html1 = get_html(self.filename1)
+        self.html2 = get_html(self.filename2)
+
+        self.parser = AalterParser()
+
+        self.context = "https://www.aalter.be/"
+
+    def test_chunker(self):
+        l1 = self.parser.parse_page(self.html1)
+        l2 = self.parser.parse_page(self.html2)
+
+        self.assertTrue(l1)
+
+        self.assertTrue(l2)
+
+        with self.subTest("Other headers"):
+            self.assertGreaterEqual(len(l1), 2, "Expected at least one other element besides Title.")
+            self.assertGreaterEqual(len(l2), 2, "Expected at least one other element besides Title.")
+
+    def test_chunkig_headers_sub(self):
+        """
+        a h1 headers should contain all h2, h3... headers within.
+        Returns:
+
+        """
+
+        # Get h2 with h3 children
+
+        def _get_header_with_sub_headers():
+
+            for title, paragraph in self.parser._paragraph_generator(self.html1):
+                if "hoe aanvragen" in title.lower():
+                    return title, paragraph
+
+        title, paragraph = _get_header_with_sub_headers()
+
+        with self.subTest("subtitles"):
+            self.assertIn("Afhalen".lower(), paragraph.lower())
+
+        with self.subTest("subparagrpaphs"):
+            self.assertIn("In dringende gevallen kan je een spoedprocedure aanvragen".lower(),
+                          paragraph.lower())
+
+    def test_extract_relations1(self):
+        # E ID
+        d_relations1 = self.parser.extract_relations(self.html1, url=self.url1)
+
+        crit_req = d_relations1.criterionRequirement
+        s_in = "De pasfoto die je meebrengt mag maximaal 6 maanden oud zijn en " \
+               "moet voldoen aan de normen van de International Civil Aviation Organization (pdf)."
+
+        with self.subTest("criterion requirement"):
+            self.assertTrue(crit_req)
+
+            self.assertIn(s_in.replace(" ", ""), crit_req.replace(" ", ""))
+
+        with self.subTest("! TODO correct chunking"):
+            self.assertIn(s_in, crit_req)
+
+        rule1 = d_relations1.rule
+        s_in = "Belgen ouder dan 12 jaar die in het buitenland wonen kunnen een eID krijgen bij de Belgische consulaire beroepspost waar ze zijn ingeschreven. De levertermijn is wel langer."
+        with self.subTest("Rule"):
+            self.assertTrue(rule1)
+
+            self.assertIn(s_in, rule1)
+
+        cost_eid = d_relations1.cost
+        with self.subTest("cost"):
+            self.assertTrue(cost_eid)
+
+            self.assertIn("12 tot 18 jaar is de identiteitskaart 6 jaar geldig", cost_eid)
+
+        with self.subTest("! TODO Chunking tables"):
+            self.assertIn("Spoed: levering gemeentehuis (1 dag)", cost_eid)
+
+    def test_extract_relations2(self):
+        # Change in address
+        d_relations2 = self.parser.extract_relations(self.html2, url=self.url2)
+
+        with self.subTest("rule2"):
+            rule2 = d_relations2.rule
+
+            self.assertTrue(rule2)
+
+            s_in = "Na deze controle word je ingeschreven op het nieuwe adres en word je uitgenodigd om jouw identiteitskaart op het gemeentehuis te laten aanpassen."
+            self.assertIn(s_in, rule2)
+
+        with self.subTest("evidence"):
+            evidence = d_relations2.evidence
+
+            self.assertTrue(evidence)
+
+            self.assertIn("Pincode om de chip te updaten.", evidence)
+
+    def test_RelationExtractor(self,
+                               debug=False):
+        relation_extractor = RelationExtractor(self.html1,
+                                               context=self.context,
+                                               country_code="BE")
+
+        ps = relation_extractor.extract_all(extract_concepts=True)
+
+        if debug:
+            print(relation_extractor.export())
+
+        self.assertTrue(ps)
+
+
 class TestAustrheim(unittest.TestCase):
+    """
+    Norway, Norwegian
+    """
 
     def setUp(self) -> None:
         self.url = "https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/"
@@ -160,3 +284,146 @@ class TestAustrheim(unittest.TestCase):
             print(relation_extractor.export())
 
         self.assertTrue(ps)
+
+
+class TestNovaGorica(unittest.TestCase):
+    """
+    Slovenia, Slovenian
+    """
+
+    """
+    Belgium, Dutch
+    """
+
+    def setUp(self) -> None:
+        self.url = "https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011101410574355/"
+        self.url2 = "https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011102511410147/"  # TODO
+        self.filename = url2filename(self.url)
+        self.html = get_html(self.filename)
+
+        self.parser = NovaGoricaParser()
+        self.context = "https://www.nova-gorica.si/"
+
+    def test_chunker(self):
+        l = self.parser.parse_page(self.html)
+
+        self.assertTrue(l)
+
+        with self.subTest("Other headers"):
+            self.assertGreaterEqual(len(l), 2, "Expected at least one other element besides Title.")
+
+        titles = [title for title, _ in self.parser._paragraph_generator(self.html)]
+        paragraphs = [paragraph for _, paragraph in self.parser._paragraph_generator(self.html)]
+
+        with self.subTest("Forms"):
+            self.assertIn("Obrazci:", titles)
+
+        with self.subTest("Contact"):
+            title = "Kontakt:"
+            self.assertIn(title, titles)
+
+            paragraph = paragraphs[titles.index(title)]
+            self.assertIn("telefon: 05/335-0-352", paragraph)
+
+        with self.subTest("Procedure"):
+            self.assertIn("Opis postopka:", titles)
+
+        with self.subTest("Legal basis"):
+            self.assertIn("Pravna podlaga:", titles)
+
+        with self.subTest("Cost"):
+            title = "Taksa:"
+            self.assertIn("Taksa:", titles)
+
+            paragraph = paragraphs[titles.index(title)]
+            self.assertIn("Takse ni.", paragraph)
+
+        with self.subTest("Specific bug #1"):
+            # "Vloga za enkratno denarno pomoč ob rojstvu otroka"
+            s_in = "Vloga za enkratno denarno pomo"
+            for title in titles:
+                self.assertNotIn(s_in, title)
+
+    def test_extract_relations1(self):
+        # Birth
+        d_relations = self.parser.extract_relations(self.html, url=self.url)
+
+        crit_req = d_relations.criterionRequirement
+        with self.subTest("criterion requirement"):
+            self.assertTrue(crit_req)
+
+            s_in = "Vloga za enkratno denarno pomoč ob rojstvu otroka"
+            self.assertEqual(s_in, crit_req)
+
+        rule_birth = d_relations.rule
+        s_in = "Višina enkratne občinske denarne pomoči ob rojstvu otroka znaša 500,00 EUR."
+        with self.subTest("Rule"):
+            self.assertTrue(rule_birth)
+
+            self.assertIn(s_in, rule_birth)
+
+        cost_birth = d_relations.cost
+        with self.subTest("cost"):
+            self.assertTrue(cost_birth)
+
+            self.assertEqual("Takse ni.",
+                             cost_birth)
+
+    # def test_extract_relations2(self):
+    #     # Change in address
+    #     d_relations2 = self.parser.extract_relations(self.html2, url=self.url2)
+    #
+    #     with self.subTest("rule2"):
+    #         rule2 = d_relations2.rule
+    #
+    #         self.assertTrue(rule2)
+    #
+    #         s_in = "Na deze controle word je ingeschreven op het nieuwe adres en word je uitgenodigd om jouw identiteitskaart op het gemeentehuis te laten aanpassen."
+    #         self.assertIn(s_in, rule2)
+    #
+    #     with self.subTest("evidence"):
+    #         evidence = d_relations2.evidence
+    #
+    #         self.assertTrue(evidence)
+    #
+    #         self.assertIn("Pincode om de chip te updaten.", evidence)
+    #
+    # def test_RelationExtractor(self,
+    #                            debug=False):
+    #     relation_extractor = RelationExtractor(self.html1,
+    #                                            context=self.context,
+    #                                            country_code="BE")
+    #
+    #     ps = relation_extractor.extract_all(extract_concepts=True)
+    #
+    #     if debug:
+    #         print(relation_extractor.export())
+    #
+    #     self.assertTrue(ps)
+
+
+class TestSanPaolo(unittest.TestCase):
+    """
+    Italy, Italian
+    """
+
+    def test_foo(self):
+        self.assertEqual(0, 1)
+
+
+class TestWien(unittest.TestCase):
+    """
+    Austria, German
+    """
+
+    def test_foo(self):
+        self.assertEqual(0, 1)
+
+
+class TestZagreb(unittest.TestCase):
+    """
+    Croatia, Croatian
+    """
+
+    def test_foo(self):
+        self.assertEqual(0, 1)
