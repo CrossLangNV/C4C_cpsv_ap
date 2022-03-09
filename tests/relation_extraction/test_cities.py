@@ -10,6 +10,7 @@ from relation_extraction.methods import RelationExtractor
 from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.san_paolo import SanPaoloParser
 from relation_extraction.wien import WienParser
+from scripts.zagreb import ZagrebParser
 
 DIR_EXAMPLE_FILES = os.path.join(os.path.dirname(__file__), "EXAMPLE_FILES")
 
@@ -590,5 +591,37 @@ class TestZagreb(unittest.TestCase):
     Croatia, Croatian
     """
 
-    def test_foo(self):
-        self.assertEqual(0, 1)
+    def setUp(self, write=False) -> None:
+        self.url = "https://www.zagreb.hr/novcana-pomoc-za-opremu-novorodjenog-djeteta/5723"
+        self.filename = url2filename(self.url)
+        self.html = get_html(self.filename)
+
+        self.parser = ZagrebParser()  # Or AalterParser()
+        self.context = "https://www.zagreb.hr/"
+
+    def test_chunker(self):
+        l = self.parser.parse_page(self.html)
+
+        self.assertTrue(l)
+
+        with self.subTest("Other headers"):
+            self.assertGreaterEqual(len(l), 2, "Expected at least one other element besides Title.")
+
+        titles = [title for title, _ in self.parser._paragraph_generator(self.html)]
+        paragraphs = [paragraph for _, paragraph in self.parser._paragraph_generator(self.html)]
+
+    def test_extract_relations(self):
+        d_relations = self.parser.extract_relations(self.html, url=self.url)
+
+    def test_RelationExtractor(self,
+                               debug=False):
+        relation_extractor = RelationExtractor(self.html,
+                                               context=self.context,
+                                               country_code="HR")
+
+        ps = relation_extractor.extract_all(extract_concepts=True)
+
+        if debug:
+            print(relation_extractor.export())
+
+        self.assertTrue(ps)
