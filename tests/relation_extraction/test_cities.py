@@ -291,10 +291,6 @@ class TestNovaGorica(unittest.TestCase):
     Slovenia, Slovenian
     """
 
-    """
-    Belgium, Dutch
-    """
-
     def setUp(self, write=False) -> None:
         self.url = "https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011101410574355/"
         self.url2 = "https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011102511410147/"
@@ -417,7 +413,7 @@ class TestNovaGorica(unittest.TestCase):
                                debug=False):
         relation_extractor = RelationExtractor(self.html,
                                                context=self.context,
-                                               country_code="BE")
+                                               country_code="SL")
 
         ps = relation_extractor.extract_all(extract_concepts=True)
 
@@ -432,8 +428,70 @@ class TestSanPaolo(unittest.TestCase):
     Italy, Italian
     """
 
-    def test_foo(self):
-        self.assertEqual(0, 1)
+    def setUp(self, write=False) -> None:
+        self.url = "https://www.comune.sanpaolo.bs.it/procedure%3As_italia%3Atrasferimento.residenza.estero%3Bdichiarazione?source=1104"
+        self.filename = url2filename(self.url)
+        self.html = get_html(self.filename)
+
+        self.parser = SanPaoloParser()
+        self.context = "https://www.comune.sanpaolo.bs.it/"
+
+    def test_chunker(self):
+        l = self.parser.parse_page(self.html)
+
+        self.assertTrue(l)
+
+        with self.subTest("Other headers"):
+            self.assertGreaterEqual(len(l), 2, "Expected at least one other element besides Title.")
+
+        titles = [title for title, _ in self.parser._paragraph_generator(self.html)]
+        paragraphs = [paragraph for _, paragraph in self.parser._paragraph_generator(self.html)]
+
+        with self.subTest("Cost"):
+            title = "Pagamenti"
+            self.assertIn(title, titles)
+
+            paragraph = paragraphs[titles.index(title)]
+            self.assertIn("La presentazione della pratica non prevede alcun pagamento", paragraph)
+
+        with self.subTest("Evidence"):
+            title = "Moduli da compilare e documenti da allegare"
+            self.assertIn(title, titles, "TODO chunker did not include evidence block.")
+
+    def test_extract_relations1(self):
+        d_relations = self.parser.extract_relations(self.html, url=self.url)
+
+        evidence = d_relations.evidence
+        with self.subTest("evidence"):
+            self.assertTrue(evidence)
+
+            s_in = "Dichiarazione di trasferimento di residenza all'estero	"
+            self.assertIn(s_in,
+                          evidence)
+
+            s_in = "Copia del documento d'identità di tutti i soggetti"
+            self.assertIn(s_in,
+                          evidence)
+
+        cost = d_relations.cost
+        with self.subTest("cost"):
+            self.assertTrue(cost)
+
+            self.assertIn("La presentazione della pratica non prevede alcun pagamento",
+                          cost)
+
+    def test_RelationExtractor(self,
+                               debug=False):
+        relation_extractor = RelationExtractor(self.html,
+                                               context=self.context,
+                                               country_code="IT")
+
+        ps = relation_extractor.extract_all(extract_concepts=True)
+
+        if debug:
+            print(relation_extractor.export())
+
+        self.assertTrue(ps)
 
 
 class TestWien(unittest.TestCase):

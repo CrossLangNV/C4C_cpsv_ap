@@ -37,13 +37,13 @@ class AalterParser(CityParser):
             if re.match(self.criterionRequirement, title, re.IGNORECASE):
                 d.criterionRequirement = paragraph
 
-            elif re.match(self.rule, title, re.IGNORECASE):
+            if re.match(self.rule, title, re.IGNORECASE):
                 d.rule = paragraph
 
-            elif re.match(self.evidence, title, re.IGNORECASE):
+            if re.match(self.evidence, title, re.IGNORECASE):
                 d.evidence = paragraph
 
-            elif re.match(self.cost, title, re.IGNORECASE):
+            if re.match(self.cost, title, re.IGNORECASE):
                 d.cost = paragraph
 
         return d
