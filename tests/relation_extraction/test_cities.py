@@ -9,6 +9,7 @@ from relation_extraction.austrheim import AustrheimParser
 from relation_extraction.methods import RelationExtractor
 from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.san_paolo import SanPaoloParser
+from relation_extraction.wien import WienParser
 
 DIR_EXAMPLE_FILES = os.path.join(os.path.dirname(__file__), "EXAMPLE_FILES")
 
@@ -458,7 +459,7 @@ class TestSanPaolo(unittest.TestCase):
             title = "Moduli da compilare e documenti da allegare"
             self.assertIn(title, titles, "TODO chunker did not include evidence block.")
 
-    def test_extract_relations1(self):
+    def test_extract_relations(self):
         d_relations = self.parser.extract_relations(self.html, url=self.url)
 
         evidence = d_relations.evidence
@@ -499,8 +500,89 @@ class TestWien(unittest.TestCase):
     Austria, German
     """
 
-    def test_foo(self):
-        self.assertEqual(0, 1)
+    def setUp(self, write=False) -> None:
+        self.url = "https://www.wien.gv.at/amtshelfer/verkehr/fahrzeuge/aenderungen/einzelgenehmigung.html"
+        self.filename = url2filename(self.url)
+        self.html = get_html(self.filename)
+
+        self.parser = WienParser()  # Or AalterParser()
+        self.context = "https://www.wien.gv.at/"
+
+    def test_chunker(self):
+        l = self.parser.parse_page(self.html)
+
+        self.assertTrue(l)
+
+        with self.subTest("Other headers"):
+            self.assertGreaterEqual(len(l), 2, "Expected at least one other element besides Title.")
+
+        titles = [title for title, _ in self.parser._paragraph_generator(self.html)]
+        paragraphs = [paragraph for _, paragraph in self.parser._paragraph_generator(self.html)]
+
+        with self.subTest("Additional info"):
+            title = "Zusätzliche Informationen"
+            self.assertIn(title, titles)
+
+            paragraph = paragraphs[titles.index(title)]
+            self.assertIn(
+                "Dateneingabe in die Genehmigungsdatenbank für vom Ausland importierte Fahrzeuge mit EU",
+                paragraph)
+
+        with self.subTest("Requirements"):
+            title = "Voraussetzungen"
+            self.assertIn(title, titles)
+
+    def test_extract_relations(self):
+        d_relations = self.parser.extract_relations(self.html, url=self.url)
+
+        criterionRequirement = d_relations.criterionRequirement
+        with self.subTest("criterion requirement"):
+            self.assertTrue(criterionRequirement)
+
+            s_in = "Das Fahrzeug muss den Baujahrsvorschriften des österreichischen Kraftfahrrecht bzw. den EU"
+            self.assertIn(s_in,
+                          criterionRequirement)
+
+        rule = d_relations.rule
+        with self.subTest("rule"):
+            self.assertTrue(rule)
+
+            s_in = "technische Verkehrsangelegenheiten ("
+            self.assertIn(s_in,
+                          rule)
+
+            s_in = "MA 46) gesondert genehmigt werden."
+            self.assertIn(s_in,
+                          rule)
+
+        evidence = d_relations.evidence
+        with self.subTest("evidence"):
+            self.assertTrue(evidence)
+
+            s_in = "Vollmacht, falls die FahrzeugbesitzerInnen nicht persönlich kommen"
+            self.assertIn(s_in,
+                          evidence)
+
+        cost = d_relations.cost
+        with self.subTest("cost"):
+            self.assertTrue(cost)
+
+            s_in = "Zirka 60 bis 160 Euro"
+            self.assertIn(s_in,
+                          cost)
+
+    def test_RelationExtractor(self,
+                               debug=False):
+        relation_extractor = RelationExtractor(self.html,
+                                               context=self.context,
+                                               country_code="AT")
+
+        ps = relation_extractor.extract_all(extract_concepts=True)
+
+        if debug:
+            print(relation_extractor.export())
+
+        self.assertTrue(ps)
 
 
 class TestZagreb(unittest.TestCase):
