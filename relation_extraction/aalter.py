@@ -1,5 +1,5 @@
 import re
-from typing import Generator, List, Tuple, Union
+from typing import List, Union
 
 from bs4 import BeautifulSoup, Tag
 
@@ -165,19 +165,4 @@ class AalterParser(CityParser):
                                         n_headers_min=n_headers_min,
                                         n_headers_max=n_headers_max)
 
-    def _paragraph_generator(self, s_html) -> Generator[Tuple[str, str], None, None]:
-        """
-        Generates the header-paragraph pairs out of the HTML.
 
-        Args:
-            s_html: HTML of page as string.
-
-        Returns:
-            generates (title, paragraph) pairs.
-        """
-        for l_sub in self.parse_page(s_html):
-            title = l_sub[0]
-            paragraphs = l_sub[1:]
-            paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
-
-            yield title, paragraphs_clean

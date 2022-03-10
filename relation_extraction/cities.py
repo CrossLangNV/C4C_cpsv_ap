@@ -5,7 +5,7 @@ For Belgium see:
 """
 import abc
 import re
-from typing import List, Optional
+from typing import Generator, List, Optional, Tuple
 
 from pydantic import BaseModel
 
@@ -67,6 +67,22 @@ class CityParser(abc.ABC):
         """
         pass
 
+    def _paragraph_generator(self, s_html) -> Generator[Tuple[str, str], None, None]:
+        """
+        Generates the header-paragraph pairs out of the HTML.
+
+        Args:
+            s_html: HTML of page as string.
+
+        Returns:
+            generates (title, paragraph) pairs.
+        """
+        for l_sub in self.parse_page(s_html):
+            title = l_sub[0]
+            paragraphs = l_sub[1:]
+            paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
+
+            yield title, paragraphs_clean
 
 class CPSVAPRelationsClassifier(abc.ABC):
 
@@ -170,19 +186,19 @@ class RegexCPSVAPRelationsClassifier(CPSVAPRelationsClassifier):
     def predict_criterion_requirement(self,
                                       title: str = None,
                                       paragraph: str = None):
-        return re.match(self.pattern_criterion_requirement, title, re.IGNORECASE)
+        return bool(re.match(self.pattern_criterion_requirement, title, re.IGNORECASE))
 
     def predict_rule(self,
                      title: str = None,
                      paragraph: str = None):
-        return re.match(self.pattern_rule, title, re.IGNORECASE)
+        return bool(re.match(self.pattern_rule, title, re.IGNORECASE))
 
     def predict_evidence(self,
                          title: str = None,
                          paragraph: str = None):
-        return re.match(self.pattern_evidence, title, re.IGNORECASE)
+        return bool(re.match(self.pattern_evidence, title, re.IGNORECASE))
 
     def predict_cost(self,
                      title: str = None,
                      paragraph: str = None):
-        return re.match(self.pattern_cost, title, re.IGNORECASE)
+        return bool(re.match(self.pattern_cost, title, re.IGNORECASE))
