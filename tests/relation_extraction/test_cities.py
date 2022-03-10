@@ -10,7 +10,7 @@ from relation_extraction.methods import RelationExtractor
 from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.san_paolo import SanPaoloParser
 from relation_extraction.wien import WienParser
-from scripts.zagreb import ZagrebParser
+from relation_extraction.zagreb import ZagrebParser
 
 DIR_EXAMPLE_FILES = os.path.join(os.path.dirname(__file__), "EXAMPLE_FILES")
 
