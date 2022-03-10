@@ -3,8 +3,27 @@ from typing import Generator, List, Tuple, Union
 
 from bs4 import BeautifulSoup, Tag
 
-from relation_extraction.cities import CityParser, Relations
-from relation_extraction.utils import clean_text
+from relation_extraction.cities import CityParser, RegexCPSVAPRelationsClassifier, Relations
+from relation_extraction.utils import clean_text, get_all_headers
+
+
+class AalterCPSVAPRelationsClassifier(RegexCPSVAPRelationsClassifier):
+    """
+    For https://www.aalter.be/
+    """
+
+    def __init__(self,
+                 pattern_criterion_requirement=r"voorwaarden(.)*",
+                 pattern_rule=r"hoe(.)*",
+                 pattern_evidence=r"wat meebrengen(.)*",  # with or without ?
+                 pattern_cost=r"prijs(.)*",
+                 ):
+        super(AalterCPSVAPRelationsClassifier, self).__init__(
+            pattern_criterion_requirement=pattern_criterion_requirement,
+            pattern_rule=pattern_rule,
+            pattern_evidence=pattern_evidence,
+            pattern_cost=pattern_cost
+        )
 
 
 class AalterParser(CityParser):
@@ -12,10 +31,14 @@ class AalterParser(CityParser):
     Parser for Aalter.be
     """
 
-    criterionRequirement = r"voorwaarden(.)*"
-    rule = r"hoe(.)*"
-    evidence = r"wat meebrengen(.)*"  # with or without ?
-    cost = r"prijs(.)*"
+    def __init__(self, classifier: AalterCPSVAPRelationsClassifier = None):
+        super(AalterParser, self).__init__()
+
+        if classifier is None:
+            # Default behaviour
+            self.classifier = AalterCPSVAPRelationsClassifier()
+        else:
+            self.classifier = classifier
 
     def extract_relations(self, s_html: str, url: str) -> Relations:
         """
@@ -34,16 +57,16 @@ class AalterParser(CityParser):
 
         for title, paragraph in self._paragraph_generator(s_html):
 
-            if re.match(self.criterionRequirement, title, re.IGNORECASE):
+            if self.classifier.predict_criterion_requirement(title, paragraph):
                 d.criterionRequirement = paragraph
 
-            if re.match(self.rule, title, re.IGNORECASE):
+            if self.classifier.predict_rule(title, paragraph):
                 d.rule = paragraph
 
-            if re.match(self.evidence, title, re.IGNORECASE):
+            if self.classifier.predict_evidence(title, paragraph):
                 d.evidence = paragraph
 
-            if re.match(self.cost, title, re.IGNORECASE):
+            if self.classifier.predict_cost(title, paragraph):
                 d.cost = paragraph
 
         return d
@@ -158,7 +181,3 @@ class AalterParser(CityParser):
             paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
 
             yield title, paragraphs_clean
-
-
-def get_all_headers(soup: Union[BeautifulSoup, Tag]) -> List[Tag]:
-    return soup.find_all(re.compile('^h[1-6]$'))
