@@ -258,6 +258,102 @@ class TestETranslationConnector(unittest.TestCase):
         return
 
 
+class TestEtranslationConnectorList(unittest.TestCase):
+    def setUp(self) -> None:
+        self.connector = ETranslationConnector(username=CEF_LOGIN,
+                                               password=CEF_PASSW)
+
+    def test_simple(self):
+        l = ["one", "two", "three"]
+
+        trans = self.connector.trans_list_blocking(l, target="NL",
+                                                   source="EN")
+
+        with self.subTest("# elements"):
+            self.assertEqual(len(l), len(trans))
+
+        with self.subTest("1"):
+            s = trans[0]
+
+            self.assertRegex(s, r"^[eé]{2}n$")
+
+        with self.subTest("2"):
+            s = trans[1]
+
+            self.assertRegex(s, r"^twee$")
+
+        with self.subTest("3"):
+            s = trans[2]
+
+            self.assertRegex(s, r"^drie$")
+
+    def test_empty(self):
+        l = ["", "one", "two", "", "three"]
+
+        trans = self.connector.trans_list_blocking(l, target="NL",
+                                                   source="EN")
+
+        with self.subTest("# elements"):
+            self.assertEqual(len(l), len(trans))
+
+        with self.subTest("empty 0"):
+            s = trans[0]
+
+            self.assertRegex(s, r"^$")
+
+        with self.subTest("1"):
+            s = trans[1]
+
+            self.assertRegex(s, r"^[eé]{2}n$")
+
+        with self.subTest("2"):
+            s = trans[2]
+
+            self.assertRegex(s, r"^twee$")
+
+        with self.subTest("empty"):
+            s = trans[3]
+
+            self.assertRegex(s, r"^$")
+
+        with self.subTest("3"):
+            s = trans[4]
+
+            self.assertRegex(s, r"^drie$")
+
+    def test_newlines(self):
+        l = ["one", "two\nthree"]
+
+        trans = self.connector.trans_list_blocking(l, target="NL",
+                                                   source="EN")
+
+        with self.subTest("# elements"):
+            self.assertEqual(len(l), len(trans))
+
+        with self.subTest("1"):
+            s = trans[0]
+
+            self.assertRegex(s, r"^[eé]{2}n$")
+
+        with self.subTest("2 and 3"):
+            s = trans[1]
+
+            self.assertRegex(s, r"^twee\ndrie$")
+
+    def test_combo(self):
+        l = ["", "1\n2\n5", "", "3", "4\n6", ""]
+
+        trans = self.connector.trans_list_blocking(l, target="NL",
+                                                   source="EN")
+
+        with self.subTest("# elements"):
+            self.assertEqual(len(l), len(trans))
+
+        for i, (s_orig, s_trans) in enumerate(zip(l, trans)):
+            with self.subTest(f"s {i}"):
+                self.assertEqual(s_orig, s_trans)
+
+
 def random_text_generator(n: int):
     return "".join([random.choice(string.ascii_letters[:26] + ' ' * 10) for i in range(n)])
 

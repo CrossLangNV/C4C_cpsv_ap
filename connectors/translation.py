@@ -137,34 +137,44 @@ class ETranslationConnector:
         """
 
         Args:
-            source:
-            target:
-            l_text: List of sentences
+            l_text: List of sentences. May contain newlines.
+            target: Target langauge
+            source: Source langauge
 
         Returns:
-
+            List with translated text segments.
         """
 
-        # Combine items from list in file.
-        # ! Expect no newlines
-        # TODO fix working with newlines.
-        for sentence in l_text:
-            # TODO make sure/test that empty line works.
-            assert len(sentence.splitlines()) <= 1
+        l_n = []
+        l_text_split: List[str] = []
+        for text in l_text:
+            text_split = text.splitlines()
+
+            l_n.append(len(text_split))
+            l_text_split.extend(text_split)
+
+        s_tmp = ''.join(text_i + '\n' for text_i in l_text_split)
 
         with tempfile.TemporaryDirectory() as tmp_dir:
             tmp_file = os.path.join(tmp_dir, 'tmp_text_lines.txt')
-            s_tmp = ''.join(text_i + '\n' for text_i in l_text)
             with open(tmp_file, 'w') as f:
                 f.write(s_tmp)
             # send to MT
             j = self.trans_doc_blocking(source, target, Path(tmp_file))
 
-        l_trans_text = list(map(str.strip, j['content'].decode('UTF-8').splitlines()))
+            l_trans_text_split = list(map(str.strip, j['content'].decode('UTF-8').splitlines()))
 
-        l_
+        # In case some sentences had newlines in them.
+        l_text_trans = []
+        it = iter(l_trans_text_split)
+        for size in l_n:
+            text_split_translated = [next(it) for _ in range(size)]
 
-        return l_
+            text_translated = "\n".join(text_split_translated)
+
+            l_text_trans.append(text_translated)
+
+        return l_text_trans
 
     def _get(self, url, auth=None, *args, **kwargs) -> requests.Response:
         if auth is None:
