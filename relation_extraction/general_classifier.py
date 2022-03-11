@@ -172,6 +172,7 @@ class Dataset:
         return self.df_all
 
     def get_english_training_data(self):
+
         return self.df_all[["title", "criterion_requirement"]]
 
 
