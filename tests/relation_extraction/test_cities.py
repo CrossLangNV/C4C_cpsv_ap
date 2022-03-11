@@ -30,7 +30,7 @@ class TestDifferentCities(unittest.TestCase):
         # 2. Municipality, !find list with municipalities.
         municipalities = ["Aalter",  # <- Belgium, Dutch
                           "San Paolo",  # <- Italy, Italian
-                          "Nova Gorica",  # <- Slovenia, Slovenian
+                          "Nova Gorica",  # <- Slovenia, Slovene
                           "Wien",  # <- Austria, German
                           "Zagreb",  # <- Croatia, Croatian
                           "Austrheim",  # <- Norway, Norwegian
@@ -290,7 +290,7 @@ class TestAustrheim(unittest.TestCase):
 
 class TestNovaGorica(unittest.TestCase):
     """
-    Slovenia, Slovenian
+    Slovenia, Slovene
     """
 
     def setUp(self, write=False) -> None:
