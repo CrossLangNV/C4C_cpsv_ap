@@ -2,7 +2,7 @@
 
 FROM python:3.8-slim-buster
 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git build-essential
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt
 
 # Packages from CrossLang
-RUN pip3 install git+https://github.com/CrossLangNV/DGFISMA_RDF.git@e2712bbe48c2791f28d80d9f950c18fbfda8be29 \
+RUN pip3 install git+https://github.com/CrossLangNV/DGFISMA_RDF.git@fb9e840b200d26c58ba1b38ba314ccad7cb708b7 \
     --ignore-installed beautifulsoup4
 
 #ARG GIT_TOKEN

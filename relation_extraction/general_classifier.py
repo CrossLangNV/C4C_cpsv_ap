@@ -2,6 +2,7 @@ import os
 import re
 from typing import List
 
+import fasttext
 import pandas as pd
 
 from connectors.translation import ETranslationConnector
@@ -172,14 +173,85 @@ class Dataset:
         return self.df_all
 
     def get_english_training_data(self):
-
-        return self.df_all[["title", "criterion_requirement"]]
+        # Only English
+        return self.df_all[self.df_all[self.KEY_LANG] == "EN"][["title", "criterion_requirement"]]
 
 
 class GeneralClassifier(CPSVAPRelationsClassifier):
     """
     A general classifier regarding classifying different relationships defined within CPSV-AP.
+
+    TODO (based on https://fasttext.cc/docs/en/supervised-tutorial.html)
+     * Preprocess the data: >> cat cooking.stackexchange.txt | sed -e "s/\([.\!?,'/()]\)/ \1 /g" | tr "[:upper:]" "[:lower:]" > cooking.preprocessed.txt
+     * optimize hyperparams. (e.g. epochs) but can't we do this automaticaly? Autotune?
+        * epochs
+        * lr
+        * wordNgrams
     """
+
+    def __init__(self, filename_train,
+                 filename_valid):
+        super(GeneralClassifier, self).__init__()
+
+        # Load/train classifiers.
+
+        t_train_min = 5  # min
+        t_train = t_train_min * 60  # sec
+
+        # TODO remove
+        model = fasttext.train_supervised(input=filename_train,
+                                          autotuneValidationFile=filename_valid,
+                                          autotuneDuration=t_train,  # Will be unaccessible for this time.
+                                          loss="ova"
+                                          )
+
+        conf = {
+            "epoch": model.epoch,
+            "dim": model.dim,
+            "minCount": model.minCount,
+            "wordNgrams": model.wordNgrams,
+        }
+
+        kwargs = {}
+        if filename_valid:
+            kwargs["autotuneValidationFile"] = filename_valid
+            kwargs["autotuneDuration"] = 600
+            # kwargs[""]
+
+        model.test(filename_valid)
+
+        # Fasttext
+        model = fasttext.train_supervised(input=filename_train,
+
+                                          # loss="ova",
+                                          **kwargs,
+                                          # autotuneMetric="f1:__label__crit_req",
+                                          # lr=1, # TODO We should use autotune instead
+
+                                          epoch=2,
+                                          dim=10,
+
+                                          minCount=1,
+                                          wordNgrams=1,
+                                          minn=0,
+                                          maxn=0,
+                                          bucket=1000,  # TODO this might be important for autotume!
+                                          # dsub = 2, # TODO find out what this does.
+                                          # loss = hs,
+
+                                          )
+
+        # Quick test
+        print(model.predict("Conditions", k=2), "\n",
+              model.predict("Deadlines and dates", k=2))
+
+        print('vocab size: ', len(model.words))
+        print('label size: ', len(model.labels))
+        print('example vocab: ', model.words[:5])
+        print('example label: ', model.labels[:5])
+
+        # model.save_model("model_cooking.bin")
+        return model
 
     def predict_rule(self, title: str = None, paragraph: str = None) -> bool:
         pass  # TODO

@@ -1,7 +1,7 @@
 import os.path
 import unittest
 
-from relation_extraction.general_classifier import Dataset
+from relation_extraction.general_classifier import Dataset, GeneralClassifier
 
 FILENAME_DATA = os.path.join(os.path.dirname(__file__), "headers_training.csv")
 
@@ -12,7 +12,7 @@ class TestDataset(unittest.TestCase):
 
     def test_init(self):
         # Check that you can get something
-        self.aasertTrue(self.dataset.df_all)
+        self.assertTrue(self.dataset.df_all)
 
     def test_generate_data(self):
 
@@ -51,3 +51,50 @@ class TestDataset(unittest.TestCase):
         with self.subTest("Both types"):
             self.assertIn(True, l_b_crit_req)
             self.assertIn(False, l_b_crit_req)
+
+
+class TestGeneralClassifier(unittest.TestCase):
+
+    def test_train(self, generate_file: bool = False):
+
+        filename_train = os.path.join(os.path.dirname(__file__), "crit_req.train")
+        filename_valid = os.path.join(os.path.dirname(__file__), "crit_req.valid")
+
+        if generate_file:
+
+            dataset = Dataset()
+            dataset.load(FILENAME_DATA)
+            data = dataset.get_english_training_data()
+
+            p_train = .6
+            p_valid = 1 - p_train
+
+            # Cleanse
+            with open(filename_train, 'w+') as f:
+                f.truncate(0)
+            with open(filename_valid, 'w+') as f:
+                f.truncate(0)
+
+            for i, (_, row) in enumerate(data.iterrows()):
+
+                line = ""
+                # Add labels
+                if row.criterion_requirement:
+                    line += f"__label__{'crit_req'} "
+                else:
+                    # Only when no label is found
+                    line += f"__label__NONE "
+
+                line += f"{row.title}\n"
+
+                if i / len(data) <= p_train:
+                    with open(filename_train, "a") as f:
+                        f.write(line)
+                else:
+                    with open(filename_valid, "a") as f:
+                        f.write(line)
+
+        classifier = GeneralClassifier(filename_train,
+                                       filename_valid)
+
+        self.assertEqual(0, 1, "TODO")
