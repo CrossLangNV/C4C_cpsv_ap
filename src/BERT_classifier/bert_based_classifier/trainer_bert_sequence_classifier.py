@@ -1,7 +1,6 @@
 import json
 import logging
 import os
-import sys
 import time
 import uuid
 from datetime import datetime
@@ -18,8 +17,6 @@ from tqdm import tqdm, trange
 from tqdm.auto import tqdm
 from transformers import AdamW, AutoModelForSequenceClassification, AutoTokenizer, CONFIG_NAME, get_scheduler, \
     WEIGHTS_NAME
-
-from utils.utils import StreamToLogger
 
 # to dismiss warning message related to FastTokenizers.
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
@@ -50,9 +47,11 @@ class TrainerBertSequenceClassifier():
             os.makedirs(self._preprocessed_data_dir, exist_ok=True)
 
         logging.basicConfig(filename=os.path.join(self._output_dir, "output.log"), level=logging.DEBUG)
+
         self._logger = logging.getLogger(__name__)
-        sys.stdout = StreamToLogger(self._logger, logging.INFO)
+        # sys.stdout = StreamToLogger(self._logger, logging.INFO)
         # sys.stderr = StreamToLogger(self._logger,logging.ERROR)
+        # self._logger.addHandler(logging.StreamHandler(sys.stdout))
 
     def preprocess_data(self,
                         input_dir: Union[str, Path],
