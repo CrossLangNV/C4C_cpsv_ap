@@ -13,12 +13,13 @@ import torch
 from datasets import Dataset, load_dataset, load_from_disk
 from numpy import ndarray
 from sklearn.metrics import accuracy_score, f1_score
-from src.utils.utils import StreamToLogger
 from torch.utils.data import DataLoader
 from tqdm import tqdm, trange
 from tqdm.auto import tqdm
 from transformers import AdamW, AutoModelForSequenceClassification, AutoTokenizer, CONFIG_NAME, get_scheduler, \
     WEIGHTS_NAME
+
+from utils.utils import StreamToLogger
 
 # to dismiss warning message related to FastTokenizers.
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
@@ -53,7 +54,10 @@ class TrainerBertSequenceClassifier():
         sys.stdout = StreamToLogger(self._logger, logging.INFO)
         # sys.stderr = StreamToLogger(self._logger,logging.ERROR)
 
-    def preprocess_data(self, input_dir: Union[str, Path], corpora: List[str], languages: List[str]):
+    def preprocess_data(self,
+                        input_dir: Union[str, Path],
+                        key_labels: str
+                        ):
 
         '''
         Method for preprocessing the data provided in the input_dir (train.jsonl and validation.jsonl). Method filters the data to corpus, languages; one hot encoding of the labels; tokenization of the 'text' field of the jsonl files. Preprocessed data is saved in the self._preprocessed_data_dir directory.
@@ -67,7 +71,8 @@ class TrainerBertSequenceClassifier():
         self.config = {}
 
         self._logger.info(f"Loading the data from {input_dir}")
-        self.load_data(input_dir, corpora, languages)
+        self.load_data(input_dir,
+                       key_labels=key_labels)
 
         self.config['NUM_LABELS'] = self._num_labels
         self.config['EUROVOC_CONCEPT_2_ID'] = self._eurovoc_concept_2_id
@@ -78,7 +83,7 @@ class TrainerBertSequenceClassifier():
         # check if has attr model and tokenizer... hasattr
 
         self._logger.info("One hot encoding of train/validation set...")
-        self._dataset = self._dataset.map(self._one_hot_encoding)
+        self._dataset = self._dataset.map(lambda item: self._one_hot_encoding(item, key_labels=key_labels))
 
         self._logger.info('Tokenizing train/validation set...')
         self._dataset = self._tokenize(self._dataset)
@@ -99,8 +104,7 @@ class TrainerBertSequenceClassifier():
         with open(os.path.join(self._preprocessed_data_dir, "config_preprocess.json"), 'w') as f:
             json.dump(self.config, f)
 
-    def train(self, corpora: List[str] = ['EURLEX57K'], \
-              batch_size: int = 16, epochs: int = 1, lr=5e-5, warm_up: bool = False, gpu: int = 0,
+    def train(self, batch_size: int = 16, epochs: int = 1, lr=5e-5, warm_up: bool = False, gpu: int = 0,
               save_model_each: int = 5):
         '''
         Method to train a Bert for sequence classification model.
@@ -132,9 +136,6 @@ class TrainerBertSequenceClassifier():
 
         # preprocess the data:
 
-        # self._logger.info( f"Filter to corpora {corpora}." )
-        # self._dataset=self._dataset.filter( self._filter_to_corpus, fn_kwargs={ 'corpora': corpora } )
-
         self._logger.info(f"Setting to torch format.")
         self._dataset.set_format(type='torch', columns=['input_ids', 'attention_mask', 'labels'])
 
@@ -150,8 +151,6 @@ class TrainerBertSequenceClassifier():
 
         # we pass self._num_labels and self._eurovoc_concept_2_id (both created during self.load_data) to the config file, so it will be saved when saving the model.
         self.load_model(self._num_labels, self._eurovoc_concept_2_id)
-
-        self.model.config.corpora = corpora
 
         train_dataloader = DataLoader(self._dataset['train'], shuffle=True, batch_size=batch_size)
         validation_dataloader = DataLoader(self._dataset['validation'], shuffle=False, batch_size=batch_size)
@@ -398,7 +397,8 @@ class TrainerBertSequenceClassifier():
         self.tokenizer = AutoTokenizer.from_pretrained(
             pretrained_model_name_or_path=self._pretrained_model_name_or_path)
 
-    def load_data(self, input_dir: Union[str, Path], corpora: List[str], languages: List[str]):
+    def load_data(self, input_dir: Union[str, Path],
+                  key_labels: str):
 
         train_file = os.path.join(input_dir, 'train.jsonl')
         validation_file = os.path.join(input_dir, 'validation.jsonl')
@@ -415,7 +415,7 @@ class TrainerBertSequenceClassifier():
         # self._dataset=self._dataset.filter( self._filter_to_language, fn_kwargs={ 'languages': languages } )
 
         # collect all eurovoc labels that appear in train data:
-        labels = self._dataset['train']['eurovoc_concepts']
+        labels = self._dataset['train'][key_labels]
         labels = [item for sublist in labels for item in sublist]
         labels = list(set(labels))
 
@@ -430,7 +430,10 @@ class TrainerBertSequenceClassifier():
         # for i in range( len( labels)  ):
         #    self._id_2_eurovoc_concept[ i ]=labels[i]
 
-    def _one_hot_encoding(self, item: Dict) -> Dict:
+    def _one_hot_encoding(self,
+                          item: Dict,
+                          key_labels
+                          ) -> Dict:
 
         '''
         Helper function to preprocess data.
@@ -439,7 +442,7 @@ class TrainerBertSequenceClassifier():
         item['labels'] = []
 
         item['labels'] = [0] * len(self._eurovoc_concept_2_id.keys())
-        for label in item['eurovoc_concepts']:
+        for label in item[key_labels]:
             # need to do this check, because validation dataset can contain labels that are not present in train dataset
             if label in self._eurovoc_concept_2_id.keys():
                 item['labels'][self._eurovoc_concept_2_id[label]] = 1

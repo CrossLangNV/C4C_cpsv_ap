@@ -1,5 +1,4 @@
 import argparse
-import json
 from configparser import ConfigParser
 from pathlib import Path
 from typing import Union
@@ -23,7 +22,6 @@ def main(path_to_config: Union[str, Path]):
 
     # model training parameters
     model_name_or_path = config.get('MODEL_TRAINING_CONFIGURATIONS', 'MODEL_NAME_OR_PATH')
-    corpora = json.loads(config.get('MODEL_TRAINING_CONFIGURATIONS', 'CORPORA'))
     batch_size = config.getint('MODEL_TRAINING_CONFIGURATIONS', 'BATCH_SIZE')
     epochs = config.getint('MODEL_TRAINING_CONFIGURATIONS', 'EPOCHS')
     initial_lr = config.getfloat('MODEL_TRAINING_CONFIGURATIONS', 'INITIAL_LEARNING_RATE')
@@ -37,8 +35,7 @@ def main(path_to_config: Union[str, Path]):
                                                                      output_dir)
 
     # train the model
-    trainer_bert_sequence_classifier.train(corpora=corpora, \
-                                           batch_size=batch_size, epochs=epochs, lr=initial_lr, warm_up=warm_up,
+    trainer_bert_sequence_classifier.train(batch_size=batch_size, epochs=epochs, lr=initial_lr, warm_up=warm_up,
                                            gpu=gpu, save_model_each=save_model_each)
 
 
