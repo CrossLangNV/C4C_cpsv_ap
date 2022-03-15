@@ -22,7 +22,6 @@ def main(path_to_config: Union[str, Path]):
     output_file = config['INPUT/OUTPUT']['OUTPUT_FILE']
     model_dir = config['INPUT/OUTPUT']['MODEL_DIR']
     input_file = config['INPUT/OUTPUT']['INPUT_FILE']
-    # path_eurovoc_concepts=config[ 'INPUT/OUTPUT' ][ 'PATH_EUROVOC_CONCEPTS' ]
     key_labels = config['INPUT/OUTPUT']['LABELS']
 
     batch_size = config.getint('MODEL_INFERENCE_CONFIGURATIONS', 'BATCH_SIZE')
