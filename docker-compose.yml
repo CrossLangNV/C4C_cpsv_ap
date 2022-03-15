@@ -49,3 +49,23 @@ services:
     healthcheck:
       test: curl --fail -s http://orion:1026/version || exit 1
 
+  bert_classifier_train:
+    build:
+      context: ./src/BERT_classifier
+      args:
+        - MODEL_DIR=MODELS/model_MULTI_BERT_unfreeze_last_layers_5epoch_C4C_translations
+    networks:
+      c4cnet:
+    volumes:
+      - ".:/work"
+
+  relations_classifier_bert_api_cpu:
+    build:
+      context: ./src/BERT_classifier
+      dockerfile: ./app/Dockerfile
+      args:
+        - MODEL_DIR=MODELS/model_MULTI_BERT_unfreeze_last_layers_5epoch_C4C_translations
+    ports:
+      - "5000:5000"
+    volumes:
+      - ".:/train"
