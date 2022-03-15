@@ -1,4 +1,6 @@
+import json
 import os
+import re
 import unittest
 from configparser import ConfigParser
 
@@ -8,6 +10,64 @@ from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSe
 
 
 class MyTestCase(unittest.TestCase):
+    def test_create_dataset(self):
+
+        # Read current training + valid data.
+        # Save to new format.
+
+        filename_fasttext_train = os.path.join(os.path.dirname(__file__), "../DATA/cpsv_ap_relations/crit_req.train")
+        filename_fasttext_valid = os.path.join(os.path.dirname(__file__), "../DATA/cpsv_ap_relations/crit_req.valid")
+
+        filename_jsonl_train = os.path.join(os.path.dirname(__file__), "../DATA/cpsv_ap_relations/train.jsonl.example")
+        filename_jsonl_valid = os.path.join(os.path.dirname(__file__),
+                                            "../DATA/cpsv_ap_relations/validation.jsonl.example")
+
+        self.assertTrue(os.path.exists(filename_fasttext_train))
+        self.assertTrue(os.path.exists(filename_fasttext_valid))
+
+        def generate_jsonl(filename_fasttext: str,
+                           filename_jsonl_out: str):
+            """
+            Transform fasttext format to JSONL format according to our BERT based classifier.
+
+            Args:
+                filename_fasttext:
+                filename_jsonl_out:
+
+            Returns:
+
+            """
+            with open(filename_fasttext) as f:
+                l = list(map(str.strip, f.readlines()))
+
+            pattern_labels = r"(__label__([^ ]+))"
+            pattern_text = r"(__label__([^ ]+) )+(.*)"
+
+            l_d_json = []
+
+            for line in l:
+                labels = [label for _, label in re.findall(pattern_labels, line)]
+                text = re.findall(pattern_text, line)[0][-1]
+
+                d_json = {"labels": labels,
+                          "text": text}
+                l_d_json.append(d_json)
+
+            with open(filename_jsonl_out, "w") as f:
+
+                for d_json in l_d_json:
+                    json_string = json.dumps(d_json)
+                    f.write(json_string + "\n")
+            return l_d_json
+
+        generate_jsonl(filename_fasttext_train,
+                       filename_jsonl_train)
+
+        generate_jsonl(filename_fasttext_valid,
+                       filename_jsonl_valid)
+
+        return
+
     def test_something(self):
         classifier = TrainerBertSequenceClassifier()
 
@@ -22,7 +82,7 @@ class MyTestCase(unittest.TestCase):
         output_file = os.path.join(DIRNAME_DATA,
                                    "cpsv_ap_relations/test_predict_distilbert_base_uncased_1epoch_warmup_cpsv_ap_relations.jsonl")
         model_dir = os.path.join(DIRNAME_DATA,
-                                 "results/results_distilbert_base_uncased_1epoch_warmup_cpsv_ap_relations/epoch_35_Tue_Mar_15_112514_2022_95d7d708a45211ecb0400242ac1a0002")
+                                 "results/results_distilbert_base_uncased_1epoch_warmup_cpsv_ap_relations/epoch_35_Tue_Mar_15_152702_2022_5d3e04cca47411ec9e850242ac1a0002")
         input_file = os.path.join(DIRNAME_DATA, "cpsv_ap_relations/validation.jsonl")
 
         with self.subTest("Sanity check - Read files"):
