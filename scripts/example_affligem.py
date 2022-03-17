@@ -28,8 +28,6 @@ def main(filename: str,
 
     ps = relation_extractor.extract_all(extract_concepts=extract_concepts)
 
-    # TODO add new relations
-
     DEFAULT_NAME = "DEFAULT NAME"
 
     crit_req = CriterionRequirement(identifier=None,

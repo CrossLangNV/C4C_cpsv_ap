@@ -32,7 +32,9 @@ def get_parser():
 
 def main(filename_html,
          filename_rdf,
-         context="affligem.be",  # TODO
+         context="affligem.be",
+         url: str = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/wettiging-van-handtekening/page.aspx/169#",
+         # TODO original webpage URL"
          country_code="BE",  # TODO
          extract_concepts: bool = False
          ):
@@ -62,9 +64,11 @@ def main(filename_html,
     parser = AffligemParser()
 
     relation_extractor = RelationExtractor2(html,
+                                            parser=parser,
+                                            url=url,
                                             context=context,
                                             country_code=country_code,
-                                            parser=parser)
+                                            )
 
     relation_extractor.extract_all(extract_concepts=extract_concepts)
 
