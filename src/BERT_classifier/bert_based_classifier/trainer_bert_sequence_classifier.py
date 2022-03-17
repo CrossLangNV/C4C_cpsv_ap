@@ -1,3 +1,4 @@
+import abc
 import json
 import logging
 import os
@@ -104,7 +105,8 @@ class TrainerBertSequenceClassifier():
             json.dump(self.config, f)
 
     def train(self, batch_size: int = 16, epochs: int = 1, lr=5e-5, warm_up: bool = False, gpu: int = 0,
-              save_model_each: int = 5):
+              save_model_each: int = 5,
+              ):
         '''
         Method to train a Bert for sequence classification model.
         
@@ -196,38 +198,149 @@ class TrainerBertSequenceClassifier():
             self._logger.info(f"Start training epoch {epoch}.")
 
             ## TRAINING
+            class Metric(abc.ABC):
+                def __init__(self, logger: logging.Logger):
+                    self._logger = logger
 
-            # Set our model to training mode
-            self.model.train()
-            # Tracking metrics
-            tr_loss, tr_accuracy = 0, 0
-            nb_tr_steps = 0
+                def on_batch_end(self, y_true, y_pred, *args, **kwargs):
+                    """ For each batch add the necessary data."""
+                    pass
 
-            # Train the data for one epoch
-            for step, batch in enumerate(train_dataloader):
-                optimizer.zero_grad()
-                input_ids = batch['input_ids'].to(device)
-                attention_mask = batch['attention_mask'].to(device)
-                labels = batch['labels'].to(device)
-                outputs = self.model(input_ids, attention_mask=attention_mask)
-                logits = outputs[0]
-                loss = self._loss_function(logits, labels)
-                loss.backward()
+                def on_epoch_end(self):
+                    """ a print function to share the results."""
+                    pass
 
-                optimizer.step()
-                lr_scheduler.step()
+            class LossMetric(Metric):
 
-                tr_loss += loss.item()
-                labels_cpu = labels.to('cpu').numpy()
-                pred_proba = activation(logits).detach().to('cpu').numpy()
-                tmp_tr_accuracy = self._flat_accuracy(pred_proba, labels_cpu)
-                tr_accuracy += tmp_tr_accuracy
-                nb_tr_steps += 1
+                def __init__(self, *args, **kwargs):
+                    super(LossMetric, self).__init__(*args, **kwargs)
 
-                progress_bar.update(1)
+                    self.tr_loss = 0
+                    self.nb_tr_steps = 0
 
-            self._logger.info("Training Accuracy: {}".format(tr_accuracy / nb_tr_steps))
-            self._logger.info("Train loss: {}".format(tr_loss / nb_tr_steps))
+                def on_batch_end(self, loss, *args, **kwargs):
+                    """"""
+
+                    self.tr_loss += loss
+                    self.nb_tr_steps += 1
+
+                def on_epoch_end(self):
+                    """Log"""
+
+                    self._logger.info("Train loss: {}".format(self.tr_loss / self.nb_tr_steps))
+
+            class AccuracyMetric(Metric):
+
+                def __init__(self, *args, **kwargs):
+                    super(AccuracyMetric, self).__init__(*args, **kwargs)
+
+                    self.tr_accuracy = 0
+                    self.nb_tr_steps = 0
+
+                def on_batch_end(self, y_pred, y_true, *args, **kwargs):
+                    """"""
+
+                    tmp_tr_accuracy = self._accuracy(y_pred, y_true)
+                    self.tr_accuracy += tmp_tr_accuracy
+                    self.nb_tr_steps += 1
+
+                def on_epoch_end(self):
+                    """Log"""
+
+                    if self.nb_tr_steps:
+                        acc = self.tr_accuracy / self.nb_tr_steps
+                        self._logger.info(f"Training Accuracy: {acc}")
+                    else:
+                        self._logger.info(f"Training Accuracy: None. No steps done!")
+
+                def _accuracy(self, preds, labels, threshold=0.5):
+                    outputs = np.array(preds) >= threshold
+                    labels_bool = np.array(labels, dtype=bool)
+
+                    return np.mean(np.equal(outputs, labels_bool))
+
+            class AccuracyExactMatchMetric(Metric):
+                """"""
+
+                def __init__(self, *args, **kwargs):
+                    super(AccuracyExactMatchMetric, self).__init__(*args, **kwargs)
+
+                    self.tr_accuracy = 0
+                    self.nb_tr_steps = 0
+
+                def on_batch_end(self, y_true, y_pred, *args, **kwargs):
+                    """"""
+
+                    tmp_tr_accuracy = self._flat_accuracy(y_pred, y_true)
+                    self.tr_accuracy += tmp_tr_accuracy
+                    self.nb_tr_steps += 1
+
+                def on_epoch_end(self):
+                    """Log"""
+                    if self.nb_tr_steps:
+                        acc = self.tr_accuracy / self.nb_tr_steps
+                        self._logger.info(f"Training Accuracy Exact Match: {acc}")
+                    else:
+                        self._logger.info(f"Training Accuracy  Exact Match: None. No steps done!")
+
+                def _flat_accuracy(self, preds, labels, threshold=0.5):
+                    outputs = np.array(preds) >= threshold
+                    return accuracy_score(labels, outputs)
+
+            # class LossMetric(Metric):
+            #     pass
+
+            def train_step(metrics: List = None):
+                if metrics is None:
+                    metrics = []
+
+                # Set our model to training mode
+                self.model.train()
+                # Tracking metrics
+                tr_loss, tr_accuracy = 0, 0
+                nb_tr_steps = 0
+
+                # Train the data for one epoch
+                for step, batch in enumerate(train_dataloader):
+                    optimizer.zero_grad()
+                    input_ids = batch['input_ids'].to(device)
+                    attention_mask = batch['attention_mask'].to(device)
+                    labels = batch['labels'].to(device)
+                    outputs = self.model(input_ids, attention_mask=attention_mask)
+                    logits = outputs[0]
+                    loss = self._loss_function(logits, labels)
+                    loss.backward()
+
+                    optimizer.step()
+                    lr_scheduler.step()
+
+                    tr_loss += loss.item()
+                    labels_cpu = labels.to('cpu').numpy()
+                    pred_proba = activation(logits).detach().to('cpu').numpy()
+                    tmp_tr_accuracy = self._flat_accuracy(pred_proba, labels_cpu)
+                    tr_accuracy += tmp_tr_accuracy
+                    nb_tr_steps += 1
+
+                    progress_bar.update(1)
+
+                    for metric in metrics:
+                        metric.on_batch_end(y_true=labels_cpu,
+                                            y_pred=pred_proba,
+                                            loss=tr_loss)
+
+                for metric in metrics:
+                    metric.on_epoch_end()
+
+                # if eval_train:
+                #     self._logger.info("Training Accuracy: {}".format(tr_accuracy / nb_tr_steps))
+                #     self._logger.info("Train loss: {}".format(tr_loss / nb_tr_steps))
+
+                return
+
+            train_step(metrics=[AccuracyExactMatchMetric(logger=self._logger),
+                                AccuracyMetric(logger=self._logger),
+                                LossMetric(logger=self._logger)
+                                ])
 
             ## VALIDATION (after each epoch)
 
@@ -267,13 +380,16 @@ class TrainerBertSequenceClassifier():
             high = 0.51
             f1_best = -10
             optimal_thresh = 0
+            f1_debug = False
             for thresh in np.arange(low, high, 0.01):
                 preds_labels = (np.array(preds_proba) >= thresh) * 1
                 f1_pred = f1_score(val_labels, preds_labels, average='micro')
-                self._logger.info(f"f1 score is {f1_pred}, when using threshold {thresh}.")
+                if f1_debug:
+                    self._logger.info(f"f1 score is {f1_pred}, when using threshold {thresh}.")
                 if f1_pred > f1_best:
                     f1_best = f1_pred
                     optimal_thresh = thresh
+            self._logger.info(f"f1 score is {f1_best}, when using OPTIMAL threshold {optimal_thresh}.")
 
             # save the optimal threshold calculated on validation set (used during evaluation).
             self.model.config.threshold = optimal_thresh
