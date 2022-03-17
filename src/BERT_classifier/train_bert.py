@@ -6,6 +6,24 @@ from typing import Union
 from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
 
 
+def main_with_args(preprocessed_data_dir: str,
+                   output_dir: str,
+                   model_name_or_path: str,
+                   batch_size: int,
+                   epochs: int,
+                   initial_lr: float,
+                   warm_up: bool,
+                   gpu: int,
+                   save_model_each: int, ):
+    # initialize a Trainer
+    trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(model_name_or_path, preprocessed_data_dir,
+                                                                     output_dir)
+
+    # train the model
+    trainer_bert_sequence_classifier.train(batch_size=batch_size, epochs=epochs, lr=initial_lr, warm_up=warm_up,
+                                           gpu=gpu, save_model_each=save_model_each)
+
+
 def main(path_to_config: Union[str, Path]):
     '''
     Training of a Bert model for sequence classification.
@@ -29,14 +47,16 @@ def main(path_to_config: Union[str, Path]):
     gpu = config.getint('MODEL_TRAINING_CONFIGURATIONS', 'GPU')
     save_model_each = config.getint('MODEL_TRAINING_CONFIGURATIONS', 'SAVE_MODEL_EACH')
 
-    # initialize a Trainer
-
-    trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(model_name_or_path, preprocessed_data_dir,
-                                                                     output_dir)
-
-    # train the model
-    trainer_bert_sequence_classifier.train(batch_size=batch_size, epochs=epochs, lr=initial_lr, warm_up=warm_up,
-                                           gpu=gpu, save_model_each=save_model_each)
+    main_with_args(preprocessed_data_dir=preprocessed_data_dir,
+                   output_dir=output_dir,
+                   model_name_or_path=model_name_or_path,
+                   batch_size=batch_size,
+                   epochs=epochs,
+                   initial_lr=initial_lr,
+                   warm_up=warm_up,
+                   gpu=gpu,
+                   save_model_each=save_model_each,
+                   )
 
 
 if __name__ == "__main__":

@@ -217,18 +217,17 @@ class TrainerBertSequenceClassifier():
                 optimizer.step()
                 lr_scheduler.step()
 
-                # potential memory leak:
-                # tr_loss+=loss.item()
-                # labels_cpu=labels.to('cpu').numpy()
-                # pred_proba=activation( logits ).detach().to( 'cpu' ).numpy()
-                # tmp_tr_accuracy=self._flat_accuracy( pred_proba, labels_cpu )
-                # tr_accuracy+=tmp_tr_accuracy
-                # nb_tr_steps+=1
+                tr_loss += loss.item()
+                labels_cpu = labels.to('cpu').numpy()
+                pred_proba = activation(logits).detach().to('cpu').numpy()
+                tmp_tr_accuracy = self._flat_accuracy(pred_proba, labels_cpu)
+                tr_accuracy += tmp_tr_accuracy
+                nb_tr_steps += 1
 
                 progress_bar.update(1)
 
-            # self._logger.info("Training Accuracy: {}".format(tr_accuracy/nb_tr_steps))
-            # self._logger.info("Train loss: {}".format(tr_loss/nb_tr_steps))
+            self._logger.info("Training Accuracy: {}".format(tr_accuracy / nb_tr_steps))
+            self._logger.info("Train loss: {}".format(tr_loss / nb_tr_steps))
 
             ## VALIDATION (after each epoch)
 
@@ -304,7 +303,7 @@ class TrainerBertSequenceClassifier():
                 self.tokenizer.save_vocabulary(output_dir_epoch)
 
         end = time.time()
-        self._logger.info(f"Training took: {end - start}")
+        self._logger.info(f"Training took: {end - start:.3f} s")
 
     def predict(self, documents: List[str], batch_size: int = 16, gpu: int = 0) -> Tuple[ndarray, ndarray]:
 
@@ -438,10 +437,13 @@ class TrainerBertSequenceClassifier():
         Helper function to preprocess data.
         '''
 
+        # Make a copy
+        l_inter = item[key_labels][:]
+
         item['labels'] = []
 
         item['labels'] = [0] * len(self._eurovoc_concept_2_id.keys())
-        for label in item[key_labels]:
+        for label in l_inter:
             # need to do this check, because validation dataset can contain labels that are not present in train dataset
             if label in self._eurovoc_concept_2_id.keys():
                 item['labels'][self._eurovoc_concept_2_id[label]] = 1
