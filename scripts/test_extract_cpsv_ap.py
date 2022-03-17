@@ -4,31 +4,37 @@ from extract_cpsv_ap import *
 
 
 class TestCLI(unittest.TestCase):
-    def test_missing_args(self):
+    def test_1_missing_args(self):
         """
         Running the CLI without any arguments
         """
         parser = get_parser()
 
+        # Command
+        l_args = []
+        self.print_command(l_args)
+
         with self.assertRaises(SystemExit) as context:
-            args = []
-            args = parser.parse_args(args)
+            args = parser.parse_args(l_args)
 
         self.assertTrue(context.exception)
         self.assertEqual(2, context.exception.code)
 
-    def test_help(self):
+    def test_2_help(self):
         parser = get_parser()
+
+        # Command
+        l_args = ["-h"]
+        self.print_command(l_args)
 
         # Set args
         with self.assertRaises(SystemExit) as context:
-            args = ["-h"]
-            args = parser.parse_args(args)
+            args = parser.parse_args(l_args)
 
         self.assertTrue(context.exception)
         self.assertEqual(0, context.exception.code)
 
-    def test_path(self):
+    def test_3_path(self):
         """
         Simple call
 
@@ -38,7 +44,51 @@ class TestCLI(unittest.TestCase):
         parser = get_parser()
 
         # Set args
-        args = ["../data/relation_extraction/AFFLIGEM_HANDTEKENING.html"]
+        l_args = ["../data/relation_extraction/AFFLIGEM_HANDTEKENING.html",
+                  "DEMO_AFFLIGEM.rdf"]
+        args = parser.parse_args(l_args)
+
+        # Command
+        self.print_command(l_args)
+
+        main(filename_html=args.Path,
+             filename_rdf=args.RDF,
+             extract_concepts=args.concepts)
+
+    def test_4_concept_extraction(self):
+        """
+        """
+
+        parser = get_parser()
+
+        # Set args
+        args = ["--concepts",
+                "../data/relation_extraction/AFFLIGEM_HANDTEKENING.html",
+                "DEMO_AFFLIGEM_CONCEPTS.rdf"]
         args = parser.parse_args(args)
 
-        main(filename_html=args.Path)
+        main(filename_html=args.Path,
+             filename_rdf=args.RDF,
+             extract_concepts=args.concepts)
+
+    @staticmethod
+    def print_command(l_args):
+        print()
+        print("$ python extract_cpsv_ap.py", *l_args)
+        print()
+
+
+class TestCLIBreaking(unittest.TestCase):
+    """Testing out edge cases"""
+
+    def test_could_not_find_html(self):
+        parser = get_parser()
+
+        # Set args
+        args = ["../data/relation_extraction/THIS_FILE_SHOULD_NOT_EXISTS.html"]
+        args = parser.parse_args(args)
+
+        with self.assertRaises(FileNotFoundError) as context:
+            main(filename_html=args.Path)
+
+        self.assertTrue(context.exception)
