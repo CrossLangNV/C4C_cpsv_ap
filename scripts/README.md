@@ -1,3 +1,13 @@
+# Relation extraction
+
+CLI
+
+## Demo
+
+> python .\extract_cpsv_ap.py
+
+> python .\extract_cpsv_ap.py -h
+
 # Make an image of the graph
 
 ## RDF Grapher
