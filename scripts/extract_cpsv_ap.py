@@ -9,7 +9,8 @@ from relation_extraction.pipeline import RelationExtractor2
 
 
 def get_parser():
-    parser = argparse.ArgumentParser(description='Extract the administrative procedure ontology out of a html page,'
+    parser = argparse.ArgumentParser(prog="extract_cpsv_ap",
+                                     description='Extract the administrative procedure ontology out of a html page,'
                                                  ' as defined by the CPSV-AP vocabulary.')
 
     # Add the arguments
