@@ -4,6 +4,7 @@ import warnings
 
 from data.html import get_html
 from relation_extraction.affligem import AffligemParser
+from relation_extraction.austrheim import AustrheimParser
 from relation_extraction.pipeline import RelationExtractor2
 
 
@@ -61,7 +62,10 @@ def main(filename_html,
         raise FileNotFoundError(f"Could not find HTML file: {filename_html}") from e
 
     # TODO use general parser or be able specify a parser by name.
-    parser = AffligemParser()
+    if "NO" == country_code.upper():
+        parser = AustrheimParser()
+    else:
+        parser = AffligemParser()
 
     relation_extractor = RelationExtractor2(html,
                                             parser=parser,

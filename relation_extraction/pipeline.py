@@ -48,8 +48,14 @@ class RelationExtractor2(RelationExtractor):
                     )
 
         events = d_relations.events
-        for event in events:
-            event.add_related_service(ps)
+        if events:
+            for event in events:
+                event.add_related_service(ps)
+
+                uri_event = self.provider.events.add(event, context=self.context)
+                self.provider.public_services.add_event(uri_ps=ps.get_uri(),
+                                                        uri_event=uri_event,
+                                                        context=self.context)
 
         uri_cr = self.provider.criterion_requirements.add(crit_req, context=self.context)
         self.provider.public_services.add_criterion(uri_ps=ps.get_uri(),
@@ -70,9 +76,3 @@ class RelationExtractor2(RelationExtractor):
         self.provider.public_services.add_cost(uri_ps=ps.get_uri(),
                                                uri_cost=uri_cost,
                                                context=self.context)
-
-        for event in events:
-            uri_event = self.provider.events.add(event, context=self.context)
-            self.provider.public_services.add_event(uri_ps=ps.get_uri(),
-                                                    uri_event=uri_event,
-                                                    context=self.context)

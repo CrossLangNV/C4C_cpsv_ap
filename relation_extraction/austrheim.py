@@ -62,13 +62,16 @@ class AustrheimParser(AalterParser):  # CityParser
             paragraphs = l_sub[1:]
             paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
 
-            if title == self.criterionRequirement:
+            # if title == self.criterionRequirement:
+            if self.classifier.predict_criterion_requirement(title, None):
                 d.criterionRequirement = paragraphs_clean
 
-            elif title == self.rule:
+            # elif title == self.rule:
+            elif self.classifier.predict_rule(title, None):
                 d.rule = paragraphs_clean
 
-            elif title == self.cost:
+            # elif title == self.cost:
+            elif self.classifier.predict_cost(title, None):
                 d.cost = paragraphs_clean
 
         return d
