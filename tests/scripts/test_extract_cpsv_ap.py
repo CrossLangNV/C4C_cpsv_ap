@@ -1,6 +1,17 @@
+import os
 import unittest
+import warnings
 
-from extract_cpsv_ap import *
+from scripts.extract_cpsv_ap import get_parser, main
+
+DIR_SOURCE = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+FILENAME_AFFLIGEM = os.path.join(DIR_SOURCE, "data/relation_extraction/AFFLIGEM_HANDTEKENING.html")
+FILENAME_AUSTRHEIM = os.path.join(DIR_SOURCE,
+                                  "tests/relation_extraction/EXAMPLE_FILES/https_austrheim_kommune_no_innhald_helse_sosial_og_omsorg_pleie_og_omsorg_omsorgsbustader_.html")
+
+for filename in [DIR_SOURCE, FILENAME_AFFLIGEM, FILENAME_AUSTRHEIM]:
+    if not os.path.exists(filename):
+        warnings.warn(f"Could not find file: {filename}")
 
 
 class TestCLI(unittest.TestCase):
@@ -44,7 +55,7 @@ class TestCLI(unittest.TestCase):
         parser = get_parser()
 
         # Set args
-        l_args = ["../data/relation_extraction/AFFLIGEM_HANDTEKENING.html",
+        l_args = [FILENAME_AFFLIGEM,
                   "DEMO_AFFLIGEM.rdf"]
         args = parser.parse_args(l_args)
 
@@ -63,7 +74,7 @@ class TestCLI(unittest.TestCase):
 
         # Set args
         l_args = ["--concepts",
-                  "../data/relation_extraction/AFFLIGEM_HANDTEKENING.html",
+                  FILENAME_AFFLIGEM,
                   "DEMO_AFFLIGEM_CONCEPTS.rdf"
                   ]
         # Command
@@ -80,9 +91,9 @@ class TestCLI(unittest.TestCase):
 
         # Set args
         l_args = [
-            "../tests/relation_extraction/EXAMPLE_FILES/https_austrheim_kommune_no_innhald_helse_sosial_og_omsorg_pleie_og_omsorg_omsorgsbustader_.html",
+            FILENAME_AUSTRHEIM,
             "DEMO_AUSTRHEIM.rdf"
-            ]
+        ]
         # Command
         self.print_command(l_args)
 
