@@ -6,6 +6,22 @@ from typing import Union
 from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
 
 
+def main_with_args(input_dir: str,
+                   preprocessed_data_dir: str,
+                   key_labels: str,
+                   model_name: str
+                   ):
+    # initialize a preprocessor/trainer
+    trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(model_name, preprocessed_data_dir,
+                                                                     preprocessed_data_dir)
+
+    # preprocess the data
+    trainer_bert_sequence_classifier.preprocess_data(input_dir,
+                                                     key_labels)
+
+    return
+
+
 def main(path_to_config: Union[str, Path]):
     '''
     Training of a Bert model for sequence classification.
@@ -23,13 +39,10 @@ def main(path_to_config: Union[str, Path]):
     # model training parameters
     model_name = config.get('PREPROCESSING_CONFIGURATIONS', 'MODEL_NAME_OR_PATH')
 
-    # initialize a preprocessor/trainer
-    trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(model_name, preprocessed_data_dir,
-                                                                     preprocessed_data_dir)
-
-    # preprocess the data
-    trainer_bert_sequence_classifier.preprocess_data(input_dir,
-                                                     key_labels)
+    main_with_args(input_dir=input_dir,
+                   preprocessed_data_dir=preprocessed_data_dir,
+                   key_labels=key_labels,
+                   model_name=model_name)
 
 
 if __name__ == "__main__":
