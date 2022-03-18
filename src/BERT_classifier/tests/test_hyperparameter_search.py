@@ -26,7 +26,7 @@ DEFAULT_ARGS = {
     "initial_lr": 5e-5,
     "warm_up": True,
     "gpu": 0,
-    "save_model_each": 5,
+    "save_model_each": 1,
 }
 
 
@@ -157,93 +157,53 @@ class TestTrain(unittest.TestCase):
     #
     #     return
 
+
+class TestPrediction(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.DIR_MODELS = os.path.join(os.path.dirname(__file__),
+                                       "../DATA/results/results_distilbert_base_uncased_1epoch_warmup_cpsv_ap_relations")
+
     def test_prediction_undertrained(self):
 
-        DIR_MODELS = "../DATA/results/results_TESTING"
+        MODEL_UNDERTRAINED = os.path.join(self.DIR_MODELS,
+                                          "epoch_1_Fri_Mar_18_151957_2022_dedc115ca6ce11ec928e0242ac1a0002")
 
-        MODEL_UNDERTRAINED = os.path.join(DIR_MODELS,
-                                          "epoch_0_Thu_Mar_17_124553_2022_2e7b6968a5f011ec8bd10242ac1a0002")
-        filename_data_train = "../DATA/cpsv_ap_relations/train.jsonl"
-        filename_data_valid = "../DATA/cpsv_ap_relations/validation.jsonl"
-
-        OUTPUT_DIR = os.path.join(DIR_MODELS, "prediction")
-
-        with self.subTest("Sanity check, folder exists"):
-            self.assertTrue(os.path.exists(MODEL_UNDERTRAINED))
-
-        dataset_train = load_dataset('json', data_files=filename_data_train, split='train')
-        dataset_valid = load_dataset('json', data_files=filename_data_valid, split='train')
-
-        trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(MODEL_UNDERTRAINED,
-                                                                         None,
-                                                                         OUTPUT_DIR  # os.path.dirname(output_file)
-                                                                         )
-
-        print(" -- TRAINING DATA -- ")
-        acc_exact_train = self._evaluate_exact_match_acc(trainer_bert_sequence_classifier,
-                                                         dataset_train)
-        print(f"Training accuracy exact match: {acc_exact_train:.1%}")
-
-        print(" -- VALIDATION DATA -- ")
-        acc_exact_valid = self._evaluate_exact_match_acc(trainer_bert_sequence_classifier,
-                                                         dataset_valid)
-        print(f"Validation accuracy exact match: {acc_exact_valid:.1%}")
-
-        return
+        self._test_predict_xyz(MODEL_UNDERTRAINED)
 
     def test_prediction_ok_ish(self):
 
-        DIR_MODELS = "../DATA/results/results_TESTING"
+        MODEL_OK_ISH = os.path.join(self.DIR_MODELS,
+                                    "epoch_20_Fri_Mar_18_154007_2022_afe9fe06a6d111ec928e0242ac1a0002")
 
-        MODEL_OK_ISH = os.path.join(DIR_MODELS, "epoch_5_Thu_Mar_17_125311_2022_33a7f6f8a5f111ec8bd10242ac1a0002")
-
-        filename_data_train = "../DATA/cpsv_ap_relations/train.jsonl"
-        filename_data_valid = "../DATA/cpsv_ap_relations/validation.jsonl"
-
-        OUTPUT_DIR = os.path.join(DIR_MODELS, "prediction")
-
-        with self.subTest("Sanity check, folder exists"):
-            self.assertTrue(os.path.exists(MODEL_OK_ISH))
-
-        dataset_train = load_dataset('json', data_files=filename_data_train, split='train')
-        dataset_valid = load_dataset('json', data_files=filename_data_valid, split='train')
-
-        trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(MODEL_OK_ISH,
-                                                                         None,
-                                                                         OUTPUT_DIR  # os.path.dirname(output_file)
-                                                                         )
-
-        print(" -- TRAINING DATA -- ")
-        acc_exact_train = self._evaluate_exact_match_acc(trainer_bert_sequence_classifier,
-                                                         dataset_train)
-        print(f"Training accuracy exact match: {acc_exact_train:.1%}")
-
-        print(" -- VALIDATION DATA -- ")
-        acc_exact_valid = self._evaluate_exact_match_acc(trainer_bert_sequence_classifier,
-                                                         dataset_valid)
-        print(f"Validation accuracy exact match: {acc_exact_valid:.1%}")
-
-        return
+        self._test_predict_xyz(MODEL_OK_ISH)
 
     def test_prediction_overtrained(self):
 
-        DIR_MODELS = "../DATA/results/results_TESTING"
+        MODEL_OVERTRAINED = os.path.join(self.DIR_MODELS,
+                                         "epoch_35_Fri_Mar_18_155412_2022_a7ab227ca6d311ec928e0242ac1a0002")
 
-        MODEL_OVERTRAINED = os.path.join(DIR_MODELS,
-                                         "epoch_35_Thu_Mar_17_125533_2022_8861ebeaa5f111ec8bd10242ac1a0002")
+        self._test_predict_xyz(MODEL_OVERTRAINED)
 
-        filename_data_train = "../DATA/cpsv_ap_relations/train.jsonl"
-        filename_data_valid = "../DATA/cpsv_ap_relations/validation.jsonl"
+    def _test_predict_xyz(self, model_path):
+        DIR_DATA = os.path.join(os.path.dirname(__file__), "../../../data/relation_extraction")
 
-        OUTPUT_DIR = os.path.join(DIR_MODELS, "prediction")
+        filename_data_train = os.path.join(DIR_DATA, "train.jsonl")
+        filename_data_valid = os.path.join(DIR_DATA, "validation.jsonl")
+
+        OUTPUT_DIR = os.path.join(self.DIR_MODELS, "prediction")
 
         with self.subTest("Sanity check, folder exists"):
-            self.assertTrue(os.path.exists(MODEL_OVERTRAINED))
+            for filename in [model_path,
+                             filename_data_train,
+                             filename_data_valid,
+                             ]:
+                self.assertTrue(os.path.exists(filename))
 
         dataset_train = load_dataset('json', data_files=filename_data_train, split='train')
         dataset_valid = load_dataset('json', data_files=filename_data_valid, split='train')
 
-        trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(MODEL_OVERTRAINED,
+        trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(model_path,
                                                                          None,
                                                                          OUTPUT_DIR  # os.path.dirname(output_file)
                                                                          )
@@ -262,7 +222,8 @@ class TestTrain(unittest.TestCase):
 
     def _evaluate_exact_match_acc(self,
                                   trainer_bert_sequence_classifier: bert_based_classifier.trainer_bert_sequence_classifier.TrainerBertSequenceClassifier,
-                                  dataset: datasets.arrow_dataset.Dataset):
+                                  dataset: datasets.arrow_dataset.Dataset,
+                                  KEY_LABEL="name_labels"):
 
         preds_labels, preds_proba = trainer_bert_sequence_classifier.predict(documents=dataset['text'],
                                                                              batch_size=4, gpu=0)
@@ -285,7 +246,7 @@ class TestTrain(unittest.TestCase):
 
         T = 0
         N = 0
-        for pred_label, true_label in zip(l_pred_names, dataset["labels"]):
+        for pred_label, true_label in zip(l_pred_names, dataset[KEY_LABEL]):
 
             if set(pred_label) == set(true_label):
                 T += 1
@@ -296,7 +257,7 @@ class TestTrain(unittest.TestCase):
 
         # Confusion matrix for every label
         for name_label, i_label in d_name_label.items():
-            true_label_i = np.array([(name_label in item_labels) for item_labels in dataset["labels"]], dtype=int)
+            true_label_i = np.array([(name_label in item_labels) for item_labels in dataset[KEY_LABEL]], dtype=int)
             pred_label_i = preds_labels[:, i_label]
 
             conf = confusion_matrix(true_label_i,
