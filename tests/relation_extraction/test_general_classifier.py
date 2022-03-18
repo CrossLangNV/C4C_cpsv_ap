@@ -34,7 +34,8 @@ class TestDataset(unittest.TestCase):
 
         data = self.dataset.get_english_training_data()
 
-        l_title, l_b_crit_req = data["title"], data["criterion_requirement"]
+        l_title = data[self.dataset.KEY_TEXT].tolist()
+        l_b_crit_req = data[self.dataset.KEY_CRIT_REQ].tolist()
 
         with self.subTest("Multiple elements"):
             self.assertGreaterEqual(len(l_title), 1)
@@ -55,7 +56,13 @@ class TestDataset(unittest.TestCase):
 
 class TestGeneralClassifier(unittest.TestCase):
 
-    def test_train(self, generate_file: bool = False):
+    def test_train(self,
+                   deprecated=True,
+                   generate_file: bool = False):
+
+        # Deprecated
+        if deprecated:
+            return
 
         filename_train = os.path.join(os.path.dirname(__file__), "crit_req.train")
         filename_valid = os.path.join(os.path.dirname(__file__), "crit_req.valid")

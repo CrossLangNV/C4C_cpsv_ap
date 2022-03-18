@@ -4,6 +4,7 @@ from typing import List
 
 import fasttext
 import pandas as pd
+from nltk.tokenize import sent_tokenize
 
 from connectors.translation import ETranslationConnector
 from data.html import get_html
@@ -34,8 +35,16 @@ class Dataset:
      * Save as Pandas?
     """
 
-    KEY_TITLE = "title"
+    KEY_TEXT = "text"
     KEY_LANG = "lang"
+    KEY_HEADER = "header"
+    KEY_TRANSLATED = "translated"
+    KEY_LANG_ORIG = "lang_orig"
+
+    KEY_CRIT_REQ = "criterion_requirement"
+    KEY_RULE = "rule"
+    KEY_EVIDENCE = 'evidence'
+    KEY_COST = "cost"
 
     def __init__(self):
         self.df_all = pd.DataFrame()
@@ -90,62 +99,79 @@ class Dataset:
                     continue
 
                 pred_crit_req = parser.classifier.predict_criterion_requirement(header, paragraph)
+                pred_rule = parser.classifier.predict_rule(header, paragraph)
+                pred_evidence = parser.classifier.predict_evidence(header, paragraph)
+                pred_cost = parser.classifier.predict_cost(header, paragraph)
 
-                d_i = {"title": header,
-                       "criterion_requirement": pred_crit_req,
+                d_i = {self.KEY_TEXT: header,
+                       self.KEY_CRIT_REQ: pred_crit_req,
+                       self.KEY_RULE: pred_rule,
+                       self.KEY_EVIDENCE: pred_evidence,
+                       self.KEY_COST: pred_cost,
                        self.KEY_LANG: lang,
-                       "translated": False}
+                       self.KEY_HEADER: True,
+                       self.KEY_TRANSLATED: False}
                 l_d.append(d_i)
 
-                translate = False
-                if translate:
-                    target = EN
-                    header_EN = translator.trans_snippet_blocking(lang, target, header).strip()
+                # Add paragraphs
 
-                    d_i = {"title": header_EN,
-                           "criterion_requirement": pred_crit_req,
-                           self.KEY_LANG: target,
-                           "lang_orig": lang,
-                           "translated": True}
+                def split_paragraphs(paragraph: str) -> List[str]:
+                    l_sent = []
+                    for sub_par in paragraph.splitlines():
+                        l_sent.extend(sent_tokenize(sub_par))
+
+                    # Filter away empty lines
+                    l_sent = list(filter(str, l_sent))
+
+                    return l_sent
+
+                for sent in split_paragraphs(paragraph):
+                    d_i = {self.KEY_TEXT: sent,
+                           self.KEY_CRIT_REQ: pred_crit_req,
+                           self.KEY_RULE: pred_rule,
+                           self.KEY_EVIDENCE: pred_evidence,
+                           self.KEY_COST: pred_cost,
+                           self.KEY_LANG: lang,
+                           self.KEY_HEADER: False,
+                           self.KEY_TRANSLATED: False}
                     l_d.append(d_i)
 
         df_all = pd.DataFrame(l_d)
 
-        print(df_all[["title", "criterion_requirement"]])
+        print(df_all[[self.KEY_TEXT, self.KEY_CRIT_REQ, self.KEY_RULE, self.KEY_EVIDENCE, self.KEY_COST]])
 
         print("Summary labels:")
         print(df_all['criterion_requirement'].value_counts())
 
-        def get_titles(df: pd.DataFrame) -> List[str]:
-            titles = list(df[self.KEY_TITLE])
+        def get_l_text(df: pd.DataFrame) -> List[str]:
+            titles = list(df[self.KEY_TEXT])
             return titles
 
         # TODO translate all to English.
         # Group by language.
-
-        titles_NL = get_titles(df_all[df_all["lang"] == "NL"])
-        titles_EN_trans = translator.trans_list_blocking(titles_NL, target="EN",
-                                                         source="NL")
+        # titles_NL = get_l_text(df_all[df_all["lang"] == "NL"])
+        # titles_EN_trans = translator.trans_list_blocking(titles_NL, target="EN",
+        #                                                  source="NL")
 
         target = "EN"
 
         # Add English translations to the dataset
         for source, df_source in df_all.groupby(self.KEY_LANG):
 
-            titles_source = get_titles(df_source)
-
-            titles_target = translator.trans_list_blocking(titles_source, target=target,
+            l_text_source = get_l_text(df_source)
+            l_text_target = translator.trans_list_blocking(l_text_source,
+                                                           target=target,
                                                            source=source)
 
             rows_trans = []
 
-            for (_, row), title_target in zip(df_source.iterrows(), titles_target):
+            for (_, row), title_target in zip(df_source.iterrows(), l_text_target):
                 # Add info
-                row["lang_orig"] = row.lang
-                row["translated"] = True
+                row[self.KEY_LANG_ORIG] = row[self.KEY_LANG]
+                row[self.KEY_TRANSLATED] = True
                 # Update info
-                row.lang = target
-                row.title = title_target
+                row[self.KEY_LANG] = target
+                row[self.KEY_TEXT] = title_target
 
                 rows_trans.append(row)
 
@@ -155,7 +181,7 @@ class Dataset:
             df_all = pd.concat([df_all, df_target], ignore_index=True)
 
         df_all
-        titles_target_all = get_titles(df_all[df_all["lang"] == target])
+        titles_target_all = get_l_text(df_all[df_all[self.KEY_LANG] == target])
 
         # Sort of return value?
         self.df_all = df_all
@@ -174,7 +200,11 @@ class Dataset:
 
     def get_english_training_data(self):
         # Only English
-        return self.df_all[self.df_all[self.KEY_LANG] == "EN"][["title", "criterion_requirement"]]
+        return self.df_all[self.df_all[self.KEY_LANG] == "EN"][[self.KEY_TEXT,
+                                                                self.KEY_CRIT_REQ,
+                                                                self.KEY_RULE,
+                                                                self.KEY_EVIDENCE,
+                                                                self.KEY_COST]]
 
 
 class GeneralClassifier(CPSVAPRelationsClassifier):

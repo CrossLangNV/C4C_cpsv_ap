@@ -30,7 +30,7 @@ class Relations(BaseModel):
     def get_life_events(self) -> List[LifeEvent]:
         return [event for event in self.events if isinstance(event, LifeEvent)]
 
-    def get_business_events(self) -> List[LifeEvent]:
+    def get_business_events(self) -> List[BusinessEvent]:
         return [event for event in self.events if isinstance(event, BusinessEvent)]
 
 
