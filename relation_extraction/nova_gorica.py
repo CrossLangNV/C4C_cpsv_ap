@@ -1,11 +1,11 @@
 import re
-from typing import List, Union
+from typing import List
 
 from bs4 import BeautifulSoup, Tag
 
 from relation_extraction.aalter import AalterParser
 from relation_extraction.cities import RegexCPSVAPRelationsClassifier
-from relation_extraction.utils import clean_text, get_page_procedure
+from relation_extraction.utils import clean_text
 
 
 class NovaGoricaCPSVAPRelationsClassifier(RegexCPSVAPRelationsClassifier):
@@ -41,13 +41,15 @@ class NovaGoricaParser(AalterParser):  # CityParser
 
         super(NovaGoricaParser, self).__init__(classifier=classifier)
 
-    def parse_page(self, s_html) -> List[List[str]]:
+    def parse_page(self,
+                   s_html,
+                   include_sub: bool = True
+                   ) -> List[List[str]]:
         soup = BeautifulSoup(s_html, 'html.parser')
 
         # Find the Title
         h_title = soup.find_all('h1')[-1]
-        page_procedure = get_page_procedure(h_title,
-                                            get_all_headers=self.get_all_headers)
+        page_procedure = self._get_page_procedure(h_title)
 
         def get_text_within_tag(tag, header, next_header) -> str:
             text_tag = clean_text(tag.get_text(separator=" ", strip=True))
@@ -67,7 +69,7 @@ class NovaGoricaParser(AalterParser):  # CityParser
 
         l = []
 
-        l_headers = self.get_all_headers(page_procedure)
+        l_headers = self._get_all_headers(page_procedure)
         for i_header, header in enumerate(l_headers):
 
             l_par = []
@@ -150,15 +152,11 @@ class NovaGoricaParser(AalterParser):  # CityParser
 
         return l
 
-    def get_all_headers(self, soup: Union[BeautifulSoup, Tag]) -> List[Tag]:
-
-        # TODO Also do something with accordion headers.
-
-        return soup.find_all(self._filter_header)
-
     def _filter_header(self, tag: Tag):
         if re.match(r'^h[1-6]$', tag.name):
             return True
+
+        # TODO Also do something with accordion headers.
 
         # Bold title
         if tag.name == "strong":

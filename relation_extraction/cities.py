@@ -39,14 +39,18 @@ class CityParser(abc.ABC):
     Abstract class for city procedure parsers
     """
 
-    @staticmethod
     @abc.abstractmethod
-    def parse_page(s_html):
+    def parse_page(self,
+                   s_html: str,
+                   include_sub: bool = True):
         """
         Converts a html page to paragraphs with their title.
 
         Args:
             s_html:
+            include_sub (bool):
+                Flag whether to include subsections as well.
+                Only if possible/has header level info.
 
         Returns:
 
@@ -67,7 +71,10 @@ class CityParser(abc.ABC):
         """
         pass
 
-    def _paragraph_generator(self, s_html) -> Generator[Tuple[str, str], None, None]:
+    def _paragraph_generator(self,
+                             s_html,
+                             include_sub: bool = True
+                             ) -> Generator[Tuple[str, str], None, None]:
         """
         Generates the header-paragraph pairs out of the HTML.
 
@@ -77,12 +84,13 @@ class CityParser(abc.ABC):
         Returns:
             generates (title, paragraph) pairs.
         """
-        for l_sub in self.parse_page(s_html):
+        for l_sub in self.parse_page(s_html, include_sub=include_sub):
             title = l_sub[0]
             paragraphs = l_sub[1:]
             paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
 
             yield title, paragraphs_clean
+
 
 class CPSVAPRelationsClassifier(abc.ABC):
 

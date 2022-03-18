@@ -151,7 +151,8 @@ class TestAalter(unittest.TestCase):
 
         def _get_header_with_sub_headers():
 
-            for title, paragraph in self.parser._paragraph_generator(self.html1):
+            for title, paragraph in self.parser._paragraph_generator(self.html1,
+                                                                     include_sub=True):
                 if "hoe aanvragen" in title.lower():
                     return title, paragraph
 
@@ -177,7 +178,7 @@ class TestAalter(unittest.TestCase):
 
             self.assertIn(s_in.replace(" ", ""), crit_req.replace(" ", ""))
 
-        with self.subTest("! TODO correct chunking"):
+        with self.subTest("#TODO correct chunking"):
             self.assertIn(s_in, crit_req)
 
         rule1 = d_relations1.rule
@@ -193,7 +194,7 @@ class TestAalter(unittest.TestCase):
 
             self.assertIn("12 tot 18 jaar is de identiteitskaart 6 jaar geldig", cost_eid)
 
-        with self.subTest("! TODO Chunking tables"):
+        with self.subTest("#TODO Chunking tables"):
             self.assertIn("Spoed: levering gemeentehuis (1 dag)", cost_eid)
 
     def test_extract_relations2(self):
@@ -456,7 +457,7 @@ class TestSanPaolo(unittest.TestCase):
             paragraph = paragraphs[titles.index(title)]
             self.assertIn("La presentazione della pratica non prevede alcun pagamento", paragraph)
 
-        with self.subTest("Evidence"):
+        with self.subTest("#TODO Evidence"):
             title = "Moduli da compilare e documenti da allegare"
             self.assertIn(title, titles, "TODO chunker did not include evidence block.")
 
@@ -464,7 +465,7 @@ class TestSanPaolo(unittest.TestCase):
         d_relations = self.parser.extract_relations(self.html, url=self.url)
 
         evidence = d_relations.evidence
-        with self.subTest("evidence"):
+        with self.subTest("#TODO evidence"):
             self.assertTrue(evidence)
 
             s_in = "Dichiarazione di trasferimento di residenza all'estero	"

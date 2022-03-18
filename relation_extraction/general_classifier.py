@@ -1,3 +1,4 @@
+import json
 import os
 import re
 from typing import List
@@ -205,6 +206,65 @@ class Dataset:
                                                                 self.KEY_RULE,
                                                                 self.KEY_EVIDENCE,
                                                                 self.KEY_COST]]
+
+    def export_BERT_train_data(self,
+                               lang: str,
+                               p_train=.6,
+                               filename_train="train.jsonl",
+                               filename_valid="validation.jsonl"):
+        """
+        Export the BERT training data
+
+        Step 1: Filter data that we are interested in.
+        Step 2: Save to appropriate format.
+
+        Args:
+            lang: Filter on lang.
+
+        Returns:
+            saved to jsonl
+        """
+
+        assert 0 <= p_train <= 1, p_train
+
+        df_filter = self.df_all
+        if lang:
+            df_filter = df_filter[self.df_all[self.KEY_LANG] == lang]
+
+        l_d_json = []
+        for i, row in df_filter.iterrows():
+
+            text = row[self.KEY_TEXT]
+            labels = []
+
+            for key in [self.KEY_CRIT_REQ, self.KEY_RULE, self.KEY_EVIDENCE, self.KEY_COST]:
+                if row[key]:
+                    labels.append(key)
+
+            d_json = {"text": text,
+                      "name_labels": labels
+                      }
+            l_d_json.append(d_json)
+
+            # if len(labels) == 0:
+            # labels.append("NONE") # Add "else"
+
+        # Export to file
+
+        # Cleanse
+        with open(filename_train, 'w+') as f:
+            f.truncate(0)
+        with open(filename_valid, 'w+') as f:
+            f.truncate(0)
+
+        for i, d_json in enumerate(l_d_json):
+            json_string = json.dumps(d_json)
+            if i / len(l_d_json) <= p_train:
+                with open(filename_train, "a") as f:
+                    f.write(json_string + "\n")
+            else:
+                with open(filename_valid, "a") as f:
+                    f.write(json_string + "\n")
 
 
 class GeneralClassifier(CPSVAPRelationsClassifier):
