@@ -20,8 +20,8 @@ class TestDataset(unittest.TestCase):
 
         self.assertGreaterEqual(len(df_all), 1)
 
-        with self.subTest("Size 11/03"):
-            self.assertEqual(140, len(df_all))
+        with self.subTest("Size 18/03"):
+            self.assertEqual(668, len(df_all))
 
     def test_load(self):
 
@@ -52,6 +52,21 @@ class TestDataset(unittest.TestCase):
         with self.subTest("Both types"):
             self.assertIn(True, l_b_crit_req)
             self.assertIn(False, l_b_crit_req)
+
+
+class TestBERTTrainData(unittest.TestCase):
+    def setUp(self) -> None:
+        self.dataset = Dataset()
+        self.df_all = self.dataset.load(FILENAME_DATA)
+
+    def test_export(self):
+        DIR_DATA_REL = os.path.join(os.path.dirname(__file__), "../../data/relation_extraction")
+        self.assertTrue(os.path.exists(DIR_DATA_REL))
+
+        self.dataset.export_BERT_train_data(lang="EN",
+                                            filename_train=os.path.join(DIR_DATA_REL, "train.jsonl"),
+                                            filename_valid=os.path.join(DIR_DATA_REL, "validation.jsonl"),
+                                            )
 
 
 class TestGeneralClassifier(unittest.TestCase):

@@ -94,7 +94,10 @@ class Dataset:
             else:
                 continue
 
-            for header, paragraph in parser._paragraph_generator(html):
+            # Important to not include subsection, to avoid double data.
+            for header, paragraph in parser._paragraph_generator(html,
+                                                                 include_sub=False
+                                                                 ):
                 # Only if has paragraph
                 if not paragraph:
                     continue
@@ -241,8 +244,8 @@ class Dataset:
                 if row[key]:
                     labels.append(key)
 
-            d_json = {"text": text,
-                      "name_labels": labels
+            d_json = {"name_labels": labels,
+                      "text": text
                       }
             l_d_json.append(d_json)
 
