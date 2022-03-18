@@ -42,8 +42,13 @@ class TestTrain(unittest.TestCase):
             self.assertGreaterEqual(len(labels), 1)
 
         with self.subTest("At least one label per item"):
+
+            non_zero = False
             for label in labels:
-                self.assertTrue(any(label), label)
+                if any(label):
+                    non_zero = True
+
+            self.assertTrue(non_zero, f"Expect at least one non-zero item: {labels}")
 
     def test_data_valid(self):
         filename_train = "../DATA/preprocessed_distilbert_base_uncased_cpsv_ap_relations"

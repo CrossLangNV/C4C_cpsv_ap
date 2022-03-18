@@ -10,10 +10,16 @@ from datasets import load_dataset
 from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
 
 DIRNAME_DATA = os.path.join(os.path.dirname(__file__), "../DATA")
-class MyTestCase(unittest.TestCase):
-    def test_create_dataset(self):
 
-        # Read current training + valid data.
+
+class MyTestCase(unittest.TestCase):
+    def test_create_dataset(self,
+                            deprecated=True):
+
+        if deprecated:
+            return
+
+            # Read current training + valid data.
         # Save to new format.
 
         filename_fasttext_train = os.path.join(os.path.dirname(__file__), "../DATA/cpsv_ap_relations/crit_req.train")
@@ -69,16 +75,9 @@ class MyTestCase(unittest.TestCase):
 
         return
 
-    def test_something(self):
-        classifier = TrainerBertSequenceClassifier()
-
-        self.assertEqual(True, False)  # add assertion here
-
     def test_predict(self):
         FILENAME_PREDICT_CONFIG = os.path.join(os.path.dirname(__file__), "../configuration_files_bert",
                                                "predict.config")
-
-
 
         output_file = os.path.join(DIRNAME_DATA,
                                    "cpsv_ap_relations/test_predict_distilbert_base_uncased_1epoch_warmup_cpsv_ap_relations.jsonl")
@@ -139,6 +138,7 @@ class MyTestCase(unittest.TestCase):
                                                                                  batch_size=BATCH_SIZE, gpu=GPU)
 
             preds_proba
+
 
 if __name__ == '__main__':
     unittest.main()
