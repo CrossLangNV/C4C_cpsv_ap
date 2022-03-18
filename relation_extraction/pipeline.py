@@ -30,49 +30,54 @@ class RelationExtractor2(RelationExtractor):
         d_relations = self.parser.extract_relations(self.html,
                                                     url=self.url)
 
-        crit_req = CriterionRequirement(identifier=None,
-                                        name=DEFAULT_NAME,
-                                        type=[],
-                                        description=d_relations.criterionRequirement
-                                        )
-        rule = Rule(identifier=None,
-                    description=d_relations.rule,
-                    name=DEFAULT_NAME
-                    )
-        evidence = Evidence(identifier=None,
-                            name=DEFAULT_NAME,
-                            description=d_relations.evidence
-                            )
-        cost = Cost(identifier=None,
-                    description=d_relations.cost
-                    )
+        if d_relations.criterionRequirement:
+            crit_req = CriterionRequirement(identifier=None,
+                                            name=DEFAULT_NAME,
+                                            type=[],
+                                            description=d_relations.criterionRequirement
+                                            )
+            uri_cr = self.provider.criterion_requirements.add(crit_req, context=self.context)
+            self.provider.public_services.add_criterion(uri_ps=ps.get_uri(),
+                                                        uri_crit_req=uri_cr,
+                                                        context=self.context)
 
-        events = d_relations.events
-        if events:
-            for event in events:
+        if d_relations.rule:
+            rule = Rule(identifier=None,
+                        description=d_relations.rule,
+                        name=DEFAULT_NAME
+                        )
+
+            uri_rule = self.provider.rules.add(rule, context=self.context)
+            self.provider.public_services.add_rule(uri_ps=ps.get_uri(),
+                                                   uri_rule=uri_rule,
+                                                   context=self.context)
+
+        if d_relations.evidence:
+            evidence = Evidence(identifier=None,
+                                name=DEFAULT_NAME,
+                                description=d_relations.evidence
+                                )
+
+            uri_evi = self.provider.evidences.add(evidence, context=self.context)
+            self.provider.public_services.add_evidence(uri_ps=ps.get_uri(),
+                                                       uri_evi=uri_evi,
+                                                       context=self.context)
+
+        if d_relations.cost:
+            cost = Cost(identifier=None,
+                        description=d_relations.cost
+                        )
+
+            uri_cost = self.provider.costs.add(cost, context=self.context)
+            self.provider.public_services.add_cost(uri_ps=ps.get_uri(),
+                                                   uri_cost=uri_cost,
+                                                   context=self.context)
+
+        if d_relations.events:
+            for event in d_relations.events:
                 event.add_related_service(ps)
 
                 uri_event = self.provider.events.add(event, context=self.context)
                 self.provider.public_services.add_event(uri_ps=ps.get_uri(),
                                                         uri_event=uri_event,
                                                         context=self.context)
-
-        uri_cr = self.provider.criterion_requirements.add(crit_req, context=self.context)
-        self.provider.public_services.add_criterion(uri_ps=ps.get_uri(),
-                                                    uri_crit_req=uri_cr,
-                                                    context=self.context)
-
-        uri_rule = self.provider.rules.add(rule, context=self.context)
-        self.provider.public_services.add_rule(uri_ps=ps.get_uri(),
-                                               uri_rule=uri_rule,
-                                               context=self.context)
-
-        uri_evi = self.provider.evidences.add(evidence, context=self.context)
-        self.provider.public_services.add_evidence(uri_ps=ps.get_uri(),
-                                                   uri_evi=uri_evi,
-                                                   context=self.context)
-
-        uri_cost = self.provider.costs.add(cost, context=self.context)
-        self.provider.public_services.add_cost(uri_ps=ps.get_uri(),
-                                               uri_cost=uri_cost,
-                                               context=self.context)

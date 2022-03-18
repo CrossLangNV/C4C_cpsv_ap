@@ -3,9 +3,15 @@ import os.path
 import warnings
 
 from data.html import get_html
+from relation_extraction.aalter import AalterParser
 from relation_extraction.affligem import AffligemParser
 from relation_extraction.austrheim import AustrheimParser
+from relation_extraction.cities import CityParser
+from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.pipeline import RelationExtractor2
+from relation_extraction.san_paolo import SanPaoloParser
+from relation_extraction.wien import WienParser
+from relation_extraction.zagreb import ZagrebParser
 
 
 def get_parser():
@@ -62,14 +68,11 @@ def main(filename_html,
     except FileNotFoundError as e:
         raise FileNotFoundError(f"Could not find HTML file: {filename_html}") from e
 
-    # TODO use general parser or be able specify a parser by name.
-    if "NO" == country_code.upper():
-        parser = AustrheimParser()
-    else:
-        parser = AffligemParser()
+    city_parser = get_municipality_parser(country_code=country_code,
+                                          url=url)
 
     relation_extractor = RelationExtractor2(html,
-                                            parser=parser,
+                                            parser=city_parser,
                                             url=url,
                                             context=context,
                                             country_code=country_code,
@@ -82,6 +85,28 @@ def main(filename_html,
     relation_extractor.export(filename_rdf)
 
     return
+
+
+# TODO use general parser or be able specify a parser by name instead of rule-based selection.
+def get_municipality_parser(country_code: str = "",
+                            url: str = ""
+                            ) -> CityParser:
+    if "AT" == country_code.upper():
+        return WienParser()
+    elif "BE" == country_code.upper():
+        if "aalter" in url.lower():
+            return AalterParser()
+    elif "IT" == country_code.upper():
+        return SanPaoloParser()
+    elif "HR" == country_code.upper():
+        return ZagrebParser()
+    elif "NO" == country_code.upper():
+        return AustrheimParser()
+    elif country_code.upper() in ["SL", "SI"]:
+        return NovaGoricaParser()
+
+    # Backup: Affligem parser
+    return AffligemParser()
 
 
 if __name__ == '__main__':

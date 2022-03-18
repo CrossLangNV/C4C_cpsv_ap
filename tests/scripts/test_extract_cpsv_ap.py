@@ -86,7 +86,7 @@ class TestCLI(unittest.TestCase):
              filename_rdf=args.RDF,
              extract_concepts=args.concepts)
 
-    def test_5_norway(self):
+    def test_5_Norway(self):
         parser = get_parser()
 
         # Set args
@@ -105,6 +105,115 @@ class TestCLI(unittest.TestCase):
              context="austrheim.kommune.no",  # TODO add flags
              country_code="NO",  # TODO add flags
              url="https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/")
+
+    def test_5_Belgium(self):
+        parser = get_parser()
+
+        # Set args
+        l_args = [
+            os.path.join(DIR_SOURCE, "tests/relation_extraction/EXAMPLE_FILES/https_www_aalter_be_verhuizen.html"),
+            "DEMO_BELGIUM"
+        ]
+        # Command
+        self.print_command(l_args)
+
+        args = parser.parse_args(l_args)
+
+        main(filename_html=args.Path,
+             filename_rdf=args.RDF,
+             extract_concepts=args.concepts,
+             context="www.aalter.be",  # TODO add flags
+             country_code="BE",  # TODO add flags
+             url="https://www.aalter.be/verhuizen"
+             )
+
+    def test_5_Italy(self):
+        parser = get_parser()
+
+        # Set args
+        l_args = [
+            os.path.join(DIR_SOURCE,
+                         "tests/relation_extraction/EXAMPLE_FILES/https_www_comune_sanpaolo_bs_it_procedure_3As_italia_3Atrasferimento_residenza_estero_3Bdichiarazione_source_1104.html"),
+            "DEMO_ITALY"
+        ]
+        # Command
+        self.print_command(l_args)
+
+        args = parser.parse_args(l_args)
+
+        main(filename_html=args.Path,
+             filename_rdf=args.RDF,
+             extract_concepts=args.concepts,
+             context="www.comune.sanpaolo.bs.it",  # TODO add flags
+             country_code="IT",  # TODO add flags
+             url="https://www.comune.sanpaolo.bs.it/procedure%3As_italia%3Atrasferimento.residenza.estero%3Bdichiarazione?source=1104"
+             )
+
+    def test_5_Slovenia(self):
+        parser = get_parser()
+
+        # Set args
+        l_args = [
+            os.path.join(DIR_SOURCE,
+                         "tests/relation_extraction/EXAMPLE_FILES/https_www_nova_gorica_si_za_obcane_postopki_in_obrazci_2011101410574355_.html"),
+            "DEMO_SLOVENIA"
+        ]
+        # Command
+        self.print_command(l_args)
+
+        args = parser.parse_args(l_args)
+
+        main(filename_html=args.Path,
+             filename_rdf=args.RDF,
+             extract_concepts=args.concepts,
+             context="www.nova-gorica.si",  # TODO add flags
+             country_code="SL",  # TODO add flags
+             url="https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011101410574355/"
+             )
+
+    def test_5_Austria(self):
+        parser = get_parser()
+
+        # Set args
+        l_args = [
+            os.path.join(DIR_SOURCE,
+                         "tests/relation_extraction/EXAMPLE_FILES/https_www_wien_gv_at_amtshelfer_verkehr_fahrzeuge_aenderungen_einzelgenehmigung_html.html"),
+            "DEMO_AUSTRIA"
+        ]
+        # Command
+        self.print_command(l_args)
+
+        args = parser.parse_args(l_args)
+
+        main(filename_html=args.Path,
+             filename_rdf=args.RDF,
+             extract_concepts=args.concepts,
+             context="www.wien.gv.at",  # TODO add flags
+             country_code="AT",  # TODO add flags
+             url="https://www.wien.gv.at/amtshelfer/verkehr/fahrzeuge/aenderungen/einzelgenehmigung.html"
+             )
+
+    def test_5_Croatia(self):
+        parser = get_parser()
+
+        # Set args
+        l_args = [
+            os.path.join(DIR_SOURCE,
+                         "tests/relation_extraction/EXAMPLE_FILES/https_www_zagreb_hr_novcana_pomoc_za_opremu_novorodjenog_djeteta_5723.html"),
+            "DEMO_CROATIA"
+        ]
+        # Command
+        self.print_command(l_args)
+
+        args = parser.parse_args(l_args)
+
+        main(filename_html=args.Path,
+             filename_rdf=args.RDF,
+             extract_concepts=args.concepts,
+             context="www.zagreb.hr",  # TODO add flags
+             country_code="HR",  # TODO add flags
+             url="https://www.zagreb.hr/novcana-pomoc-za-opremu-novorodjenog-djeteta/5723"
+             )
 
     @staticmethod
     def print_command(l_args):
