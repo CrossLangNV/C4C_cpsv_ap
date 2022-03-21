@@ -3,17 +3,43 @@ from typing import List, Union
 
 from bs4 import BeautifulSoup, Tag
 
-from relation_extraction.cities import CityParser, Relations
+from relation_extraction.aalter import AalterParser
+from relation_extraction.cities import RegexCPSVAPRelationsClassifier
 from relation_extraction.utils import clean_text, get_page_procedure
 
 
-class SanPaoloParser(CityParser):
+class SanPaoloCPSVAPRelationsClassifier(RegexCPSVAPRelationsClassifier):
+    """
+    San Paolo
+    """
+
+    def __init__(self,
+                 # Ignore ":"
+                 pattern_criterion_requirement=r"(?=x)(?!x)",  # TODO, not implemented
+                 pattern_rule=r"(?=x)(?!x)",  # TODO, not implemented
+                 pattern_evidence=r"moduli da compilare e documenti da allegare(.)*",  # with or without ?
+                 pattern_cost=r"pagamenti(.)*"
+                 ):
+        super(SanPaoloCPSVAPRelationsClassifier, self).__init__(
+            pattern_criterion_requirement=pattern_criterion_requirement,
+            pattern_rule=pattern_rule,
+            pattern_evidence=pattern_evidence,
+            pattern_cost=pattern_cost
+        )
+
+
+class SanPaoloParser(AalterParser):
     """
     Parser for https://www.comune.sanpaolo.bs.it/
     """
 
-    def extract_relations(self, s_html: str, url: str) -> Relations:
-        raise NotImplementedError()
+    def __init__(self, classifier: SanPaoloCPSVAPRelationsClassifier = None):
+
+        if classifier is None:
+            # Default behaviour
+            classifier = SanPaoloCPSVAPRelationsClassifier()
+
+        super(SanPaoloParser, self).__init__(classifier=classifier)
 
     def parse_page(self, s_html) -> List[List[str]]:
         soup = BeautifulSoup(s_html, 'html.parser')

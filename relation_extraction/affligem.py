@@ -86,14 +86,17 @@ class AffligemParser(CityParser):
 
     def extract_relations(self, s_html, url) -> Relations:
         """
+        (Copied from super method)
+        Extracts important CPSV-AP relations from a webpage containing an adminstrative procedure.
 
         Args:
-            s_html:
-            url:
+            s_html: HTML as string
+            url: original URL to the webpage
 
         Returns:
-
+            extracted relations saved in Relations object.
         """
+
         l = self.parse_page(s_html)
 
         d = Relations()
