@@ -112,7 +112,7 @@ class TestCLI(unittest.TestCase):
         # Set args
         l_args = [
             os.path.join(DIR_SOURCE, "tests/relation_extraction/EXAMPLE_FILES/https_www_aalter_be_verhuizen.html"),
-            "DEMO_BELGIUM"
+            "DEMO_BELGIUM.rdf"
         ]
         # Command
         self.print_command(l_args)
@@ -134,7 +134,7 @@ class TestCLI(unittest.TestCase):
         l_args = [
             os.path.join(DIR_SOURCE,
                          "tests/relation_extraction/EXAMPLE_FILES/https_www_comune_sanpaolo_bs_it_procedure_3As_italia_3Atrasferimento_residenza_estero_3Bdichiarazione_source_1104.html"),
-            "DEMO_ITALY"
+            "DEMO_ITALY.rdf"
         ]
         # Command
         self.print_command(l_args)
@@ -156,7 +156,7 @@ class TestCLI(unittest.TestCase):
         l_args = [
             os.path.join(DIR_SOURCE,
                          "tests/relation_extraction/EXAMPLE_FILES/https_www_nova_gorica_si_za_obcane_postopki_in_obrazci_2011101410574355_.html"),
-            "DEMO_SLOVENIA"
+            "DEMO_SLOVENIA.rdf"
         ]
         # Command
         self.print_command(l_args)
@@ -178,7 +178,7 @@ class TestCLI(unittest.TestCase):
         l_args = [
             os.path.join(DIR_SOURCE,
                          "tests/relation_extraction/EXAMPLE_FILES/https_www_wien_gv_at_amtshelfer_verkehr_fahrzeuge_aenderungen_einzelgenehmigung_html.html"),
-            "DEMO_AUSTRIA"
+            "DEMO_AUSTRIA.rdf"
         ]
         # Command
         self.print_command(l_args)
@@ -200,7 +200,7 @@ class TestCLI(unittest.TestCase):
         l_args = [
             os.path.join(DIR_SOURCE,
                          "tests/relation_extraction/EXAMPLE_FILES/https_www_zagreb_hr_novcana_pomoc_za_opremu_novorodjenog_djeteta_5723.html"),
-            "DEMO_CROATIA"
+            "DEMO_CROATIA.rdf"
         ]
         # Command
         self.print_command(l_args)
@@ -213,6 +213,36 @@ class TestCLI(unittest.TestCase):
              context="www.zagreb.hr",  # TODO add flags
              country_code="HR",  # TODO add flags
              url="https://www.zagreb.hr/novcana-pomoc-za-opremu-novorodjenog-djeteta/5723"
+             )
+
+    @staticmethod
+    def print_command(l_args):
+        print()
+        print("$ python extract_cpsv_ap.py", *l_args)
+        print()
+
+
+class TestCLIGeneral(unittest.TestCase):
+    def test_general_Belgium(self):
+        parser = get_parser()
+
+        # Set args
+        l_args = [
+            os.path.join(DIR_SOURCE, "tests/relation_extraction/EXAMPLE_FILES/https_www_aalter_be_verhuizen.html"),
+            "DEMO_BELGIUM.rdf"
+        ]
+        # Command
+        self.print_command(l_args)
+
+        args = parser.parse_args(l_args)
+
+        main(filename_html=args.Path,
+             filename_rdf=args.RDF,
+             extract_concepts=args.concepts,
+             context="www.aalter.be",  # TODO add flags
+             country_code="BE",  # TODO add flags
+             url="https://www.aalter.be/verhuizen",
+             general=True
              )
 
     @staticmethod
@@ -242,3 +272,4 @@ class TestCLIBreaking(unittest.TestCase):
                  filename_rdf=args.RDF)
 
         self.assertTrue(context.exception)
+

@@ -3,7 +3,6 @@ import os
 import re
 from typing import List
 
-import fasttext
 import pandas as pd
 from nltk.tokenize import sent_tokenize
 
@@ -11,7 +10,7 @@ from connectors.translation import ETranslationConnector
 from data.html import get_html
 from relation_extraction.aalter import AalterParser
 from relation_extraction.austrheim import AustrheimParser
-from relation_extraction.cities import CPSVAPRelationsClassifier
+from relation_extraction.cities import ClassifierCityParser, CPSVAPRelationsClassifier
 from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.san_paolo import SanPaoloParser
 from relation_extraction.wien import WienParser
@@ -272,88 +271,30 @@ class Dataset:
 
 class GeneralClassifier(CPSVAPRelationsClassifier):
     """
-    A general classifier regarding classifying different relationships defined within CPSV-AP.
-
-    TODO (based on https://fasttext.cc/docs/en/supervised-tutorial.html)
-     * Preprocess the data: >> cat cooking.stackexchange.txt | sed -e "s/\([.\!?,'/()]\)/ \1 /g" | tr "[:upper:]" "[:lower:]" > cooking.preprocessed.txt
-     * optimize hyperparams. (e.g. epochs) but can't we do this automaticaly? Autotune?
-        * epochs
-        * lr
-        * wordNgrams
+    General classifier
+    TODO
+     - access BERT API
     """
 
-    def __init__(self, filename_train,
-                 filename_valid):
-        super(GeneralClassifier, self).__init__()
-
-        # Load/train classifiers.
-
-        t_train_min = 5  # min
-        t_train = t_train_min * 60  # sec
-
-        # TODO remove
-        model = fasttext.train_supervised(input=filename_train,
-                                          autotuneValidationFile=filename_valid,
-                                          autotuneDuration=t_train,  # Will be unaccessible for this time.
-                                          loss="ova"
-                                          )
-
-        conf = {
-            "epoch": model.epoch,
-            "dim": model.dim,
-            "minCount": model.minCount,
-            "wordNgrams": model.wordNgrams,
-        }
-
-        kwargs = {}
-        if filename_valid:
-            kwargs["autotuneValidationFile"] = filename_valid
-            kwargs["autotuneDuration"] = 600
-            # kwargs[""]
-
-        model.test(filename_valid)
-
-        # Fasttext
-        model = fasttext.train_supervised(input=filename_train,
-
-                                          # loss="ova",
-                                          **kwargs,
-                                          # autotuneMetric="f1:__label__crit_req",
-                                          # lr=1, # TODO We should use autotune instead
-
-                                          epoch=2,
-                                          dim=10,
-
-                                          minCount=1,
-                                          wordNgrams=1,
-                                          minn=0,
-                                          maxn=0,
-                                          bucket=1000,  # TODO this might be important for autotume!
-                                          # dsub = 2, # TODO find out what this does.
-                                          # loss = hs,
-
-                                          )
-
-        # Quick test
-        print(model.predict("Conditions", k=2), "\n",
-              model.predict("Deadlines and dates", k=2))
-
-        print('vocab size: ', len(model.words))
-        print('label size: ', len(model.names))
-        print('example vocab: ', model.words[:5])
-        print('example label: ', model.names[:5])
-
-        # model.save_model("model_cooking.bin")
-        return model
+    def predict_criterion_requirement(self, title: str = None, paragraph: str = None) -> bool:
+        raise NotImplementedError()
 
     def predict_rule(self, title: str = None, paragraph: str = None) -> bool:
-        pass  # TODO
+        raise NotImplementedError()
 
     def predict_evidence(self, title: str = None, paragraph: str = None) -> bool:
-        pass  # TODO
+        raise NotImplementedError()
 
     def predict_cost(self, title: str = None, paragraph: str = None) -> bool:
-        pass  # TODO
+        raise NotImplementedError()
 
-    def predict_criterion_requirement(self, title: str = None, paragraph: str = None):
-        pass  # TODO
+
+class GeneralCityParser(ClassifierCityParser):
+    """
+    City parser with a general classifier.
+    """
+
+    def __init__(self):
+        classifier = GeneralClassifier()
+
+        super(GeneralCityParser, self).__init__(classifier=classifier)

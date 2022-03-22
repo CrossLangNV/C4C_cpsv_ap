@@ -7,6 +7,7 @@ from relation_extraction.aalter import AalterParser
 from relation_extraction.affligem import AffligemParser
 from relation_extraction.austrheim import AustrheimParser
 from relation_extraction.cities import CityParser
+from relation_extraction.general_classifier import GeneralCityParser
 from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.pipeline import RelationExtractor2
 from relation_extraction.san_paolo import SanPaoloParser
@@ -44,7 +45,8 @@ def main(filename_html,
          url: str = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/wettiging-van-handtekening/page.aspx/169#",
          # TODO original webpage URL"
          country_code="BE",  # TODO
-         extract_concepts: bool = False
+         extract_concepts: bool = False,
+         general: bool = True,
          ):
     """
     Extract the administrative procedure ontology out of a html page,
@@ -52,6 +54,8 @@ def main(filename_html,
 
     Input
         - HTML
+        - general:
+            flag whether to use the general classifier.
     Output
         - RDF (based on CPSV-AP)
 
@@ -68,8 +72,11 @@ def main(filename_html,
     except FileNotFoundError as e:
         raise FileNotFoundError(f"Could not find HTML file: {filename_html}") from e
 
-    city_parser = get_municipality_parser(country_code=country_code,
-                                          url=url)
+    if general:
+        city_parser = GeneralCityParser()
+    else:
+        city_parser = get_municipality_parser(country_code=country_code,
+                                              url=url)
 
     relation_extractor = RelationExtractor2(html,
                                             parser=city_parser,
