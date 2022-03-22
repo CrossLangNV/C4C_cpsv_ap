@@ -17,10 +17,13 @@ services:
       - "7650:80"
     volumes:
       - ".:/app"
+      - "./SRC/BERT_classifier:/app"
     env_file:
       - secrets/cpsv_ap.env
     environment:
       - URL_ORION=http://orion:1026
+    depends_on:
+      - relations_classifier_bert_api_cpu
 
   mongo-db:
     image: mongo:4.4
@@ -64,6 +67,8 @@ services:
       args:
         - MODEL_DIR=MODELS/epoch_10_Mon_Mar_21_133903_2022_45b0542aa91c11ec98150242ac120002
     ports:
-      - "5000:5000"
+      - "7690:5000"
     volumes:
       - "./src/BERT_classifier:/work"
+    networks:
+      c4cnet:

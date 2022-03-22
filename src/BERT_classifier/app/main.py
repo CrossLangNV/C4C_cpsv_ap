@@ -1,11 +1,9 @@
 import os
 import warnings
-from functools import lru_cache
-from typing import List
 
 from fastapi import FastAPI
-from pydantic import BaseModel
 
+from app.models import Labels, Results, Text
 from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
 
 # See Dockerfile for file.
@@ -25,22 +23,6 @@ trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(
     preprocessed_data_dir=None,
     output_dir=os.path.dirname(__file__)
 )
-
-
-class Text(BaseModel):
-    text: str
-
-
-class Labels(BaseModel):
-    labels: List[str] = None
-
-
-class Results(Labels):
-    """
-    Includes labels
-    """
-    probabilities: List[float]
-
 
 app = FastAPI()
 
@@ -64,15 +46,15 @@ async def classify_text(text: Text) -> Results:
     """
     _, probabilities = trainer_bert_sequence_classifier.predict([text.text])
 
-    labels = (await get_labels()).labels
+    labels = (await get_labels())
 
     results = Results(probabilities=probabilities[0].tolist(),
-                      labels=labels)
+                      **labels.dict())
 
     return results
 
 
-@lru_cache(maxsize=1)
+# @lru_cache(maxsize=1)
 @app.get("/labels", response_model=Labels)
 async def get_labels() -> Labels:
     """
@@ -89,6 +71,6 @@ async def get_labels() -> Labels:
 
     d_inverse = {int(label_id): label_name for label_name, label_id in d.items()}
 
-    labels = [d_inverse[i] for i in range(len(d_inverse))]
+    names = [d_inverse[i] for i in range(len(d_inverse))]
 
-    return Labels(labels=labels)
+    return Labels(names=names)

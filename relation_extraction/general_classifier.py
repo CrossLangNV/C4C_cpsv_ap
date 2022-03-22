@@ -339,9 +339,9 @@ class GeneralClassifier(CPSVAPRelationsClassifier):
               model.predict("Deadlines and dates", k=2))
 
         print('vocab size: ', len(model.words))
-        print('label size: ', len(model.labels))
+        print('label size: ', len(model.names))
         print('example vocab: ', model.words[:5])
-        print('example label: ', model.labels[:5])
+        print('example label: ', model.names[:5])
 
         # model.save_model("model_cooking.bin")
         return model
