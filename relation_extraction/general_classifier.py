@@ -25,6 +25,7 @@ CEF_LOGIN = os.environ.get("CEF_LOGIN")
 CEF_PASSW = os.environ.get("CEF_PASSW")
 
 SEP = '⚫'
+EN = "EN"
 
 
 class Dataset:
@@ -66,7 +67,6 @@ class Dataset:
 
         translator = ETranslationConnector(username=CEF_LOGIN,
                                            password=CEF_PASSW)
-        EN = "EN"
 
         l_d = []
 
@@ -155,10 +155,10 @@ class Dataset:
         # TODO translate all to English.
         # Group by language.
         # titles_NL = get_l_text(df_all[df_all["lang"] == "NL"])
-        # titles_EN_trans = translator.trans_list_blocking(titles_NL, target="EN",
+        # titles_EN_trans = translator.trans_list_blocking(titles_NL, target=EN,
         #                                                  source="NL")
 
-        target = "EN"
+        target = EN
 
         # Add English translations to the dataset
         for source, df_source in df_all.groupby(self.KEY_LANG):
@@ -205,11 +205,11 @@ class Dataset:
 
     def get_english_training_data(self):
         # Only English
-        return self.df_all[self.df_all[self.KEY_LANG] == "EN"][[self.KEY_TEXT,
-                                                                self.KEY_CRIT_REQ,
-                                                                self.KEY_RULE,
-                                                                self.KEY_EVIDENCE,
-                                                                self.KEY_COST]]
+        return self.df_all[self.df_all[self.KEY_LANG] == EN][[self.KEY_TEXT,
+                                                              self.KEY_CRIT_REQ,
+                                                              self.KEY_RULE,
+                                                              self.KEY_EVIDENCE,
+                                                              self.KEY_COST]]
 
     def export_BERT_train_data(self,
                                lang: str,
@@ -281,7 +281,7 @@ class GeneralClassifier(CPSVAPRelationsClassifier):
     EVIDENCE = "evidence"
     CRITERION_REQUIREMENT = "criterion_requirement"
 
-    def __init__(self, lang: str):
+    def __init__(self, lang: str, target=EN):
         super(GeneralClassifier, self).__init__()
 
         self.bert_connector = BERTConnector()
@@ -289,6 +289,8 @@ class GeneralClassifier(CPSVAPRelationsClassifier):
                                                 password=CEF_PASSW)
 
         self.lang = lang  # language of source files
+        self.target = target
+        self.pretranslated_source_target: dict = {}
 
     def predict_criterion_requirement(self, title: str = None, paragraph: str = None) -> bool:
         """
@@ -324,7 +326,6 @@ class GeneralClassifier(CPSVAPRelationsClassifier):
 
         TODO:
          - (?) Include paragraph info into the prediction
-         - Use cache for retrieving results (as we will call it multiple times)
         """
 
         results = self._get_results_cache(title, self.lang)
@@ -335,7 +336,7 @@ class GeneralClassifier(CPSVAPRelationsClassifier):
         return bool(round(prob))
 
     @lru_cache(maxsize=1)
-    def _get_results_cache(self, text: str, lang: str):
+    def _get_results_cache(self, text: str, lang):
         """
         Use cache for retrieving results as we will call it multiple times in a row with the same value.
 
@@ -346,20 +347,38 @@ class GeneralClassifier(CPSVAPRelationsClassifier):
 
         """
 
-        EN = "EN"
-
-        if lang.upper() != EN:
-            # Translate
-            text_EN = self.translator.trans_snippet_blocking(
-                source=lang.upper(),
-                target=EN,
-                snippet=text
-            )
-        else:
-            text_EN = text
+        text_EN = self._get_text_target(text, lang, self.target)
 
         results = self.bert_connector.post_classify_text(text_EN)
         return results
+
+    @lru_cache(maxsize=20)
+    def _get_text_target(self, text, lang, target):
+
+        if lang.upper() == target:
+            return text
+
+        # Check pretranslated
+        text_EN = self.pretranslated_source_target.get(text)
+        if text_EN:
+            return text_EN
+
+        # Last resort: translate single sentence
+        text_EN = self.translator.trans_snippet_blocking(
+            source=lang.upper(),
+            target=target.upper(),
+            snippet=text)
+
+        return text_EN
+
+    def pretranslate(self, l_text):
+
+        l_text_translated = self.translator.trans_list_blocking(l_text,
+                                                                source=self.lang,
+                                                                target=self.target)
+
+        d_pretranslated_new = {text_source: text_target for text_source, text_target in zip(l_text, l_text_translated)}
+        self.pretranslated_source_target = d_pretranslated_new
 
 
 class GeneralCityParser(ClassifierCityParser):
@@ -371,3 +390,22 @@ class GeneralCityParser(ClassifierCityParser):
         classifier = GeneralClassifier(lang=lang)
 
         super(GeneralCityParser, self).__init__(classifier=classifier)
+
+        # Not needed, but remove warning for pretranslate method
+        self.classifier: GeneralClassifier = classifier
+
+    def extract_relations(self, s_html, *args, include_sub=True, **kwargs):
+        """
+        To speed up things, we should pre-translate things
+        Args:
+            *args:
+            **kwargs:
+
+        Returns:
+
+        """
+
+        l_titles = [title for title, _ in self._paragraph_generator(s_html, include_sub=include_sub)]
+        self.classifier.pretranslate(l_titles)
+
+        return super(GeneralCityParser, self).extract_relations(s_html, *args, **kwargs)
