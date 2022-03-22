@@ -27,30 +27,14 @@ RUN apt-get update
 RUN apt-get -y install --reinstall build-essential
 RUN apt-get -y install gcc
 
-RUN pip install \
-torchtext==0.8.0 \
-scikit-learn==0.23.2 \
-scikit-multilearn==0.2.0 \
-transformers==3.4.0 \
-numpy==1.18.5 \
-pandas==1.2.4 \
-pytest==6.1.1 \
-fastapi==0.61.1 \
-uvicorn==0.12.1
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 
 WORKDIR /work
 
-#copy code:
-COPY app.py /work
-COPY trainer_bert_sequence_classifier.py /work
-COPY read_data.py /work
-COPY utils.py /work
-
 #copy model:
-COPY $MODEL_DIR/*.bin /work/models/pytorch_model.bin
-COPY $MODEL_DIR/config.json /work/models/
-COPY $MODEL_DIR/vocab.txt /work/models/
+COPY $MODEL_DIR/*.bin /tmp/app_model/pytorch_model.bin
+COPY $MODEL_DIR/config.json /tmp/app_model/
+COPY $MODEL_DIR/vocab.txt /tmp/app_model/
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
-
-#CMD python /work/app.py
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]

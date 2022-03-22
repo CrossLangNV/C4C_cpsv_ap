@@ -31,18 +31,3 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 WORKDIR /work
-
-##copy code:
-#COPY app.py /work
-#COPY trainer_bert_sequence_classifier.py /work
-#COPY read_data.py /work
-#COPY utils.py /work
-#
-##copy model:
-#COPY $MODEL_DIR/*.bin /work/models/pytorch_model.bin
-#COPY $MODEL_DIR/config.json /work/models/
-#COPY $MODEL_DIR/vocab.txt /work/models/
-#
-#CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
-#
-##CMD python /work/app.py

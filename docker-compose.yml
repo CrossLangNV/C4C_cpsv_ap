@@ -52,8 +52,6 @@ services:
   bert_classifier_train:
     build:
       context: ./src/BERT_classifier
-    #      args:
-    #        - MODEL_DIR=MODELS/model_MULTI_BERT_unfreeze_last_layers_5epoch_C4C_translations
     networks:
       c4cnet:
     volumes:
@@ -62,10 +60,10 @@ services:
   relations_classifier_bert_api_cpu:
     build:
       context: ./src/BERT_classifier
-      dockerfile: ./app/Dockerfile
-    #      args:
-    #        - MODEL_DIR=MODELS/model_MULTI_BERT_unfreeze_last_layers_5epoch_C4C_translations
+      dockerfile: app/Dockerfile
+      args:
+        - MODEL_DIR=MODELS/epoch_10_Mon_Mar_21_133903_2022_45b0542aa91c11ec98150242ac120002
     ports:
       - "5000:5000"
     volumes:
-      - ".:/train"
+      - "./src/BERT_classifier:/work"
