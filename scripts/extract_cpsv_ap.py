@@ -77,13 +77,12 @@ def get_parser():
 
 def main(filename_html,
          filename_rdf,
-         context="affligem.be",
-         url: str = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/wettiging-van-handtekening/page.aspx/169#",
-         # TODO original webpage URL"
-         country_code="BE",  # TODO
+         context,
+         country_code: str,
+         lang,  # Only needed when using general
+         url: str = None,
          extract_concepts: bool = False,
          general: bool = False,
-         lang="NL",  # Only when using general
          ):
     """
     Extract the administrative procedure ontology out of a html page,

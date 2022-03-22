@@ -275,17 +275,17 @@ class TestCLIGeneral(unittest.TestCase):
 
     def test_demo(self):
         # TODO required inputs:
-        if 0:
+        if 1:
             url = "https://stad.gent/nl/over-gent-stadsbestuur/belastingen/online-aangiften/belasting-op-woningen-zonder-inschrijving-het-bevolkingsregister-zogenaamde-tweede-verblijven"
             lang = "NL"
             country = "BE"
             homepage = "https://stad.gent"
 
         elif 1:
-            url = "https://www.sint-niklaas.be/onze-dienstverlening/persoonlijke-documenten/reizen/internationaal-paspoort"
+            url = "https://www.turnhout.be/inname-openbaar-domein"
             lang = "NL"
             country = "BE"
-            homepage = "https://www.sint-niklaas.be"
+            homepage = "https://www.turnhout.be"
 
         # auto
         basename_html = "DEMO_PROCEDURE.html"

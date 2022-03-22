@@ -304,7 +304,7 @@ class ClassifierCityParser(CityParser):
 
         return l
 
-    def extract_relations(self, s_html: str, url: str, *args, verbose=0, **kwargs) -> Relations:
+    def extract_relations(self, s_html: str, url: str, *args, include_sub=True, verbose=0, **kwargs) -> Relations:
         """
         Extracts important CPSV-AP relations from a webpage containing an adminstrative procedure.
 
@@ -318,9 +318,9 @@ class ClassifierCityParser(CityParser):
 
         d = Relations()
 
-        n = len(list(self._paragraph_generator(s_html)))
+        n = len(list(self._paragraph_generator(s_html, include_sub=include_sub)))
 
-        for i, (title, paragraph) in enumerate(self._paragraph_generator(s_html)):
+        for i, (title, paragraph) in enumerate(self._paragraph_generator(s_html, include_sub=include_sub)):
             if verbose:
                 print(f"classifying paragraph {i + 1}/{n}")
 
