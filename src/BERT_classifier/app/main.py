@@ -1,5 +1,6 @@
 import os
 import warnings
+from functools import lru_cache
 from typing import List
 
 from fastapi import FastAPI
@@ -30,8 +31,15 @@ class Text(BaseModel):
     text: str
 
 
-class Results(BaseModel):
-    probablities: List[float]
+class Labels(BaseModel):
+    labels: List[str] = None
+
+
+class Results(Labels):
+    """
+    Includes labels
+    """
+    probabilities: List[float]
 
 
 app = FastAPI()
@@ -42,12 +50,45 @@ async def hello():
     return {"msg": "BERT Classifier API"}
 
 
-@app.post("/classify_text")
+@app.post("/classify_text", response_model=Results)
 async def classify_text(text: Text) -> Results:
-    _, probabilities = trainer_bert_sequence_classifier.predict([text.text],
-                                                                # cleaning=True
-                                                                )
+    """
+    Predict the likelihood of the text corresponding to one the labels.
+    To find the name of these labels, see */labels*
 
-    output_json = Results(probabilities=probabilities[0].tolist())
+    Args:
+        text:
 
-    return output_json
+    Returns:
+
+    """
+    _, probabilities = trainer_bert_sequence_classifier.predict([text.text])
+
+    labels = (await get_labels()).labels
+
+    results = Results(probabilities=probabilities[0].tolist(),
+                      labels=labels)
+
+    return results
+
+
+@lru_cache(maxsize=1)
+@app.get("/labels", response_model=Labels)
+async def get_labels() -> Labels:
+    """
+    Get the labels corresponding to the indices.
+
+    Returns:
+
+    """
+
+    if not hasattr(trainer_bert_sequence_classifier, 'model'):
+        trainer_bert_sequence_classifier.load_model()
+
+    d = trainer_bert_sequence_classifier.model.config.eurovoc_concept_2_id
+
+    d_inverse = {int(label_id): label_name for label_name, label_id in d.items()}
+
+    labels = [d_inverse[i] for i in range(len(d_inverse))]
+
+    return Labels(labels=labels)
