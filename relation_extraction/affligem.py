@@ -84,7 +84,7 @@ class AffligemParser(CityParser):
 
         return l
 
-    def extract_relations(self, s_html, url) -> Relations:
+    def extract_relations(self, s_html, url, *args, **kwargs) -> Relations:
         """
         (Copied from super method)
         Extracts important CPSV-AP relations from a webpage containing an adminstrative procedure.

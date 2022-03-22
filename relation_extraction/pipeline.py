@@ -20,15 +20,24 @@ class RelationExtractor2(RelationExtractor):
         self.parser = parser
         self.url = url
 
-    def extract_all(self, *args, **kwargs):
+    def extract_all(self, *args, verbose=0, **kwargs, ):
+        if verbose:
+            print("Relation extraction contact info - Start")
         ps = super(RelationExtractor2, self).extract_all(*args, **kwargs)
+        if verbose:
+            print("Relation extraction contact info - Finish")
 
         # TODO add new relations
 
         DEFAULT_NAME = "DEFAULT NAME"
 
+        if verbose:
+            print("Relation extraction req/rule/evidence/cost - Start")
         d_relations = self.parser.extract_relations(self.html,
-                                                    url=self.url)
+                                                    url=self.url,
+                                                    verbose=verbose)
+        if verbose:
+            print("Relation extraction req/rule/evidence/cost - Finish")
 
         if d_relations.criterionRequirement:
             crit_req = CriterionRequirement(identifier=None,

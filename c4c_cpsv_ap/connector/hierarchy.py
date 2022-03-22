@@ -471,7 +471,8 @@ class LocationsHarvester(SubHarvester):
 class LocationsProvider(SubProvider, LocationsHarvester):
     def add(self,
             uri_spat: URIRef,
-            context=None) -> URIRef:
+            context=None,
+            debug=False) -> URIRef:
         """
         Like <dct:Location rdf:about="http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli">
         """
@@ -484,7 +485,8 @@ class LocationsProvider(SubProvider, LocationsHarvester):
             for label in list(tmp_graph.objects(URIRef(uri_spat), SKOS.prefLabel)):
                 self.provider.graph.add((uri_spat, SKOS.prefLabel, label, context))
         except:
-            warnings.warn("Did not succeed in extracting ATU info.")
+            if debug:
+                warnings.warn("Did not succeed in extracting ATU info.")
 
         return uri_spat
 

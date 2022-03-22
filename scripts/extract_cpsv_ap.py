@@ -122,7 +122,8 @@ def main(filename_html,
                                             country_code=country_code,
                                             )
 
-    relation_extractor.extract_all(extract_concepts=extract_concepts)
+    relation_extractor.extract_all(extract_concepts=extract_concepts,
+                                   verbose=2)
 
     print("Success")
 

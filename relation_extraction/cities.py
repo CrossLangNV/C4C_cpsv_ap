@@ -180,7 +180,7 @@ class CityParser(abc.ABC):
         pass
 
     @abc.abstractmethod
-    def extract_relations(self, s_html: str, url: str) -> Relations:
+    def extract_relations(self, s_html: str, url: str, *args, **kwargs) -> Relations:
         """
         Extracts important CPSV-AP relations from a webpage containing an administrative procedure.
 
@@ -304,7 +304,7 @@ class ClassifierCityParser(CityParser):
 
         return l
 
-    def extract_relations(self, s_html: str, url: str) -> Relations:
+    def extract_relations(self, s_html: str, url: str, *args, verbose=0, **kwargs) -> Relations:
         """
         Extracts important CPSV-AP relations from a webpage containing an adminstrative procedure.
 
@@ -318,7 +318,11 @@ class ClassifierCityParser(CityParser):
 
         d = Relations()
 
-        for title, paragraph in self._paragraph_generator(s_html):
+        n = len(list(self._paragraph_generator(s_html)))
+
+        for i, (title, paragraph) in enumerate(self._paragraph_generator(s_html)):
+            if verbose:
+                print(f"classifying paragraph {i + 1}/{n}")
 
             if self.classifier.predict_criterion_requirement(title, paragraph):
                 d.criterionRequirement = paragraph

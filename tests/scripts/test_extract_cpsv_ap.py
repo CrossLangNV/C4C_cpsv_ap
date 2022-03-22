@@ -2,6 +2,7 @@ import os
 import unittest
 import warnings
 
+from data.html import url2html
 from scripts.extract_cpsv_ap import get_parser, main
 
 DIR_SOURCE = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
@@ -273,7 +274,39 @@ class TestCLIGeneral(unittest.TestCase):
              )
 
     def test_demo(self):
-        url = "https://stad.gent/nl/over-gent-stadsbestuur/belastingen/online-aangiften/belasting-op-woningen-zonder-inschrijving-het-bevolkingsregister-zogenaamde-tweede-verblijven"
+        # TODO required inputs:
+        if 0:
+            url = "https://stad.gent/nl/over-gent-stadsbestuur/belastingen/online-aangiften/belasting-op-woningen-zonder-inschrijving-het-bevolkingsregister-zogenaamde-tweede-verblijven"
+            lang = "NL"
+            country = "BE"
+            homepage = "https://stad.gent"
+
+        elif 1:
+            url = "https://www.sint-niklaas.be/onze-dienstverlening/persoonlijke-documenten/reizen/internationaal-paspoort"
+            lang = "NL"
+            country = "BE"
+            homepage = "https://www.sint-niklaas.be"
+
+        # auto
+        basename_html = "DEMO_PROCEDURE.html"
+        basename_rdf = "DEMO_PROCEDURE_GENERAL.rdf"
+        filename_html = os.path.join(DIR_SOURCE, "scripts", basename_html)
+        url2html(url, filename_html)
+
+        # Set args
+        l_args = [
+            "-g",
+            "-o", basename_rdf,
+            "-l", lang,
+            "-c", country,
+            "-m", homepage,
+            basename_html,
+        ]
+        # Command
+        print("copy the following command")
+        self.print_command(l_args)
+
+        return
 
     @staticmethod
     def print_command(l_args):
@@ -302,4 +335,3 @@ class TestCLIBreaking(unittest.TestCase):
                  filename_rdf=args.RDF)
 
         self.assertTrue(context.exception)
-

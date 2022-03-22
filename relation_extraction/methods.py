@@ -13,8 +13,8 @@ from connectors.term_extraction import ConnectorContactInfoClassification, Conne
 from connectors.term_extraction_utils.cas_utils import cas_from_cas_content, SOFA_ID
 from relation_extraction.utils import clean_text
 
-TERM_EXTRACTION = os.environ["TERM_EXTRACTION"]
-CONTACT_CLASSIFICATION = os.environ["CONTACT_CLASSIFICATION"]
+TERM_EXTRACTION = os.environ.get("TERM_EXTRACTION")
+CONTACT_CLASSIFICATION = os.environ.get("CONTACT_CLASSIFICATION")
 
 
 class ContactInfoSplit(BaseModel):
@@ -297,7 +297,8 @@ def _get_children_text(soup) -> List[str]:
 
 
 def _split_contact_info(l_info_text: List[str],
-                        country_code: str) -> ContactInfoSplit:
+                        country_code: str,
+                        debug=False) -> ContactInfoSplit:
     """
     Split up contact info into email, telephone and opening hours.
     Args:
@@ -316,7 +317,7 @@ def _split_contact_info(l_info_text: List[str],
         l_labels = conn._post_classify_contact_type(text,
                                                     country_code=country_code)
 
-        if len(l_labels) == 0:
+        if debug and (len(l_labels) == 0):
             warnings.warn(f"Could not find a type of contact info: {text}")
 
         for label in l_labels:

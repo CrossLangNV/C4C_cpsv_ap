@@ -4,9 +4,19 @@ CLI
 
 ## Demo
 
-> python .\extract_cpsv_ap.py
+Go into the container
+> docker compose run cpsv_ap
 
-> python .\extract_cpsv_ap.py -h
+Move to scripts folder
+> cd scripts
+
+Run relation extraction. E.g.
+> python extract_cpsv_ap.py -g -o DEMO_BELGIUM_GENERAL.rdf -l NL -c BE -m aalter.be DEMO_PROCEDURE.html
+
+Useful commands:
+
+- help
+  > python extract_cpsv_ap.py -h
 
 # Make an image of the graph
 
