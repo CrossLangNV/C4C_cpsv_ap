@@ -7,7 +7,7 @@ from configparser import ConfigParser
 
 from datasets import load_dataset
 
-from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
+from BERT_classifier.bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
 
 DIRNAME_DATA = os.path.join(os.path.dirname(__file__), "../DATA")
 

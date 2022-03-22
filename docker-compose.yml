@@ -16,8 +16,13 @@ services:
     ports:
       - "7650:80"
     volumes:
-      - ".:/app"
-      - "./SRC/BERT_classifier:/app"
+      - "./c4c_cpsv_ap:/app/c4c_cpsv_ap"
+      - "./connectors:/app/connectors"
+      - "./context_broker:/app/context_broker"
+      - "./data:/app/data"
+      - "./relation_extraction:/app/relation_extraction"
+      - "./scripts:/app/scripts"
+      - "./SRC/BERT_classifier:/app/BERT_classifier"
     env_file:
       - secrets/cpsv_ap.env
     environment:

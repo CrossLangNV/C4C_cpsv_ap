@@ -10,9 +10,8 @@ import numpy as np
 from datasets import load_dataset, load_from_disk
 from sklearn.metrics import confusion_matrix
 
-import bert_based_classifier.trainer_bert_sequence_classifier
-from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
-from train_bert import main_with_args
+from BERT_classifier.bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
+from BERT_classifier.train_bert import main_with_args
 
 FILENAME_TRAIN_CONFIG = os.path.join(os.path.dirname(__file__), "configuration_files_bert",
                                      "train.config")
@@ -221,7 +220,7 @@ class TestPrediction(unittest.TestCase):
         return
 
     def _evaluate_exact_match_acc(self,
-                                  trainer_bert_sequence_classifier: bert_based_classifier.trainer_bert_sequence_classifier.TrainerBertSequenceClassifier,
+                                  trainer_bert_sequence_classifier: TrainerBertSequenceClassifier,
                                   dataset: datasets.arrow_dataset.Dataset,
                                   KEY_LABEL="name_labels"):
 

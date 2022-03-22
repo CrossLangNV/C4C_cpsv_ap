@@ -10,8 +10,8 @@ from typing import Dict, Union
 import numpy as np
 from datasets import load_dataset
 
-from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
-from utils.metrics import calculate_micro_f1_score, mean_rprecision, ndcg_at_k, precision_at_k
+from BERT_classifier.bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
+from BERT_classifier.utils.metrics import calculate_micro_f1_score, mean_rprecision, ndcg_at_k, precision_at_k
 
 
 def main(path_to_config: Union[str, Path]):

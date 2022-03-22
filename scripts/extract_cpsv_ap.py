@@ -21,20 +21,56 @@ def get_parser():
                                                  ' as defined by the CPSV-AP vocabulary.')
 
     # Add the arguments
-    parser.add_argument('Path',
+    parser.add_argument('path',
                         metavar='path',
                         type=str,
                         help='input filename to read the HTML')
-    parser.add_argument('RDF',
-                        metavar='RDF',
+
+    parser.add_argument('-o',
+                        '--output',
+                        metavar='filename',
                         type=str,
-                        help='output filename to export the RDF')
+                        help='filename to export as RDF',
+                        default=None,
+                        required=True)
+
+    parser.add_argument("-m",
+                        "--municipality",
+                        metavar='URL',
+                        help="URL of home website",
+                        required=True
+                        )
+
+    parser.add_argument("-u",
+                        "--url",
+                        help="URL of the specific page",
+                        )
+
     parser.add_argument("-c",
-                        "--concepts",
+                        "--country",
+                        metavar='code',
+                        help="Country code (e.g. FR, BE, DE, IT, BE...)",
+                        required=True)
+
+    parser.add_argument("-t",
+                        "--terms",
                         action="store_true",
                         default=False,
                         help='flag to extract Concepts',
                         )
+
+    parser.add_argument("-g",
+                        "--general",
+                        action="store_true",
+                        default=False,
+                        help="flag to use general relation-extractor",
+                        )
+
+    parser.add_argument("-l",
+                        "--language",
+                        metavar="code",
+                        help="Language code (e.g. FR, NL, DE, IT, EN...)",
+                        required=True)
 
     return parser
 
@@ -88,11 +124,15 @@ def main(filename_html,
 
     relation_extractor.extract_all(extract_concepts=extract_concepts)
 
+    print("Success")
+
     # -- Save to RDF --
     # TODO check if already exists, else, ask for confirmation?
-    relation_extractor.export(filename_rdf)
+    if filename_rdf:
+        print(f"Saving to: {filename_rdf}")
+        relation_extractor.export(filename_rdf)
 
-    return
+    return 0
 
 
 # TODO use general parser or be able specify a parser by name instead of rule-based selection.
@@ -121,6 +161,12 @@ if __name__ == '__main__':
     parser = get_parser()
     args = parser.parse_args()
 
-    main(filename_html=args.Path,
-         filename_rdf=args.RDF,
-         extract_concepts=args.Concepts)
+    main(filename_html=args.path,
+         filename_rdf=args.output,
+         extract_concepts=args.terms,
+         context=args.municipality,
+         country_code=args.country,
+         url=args.url,
+         general=args.general,
+         lang=args.language
+         )

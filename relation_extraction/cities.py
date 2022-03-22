@@ -297,8 +297,10 @@ class ClassifierCityParser(CityParser):
 
             l.append(l_par)
 
+        # Filter empty lines:
+        l = [[s for s in l_sub if s] for l_sub in l]
         # Filter empty subs:
-        l = list(filter(lambda l_sub: len(l_sub), l))
+        l = [l_sub for l_sub in l if len(l_sub)]
 
         return l
 

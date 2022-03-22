@@ -2,7 +2,7 @@ import unittest
 
 from fastapi.testclient import TestClient
 
-from app.main import app
+from BERT_classifier.app.main import app
 
 TEST_CLIENT = TestClient(app)
 

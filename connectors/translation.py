@@ -57,6 +57,10 @@ class ETranslationConnector:
     def trans_snippet_blocking(self, source: str,
                                target: str,
                                snippet: str) -> str:
+        # Catch empty snippets
+        if not bool(snippet):
+            return snippet
+
         data = {'source': str(source),
                 'target': str(target),
                 'snippet': str(snippet)}

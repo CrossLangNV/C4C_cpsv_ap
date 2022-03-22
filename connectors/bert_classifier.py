@@ -1,6 +1,6 @@
 import requests
 
-from app.models import Labels, Results, Text
+from BERT_classifier.app.models import Labels, Results, Text
 
 
 class BERTConnector:

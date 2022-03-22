@@ -3,7 +3,7 @@ from configparser import ConfigParser
 from pathlib import Path
 from typing import Union
 
-from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
+from BERT_classifier.bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
 
 
 def main_with_args(preprocessed_data_dir: str,

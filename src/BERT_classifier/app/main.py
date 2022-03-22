@@ -3,8 +3,8 @@ import warnings
 
 from fastapi import FastAPI
 
-from app.models import Labels, Results, Text
-from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
+from BERT_classifier.app.models import Labels, Results, Text
+from BERT_classifier.bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
 
 # See Dockerfile for file.
 path_model = "/tmp/app_model"

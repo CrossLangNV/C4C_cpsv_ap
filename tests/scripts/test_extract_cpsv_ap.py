@@ -245,6 +245,36 @@ class TestCLIGeneral(unittest.TestCase):
              general=True
              )
 
+    def test_general_args(self):
+        parser = get_parser()
+
+        # Set args
+        l_args = [
+            "-g",
+            "-o", "DEMO_PROCEDURE_GENERAL.rdf",
+            "-l", "NL",
+            "-c", "BE",
+            "-m", "aalter.be",
+            os.path.join(DIR_SOURCE, "scripts/DEMO_PROCEDURE.html"),
+        ]
+        # Command
+        self.print_command(l_args)
+
+        args = parser.parse_args(l_args)
+
+        main(filename_html=args.path,
+             filename_rdf=args.output,
+             extract_concepts=args.terms,
+             context=args.municipality,
+             country_code=args.country,
+             url=args.url,
+             general=args.general,
+             lang=args.language
+             )
+
+    def test_demo(self):
+        url = "https://stad.gent/nl/over-gent-stadsbestuur/belastingen/online-aangiften/belasting-op-woningen-zonder-inschrijving-het-bevolkingsregister-zogenaamde-tweede-verblijven"
+
     @staticmethod
     def print_command(l_args):
         print()

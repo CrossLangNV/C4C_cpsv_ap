@@ -8,7 +8,7 @@ from typing import Union
 import numpy as np
 from datasets import load_dataset
 
-from bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
+from BERT_classifier.bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
 
 
 def main(path_to_config: Union[str, Path]):
