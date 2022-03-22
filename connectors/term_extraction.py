@@ -224,6 +224,9 @@ class ConnectorContactInfoClassification(Connector):
 
         r = requests.post(self.url + self._PATH_CLASSIFY_CONTACT_TYPE,
                           json=sent.dict())
+
+        r.raise_for_status()
+
         j_r = r.json()
 
         labels = [Label(**label) for label in j_r]

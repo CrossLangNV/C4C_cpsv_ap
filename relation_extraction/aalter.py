@@ -3,7 +3,7 @@ from typing import List, Union
 
 from bs4 import BeautifulSoup, Tag
 
-from relation_extraction.cities import CityParser, RegexCPSVAPRelationsClassifier, Relations
+from relation_extraction.cities import ClassifierCityParser, RegexCPSVAPRelationsClassifier
 from relation_extraction.utils import clean_text
 
 
@@ -26,50 +26,17 @@ class AalterCPSVAPRelationsClassifier(RegexCPSVAPRelationsClassifier):
         )
 
 
-class AalterParser(CityParser):
+class AalterParser(ClassifierCityParser):
     """
     Parser for Aalter.be
     """
 
     def __init__(self, classifier: AalterCPSVAPRelationsClassifier = None):
-        super(AalterParser, self).__init__()
-
         if classifier is None:
             # Default behaviour
-            self.classifier = AalterCPSVAPRelationsClassifier()
-        else:
-            self.classifier = classifier
+            classifier = AalterCPSVAPRelationsClassifier()
 
-    def extract_relations(self, s_html: str, url: str) -> Relations:
-        """
-        (Copied from super method)
-        Extracts important CPSV-AP relations from a webpage containing an adminstrative procedure.
-
-        Args:
-            s_html: HTML as string
-            url: original URL to the webpage
-
-        Returns:
-            extracted relations saved in Relations object.
-        """
-
-        d = Relations()
-
-        for title, paragraph in self._paragraph_generator(s_html):
-
-            if self.classifier.predict_criterion_requirement(title, paragraph):
-                d.criterionRequirement = paragraph
-
-            if self.classifier.predict_rule(title, paragraph):
-                d.rule = paragraph
-
-            if self.classifier.predict_evidence(title, paragraph):
-                d.evidence = paragraph
-
-            if self.classifier.predict_cost(title, paragraph):
-                d.cost = paragraph
-
-        return d
+        super(AalterParser, self).__init__(classifier)
 
     def parse_page(self,
                    s_html,

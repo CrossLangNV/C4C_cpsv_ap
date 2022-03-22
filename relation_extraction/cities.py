@@ -5,6 +5,7 @@ For Belgium see:
 """
 import abc
 import re
+from abc import ABC
 from typing import Generator, List, Optional, Tuple
 
 from pydantic import BaseModel
@@ -32,64 +33,6 @@ class Relations(BaseModel):
 
     def get_business_events(self) -> List[BusinessEvent]:
         return [event for event in self.events if isinstance(event, BusinessEvent)]
-
-
-class CityParser(abc.ABC):
-    """
-    Abstract class for city procedure parsers
-    """
-
-    @abc.abstractmethod
-    def parse_page(self,
-                   s_html: str,
-                   include_sub: bool = True):
-        """
-        Converts a html page to paragraphs with their title.
-
-        Args:
-            s_html:
-            include_sub (bool):
-                Flag whether to include subsections as well.
-                Only if possible/has header level info.
-
-        Returns:
-
-        """
-        pass
-
-    @abc.abstractmethod
-    def extract_relations(self, s_html: str, url: str) -> Relations:
-        """
-        Extracts important CPSV-AP relations from a webpage containing an administrative procedure.
-
-        Args:
-            s_html: HTML as string
-            url: original URL to the webpage
-
-        Returns:
-            extracted relations saved in Relations object.
-        """
-        pass
-
-    def _paragraph_generator(self,
-                             s_html,
-                             include_sub: bool = True
-                             ) -> Generator[Tuple[str, str], None, None]:
-        """
-        Generates the header-paragraph pairs out of the HTML.
-
-        Args:
-            s_html: HTML of page as string.
-
-        Returns:
-            generates (title, paragraph) pairs.
-        """
-        for l_sub in self.parse_page(s_html, include_sub=include_sub):
-            title = l_sub[0]
-            paragraphs = l_sub[1:]
-            paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
-
-            yield title, paragraphs_clean
 
 
 class CPSVAPRelationsClassifier(abc.ABC):
@@ -210,3 +153,102 @@ class RegexCPSVAPRelationsClassifier(CPSVAPRelationsClassifier):
                      title: str = None,
                      paragraph: str = None):
         return bool(re.match(self.pattern_cost, title, re.IGNORECASE))
+
+
+class CityParser(abc.ABC):
+    """
+    Abstract class for city procedure parsers
+    """
+
+    @abc.abstractmethod
+    def parse_page(self,
+                   s_html: str,
+                   include_sub: bool = True):
+        """
+        Converts a html page to paragraphs with their title.
+
+        Args:
+            s_html:
+            include_sub (bool):
+                Flag whether to include subsections as well.
+                Only if possible/has header level info.
+
+        Returns:
+
+        """
+        pass
+
+    @abc.abstractmethod
+    def extract_relations(self, s_html: str, url: str) -> Relations:
+        """
+        Extracts important CPSV-AP relations from a webpage containing an administrative procedure.
+
+        Args:
+            s_html: HTML as string
+            url: original URL to the webpage
+
+        Returns:
+            extracted relations saved in Relations object.
+        """
+        pass
+
+    def _paragraph_generator(self,
+                             s_html,
+                             include_sub: bool = True
+                             ) -> Generator[Tuple[str, str], None, None]:
+        """
+        Generates the header-paragraph pairs out of the HTML.
+
+        Args:
+            s_html: HTML of page as string.
+
+        Returns:
+            generates (title, paragraph) pairs.
+        """
+        for l_sub in self.parse_page(s_html, include_sub=include_sub):
+            title = l_sub[0]
+            paragraphs = l_sub[1:]
+            paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
+
+            yield title, paragraphs_clean
+
+
+class ClassifierCityParser(CityParser, ABC):
+    """
+    Originally AalterParser
+    """
+
+    def __init__(self, classifier: CPSVAPRelationsClassifier, *args, **kwargs):
+        super(ClassifierCityParser, self).__init__(*args, **kwargs)
+
+        self.classifier = classifier
+
+    def extract_relations(self, s_html: str, url: str) -> Relations:
+        """
+        Extracts important CPSV-AP relations from a webpage containing an adminstrative procedure.
+
+        Args:
+            s_html: HTML as string
+            url: original URL to the webpage
+
+        Returns:
+            extracted relations saved in Relations object.
+        """
+
+        d = Relations()
+
+        for title, paragraph in self._paragraph_generator(s_html):
+
+            if self.classifier.predict_criterion_requirement(title, paragraph):
+                d.criterionRequirement = paragraph
+
+            if self.classifier.predict_rule(title, paragraph):
+                d.rule = paragraph
+
+            if self.classifier.predict_evidence(title, paragraph):
+                d.evidence = paragraph
+
+            if self.classifier.predict_cost(title, paragraph):
+                d.cost = paragraph
+
+        return d
