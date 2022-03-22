@@ -56,7 +56,7 @@ class ETranslationConnector:
 
     def trans_snippet_blocking(self, source: str,
                                target: str,
-                               snippet: str):
+                               snippet: str) -> str:
         data = {'source': str(source),
                 'target': str(target),
                 'snippet': str(snippet)}
@@ -64,7 +64,11 @@ class ETranslationConnector:
         r = self._post(self.url_trans_snippet_blocking,
                        data=data)
 
-        return r.json()
+        r.raise_for_status()
+
+        snippet_trans = r.json().strip()
+
+        return snippet_trans
 
     def trans_doc(self, source: str,
                   target: str,

@@ -4,8 +4,8 @@ from app.models import Labels, Results, Text
 
 
 class BERTConnector:
-    def __init__(self):
-        self.url = "http://relations_classifier_bert_api_cpu:5000"
+    def __init__(self, url="http://relations_classifier_bert_api_cpu:5000"):
+        self.url = url
 
     def get_home(self) -> dict:
         response = requests.get(self.url)

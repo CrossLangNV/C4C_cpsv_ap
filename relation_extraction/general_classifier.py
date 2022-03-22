@@ -1,11 +1,13 @@
 import json
 import os
 import re
+from functools import lru_cache
 from typing import List
 
 import pandas as pd
 from nltk.tokenize import sent_tokenize
 
+from connectors.bert_classifier import BERTConnector
 from connectors.translation import ETranslationConnector
 from data.html import get_html
 from relation_extraction.aalter import AalterParser
@@ -272,21 +274,92 @@ class Dataset:
 class GeneralClassifier(CPSVAPRelationsClassifier):
     """
     General classifier
-    TODO
-     - access BERT API
     """
 
+    COST = "cost"
+    RULE = "rule"
+    EVIDENCE = "evidence"
+    CRITERION_REQUIREMENT = "criterion_requirement"
+
+    def __init__(self, lang: str):
+        super(GeneralClassifier, self).__init__()
+
+        self.bert_connector = BERTConnector()
+        self.translator = ETranslationConnector(username=CEF_LOGIN,
+                                                password=CEF_PASSW)
+
+        self.lang = lang  # language of source files
+
     def predict_criterion_requirement(self, title: str = None, paragraph: str = None) -> bool:
-        raise NotImplementedError()
+        """
+        Get general classification, then use CACHE to save result temporarily.
+        Args:
+            title:
+            paragraph:
+
+        Returns:
+
+        """
+
+        return self._shared_predict(title, paragraph, self.CRITERION_REQUIREMENT)
 
     def predict_rule(self, title: str = None, paragraph: str = None) -> bool:
-        raise NotImplementedError()
+        return self._shared_predict(title, paragraph, self.RULE)
 
     def predict_evidence(self, title: str = None, paragraph: str = None) -> bool:
-        raise NotImplementedError()
+        return self._shared_predict(title, paragraph, self.EVIDENCE)
 
     def predict_cost(self, title: str = None, paragraph: str = None) -> bool:
-        raise NotImplementedError()
+        return self._shared_predict(title, paragraph, self.COST)
+
+    def _shared_predict(self, title: str, paragraph: str, key: str):
+        """
+
+        Args:
+            title:
+            paragraph:
+            key:
+
+        Returns:
+
+        TODO:
+         - (?) Include paragraph info into the prediction
+         - Use cache for retrieving results (as we will call it multiple times)
+        """
+
+        results = self._get_results_cache(title, self.lang)
+        # results = self.bert_connector.post_classify_text(title)
+        idx = results.names.index(key)
+        prob = results.probabilities[idx]
+
+        return bool(round(prob))
+
+    @lru_cache(maxsize=1)
+    def _get_results_cache(self, text: str, lang: str):
+        """
+        Use cache for retrieving results as we will call it multiple times in a row with the same value.
+
+        Args:
+            text:
+
+        Returns:
+
+        """
+
+        EN = "EN"
+
+        if lang.upper() != EN:
+            # Translate
+            text_EN = self.translator.trans_snippet_blocking(
+                source=lang.upper(),
+                target=EN,
+                snippet=text
+            )
+        else:
+            text_EN = text
+
+        results = self.bert_connector.post_classify_text(text_EN)
+        return results
 
 
 class GeneralCityParser(ClassifierCityParser):
@@ -294,7 +367,7 @@ class GeneralCityParser(ClassifierCityParser):
     City parser with a general classifier.
     """
 
-    def __init__(self):
-        classifier = GeneralClassifier()
+    def __init__(self, lang: str):
+        classifier = GeneralClassifier(lang=lang)
 
         super(GeneralCityParser, self).__init__(classifier=classifier)

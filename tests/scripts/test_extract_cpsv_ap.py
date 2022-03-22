@@ -229,7 +229,7 @@ class TestCLIGeneral(unittest.TestCase):
         # Set args
         l_args = [
             os.path.join(DIR_SOURCE, "tests/relation_extraction/EXAMPLE_FILES/https_www_aalter_be_verhuizen.html"),
-            "DEMO_BELGIUM.rdf"
+            "DEMO_BELGIUM_GENERAL.rdf"
         ]
         # Command
         self.print_command(l_args)

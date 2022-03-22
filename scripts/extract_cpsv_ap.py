@@ -46,7 +46,8 @@ def main(filename_html,
          # TODO original webpage URL"
          country_code="BE",  # TODO
          extract_concepts: bool = False,
-         general: bool = True,
+         general: bool = False,
+         lang="NL",  # Only when using general
          ):
     """
     Extract the administrative procedure ontology out of a html page,
@@ -73,7 +74,7 @@ def main(filename_html,
         raise FileNotFoundError(f"Could not find HTML file: {filename_html}") from e
 
     if general:
-        city_parser = GeneralCityParser()
+        city_parser = GeneralCityParser(lang=lang)
     else:
         city_parser = get_municipality_parser(country_code=country_code,
                                               url=url)
