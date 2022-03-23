@@ -287,6 +287,11 @@ class TestCLIGeneral(unittest.TestCase):
             country = "BE"
             homepage = "https://www.turnhout.be"
 
+        url = "https://www.comune.trento.it/Aree-tematiche/Attivita-edilizia/Interventi-edilizi/Permesso-di-costruire"
+        lang = "IT"
+        country = "IT"
+        homepage = "https://www.comune.trento.it"
+
         # auto
         basename_html = "DEMO_PROCEDURE.html"
         basename_rdf = "DEMO_PROCEDURE_GENERAL.rdf"

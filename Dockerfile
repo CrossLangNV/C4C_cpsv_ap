@@ -16,6 +16,9 @@ RUN python -m nltk.downloader punkt
 RUN pip3 install git+https://github.com/CrossLangNV/DGFISMA_RDF.git@fb9e840b200d26c58ba1b38ba314ccad7cb708b7 \
     --ignore-installed beautifulsoup4
 
+# TODO move to requirements file
+RUN pip3 install trafilatura
+
 #ARG GIT_TOKEN
 #RUN git clone https://${GIT_TOKEN}@github.com/CrossLangNV/C4C_term_extraction.git
 ENV PYTHONPATH /app

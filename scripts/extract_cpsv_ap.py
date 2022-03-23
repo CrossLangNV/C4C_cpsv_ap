@@ -135,7 +135,6 @@ def main(filename_html,
     return 0
 
 
-# TODO use general parser or be able specify a parser by name instead of rule-based selection.
 def get_municipality_parser(country_code: str = "",
                             url: str = ""
                             ) -> CityParser:
