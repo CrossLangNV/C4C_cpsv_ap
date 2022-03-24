@@ -71,9 +71,10 @@ services:
       dockerfile: app/Dockerfile
       args:
         - MODEL_DIR=MODELS/epoch_35_Mon_Mar_21_142602_2022_d5fa026ea92211ec98150242ac120002
+    command: uvicorn BERT_classifier.app.main:app --host 0.0.0.0 --port 5000
     ports:
       - "7690:5000"
     volumes:
-      - "./src/BERT_classifier:/work"
+      - "./src/BERT_classifier:/work/BERT_classifier"
     networks:
       c4cnet:
