@@ -5,7 +5,7 @@ CLI
 ## Demo
 
 Go into the container
-> docker compose run cpsv_ap
+> docker compose run cpsv_ap bash
 
 Move to scripts folder
 > cd scripts

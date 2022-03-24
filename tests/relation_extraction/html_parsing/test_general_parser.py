@@ -7,7 +7,7 @@ from relation_extraction.html_parsing.general_parser import GeneralHTMLParser
 class TestGeneralHTMLParser(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.parser = GeneralHTMLParser()
+        pass
 
     def interesting_webstites(self):
         """
@@ -29,9 +29,12 @@ class TestGeneralHTMLParser(unittest.TestCase):
         https://www.sint-niklaas.be/onze-dienstverlening/persoonlijke-documenten/reizen/internationaal-paspoort
         """
 
-    def test_foo(self):
+    def test_sandbox(self):
         url = "https://www.comune.trento.it/Aree-tematiche/Attivita-edilizia/Interventi-edilizi/Permesso-di-costruire/Permesso-di-costruire"
         html = url2html(url)
-        self.parser.foo(html)
+
+        parser = GeneralHTMLParser(html)
+
+        parser._sandbox()
 
         self.assertEqual(0, 1)
