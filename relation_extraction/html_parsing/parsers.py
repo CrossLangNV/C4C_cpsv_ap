@@ -1,8 +1,8 @@
 import abc
 import re
+from typing import List, Union
 
 from bs4 import BeautifulSoup, Tag
-from typing import List, Union
 
 from relation_extraction.utils import clean_text
 
@@ -67,8 +67,6 @@ class Section(list):
 
     def get_all_text(self, delimiter="\n"):
         return delimiter.join(self.get_all_text_blocks())
-    # def __repr__(self):
-    #     return str(self.get_all_text())
 
 
 class HTMLParser(abc.ABC):
