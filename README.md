@@ -1,4 +1,4 @@
-# C4C_cpsv_ap
+# CPSV-AP Extraction Pipeline
 
 One of the goals is to export the data to open linked data format.
 
