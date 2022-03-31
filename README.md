@@ -21,6 +21,25 @@ This can be separated into subproblems:
 For all information related to CPSV-AP
 see [Core Public Service Vocabulary Application Profile solution](https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/solution/core-public-service-vocabulary-application-profile/releases)
 
+## Relation extraction
+
+To extract the relations as defined by the CPSV-AP, a CLI can be found
+in [scripts/extract_cpsv_ap.py](scripts/extract_cpsv_ap.py).
+
+This CLI can be used after building the images with our docker-compose file.
+
+> docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -h
+
+![scripts/extract_script_help.png](scripts/extract_script_help.png)
+
+An example to run the extraction:
+
+> docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -g -o scripts/DEMO_BELGIUM_GENERAL.rdf -l NL -c BE -m http://stad.gent scripts/DEMO_PROCEDURE.html
+
+The output is saved in [scripts/DEMO_PROCEDURE.html](scripts/DEMO_PROCEDURE.html) and can be visualized with [RDF Grapher](https://www.ldf.fi/service/rdf-grapher):
+
+![Visualisation of extracted CPSV-AP RDF](scripts/example_sint_niklaas.png)
+
 ## Validation
 
 For validation of the RDF, we currently refer
@@ -31,14 +50,6 @@ Validation of the data (07/10/2011):
 * data/output/demo2_export.rdf: property dct:spatial has to be added to PublicOrganisations.
 * data/examples/trento.jsonld: flawless
 * data/examples/export.rdf: "The property dct:language SHOULD have the following pattern"
-
-# TODO
-
-*[ ] Extract and save basic functionalities
-    * Opening hours
-    * Evidence
-    * Criterion Requirements
-    * Contact Point
 
 # Packages
 
@@ -61,6 +72,10 @@ Example code to generate RDFLib graph for the concepts:
       [https://data.vlaanderen.be/context/dienstencataloog.jsonld](https://data.vlaanderen.be/context/dienstencataloog.jsonld)
 
 * [https://github.com/catalogue-of-services-isa/RDF_transformation](https://github.com/catalogue-of-services-isa/RDF_transformation)
+
+# Connector
+
+In order to make the connector work, make sure to first have a RDF enpoint available and added to [environment file](secrets/cpsv_ap.env)
 
 # Other sources
 

@@ -1,7 +1,6 @@
 from rdflib import URIRef
 from rdflib.namespace import DefinedNamespace, Namespace
 
-# SCHEMA = Namespace("https://schema.org/")
 VCARD = Namespace("http://www.w3.org/2006/vcard/ns#")
 
 C4C = Namespace("http://cefat4cities.crosslang.com/content/")
@@ -19,6 +18,11 @@ class CPSV(DefinedNamespace):
 
     # http://purl.org/vocab/cpsv#
     PublicService: URIRef
+    hasInput: URIRef
+    produces: URIRef
+    follows: URIRef
+
+    Rule: URIRef
 
     _NS = Namespace("http://purl.org/vocab/cpsv#")
 

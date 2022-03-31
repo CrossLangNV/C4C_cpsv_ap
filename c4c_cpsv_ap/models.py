@@ -5,42 +5,37 @@ As defined in SC2015DI07446_D02.02_CPSV-AP-2.2.1_v1.00.pdf
 https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/solution/core-public-service-vocabulary-application-profile/distribution/cpsv-ap-specification-v221-pdf
 """
 import abc
-from typing import Optional, List, Dict, Union
+from typing import Dict, List, Optional, Union
 from uuid import uuid4
 
 from pydantic import BaseModel, validator
+from rdflib import URIRef
+
+from c4c_cpsv_ap.namespace import C4C
 
 
 class CPSVAPModel(abc.ABC, BaseModel):
     """
     Abstract class for the RDF object models.
     """
-    pass
 
+    identifier: str
 
-class ContactPoint(CPSVAPModel):
-    """
-    CPSV-AP Contact Point
-    """
-    pass
-    # TODO
+    @validator("identifier", pre=True, check_fields=False)
+    def create_identifier(cls, v: Union[str, None]) -> str:
+        """
+        Automatically generates an ID if not provided.
+        """
+        if not v:
+            return cls.__name__ + _id_generator()
 
+        return v
 
-class Concept(CPSVAPModel):
-    """
-    SKOS Concept
-    """
-    # TODO add language
-    pref_label: str
+    def get_uri(self, base=C4C) -> URIRef:
+        """ Generate a URI based on identifier """
+        return URIRef(self.identifier, base=base)
 
-
-class ContactPoint(CPSVAPModel):
-    email: List[str] = None
-    telephone: List[str] = None
-    opening_hours: List[str] = None
-
-
-class Event(CPSVAPModel):
+class Event(CPSVAPModel, abc.ABC):
     """
     Event
     """
@@ -53,10 +48,72 @@ class Event(CPSVAPModel):
 
     # Links
     ## PublicService
-    related_service: Optional[List] = []
+    related_service: Optional[List[CPSVAPModel]] = []
 
-    def add_related_service(self, public_service):
+    def add_related_service(self, public_service: CPSVAPModel):
         self.related_service.append(public_service)
+
+
+class Code(str):
+    """
+    A series of alpha-numeric or other
+    characters
+    E.g. a microchip code, access code,
+    social security number, enterprise
+    number
+    """
+
+
+class Concept(BaseModel):
+    """
+    SKOS Concept
+    """
+    # TODO add language
+    pref_label: str
+
+
+class ContactPoint(BaseModel):
+    """
+    CPSV-AP Contact Point
+    """
+    email: List[str] = None
+    telephone: List[str] = None
+    opening_hours: List[str] = None
+
+
+class Cost(CPSVAPModel):
+    identifier: str
+
+    # Optional
+    currency: Optional[Code]
+    description: Optional[str]
+    value: Optional[float]
+
+
+class CriterionRequirement(CPSVAPModel):
+    """
+    CPSV-AP Criterion Requirement
+    """
+    identifier: str
+    name: str
+    # Code [0..n] TODO find definition
+    type: List[Code]
+
+    # Optional:
+    description: Optional[str]
+
+
+class Evidence(CPSVAPModel):
+    identifier: str
+    name: str
+
+    # -- Optional --
+    description: Optional[str]
+    # Linguistic system
+    language: Optional[List[str]]
+    # Document
+    relatedDocumentation: Optional[List[str]]
+    type: Optional[Code]
 
 
 class BusinessEvent(Event):
@@ -67,7 +124,15 @@ class LifeEvent(Event):
     pass
 
 
-class PublicOrganisation(CPSVAPModel):
+class Address(CPSVAPModel):
+    """
+    TODO
+
+    could be an VCARD. Should at least have a string represenation for street etc.
+    """
+
+
+class PublicOrganisation(BaseModel):
     """
     The CPSV-AP reuses the Core Public Organisation Vocabulary that defines the
     concept of a Public Organization and associated properties and relationships. It is
@@ -84,6 +149,10 @@ class PublicOrganisation(CPSVAPModel):
     # Units Named Authority List maintained by the Publications Office's Metadata Registry
     # spatial: Union[str, List[str]]
     spatial: List[str]
+
+    # This property represents an Address related to an Agent. Asserting the address
+    # relationship implies that the Agent has an Address.
+    has_address: Optional[str]  # TODO link to address
 
     @validator("spatial", pre=True)
     def spatial_list(cls, v: Union[str, List[str]]):
@@ -131,6 +200,29 @@ class PublicService(CPSVAPModel):
 
         for event in self.is_grouped_by:
             event.add_related_service(self)
+
+    @validator("has_contact_point", pre=True)
+    def spatial_list(cls, v: Union[ContactPoint, List[ContactPoint]]) -> List[ContactPoint]:
+        """
+        When a single contact point is given, put it in a list
+
+        Returns:
+            Contact point within a list
+        """
+        if isinstance(v, ContactPoint):
+            return [v]
+        else:
+            return v
+
+
+class Rule(CPSVAPModel):
+    description: str
+    identifier: str
+    name: str
+
+    # -- Optional --
+    # Language: Linguistic system
+    language: Optional[List[Code]]
 
 
 def _id_generator() -> str:

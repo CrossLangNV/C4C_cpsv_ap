@@ -1,16 +1,18 @@
 import abc
 import warnings
-from typing import List, Generator, Dict, Union
+from typing import Dict, Generator, List, Union
 
+import rdflib
 from rdflib.graph import ConjunctiveGraph, Graph
 from rdflib.namespace import DCAT, DCTERMS, RDF, SKOS
 from rdflib.plugins.stores.sparqlstore import SPARQLStore
-from rdflib.term import Identifier, Literal
-from rdflib.term import URIRef
-from rdflib.term import _serial_number_generator
+from rdflib.term import _serial_number_generator, Identifier, Literal, URIRef
 
-from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel, PublicOrganisation, BusinessEvent, LifeEvent
-from c4c_cpsv_ap.namespace import CPSV, VCARD, C4C, SCHEMA, CV
+from c4c_cpsv_ap.models import BusinessEvent, Concept, Cost, CPSVAPModel, CriterionRequirement, Event, Evidence, \
+    LifeEvent, \
+    PublicOrganisation, \
+    PublicService, Rule
+from c4c_cpsv_ap.namespace import C4C, CPSV, CV, SCHEMA, VCARD
 
 SUBJ = "subj"
 PRED = "pred"
@@ -120,6 +122,11 @@ class Provider(Harvester):
         self.public_services = PublicServicesProvider(self)
         self.public_organisations = PublicOrganisationsProvider(self)
         self.locations = LocationsProvider(self)
+        self.criterion_requirements = CriterionRequirementProvider(self)
+        self.rules = RuleProvider(self)
+        self.evidences = EvidenceProvider(self)
+        self.costs = CostProvider(self)
+        self.events = EventProvider(self)
 
 
 class SubHarvester(abc.ABC):
@@ -302,6 +309,157 @@ class ConceptsProvider(SubProvider, ConceptsHarvester):
         return uri_ref
 
 
+class CostHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        # TODO
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        # TODO
+        pass
+
+
+class CostProvider(SubProvider, CostHarvester):
+    def add(self, cost: Cost,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+
+        if uri is None:
+            if cost.identifier:
+                uri = URIRef(cost.identifier, base=C4C)
+            else:
+                uri = uriref_generator("Cost", C4C)
+
+        uri_c = URIRef(uri)
+
+        self.provider.graph.add((uri_c, RDF.type, CV.Cost, context))
+
+        self.provider.graph.add((uri_c, DCTERMS.identifier, Literal(cost.identifier), context))
+        if cost.value:
+            self.provider.graph.add((uri_c, CV.value, Literal(cost.value), context))
+        if cost.currency:
+            self.provider.graph.add((uri_c, CV.currency, Literal(cost.value), context))
+        if cost.description:
+            self.provider.graph.add((uri_c, DCTERMS.description, Literal(cost.description), context))
+
+        return uri_c
+
+
+class CriterionRequirementHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        # TODO
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        # TODO
+        pass
+
+
+class CriterionRequirementProvider(SubProvider, CriterionRequirementHarvester):
+    def add(self,
+            crit_req: CriterionRequirement,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+        """
+        """
+
+        if uri is None:
+            if crit_req.identifier:
+                uri = URIRef(crit_req.identifier, base=C4C)
+            else:
+                uri = uriref_generator("CriterionRequirement", C4C)
+
+        uri_cr = URIRef(uri)
+
+        self.provider.graph.add((uri_cr, RDF.type, CV.CriterionRequirement, context))
+
+        self.provider.graph.add((uri_cr, DCTERMS.identifier, Literal(crit_req.identifier), context))
+        if crit_req.description:
+            self.provider.graph.add((uri_cr, DCTERMS.description, Literal(crit_req.description), context))
+        # name
+        self.provider.graph.add((uri_cr, DCTERMS.title, Literal(crit_req.name), context))
+
+        # TODO add optional relations
+
+        return uri_cr
+
+
+class EventHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        pass
+
+
+class EventProvider(SubProvider, EventHarvester):
+    def add(self, event: Event,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+        if uri is None:
+            if event.identifier:
+                uri = URIRef(event.identifier, base=C4C)
+            else:
+                uri = uriref_generator("Event", C4C)
+
+        uri_e = URIRef(uri)
+
+        self.provider.graph.add((uri_e, RDF.type, CV.Event, context))
+
+        self.provider.graph.add((uri_e, DCTERMS.identifier, Literal(event.identifier), context))
+
+        self.provider.graph.add((uri_e, DCTERMS.title, Literal(event.name), context))
+
+        if event.description:
+            self.provider.graph.add((uri_e, DCTERMS.description, Literal(event.description), context))
+        if event.type:
+            self.provider.graph.add((uri_e, DCTERMS.type, Literal(event.type), context))
+        if event.related_service:
+            for public_service in event.related_service:
+                self.provider.graph.add((uri_e, DCTERMS.relation, public_service.get_uri(), context))
+
+        return uri_e
+
+
+class EvidenceHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        # TODO
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        # TODO
+        pass
+
+
+class EvidenceProvider(SubProvider, EvidenceHarvester):
+
+    def add(self,
+            evidence: Evidence,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+        """
+        """
+
+        if uri is None:
+            if evidence.identifier:
+                uri = URIRef(evidence.identifier, base=C4C)
+            else:
+                uri = uriref_generator("Evidence", C4C)
+
+        uri_e = URIRef(uri)
+
+        self.provider.graph.add((uri_e, RDF.type, CV.Evidence, context))
+
+        self.provider.graph.add((uri_e, DCTERMS.identifier, Literal(evidence.identifier), context))
+        if evidence.description:
+            self.provider.graph.add((uri_e, DCTERMS.description, Literal(evidence.description), context))
+        self.provider.graph.add((uri_e, DCTERMS.title, Literal(evidence.name), context))
+
+        # TODO add optional relations
+
+        return uri_e
+
+
 class LocationsHarvester(SubHarvester):
     def get_all(self) -> List[URIRef]:
         raise NotImplementedError()
@@ -313,7 +471,8 @@ class LocationsHarvester(SubHarvester):
 class LocationsProvider(SubProvider, LocationsHarvester):
     def add(self,
             uri_spat: URIRef,
-            context=None) -> URIRef:
+            context=None,
+            debug=False) -> URIRef:
         """
         Like <dct:Location rdf:about="http://cpsv-ap.semic.eu/cpsv-ap_editor/content/mikkeli">
         """
@@ -326,7 +485,8 @@ class LocationsProvider(SubProvider, LocationsHarvester):
             for label in list(tmp_graph.objects(URIRef(uri_spat), SKOS.prefLabel)):
                 self.provider.graph.add((uri_spat, SKOS.prefLabel, label, context))
         except:
-            warnings.warn("Did not succeed in extracting ATU info.")
+            if debug:
+                warnings.warn("Did not succeed in extracting ATU info.")
 
         return uri_spat
 
@@ -388,9 +548,9 @@ class PublicOrganisationsHarvester(SubHarvester):
 class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
     def add(self, obj: PublicOrganisation, context: str, uri: URIRef = None) -> URIRef:
 
+        # Has no identifier.
         if uri is None:
             uri = uriref_generator("PublicOrganisation", C4C)
-
         uri_ref = URIRef(uri)
 
         if not isinstance(context, URIRef):
@@ -425,6 +585,20 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
             self.provider.graph.add((uri_ref, DCTERMS.spatial, uri_spat, context))
 
             self.provider.locations.add(uri_spat, context=context)
+
+        # Address
+        if obj.has_address:
+            if 0:
+                self.provider.graph.add((uri_ref, CV.hasAddress, Literal(obj.has_address), context))
+            else:
+                # Link to VCARD entity instead
+                _bnode = rdflib.BNode()
+                self.provider.graph.add((uri_ref, CV.hasAddress, _bnode, context))
+                self.provider.graph.add((_bnode, RDF.type, VCARD.Address, context))
+
+                # TODO address info: street, locality, postal-code, country-name
+                #  see https://www.w3.org/2006/vcard/ns# https://www.w3.org/TR/vcard-rdf/
+                self.provider.graph.add((_bnode, SKOS.prefLabel, Literal(obj.has_address), context))
 
         return uri_ref
 
@@ -506,7 +680,6 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
     def add(self,
             public_service: PublicService,
             context: str,
-            uri: str = None
             ) -> URIRef:
         """
 
@@ -519,10 +692,7 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
 
         """
 
-        if uri is None:
-            uri = uriref_generator("PublicService", C4C)
-
-        uri_ps = URIRef(uri)
+        uri_ps = public_service.get_uri()
 
         if not isinstance(context, URIRef):
             context = URIRef(context)
@@ -545,18 +715,14 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
 
         # Event:
         for event in public_service.is_grouped_by:
+            uri_event = event.get_uri()
 
-            if isinstance(event, BusinessEvent):
-                uri_event = uriref_generator("BusinessEvent", C4C)
-                self.provider.graph.add((uri_event, RDF.type, CV.BusinessEvent, context))
-            elif isinstance(event, LifeEvent):
-                uri_event = uriref_generator("LifeEvent", C4C)
-                self.provider.graph.add((uri_event, RDF.type, CV.LifeEvent, context))
-            else:  # Event
-                uri_event = uriref_generator("Event", C4C)
+            self.provider.graph.add((uri_event, RDF.type, CV.BusinessEvent, context))
 
-            # Type
-            self.provider.graph.add((uri_event, RDF.type, CV.Event, context))
+            type_event = CV.BusinessEvent if isinstance(event, BusinessEvent) \
+                else CV.LifeEvent if isinstance(event, LifeEvent) \
+                else CV.Event
+            self.provider.graph.add((uri_event, RDF.type, type_event, context))
 
             # Properties
             self.provider.graph.add((uri_event, DCTERMS.identifier, Literal(event.identifier), context))
@@ -598,6 +764,94 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
                 self.provider.graph.add((uri_opening_hours_specification, SCHEMA.description, Literal(hours), context))
 
         return uri_ps
+
+    def add_cost(self,
+                 uri_ps: URIRef,
+                 uri_cost: URIRef,
+                 context: URIRef):
+        self.provider.graph.add((uri_ps,
+                                 CV.hasCost,
+                                 uri_cost,
+                                 context))
+
+    def add_criterion(self,
+                      uri_ps: URIRef,
+                      uri_crit_req: URIRef,
+                      context: URIRef):
+
+        self.provider.graph.add((uri_ps,
+                                 CV.hasCriterion,
+                                 uri_crit_req,
+                                 context))
+
+    def add_event(self,
+                  uri_ps: URIRef,
+                  uri_event: URIRef,
+                  context: URIRef):
+
+        self.provider.graph.add((uri_ps,
+                                 CV.isGroupedBy,
+                                 uri_event,
+                                 context))
+
+        # TODO add related service?
+
+        pass
+
+    def add_evidence(self,
+                     uri_ps: URIRef,
+                     uri_evi: URIRef,
+                     context: URIRef):
+
+        self.provider.graph.add((uri_ps,
+                                 CPSV.hasInput,
+                                 uri_evi,
+                                 context))
+
+    def add_rule(self,
+                 uri_ps: URIRef,
+                 uri_rule: URIRef,
+                 context: URIRef):
+
+        self.provider.graph.add((uri_ps,
+                                 CPSV.follows,
+                                 uri_rule,
+                                 context))
+
+
+class RuleHarvester(SubHarvester):
+    def get_all(self) -> List[URIRef]:
+        pass
+
+    def get(self, uri: URIRef) -> CPSVAPModel:
+        pass
+
+
+class RuleProvider(SubProvider, RuleHarvester):
+    def add(self,
+            rule: Rule,
+            context: str,
+            uri: URIRef = None) -> URIRef:
+        """
+        """
+
+        if uri is None:
+            if rule.identifier:
+                uri = URIRef(rule.identifier, base=C4C)
+            else:
+                uri = uriref_generator("Rule", C4C)
+
+        uri_r = URIRef(uri)
+
+        self.provider.graph.add((uri_r, RDF.type, CPSV.Rule, context))
+
+        self.provider.graph.add((uri_r, DCTERMS.identifier, Literal(rule.identifier), context))
+        self.provider.graph.add((uri_r, DCTERMS.description, Literal(rule.description), context))
+        self.provider.graph.add((uri_r, DCTERMS.title, Literal(rule.name), context))
+
+        # TODO add optional relations
+
+        return uri_r
 
 
 def id_generator() -> str:

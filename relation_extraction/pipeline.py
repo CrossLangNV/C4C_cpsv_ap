@@ -1,0 +1,92 @@
+from c4c_cpsv_ap.models import Cost, CriterionRequirement, Evidence, Rule
+from relation_extraction.cities import CityParser
+from relation_extraction.methods import RelationExtractor
+
+
+class RelationExtractor2(RelationExtractor):
+    """
+    The extended version of RelationExtractor
+
+    TODO
+     * Move the whole class to this module.
+    """
+
+    def __init__(self, *args,
+                 parser: CityParser,
+                 url: str,
+                 **kwargs):
+        super(RelationExtractor2, self).__init__(*args, **kwargs)
+
+        self.parser = parser
+        self.url = url
+
+    def extract_all(self, *args, verbose=0, **kwargs, ):
+        if verbose:
+            print("Relation extraction contact info - Start")
+        ps = super(RelationExtractor2, self).extract_all(*args, **kwargs)
+        if verbose:
+            print("Relation extraction contact info - Finish")
+
+        # TODO add new relations
+
+        DEFAULT_NAME = "DEFAULT NAME"
+
+        if verbose:
+            print("Relation extraction req/rule/evidence/cost - Start")
+        d_relations = self.parser.extract_relations(self.html,
+                                                    url=self.url,
+                                                    verbose=verbose)
+        if verbose:
+            print("Relation extraction req/rule/evidence/cost - Finish")
+
+        if d_relations.criterionRequirement:
+            crit_req = CriterionRequirement(identifier=None,
+                                            name=DEFAULT_NAME,
+                                            type=[],
+                                            description=d_relations.criterionRequirement
+                                            )
+            uri_cr = self.provider.criterion_requirements.add(crit_req, context=self.context)
+            self.provider.public_services.add_criterion(uri_ps=ps.get_uri(),
+                                                        uri_crit_req=uri_cr,
+                                                        context=self.context)
+
+        if d_relations.rule:
+            rule = Rule(identifier=None,
+                        description=d_relations.rule,
+                        name=DEFAULT_NAME
+                        )
+
+            uri_rule = self.provider.rules.add(rule, context=self.context)
+            self.provider.public_services.add_rule(uri_ps=ps.get_uri(),
+                                                   uri_rule=uri_rule,
+                                                   context=self.context)
+
+        if d_relations.evidence:
+            evidence = Evidence(identifier=None,
+                                name=DEFAULT_NAME,
+                                description=d_relations.evidence
+                                )
+
+            uri_evi = self.provider.evidences.add(evidence, context=self.context)
+            self.provider.public_services.add_evidence(uri_ps=ps.get_uri(),
+                                                       uri_evi=uri_evi,
+                                                       context=self.context)
+
+        if d_relations.cost:
+            cost = Cost(identifier=None,
+                        description=d_relations.cost
+                        )
+
+            uri_cost = self.provider.costs.add(cost, context=self.context)
+            self.provider.public_services.add_cost(uri_ps=ps.get_uri(),
+                                                   uri_cost=uri_cost,
+                                                   context=self.context)
+
+        if d_relations.events:
+            for event in d_relations.events:
+                event.add_related_service(ps)
+
+                uri_event = self.provider.events.add(event, context=self.context)
+                self.provider.public_services.add_event(uri_ps=ps.get_uri(),
+                                                        uri_event=uri_event,
+                                                        context=self.context)

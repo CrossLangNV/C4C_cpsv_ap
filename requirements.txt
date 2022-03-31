@@ -1,5 +1,17 @@
-numpy==1.18.5
-pandas == 1.2.0
+numpy>=1.18.5
+pandas==1.2.0
 rdflib-jsonld==0.5.0
-rdflib==6.0.1
+rdflib==6.0.2
+sparqlwrapper==1.8.5
 pydantic==1.8.2
+requests==2.26.0
+
+# Parsing
+beautifulsoup4==4.10.0
+nltk>=3.7
+
+# Cas parsing
+dkpro-cassis==0.7.0
+
+# Connectors
+pysolr>=3.9.0
