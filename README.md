@@ -1,4 +1,11 @@
-# C4C_cpsv_ap
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <td><img src="https://user-images.githubusercontent.com/8747446/160939167-1e70640f-ba7d-48fa-93a3-7167520fbbd7.png" width="300"></td>
+        <td><img src="https://user-images.githubusercontent.com/8747446/160938749-10b34fed-c9e8-4644-8218-2d61fcae5299.png" width="400"></td>
+    </tr>
+</table>
+
+# CPSV-AP Extraction Pipeline
 
 One of the goals is to export the data to open linked data format.
 
