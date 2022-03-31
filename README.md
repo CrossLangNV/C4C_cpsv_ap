@@ -44,14 +44,6 @@ Validation of the data (07/10/2011):
 * data/examples/trento.jsonld: flawless
 * data/examples/export.rdf: "The property dct:language SHOULD have the following pattern"
 
-# TODO
-
-*[ ] Extract and save basic functionalities
-    * Opening hours
-    * Evidence
-    * Criterion Requirements
-    * Contact Point
-
 # Packages
 
 Get python RDF parser for SKOS:Concepts
