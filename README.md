@@ -15,7 +15,7 @@ This can be separated into subproblems:
 * Extract relevant information.
 * Save as RDF.
 
-  ![CPSV-AP PNG](specifications/CPSV-AP.png)
+![image](https://user-images.githubusercontent.com/8747446/161078291-803b78de-b4f9-414f-aa53-3c444fd7e671.png)
   *Core Public Service Vocabulary Application Profile*
 
 For all information related to CPSV-AP
@@ -30,7 +30,8 @@ This CLI can be used after building the images with our docker-compose file.
 
 > docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -h
 
-![scripts/extract_script_help.png](scripts/extract_script_help.png)
+![image](https://user-images.githubusercontent.com/8747446/161078551-6ce66a33-9fe5-4619-af65-b711cac44632.png)
+
 
 An example to run the extraction:
 
@@ -38,7 +39,9 @@ An example to run the extraction:
 
 The output is saved in [scripts/DEMO_PROCEDURE.html](scripts/DEMO_PROCEDURE.html) and can be visualized with [RDF Grapher](https://www.ldf.fi/service/rdf-grapher):
 
-![Visualisation of extracted CPSV-AP RDF](scripts/example_sint_niklaas.png)
+![Visualisation of extracted CPSV-AP RDF]
+![image](https://user-images.githubusercontent.com/8747446/161078882-eae61bd5-1348-4be8-bb9c-b38b72b75c07.png)
+
 
 ## Validation
 
