@@ -273,7 +273,7 @@ class TestCLIGeneral(unittest.TestCase):
              lang=args.language
              )
 
-    def test_demo(self):
+    def test_demo(self, run=True):
         # TODO required inputs:
         if 1:
             url = "https://stad.gent/nl/over-gent-stadsbestuur/belastingen/online-aangiften/belasting-op-woningen-zonder-inschrijving-het-bevolkingsregister-zogenaamde-tweede-verblijven"
@@ -305,6 +305,23 @@ class TestCLIGeneral(unittest.TestCase):
         # Command
         print("copy the following command")
         self.print_command(l_args)
+
+        if run:
+            parser = get_parser()
+            args = parser.parse_args(l_args)
+
+            def path_scripts(basename):
+                return os.path.join(DIR_SOURCE, "scripts", basename)
+
+            main(filename_html=path_scripts(args.path),
+                 filename_rdf=path_scripts(args.output),
+                 extract_concepts=args.terms,
+                 context=args.municipality,
+                 country_code=args.country,
+                 url=args.url,
+                 general=args.general,
+                 lang=args.language
+                 )
 
         return
 
