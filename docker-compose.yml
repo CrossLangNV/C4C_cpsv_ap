@@ -22,7 +22,7 @@ services:
       - "./data:/app/data"
       - "./relation_extraction:/app/relation_extraction"
       - "./scripts:/app/scripts"
-      - "./SRC/BERT_classifier:/app/BERT_classifier"
+      - "./src/BERT_classifier:/app/BERT_classifier"
     env_file:
       - secrets/cpsv_ap.env
     environment:

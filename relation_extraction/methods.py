@@ -16,6 +16,11 @@ from relation_extraction.utils import clean_text
 TERM_EXTRACTION = os.environ.get("TERM_EXTRACTION")
 CONTACT_CLASSIFICATION = os.environ.get("CONTACT_CLASSIFICATION")
 
+if not bool(TERM_EXTRACTION):
+    warnings.warn("Don't forget to set TERM_EXTRACTION in env", UserWarning)
+if not bool(CONTACT_CLASSIFICATION):
+    warnings.warn("Don't forget to set CONTACT_CLASSIFICATION in env", UserWarning)
+
 
 class ContactInfoSplit(BaseModel):
     """

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:cpsv="http://purl.org/vocab/cpsv#"
+   xmlns:cv="http://data.europa.eu/m8g/"
+   xmlns:dct="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:schema="https://schema.org/"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule71c5fd856e534866901ec5068141d140">
+    <dct:description>Fahrzeuge ohne EU -Betriebserlaubnis, die aus dem Ausland importiert wurden, Fahrzeuge für die kein Typenschein erlangt werden kann und die nicht in der Genehmigungsdatenbank enthalten sind und Einzel- und Sonderanfertigungen müssen bei der Abteilung für Verkehrsorganisation und technische Verkehrsangelegenheiten ( MA 46) gesondert genehmigt werden.</dct:description>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:identifier>Rule71c5fd856e534866901ec5068141d140</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService8022dccd86a84025b0e8cd2c696091fd">
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <dct:description>Informationen über die Einzelgenehmigung von Fahrzeugen.</dct:description>
+    <dct:title>
+        Einzelgenehmigung von Fahrzeugen - Antrag
+    </dct:title>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost99780977b2bf4cd3ae4780d6e25428a5"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement74297bf9a3734205995109c341063170"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint67d25a28b01a4a8d96f7c8b62b2efc22"/>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidenceea222a52724147338d3610f2b99797b9"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation6c668e0ccc1043928e43011ee890d680"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule71c5fd856e534866901ec5068141d140"/>
+    <dct:identifier>PublicService8022dccd86a84025b0e8cd2c696091fd</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation6c668e0ccc1043928e43011ee890d680">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <cv:hasAddress rdf:nodeID="N740cdfe4595c4e4a8fbd7408a4232912"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <dct:spatial rdf:resource="www.wien.gv.at"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint67d25a28b01a4a8d96f7c8b62b2efc22">
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:telephone>Straße und Verkehr, Montag bis Freitag von 7 bis 18 Uhr: +43 1 955 59.</schema:telephone>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost99780977b2bf4cd3ae4780d6e25428a5">
+    <dct:description>Zirka 60 bis 160 Euro (abhängig von den erforderlichen Nachweisen und der Fahrzeugkategorie).
+Die Zahlung kann vor Ort in bar oder per Bankomat, in Ausnahmefällen oder bei schriftlicher Zusendung auch mit Zahlungsanweisung erfolgen.
+Die Verrechnung erfolgt über die Abteilung Rechnungs- und Abgabenwesen - Buchhaltungsabteilung 40 .</dct:description>
+    <dct:identifier>Cost99780977b2bf4cd3ae4780d6e25428a5</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidenceea222a52724147338d3610f2b99797b9">
+    <dct:identifier>Evidenceea222a52724147338d3610f2b99797b9</dct:identifier>
+    <dct:title>DEFAULT NAME</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:description>Anträge können mit dem Antragsformular, vor Ort, postalisch, per Fax oder per E-Mail gestellt werden. Der Antrag muss folgende Angaben enthalten:
+* Name (inklusive Geburtsdatum) bzw. Firmenname (inklusive Firmenbuchnummer und UID -Nummer) sowie für Rückfragen: Telefonnummer oder E-Mail -Adresse der Antragstellerin oder des Antragstellers
+Für die Bearbeitung und Terminvergabe werden folgende Unterlagen im Original benötigt (eine einge scannte Beilage ist nicht ausreichend):
+* Bei Importen die ausländischen Fahrzeugpapiere
+* Je nach Umfang der technischen Inhalte der vorhanden Papiere zusätzlich ein technisches Datenblatt des Generalvertreters
+* Besitznachweis ( z.B. Kaufvertrag)
+* Die empfohlene Vorlage eines positiven Anmeldegutachtens § 57a von ARBÖ , ÖAMTC , Ziviltechniker, staatlich autorisierten Prüfstellen oder Fachwerkstätte (kein Pickerl) beschleunigt das Verfahren erfahrungsgemäß wesentlich.
+* Vollmacht, falls die FahrzeugbesitzerInnen nicht persönlich kommen
+Es können zusätzliche Unterlagen erforderlich sein. Das kann erst im Zuge der Einreichung oder der Fahrzeugüberprüfung festgestellt und bekannt gegeben werden.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement74297bf9a3734205995109c341063170">
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:description>* Vom Ausland importierte Fahrzeuge ohne EU -Betriebserlaubnis (Diese gibt es frühestens ab dem Baujahr 1995 für PKW aus den alten EU -Ländern.)
+* Fahrzeuge für die kein Typenschein erlangt werden kann und die nicht in der Genehmigungsdatenbank enthalten sind
+* Einzel- und Sonderanfertigungen
+Das Fahrzeug muss den Baujahrsvorschriften des österreichischen Kraftfahrrecht bzw. den EU -Vorschriften entsprechen.</dct:description>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:identifier>CriterionRequirement74297bf9a3734205995109c341063170</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N740cdfe4595c4e4a8fbd7408a4232912">
+    <skos:prefLabel>Start</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="www.wien.gv.at">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+</rdf:RDF>
