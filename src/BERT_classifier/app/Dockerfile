@@ -37,4 +37,6 @@ COPY $MODEL_DIR/*.bin /tmp/app_model/pytorch_model.bin
 COPY $MODEL_DIR/config.json /tmp/app_model/
 COPY $MODEL_DIR/vocab.txt /tmp/app_model/
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]
+ENV PYTHONPATH "${PYTHONPATH}:/work"
+
+CMD ["uvicorn", "BERT_classifier.app.main:app", "--host", "0.0.0.0", "--port", "5000"]
