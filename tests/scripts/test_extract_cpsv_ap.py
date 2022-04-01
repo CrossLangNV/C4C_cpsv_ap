@@ -229,21 +229,27 @@ class TestCLIGeneral(unittest.TestCase):
 
         # Set args
         l_args = [
+            "-g",
+            "-o", os.path.join(os.path.dirname(__file__), "examples/DEMO_BELGIUM_GENERAL.rdf"),
+            "-l", "NL",
+            "-c", "BE",
+            "-m", "www.aalter.be",
+            "-u", "https://www.aalter.be/verhuizen",
             os.path.join(DIR_SOURCE, "tests/relation_extraction/EXAMPLE_FILES/https_www_aalter_be_verhuizen.html"),
-            "DEMO_BELGIUM_GENERAL.rdf"
         ]
         # Command
         self.print_command(l_args)
 
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.Path,
-             filename_rdf=args.RDF,
-             extract_concepts=args.concepts,
-             context="www.aalter.be",  # TODO add flags
-             country_code="BE",  # TODO add flags
-             url="https://www.aalter.be/verhuizen",
-             general=True
+        main(filename_html=args.path,
+             filename_rdf=args.output,
+             extract_concepts=args.terms,
+             context=args.municipality,
+             country_code=args.country,
+             url=args.url,
+             general=args.general,
+             lang=args.language
              )
 
     def test_general_args(self):
