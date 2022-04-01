@@ -7,67 +7,86 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint3dc0e162a3a04df19a52a3208f4b0ed5">
-    <schema:telephone>** Loket paspoorten en identiteitskaarten, Koloniënstraat 11 (ingang loket = 10 meter links van nummer 11), 1000 Brussel, 02 518 21 16,
-helpdesk.belpic@rrn.fgov.be.</schema:telephone>
-    <schema:telephone>welzijnshuis@sint-niklaas.be
-03 778 66 66</schema:telephone>
-    <schema:telephone>burgerzaken@sint-niklaas.be
-03 778 33 00</schema:telephone>
-    <schema:email>info@sint-niklaas.be
-03 778 30 00</schema:email>
-    <schema:email>welzijnshuis@sint-niklaas.be
-03 778 66 66</schema:email>
-    <schema:email>** Loket paspoorten en identiteitskaarten, Koloniënstraat 11 (ingang loket = 10 meter links van nummer 11), 1000 Brussel, 02 518 21 16,
-helpdesk.belpic@rrn.fgov.be.</schema:email>
-    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:email>burgerzaken@sint-niklaas.be
-03 778 33 00</schema:email>
-    <schema:telephone>info@sint-niklaas.be
-03 778 30 00</schema:telephone>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost9a122acb5bac45dc834f91378377e0a0">
+    <dct:identifier>Cost9a122acb5bac45dc834f91378377e0a0</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:description>De belasting is voor het hele jaar verschuldigd.</dct:description>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation92d62116f2d14897b827b83a45f739fe">
-    <dct:spatial rdf:resource="https://www.sint-niklaas.be"/>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <cv:hasAddress rdf:nodeID="Nb88a2e0dee15476d8a8d5faea6d065ce"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation736049a3890b4cea9b034727eecf22ab">
     <skos:prefLabel># TODO</skos:prefLabel>
+    <dct:spatial rdf:resource="https://stad.gent"/>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <cv:hasAddress rdf:nodeID="N6d5138ed0fad42e997117b2d2fdf881e"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService1ecb2b7d64a44ecc924e9badea01fe7a">
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence5fb00937da5143cb859eeba3c015e510"/>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation92d62116f2d14897b827b83a45f739fe"/>
-    <dct:title>&#13;
-    Reispas (paspoort) | Stad Sint-Niklaas&#13;
-   </dct:title>
-    <dct:description>Een reispas (paspoort) is een document om je identiteit te bewijzen in de landen waarvoor de Belgische identiteitskaart of verblijfskaart niet volstaat.</dct:description>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint3dc0e162a3a04df19a52a3208f4b0ed5"/>
-    <dct:identifier>PublicService1ecb2b7d64a44ecc924e9badea01fe7a</dct:identifier>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence5fb00937da5143cb859eeba3c015e510">
-    <dct:identifier>Evidence5fb00937da5143cb859eeba3c015e510</dct:identifier>
-    <dct:description>Ben je geen Belg? Vraag je reispas dan aan in jouw ambassade of consulaat. Sommige personen die niet over de Belgische nationaliteit beschikken, kunnen echter niet terecht bij hun ambassade of consulaat voor een reispas of een nationaal reisdocument. Zij vragen een reisdocument aan via de stad.
-Maak een afspraak Lees meer</dct:description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirementd03fabdbd8fe44ab9414bf8c92310a5e">
     <dct:title>DEFAULT NAME</dct:title>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:description>Wie?
+De natuurlijke- of rechtspersoon die op 1 januari van het aanslagjaar eigenaar is van de woning zonder inschrijving in het bevolkingsregister (zie artikel 4 van het reglement belasting op de tweede verblijven).
+Wanneer?
+U moet ten laatste op 30 juni van het aanslagjaar een aangifte indienen bij het stadsbestuur door middel van een door het stadsbestuur voorgeschreven formulier. Een belastingplichtige die geen aangifteformulier gekregen heeft, moet er zelf één vragen.</dct:description>
+    <dct:identifier>CriterionRequirementd03fabdbd8fe44ab9414bf8c92310a5e</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Nb88a2e0dee15476d8a8d5faea6d065ce">
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
-    <skos:prefLabel>info@sint-niklaas.be
-03 778 30 00
-85 EUR
-burgerzaken@sint-niklaas.be
-03 778 33 00
-260 EUR
-230 EUR
-** Loket paspoorten en identiteitskaarten, Koloniënstraat 11 (ingang loket = 10 meter links van nummer 11), 1000 Brussel, 02 518 21 16,
-helpdesk.belpic@rrn.fgov.be.
-320 EUR
-290 EUR
-270 EUR
-welzijnshuis@sint-niklaas.be
-03 778 66 66</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService56d38a926afc451ea05d0b7745dc57b8">
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint7bbca667a2284b449791babc59b55f93"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirementd03fabdbd8fe44ab9414bf8c92310a5e"/>
+    <dct:title>
+   Belasting op woningen zonder inschrijving in het bevolkingsregister (zogenaamde 'tweede verblijven') | Stad Gent
+  </dct:title>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost9a122acb5bac45dc834f91378377e0a0"/>
+    <dct:identifier>PublicService56d38a926afc451ea05d0b7745dc57b8</dct:identifier>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation736049a3890b4cea9b034727eecf22ab"/>
+    <dct:description>De Stad Gent heft een belasting op de woningen zonder inschrijving in het bevolkingsregister of vreemdelingenregister.</dct:description>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidenceacedb7a1c8fc4df3b96e34edf6ca24c5"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://www.sint-niklaas.be">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint7bbca667a2284b449791babc59b55f93">
+    <schema:telephone>09 210 10 10
+Gentinfo@stad.gent</schema:telephone>
+    <schema:email>Woodrow Wilsonplein 1,
+9000 Gent
+09 266 74 80
+stadsbelastingen@stad.gent</schema:email>
+    <schema:email>09 210 10 10
+Gentinfo@stad.gent</schema:email>
+    <schema:telephone>09 210 10 10</schema:telephone>
+    <schema:telephone>Woodrow Wilsonplein 1,
+9000 Gent
+09 266 74 80
+stadsbelastingen@stad.gent</schema:telephone>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://stad.gent">
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidenceacedb7a1c8fc4df3b96e34edf6ca24c5">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:description>Aangifte
+Het indienen van een aangifte kan enkel via het digitale aangifteformulier of schriftelijk.
+* U ontvangt schriftelijk een 'Voorstel van aangifte' (een vooraf volledig ingevulde aangifte). U dient dit enkel bij wijziging verbeterd via de post terug te sturen naar de Stad Gent.
+* U ontvangt schriftelijk een 'Aangifte' (een vooraf gedeeltelijk ingevulde aangifte). U dient dit verbeterd en/of vervolledigd via de post terug te sturen naar de Stad Gent.
+* Indien u geen aangifte ontvangt, kan u steeds een aangifte doen op basis van een blanco PDF-formulier.
+Bezwaarschrift
+De belastingschuldige of zijn vertegenwoordiger kan tegen een aanslag, een belastingverhoging of een administratieve geldboete, een schriftelijk bezwaarschrift indienen bij het college van burgemeester en schepenen (t.a.v. Stadsbelastingen - Departement Financiën - cel bezwaarschriften). Dit moet gebeuren binnen een termijn van drie maanden te rekenen vanaf de derde werkdag volgend op de datum van verzending van het aanslagbiljet of vanaf de kennisgeving van de aanslag of vanaf de datum van de contante inning.
+Het bezwaarschrift moet schriftelijk ingediend worden en ondertekend zijn door de belastingschuldige of zijn vertegenwoordiger en gemotiveerd zijn. Het moet de naam, de hoedanigheid en het adres of de zetel van de belastingplichtige vermelden. Het moet ook het voorwerp van het bezwaarschrift en een opgave van de feiten en de middelen vermelden. Als de belastingschuldige of zijn vertegenwoordiger wil uitgenodigd worden op de hoorzitting moet dit in het bezwaarschrift worden gevraagd.
+Het bezwaarschrift kan ook online worden ingediend in zover in deze mogelijkheid wordt voorzien en binnen de termijnen en onder de voorwaarden vermeld in dit artikel. Meldingen via andere duurzame dragers zoals e-mail worden niet als bezwaarschrift aanvaard.</dct:description>
+    <dct:identifier>Evidenceacedb7a1c8fc4df3b96e34edf6ca24c5</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N6d5138ed0fad42e997117b2d2fdf881e">
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+    <skos:prefLabel>Woodrow Wilsonplein 1,
+9000 Gent
+09 266 74 80
+stadsbelastingen@stad.gent
+1.200
+1.220
+1.500
+1.526
+1.551
+1.578
+09 210 10 10
+Gentinfo@stad.gent
+09 210 10 10</skos:prefLabel>
   </rdf:Description>
 </rdf:RDF>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:cpsv="http://purl.org/vocab/cpsv#"
+   xmlns:cv="http://data.europa.eu/m8g/"
+   xmlns:dct="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:schema="https://schema.org/"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationb8d04fcd418b4daeb412de62ce716352">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <dct:spatial rdf:resource="austrheim.kommune.no"/>
+    <cv:hasAddress rdf:nodeID="Nced41b799ecf41b6b8bfb02ee4ea2665"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement8c8d78734cfe49a486aeac0b18e1a286">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:description>* du er 18 år eller eldre
+* du må ha legeuttale
+* du må ha eit fysisk eller psykisk funksjonstap
+* du må betale husleige</dct:description>
+    <dct:identifier>CriterionRequirement8c8d78734cfe49a486aeac0b18e1a286</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService5db5fc704b5a4dfd97460f162b174d2f">
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointd7e67bf5a35b4d9caacee81622cd8e96"/>
+    <dct:title>
+        Austrheim kommune - Omsorgsbustader
+    </dct:title>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost554f65c131534961aa837ca0daa91277"/>
+    <dct:description></dct:description>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement8c8d78734cfe49a486aeac0b18e1a286"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule3183bda1eda74e12bc9472bf42dd72b9"/>
+    <dct:identifier>PublicService5db5fc704b5a4dfd97460f162b174d2f</dct:identifier>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationb8d04fcd418b4daeb412de62ce716352"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule3183bda1eda74e12bc9472bf42dd72b9">
+    <dct:description>* Vi vurderer søknaden din, og finn det tilbodet som passar best for deg.
+* Vi tar kontakt med deg dersom vi treng fleire opplysningar eller ønskjer å besøkje deg.
+* Vi prøver å svare deg innan 14 dagar. Dersom vi ikkje klarar det, tar vi kontakt med deg og fortel kor lang tid det vil ta før du får svaret.</dct:description>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:identifier>Rule3183bda1eda74e12bc9472bf42dd72b9</dct:identifier>
+    <dct:title>DEFAULT NAME</dct:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointd7e67bf5a35b4d9caacee81622cd8e96">
+    <schema:telephone>56162000
+post@austrheim.kommune.no
+Sætremarka 2, 5943 Austrheim</schema:telephone>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:telephone>Leiar, Hege Bergsvik Sætre tlf. 56 16 21 24/mob. 400 37 532</schema:telephone>
+    <schema:email>post@austrheim.kommune.no</schema:email>
+    <schema:email>56162000
+post@austrheim.kommune.no
+Sætremarka 2, 5943 Austrheim</schema:email>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost554f65c131534961aa837ca0daa91277">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:description>Prisen er avhengig av kva leigeavtale du får.</dct:description>
+    <dct:identifier>Cost554f65c131534961aa837ca0daa91277</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nced41b799ecf41b6b8bfb02ee4ea2665">
+    <skos:prefLabel>Leiar, Hege Bergsvik Sætre tlf. 56 16 21 24/mob. 400 37 532
+56162000
+post@austrheim.kommune.no
+Sætremarka 2, 5943 Austrheim
+Sætremarka 2
+5943 Austrheim</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="austrheim.kommune.no">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+</rdf:RDF>

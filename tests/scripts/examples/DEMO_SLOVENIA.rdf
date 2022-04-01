@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:cpsv="http://purl.org/vocab/cpsv#"
+   xmlns:cv="http://data.europa.eu/m8g/"
+   xmlns:dct="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:schema="https://schema.org/"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint23fcd4b1d5354ebd94f74247d3c4c9dd">
+    <schema:telephone>telefon: 05/335-0-352</schema:telephone>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:email>mestna.obcina@nova-gorica.si</schema:email>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequiremente9dce47c3ea24b419d275d602809f7e8">
+    <dct:description>Vloga za enkratno denarno pomoč ob rojstvu otroka</dct:description>
+    <dct:identifier>CriterionRequiremente9dce47c3ea24b419d275d602809f7e8</dct:identifier>
+    <dct:title>DEFAULT NAME</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N637395987e924f6cbe1c1fcca9f23657">
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+    <skos:prefLabel>telefon: 05/335-0-352
+Trg Edvarda Kardelja 1
+1022 hPa</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation514322fcf41a4236b1f56f1831f8790e">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <dct:spatial rdf:resource="www.nova-gorica.si"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <cv:hasAddress rdf:nodeID="N637395987e924f6cbe1c1fcca9f23657"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost8f9a1805e50f4fe1838f0f083d15f07d">
+    <dct:identifier>Cost8f9a1805e50f4fe1838f0f083d15f07d</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:description>Takse ni.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServiceb97384ac8fe24bdb8927bda489e3bc7c">
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost8f9a1805e50f4fe1838f0f083d15f07d"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation514322fcf41a4236b1f56f1831f8790e"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Ruleadba7328d656460c855a404299276617"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint23fcd4b1d5354ebd94f74247d3c4c9dd"/>
+    <dct:title>
+        Postopki in obrazci - Za občane
+    </dct:title>
+    <dct:identifier>PublicServiceb97384ac8fe24bdb8927bda489e3bc7c</dct:identifier>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequiremente9dce47c3ea24b419d275d602809f7e8"/>
+    <dct:description></dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Ruleadba7328d656460c855a404299276617">
+    <dct:description>Enkratna občinska denarna pomoč ob rojstvu otroka pripada staršem otroka ob pogoju, da je otrok živorojen, da je državljan Republike Slovenije in da ima vsaj z enim od staršev stalno bivališče v Mestni občini Nova Gorica.
+Po izteku 3 mesecev od dneva rojstva otroka starša ne moreta več uveljavljati pravice do enkratne občinske denarne pomoči ob rojstvu otroka.
+Enkratna občinska denarna pomoč ob rojstvu otroka se nakaže po dokončnosti odločbe na transakcijski račun tistega od staršev, ki je naveden v vlogi in ima stalno bivališče v Mestni občini Nova Gorica.
+Višina enkratne občinske denarne pomoči ob rojstvu otroka znaša 500,00 EUR .</dct:description>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:identifier>Ruleadba7328d656460c855a404299276617</dct:identifier>
+    <dct:title>DEFAULT NAME</dct:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="www.nova-gorica.si">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+</rdf:RDF>
