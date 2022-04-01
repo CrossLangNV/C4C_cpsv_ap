@@ -74,6 +74,6 @@ services:
     ports:
       - "7690:5000"
     volumes:
-      - "./src/BERT_classifier:/work"
+      - "./src/BERT_classifier:/work/BERT_classifier"
     networks:
       c4cnet:
