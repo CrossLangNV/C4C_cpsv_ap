@@ -1,4 +1,5 @@
-from typing import Union
+import json
+from typing import List, Union
 
 import justext
 from lxml.etree import _Element, _ElementTree
@@ -32,3 +33,14 @@ def clean_tag_text(el: _Element):
 
     text = "".join(l_text).strip()
     return justext.utils.normalize_whitespace(text)
+
+
+def export_jsonl(l_d_json: List[dict], filename):
+    with open(filename, 'w+', encoding="UTF-8") as f:
+        f.truncate(0)
+
+    for d_json in l_d_json:
+        json_string = json.dumps(d_json, ensure_ascii=False)
+
+        with open(filename, "a", encoding="UTF-8") as f:
+            f.write(json_string + "\n")
