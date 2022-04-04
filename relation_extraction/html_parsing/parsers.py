@@ -68,6 +68,10 @@ class Section(list):
     def get_all_text(self, delimiter="\n"):
         return delimiter.join(self.get_all_text_blocks())
 
+    def add_paragraph(self, paragraph: str):
+        """To iteratively add the paragraphs"""
+        self.append(paragraph)
+
 
 class HTMLParser(abc.ABC):
     def __init__(self, html: str):

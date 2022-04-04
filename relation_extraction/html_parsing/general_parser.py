@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 from readabilipy import simple_json_from_html_string
 from readability import Document
 
+from relation_extraction.html_parsing.parsers import Section
 from relation_extraction.html_parsing.utils import clean_tag_text, dom_write
 
 
@@ -46,6 +47,17 @@ class GeneralParagraph(justext.core.Paragraph):
 
         return f"<{class_name}> {self.text}"
 
+    @property
+    def is_heading(self) -> bool:
+        """
+        Overwrite is_heading to not use regex pattern.
+
+        Q & A:
+         * Q: Unresolved reference self.heading
+         * A: self.heading should be generated while parsing.
+        """
+        return self.heading
+
         # repr(self)
         # object.__repr__(obj)
         #
@@ -57,7 +69,7 @@ class GeneralParagraph(justext.core.Paragraph):
     #     super(GeneralParagraph, self).__init__()
 
 
-class GeneralSection:
+class GeneralSection(Section):
     """
     A section contains a title and text
     """
@@ -102,7 +114,36 @@ class GeneralHTMLParser2:
         return gen_paragraphs
 
     def get_sections(self) -> List[GeneralSection]:
-        return
+
+        last_section = None
+        l_sections = []
+
+        for paragraph in self.get_paragraphs():
+
+            if paragraph.is_boilerplate:
+                continue  # Skip
+
+            text = paragraph.text
+
+            if paragraph.is_heading:
+                if last_section is not None:
+                    l_sections.append(last_section)
+
+                # Make a new section.
+                last_section = GeneralSection(title=text,
+                                              paragraphs=[])
+
+            else:
+                if last_section is None:
+                    last_section = GeneralSection(title=None,
+                                                  paragraphs=[])
+
+                last_section.add_paragraph(text)
+
+        if last_section != l_sections[-1]:
+            l_sections.append(last_section)
+
+        return l_sections
 
 
 class GeneralHTMLParser:

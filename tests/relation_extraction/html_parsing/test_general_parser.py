@@ -326,3 +326,15 @@ class TestParagraphExtraction(unittest.TestCase):
 
             for paragraph in paragraphs:
                 self.assertTrue(paragraph.text, paragraph)
+
+    def test_section_extraction(self):
+
+        parser = GeneralHTMLParser2(self.html,
+                                    self.language)
+
+        sections = parser.get_sections()
+
+        for i, section in enumerate(sections):
+            with self.subTest(f"Section content: {i}"):
+                self.assertTrue(section.title)
+                self.assertTrue(section.paragraphs)
