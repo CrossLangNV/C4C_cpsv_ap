@@ -3,6 +3,7 @@ from typing import List, Union
 
 import justext
 from lxml.etree import _Element, _ElementTree
+from pydantic import BaseModel
 
 
 def dom_write(html_tree: Union[_ElementTree,
@@ -35,12 +36,17 @@ def clean_tag_text(el: _Element):
     return justext.utils.normalize_whitespace(text)
 
 
-def export_jsonl(l_d_json: List[dict], filename):
+def export_jsonl(l_d_json: List[Union[dict, BaseModel]], filename):
     with open(filename, 'w+', encoding="UTF-8") as f:
         f.truncate(0)
 
     for d_json in l_d_json:
-        json_string = json.dumps(d_json, ensure_ascii=False)
+
+        if isinstance(d_json, BaseModel):
+            # d_json = d_json.dict()
+            json_string = d_json.json(ensure_ascii=False)
+        else:
+            json_string = json.dumps(d_json, ensure_ascii=False)
 
         with open(filename, "a", encoding="UTF-8") as f:
             f.write(json_string + "\n")
