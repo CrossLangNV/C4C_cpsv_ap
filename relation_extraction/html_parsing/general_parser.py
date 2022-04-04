@@ -1,5 +1,9 @@
+import copy
+from typing import List
+
 import inscriptis
 import justext
+import lxml
 import lxml.html
 import trafilatura
 from bs4 import BeautifulSoup
@@ -7,6 +11,98 @@ from readabilipy import simple_json_from_html_string
 from readability import Document
 
 from relation_extraction.html_parsing.utils import clean_tag_text, dom_write
+
+
+class GeneralParagraph(justext.core.Paragraph):
+    """
+    A group of sentences that belong together
+    """
+
+    @classmethod
+    def from_justext_paragraph(cls, paragraph: justext.core.Paragraph):
+        """
+        Our adjustment of the justext Paragraph
+
+        Args:
+            paragraph:
+
+        Returns:
+
+        """
+
+        class Object(object):
+            pass
+
+        path = Object()
+        path.dom = None
+        path.xpath = None
+        self = cls(path)  # Emtpy init
+        self.__dict__ = copy.deepcopy(paragraph.__dict__)
+
+        return self
+
+    def __repr__(self):
+        class_name = self.__class__.__module__ + "." + self.__class__.__name__
+
+        return f"<{class_name}> {self.text}"
+
+        # repr(self)
+        # object.__repr__(obj)
+        #
+        # return super(GeneralParagraph, self).__repr__(self)
+
+    # def __init__(self):
+    #     self.__dict__ = copy.deepcopy(foo.__dict__)
+    #
+    #     super(GeneralParagraph, self).__init__()
+
+
+class GeneralSection:
+    """
+    A section contains a title and text
+    """
+
+
+class GeneralHTMLParser2:
+    """
+    After refactoring...
+    """
+
+    def __init__(self,
+                 html: str,
+                 language: str):
+        """
+
+        Args:
+            html: HTML as string
+            language: language code. ISO language name (e.g. English, Dutch...)
+        """
+
+        self.html = html
+        self.language = language
+
+    def get_paragraphs(self) -> List[GeneralParagraph]:
+        """
+        Get all the paragraphs from the HTML for further processing.
+
+        Returns:
+
+        """
+        justext_preprocessor = justext.core.preprocessor
+
+        paragraphs = justext.justext(self.html, justext.get_stoplist(self.language),
+                                     preprocessor=justext_preprocessor)
+
+        # # Debugging
+        # paragraph = paragraphs[0]
+        # gen_paragraph = GeneralParagraph.from_justext_paragraph(paragraph)
+
+        gen_paragraphs = list(map(GeneralParagraph.from_justext_paragraph, paragraphs))
+
+        return gen_paragraphs
+
+    def get_sections(self) -> List[GeneralSection]:
+        return
 
 
 class GeneralHTMLParser:
@@ -71,6 +167,14 @@ class GeneralHTMLParser:
 
         return
 
+    def get_paragraphs(self) -> List[justext.paragraph.Paragraph]:
+        justext_preprocessor = justext.core.preprocessor
+
+        paragraphs = justext.justext(self.html, justext.get_stoplist(self.language),
+                                     preprocessor=justext_preprocessor)
+
+        return paragraphs
+
     def _annot_html(self, html_root, paragraphs,
                     style_boiler="color: gray; text-decoration: line-through;",
                     style_header="text-decoration: underline;text-decoration-color: red;"
@@ -105,7 +209,7 @@ class GeneralHTMLParser:
             self._export(xml)
 
             body, text, l = trafilatura.baseline(self.html)
-            import lxml
+
             html_out = lxml.etree.tostring(body,
                                            pretty_print=True,
                                            encoding="utf-8").decode()

@@ -6,7 +6,7 @@ import justext
 import lxml.html
 
 from data.html import get_html, url2html
-from relation_extraction.html_parsing.general_parser import GeneralHTMLParser
+from relation_extraction.html_parsing.general_parser import GeneralHTMLParser, GeneralHTMLParser2, GeneralParagraph
 from relation_extraction.html_parsing.utils import clean_tag_text, dom_write, hashabledict
 
 FILENAME_INPUT_HTML = "PARSER_DEBUG.html"
@@ -291,3 +291,38 @@ class TestSandbox(unittest.TestCase):
                 print(k, v)
 
         return
+
+
+class TestParagraphExtraction(unittest.TestCase):
+    def setUp(self) -> None:
+
+        url = "https://www.turnhout.be/inname-openbaar-domein"
+        FILENAME_INPUT_HTML = "PARSER_DEBUG_THOUT.html"
+        language = "Dutch"
+
+        try:
+            html = get_html(FILENAME_INPUT_HTML)
+        except FileNotFoundError:
+            url2html(url, FILENAME_INPUT_HTML)
+            html = get_html(FILENAME_INPUT_HTML)
+
+        self.html = html
+        self.language = language
+
+    def test_paragraph_extraction(self):
+        parser = GeneralHTMLParser2(self.html,
+                                    self.language)
+
+        paragraphs = parser.get_paragraphs()
+
+        with self.subTest("Non-empty"):
+            self.assertGreaterEqual(len(paragraphs), 1, paragraphs)
+
+        with self.subTest("type"):
+            for paragraph in paragraphs:
+                self.assertIsInstance(paragraph, GeneralParagraph)
+
+        with self.subTest("Text"):
+
+            for paragraph in paragraphs:
+                self.assertTrue(paragraph.text, paragraph)
