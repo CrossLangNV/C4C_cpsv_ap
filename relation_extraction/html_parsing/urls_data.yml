@@ -1,20 +1,78 @@
-# Template
-Country:
-  City:
+countries:
+  # Template
+  Country:
     # Default language
     language: EN
-    procedures:
-      - URL
+    municipalities:
+      City:
+        # (Optional) Default language
+        language: EN
+        procedures:
+          - URL
 
-# Data
-Belgium:
-  Turnhout:
-    language: NL
-    procedures:
-      - https://www.turnhout.be/inname-openbaar-domein
-Austria:
-  Wien:
+  # Data
+  Austria:
+    municipalities:
+      Wien:
+        language: DE
+        procedures:
+          - https://www.wien.gv.at/amtshelfer/finanzielles/rechnungswesen/abgaben/kommunalsteuer.html
+
+  Belgium:
+    municipalities:
+      Beerse:
+        language: NL
+        procedures:
+          - https://www.beerse.be/producten/detail/839/cofinanciering
+
+      Gent:
+        language: NL
+        procedures:
+          - https://stad.gent/nl/over-gent-stadsbestuur/belastingen/online-aangiften/belasting-op-woningen-zonder-inschrijving-het-bevolkingsregister-zogenaamde-tweede-verblijven
+
+      Sint-Niklaas:
+        language: NL
+        procedures:
+          - https://www.sint-niklaas.be/onze-dienstverlening/persoonlijke-documenten/reizen/internationaal-paspoort
+
+      Turnhout:
+        language: NL
+        procedures:
+          - https://www.turnhout.be/inname-openbaar-domein
+          - https://www.turnhout.be/subsidie-mondiale-vorming
+
+  Germany:
     language: DE
-    procedures:
-      - https://www.wien.gv.at/amtshelfer/finanzielles/rechnungswesen/abgaben/kommunalsteuer.html
+    municipalities:
+      Dortmund:
+        procedures:
+          - https://rathaus.dortmund.de/wps/portal/dortmund/home/dortmund/rathaus/domap/services.domap.de/product.services.domap.de/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zijQItjAwN3Q18DEwdzQwcfc2dw3wDwwwsQo31w8EKDHAARwP9KGL041EQhd_4cP0ovFa4muJX4G5oiF-BQZgBAQW-JgQUmMFMwOOPgtzQCINMz0xPR0VFAIMqPLQ!/dz/d5/L2dBISEvZ0FBIS9nQSEh/?p_id=reisepasspasseuropap0
 
+      Moers:
+        procedures:
+          - https://www.moers.de/de/stichwoerter/melderegisterauskuenfte-erweiterte-9498826/
+
+      Salzgitter:
+        # Has no <h*/> headers for subtitles
+        procedures:
+          - https://www.salzgitter.de/rathaus/fachdienste/bauordnung/Bauordnung.php
+
+      Trier:
+        procedures:
+          - https://www.trier.de/leben-in-trier/familie-kinder/heiraten-in-trier/
+
+  Italy:
+    language: IT
+    municipalities:
+      Trento:
+        # Has no <h*/> headers for subtitles
+        procedures:
+          - https://www.comune.trento.it/Aree-tematiche/Attivita-edilizia/Interventi-edilizi/Permesso-di-costruire/Permesso-di-costruire
+
+  Spain:
+    language: ES
+    municipalities:
+      Malaga:
+        procedures:
+          - https://sede.malaga.eu/es/tramitacion/detalle-del-tramite/?id=4080&tipoVO=5#!tab1
+          - https://sede.malaga.eu/es/tramitacion/detalle-del-tramite/index.html?id=119&tipoVO=5#.Yjsh13rMJmM

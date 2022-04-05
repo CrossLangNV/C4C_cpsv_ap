@@ -1,21 +1,22 @@
 import os
 import unittest
 
-from relation_extraction.html_parsing.data import data_extraction, data_turnhout, DataCountries, DataMunicipality
+from relation_extraction.html_parsing.data import data_turnhout, DataCountries
 # Code: language
 from relation_extraction.html_parsing.utils import export_jsonl
 
 
 class TestScriptData(unittest.TestCase):
-    def test_main(self):
-        data_extraction()
 
-        self.assertEqual(0, 1)
+    def setUp(self) -> None:
+        self.FILENAME_YML = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "../../..", "relation_extraction/html_parsing/urls_data.yml"))
+
+        self.assertTrue(os.path.exists(self.FILENAME_YML), self.FILENAME_YML)
 
     def test_turnhout(self,
                       url="https://www.turnhout.be/inname-openbaar-domein",
-                      FILENAME_INPUT_HTML="PARSER_DEBUG_THOUT.html",
-                      language="Dutch"):
+                      ):
 
         l_data = data_turnhout(url=url)
 
@@ -38,38 +39,34 @@ class TestScriptData(unittest.TestCase):
         with self.subTest("encoding html parent"):
             self.assertIn("€", item_euro.html_parents)
 
-    def test_data_countries_from_yml(self):
+    def test_data_countries_from_yml_template(self):
 
-        FILENAME_YML = os.path.abspath(
-            os.path.join(os.path.dirname(__file__), "../../..", "relation_extraction/html_parsing/urls_data.yml"))
+        data_countries = DataCountries.load_yaml(self.FILENAME_YML,
+                                                 remove_template=False)
 
-        with self.subTest("YML exists"):
-            self.assertTrue(os.path.exists(FILENAME_YML), FILENAME_YML)
-
-        data_countries = DataCountries.load_yaml(FILENAME_YML)
-
-        KEY_BELGIUM = "Belgium"
+        KEY_TEMPLATE = "Country"
         with self.subTest("Countries"):
+            self.assertIn(KEY_TEMPLATE, data_countries.country_names())
 
-            self.assertIn(KEY_BELGIUM, data_countries)
+        country_template = data_countries.get(KEY_TEMPLATE, None)
+        with self.subTest("Get country by name"):
+            self.assertIsNotNone(country_template)
 
-        belgium = data_countries.get(KEY_BELGIUM)
+        municipalities = country_template.municipalities
+        with self.subTest("Contains cities"):
+            self.assertTrue(municipalities, "Should not be empty")
 
         with self.subTest("Cities name"):
+            for municipality in municipalities:
+                self.assertIsInstance(municipality.name, str)
 
-            for name in belgium:
-                self.assertIsInstance(name, str)
-
-        with self.subTest("Cities data"):
-
-            for name, municipality in belgium.items():
-                self.assertIsInstance(municipality, DataMunicipality)
-
-                self.assertEqual(name, municipality.name)
+        with self.subTest("Cities language"):
+            for municipality in municipalities:
+                self.assertTrue(municipality.language, "Should not be empty")
+                self.assertIsInstance(municipality.language, str)
 
         with self.subTest("Cities URL"):
-
-            for municipality in belgium.values():
+            for municipality in municipalities:
                 l_urls = municipality.procedures
 
                 self.assertIsInstance(l_urls, list)
@@ -77,6 +74,41 @@ class TestScriptData(unittest.TestCase):
                 for url in l_urls:
                     self.assertIsInstance(url, str)
 
-        # for
+    def test_data_countries_from_yml(self):
 
-        # yaml.
+        data_countries = DataCountries.load_yaml(self.FILENAME_YML,
+                                                 remove_template=True)
+
+        with self.subTest("Removed template data"):
+            self.assertNotIn("Country", data_countries.country_names())
+
+        KEY_BELGIUM = "Belgium"
+        with self.subTest("Countries"):
+            self.assertIn(KEY_BELGIUM, map(lambda d: d.name, data_countries.countries))
+
+        belgium = data_countries.get(KEY_BELGIUM)
+
+        with self.subTest("Get country by name"):
+            self.assertIsNotNone(belgium)
+
+        municipalities = belgium.municipalities
+        with self.subTest("Contains cities"):
+            self.assertTrue(municipalities, "Should not be empty")
+
+        with self.subTest("Cities name"):
+            for municipality in municipalities:
+                self.assertIsInstance(municipality.name, str)
+
+        with self.subTest("Cities language"):
+            for municipality in municipalities:
+                self.assertTrue(municipality.language, "Should not be empty")
+                self.assertIsInstance(municipality.language, str)
+
+        with self.subTest("Cities URL"):
+            for municipality in municipalities:
+                l_urls = municipality.procedures
+
+                self.assertIsInstance(l_urls, list)
+
+                for url in l_urls:
+                    self.assertIsInstance(url, str)

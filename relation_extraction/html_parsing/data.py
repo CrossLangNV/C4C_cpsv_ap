@@ -2,12 +2,12 @@ import os.path
 import re
 import warnings
 from dataclasses import dataclass
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Union
 
 import justext
 import lxml
 import yaml
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
 from data.html import get_html, url2html
 from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2, \
@@ -19,73 +19,109 @@ D_LANG = {"NL": "Dutch"}
 
 
 @dataclass
-class DataMunicipality:
-    language: str
+class MunicipalityModel:
+    """
+    TODO
+     * Be able to access country
+    """
+    language: Optional[str]
     procedures: List[str]
-    name: Optional[str]
 
-    def __init__(self,
-                 language: str,
-                 procedures: List[str],
-                 name=None):
-        self._language = language
-        self._procedures = procedures
-        self._name = name
+    name: str
 
-    @property
-    def language(self) -> str:
-        """
-        Default language of the webpages
-        """
-        return self._language
-
-    @property
-    def procedures(self) -> List[str]:
-        """
-        Retrieve the URLS with administrative procedures in them.
-        """
-        return self._procedures
-
-    @property
-    def name(self) -> Optional[str]:
-        """
-        Name of the municipality
-        """
-        return self._name
+    # _country: "CountryModel"
 
 
-class DataCountries(dict):
+class CountryModel(BaseModel):
+    language: Optional[str]
+    municipalities: List[MunicipalityModel]
+
+    name: str
+
+    @validator("municipalities", pre=True)
+    def convert_dict_to_list(cls, value: Union[List, Dict], values) -> List[MunicipalityModel]:
+        if isinstance(value, dict):
+
+            l = []
+            for name, value in value.items():
+
+                # Get default language
+                if "language" not in value:
+                    value["language"] = values["language"]
+
+                muni = MunicipalityModel(name=name, **value)
+                l.append(muni)
+
+            return l
+
+        elif isinstance(value, list):
+
+            l = [MunicipalityModel(**d) for d in value]
+            return l
+
+        return value
+
+
+class DataCountries(BaseModel):
+    countries: List[CountryModel]
+
+    @validator("countries", pre=True)
+    def convert_dict_to_list(cls, v: Union[List[CountryModel], Dict[str, dict]]) -> List[CountryModel]:
+        if isinstance(v, dict):
+
+            l = []
+            for name, value in v.items():
+                country = CountryModel(name=name, **value)
+                l.append(country)
+
+            return l
+
+        return v
 
     @classmethod
     def load_yaml(cls,
-                  filename
-                  ) -> Dict[str, Dict[str, DataMunicipality]]:
+                  filename,
+                  remove_template=True,
+                  key_template_country="Country"
+                  ) -> "DataCountries":
         with open(filename) as file:
             dict_tmp = yaml.full_load(file)
 
-        # pop template data
-        if (key := "Country") in dict_tmp:
-            dict_tmp.pop(key)
-        else:
-            warnings.warn(f"Could not find template in the file. Keys: {dict_tmp.keys()}")
+        data = cls(**dict_tmp)
 
-        for country in dict_tmp:
-            cities = dict_tmp[country]
+        if remove_template:
+            # pop template data
 
-            for k_city, v_city in cities.items():
-                muni = DataMunicipality(**v_city, name=k_city)
+            if key_template_country in data.country_names():
 
-                cities[k_city] = muni
+                i_template = next(i for i, v in enumerate(data.countries) if lambda v: v.name == key_template_country)
+                data.countries.pop(i_template)
 
-            # Not necessarily needed as only the values of the dict cities are changed,
-            # but just in case to avoid possible bugs in the future.
-            dict_tmp[country] = cities
+            else:
+                warnings.warn(
+                    f"Could not find template ({key_template_country}) in the file. Countries: {data.country_names()}",
+                    UserWarning)
 
-        return cls(dict_tmp)
+        return data
 
-    @property
-    def countries(self):
-        return self
+    def get(self, country_name, default=None) -> CountryModel:
+        """
+        Return the country based on name
+
+        Args:
+            country_name: Made it case-independent.
+
+        Returns:
+        """
+
+        for country in self.countries:
+            if country.name.lower() == country_name.lower():
+                return country
+
+        return default
+
+    def country_names(self) -> List[str]:
+        return [country.name for country in self.countries]
 
 
 # class DataURLS(BaseModel):
