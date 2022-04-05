@@ -1,0 +1,20 @@
+# Template
+Country:
+  City:
+    # Default language
+    language: EN
+    procedures:
+      - URL
+
+# Data
+Belgium:
+  Turnhout:
+    language: NL
+    procedures:
+      - https://www.turnhout.be/inname-openbaar-domein
+Austria:
+  Wien:
+    language: DE
+    procedures:
+      - https://www.wien.gv.at/amtshelfer/finanzielles/rechnungswesen/abgaben/kommunalsteuer.html
+

@@ -1,9 +1,12 @@
 import os.path
 import re
-from typing import List
+import warnings
+from dataclasses import dataclass
+from typing import Dict, List, Optional
 
 import justext
 import lxml
+import yaml
 from pydantic import BaseModel
 
 from data.html import get_html, url2html
@@ -13,6 +16,82 @@ from relation_extraction.html_parsing.utils import export_jsonl
 
 FOLDER_TMP = os.path.join(os.path.dirname(__file__), "TMP")
 D_LANG = {"NL": "Dutch"}
+
+
+@dataclass
+class DataMunicipality:
+    language: str
+    procedures: List[str]
+    name: Optional[str]
+
+    def __init__(self,
+                 language: str,
+                 procedures: List[str],
+                 name=None):
+        self._language = language
+        self._procedures = procedures
+        self._name = name
+
+    @property
+    def language(self) -> str:
+        """
+        Default language of the webpages
+        """
+        return self._language
+
+    @property
+    def procedures(self) -> List[str]:
+        """
+        Retrieve the URLS with administrative procedures in them.
+        """
+        return self._procedures
+
+    @property
+    def name(self) -> Optional[str]:
+        """
+        Name of the municipality
+        """
+        return self._name
+
+
+class DataCountries(dict):
+
+    @classmethod
+    def load_yaml(cls,
+                  filename
+                  ) -> Dict[str, Dict[str, DataMunicipality]]:
+        with open(filename) as file:
+            dict_tmp = yaml.full_load(file)
+
+        # pop template data
+        if (key := "Country") in dict_tmp:
+            dict_tmp.pop(key)
+        else:
+            warnings.warn(f"Could not find template in the file. Keys: {dict_tmp.keys()}")
+
+        for country in dict_tmp:
+            cities = dict_tmp[country]
+
+            for k_city, v_city in cities.items():
+                muni = DataMunicipality(**v_city, name=k_city)
+
+                cities[k_city] = muni
+
+            # Not necessarily needed as only the values of the dict cities are changed,
+            # but just in case to avoid possible bugs in the future.
+            dict_tmp[country] = cities
+
+        return cls(dict_tmp)
+
+    @property
+    def countries(self):
+        return self
+
+
+# class DataURLS(BaseModel):
+
+
+# class
 
 
 class DataItem(BaseModel):
