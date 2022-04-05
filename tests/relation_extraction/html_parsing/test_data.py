@@ -1,7 +1,7 @@
 import os
 import unittest
 
-from relation_extraction.html_parsing.data import data_turnhout, DataCountries
+from relation_extraction.html_parsing.data import data_generic, data_turnhout, DataCountries
 # Code: language
 from relation_extraction.html_parsing.utils import export_jsonl
 
@@ -112,3 +112,36 @@ class TestScriptData(unittest.TestCase):
 
                 for url in l_urls:
                     self.assertIsInstance(url, str)
+
+
+class TestTrainingData(unittest.TestCase):
+    def setUp(self) -> None:
+        FILENAME_YML = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "../../..", "relation_extraction/html_parsing/urls_data.yml"))
+
+        self.assertTrue(os.path.exists(FILENAME_YML), FILENAME_YML)
+
+        self.data_countries = DataCountries.load_yaml(FILENAME_YML,
+                                                      remove_template=True)
+
+    def test_get_all_urls(self):
+
+        l_url = []
+
+        for country in self.data_countries.countries:
+            for muni in country.municipalities:
+                for url in muni.procedures:
+                    l_url.append(url)
+
+        with self.subTest("Multiple URLs"):
+            self.assertGreaterEqual(len(l_url), 1)
+
+    def test_generate_training_data(self):
+
+        for country in self.data_countries.countries:
+            for muni in country.municipalities:
+                language_code = muni.language
+                for url in muni.procedures:
+                    foo = data_generic(url,
+                                       language_code=language_code)
+                    foo

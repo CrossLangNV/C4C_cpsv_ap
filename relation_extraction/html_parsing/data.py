@@ -1,3 +1,5 @@
+import errno
+import hashlib
 import os.path
 import re
 import warnings
@@ -5,6 +7,7 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Union
 
 import justext
+import langcodes
 import lxml
 import yaml
 from pydantic import BaseModel, validator
@@ -12,10 +15,9 @@ from pydantic import BaseModel, validator
 from data.html import get_html, url2html
 from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2, \
     get_lxml_el_from_paragraph
-from relation_extraction.html_parsing.utils import export_jsonl
+from relation_extraction.html_parsing.utils import export_jsonl, makeParentLine
 
 FOLDER_TMP = os.path.join(os.path.dirname(__file__), "TMP")
-D_LANG = {"NL": "Dutch"}
 
 
 @dataclass
@@ -124,12 +126,6 @@ class DataCountries(BaseModel):
         return [country.name for country in self.countries]
 
 
-# class DataURLS(BaseModel):
-
-
-# class
-
-
 class DataItem(BaseModel):
     label_names: List[str] = []
     url: str
@@ -138,10 +134,103 @@ class DataItem(BaseModel):
     html_parents: str
 
 
+def data_generic(url: str,
+                 language_code: str,
+                 filename_out: str = None
+                 ) -> List[DataItem]:
+    """
+
+     Args:
+         url:
+         language:
+         language_code:
+         filename_out: To save output as json-line.
+     Returns:
+
+     """
+
+    re_pattern = re.compile(r"[^a-zA-Z0-9]+")
+    basename = re_pattern.sub("_", url)
+
+    language_full = langcodes.get(language_code).display_name()
+
+    FILENAME_INPUT_HTML = os.path.join(FOLDER_TMP, f"{basename}.html")
+
+    try:
+        html = get_html(FILENAME_INPUT_HTML)
+    except FileNotFoundError:
+        url2html(url, FILENAME_INPUT_HTML)
+        html = get_html(FILENAME_INPUT_HTML)
+    except OSError as oserr:
+        # Filename too long
+        if oserr.errno == errno.ENAMETOOLONG:
+
+            basename = f"{basename[:50]}_{hashlib.sha1(basename.encode()).hexdigest()}"
+            # Make a shorter filename
+            FILENAME_INPUT_HTML = os.path.join(FOLDER_TMP, f"{basename}.html")
+
+            try:
+                html = get_html(FILENAME_INPUT_HTML)
+            except FileNotFoundError:
+                url2html(url, FILENAME_INPUT_HTML)
+                html = get_html(FILENAME_INPUT_HTML)
+
+        else:
+            raise  # re-raise previously caught exception
+
+    if filename_out is None:
+        filename_out = os.path.join(FOLDER_TMP, f"TITLE_{basename}.jsonl")
+
+    parser = GeneralHTMLParser2(html,
+                                language=language_full)
+
+    l_data = []
+
+    for paragraph in parser.get_paragraphs():
+        if paragraph.is_boilerplate:
+            continue
+
+        label_heading = paragraph.is_heading  # bool
+
+        text = paragraph.text
+
+        html_root = lxml.html.fromstring(parser.html)
+
+        # Same cleaning is needed to be able to go back from paragraphs to DOM (make use of the Xpath info).
+        justext_preprocessor = justext.core.preprocessor
+        html_root = justext_preprocessor(html_root)
+
+        el = get_lxml_el_from_paragraph(html_root,
+                                        paragraph)
+
+        tree = el.getroottree()
+        tree.getpath(el)
+
+        s_html = lxml.html.tostring(el, encoding="UTF-8").decode("UTF-8")
+
+        s_html_parents = makeParentLine(el)
+
+        TITLE = "title"
+        label_names = [TITLE] if label_heading else []
+
+        item = DataItem(**{"label_names": label_names,
+                           "text": text,
+                           "url": url,
+                           "html_el": s_html,
+                           "html_parents": s_html_parents})
+
+        l_data.append(item)
+
+    if filename_out:
+        export_jsonl(l_data, filename_out)
+
+    return l_data
+
+
 def data_turnhout(url="https://www.turnhout.be/inname-openbaar-domein",
                   language=None,
                   language_code="NL",
-                  filename_out=None) -> List[dict]:
+                  filename_out=None) -> List[DataItem]:
     """
 
     Args:
@@ -151,13 +240,14 @@ def data_turnhout(url="https://www.turnhout.be/inname-openbaar-domein",
         filename_out: To save output as json-line.
     Returns:
 
+    TODO call data_generic
     """
 
     re_pattern = re.compile(r"[^a-zA-Z0-9]+")
     basename = re_pattern.sub("_", url)
 
     if language is None:
-        language = D_LANG.get(language_code.upper())
+        language = langcodes.get(language_code).display_name()
 
     FILENAME_INPUT_HTML = os.path.join(FOLDER_TMP, f"{basename}.html")
 
@@ -199,24 +289,6 @@ def data_turnhout(url="https://www.turnhout.be/inname-openbaar-domein",
 
         s_html = lxml.html.tostring(el, encoding="UTF-8").decode("UTF-8")
 
-        def makeParentLine(node, attach_head=False, questionContains=None):
-            # Add how much text context is given. e.g. 2 would mean 2 parent's text
-            # nodes are also displayed
-            # if questionContains is not None:
-            #     newstr = doesThisElementContain(questionContains, lxml.html.tostring(node))
-            # else:
-            newstr = lxml.html.tostring(node, encoding="UTF-8").decode('utf8')
-            parent = node.getparent()
-            while parent is not None:
-                if attach_head and parent.tag == 'html':
-                    newstr = lxml.html.tostring(parent.find(
-                        './/head'), encoding='utf8').decode('utf8') + newstr
-                tag, items = parent.tag, parent.items()
-                attrs = " ".join(['{}="{}"'.format(x[0], x[1]) for x in items if len(x) == 2])
-                newstr = '<{} {}>{}</{}>'.format(tag, attrs, newstr, tag)
-                parent = parent.getparent()
-            return newstr
-
         s_html_parents = makeParentLine(el)
 
         TITLE = "title"
@@ -234,15 +306,6 @@ def data_turnhout(url="https://www.turnhout.be/inname-openbaar-domein",
         export_jsonl(l_data, filename_out)
 
     return l_data
-
-    # html = url2html(url)
-    #
-    # parser = HeaderHTMLParser(html)
-    # sections = parser.get_sections()
-    # for section in sections:
-    #     section
-    #
-    # parser_gen = GeneralHTMLParser(html)
 
 
 def data_extraction():

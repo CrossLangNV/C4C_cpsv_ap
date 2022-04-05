@@ -5,10 +5,7 @@ import inscriptis
 import justext
 import lxml
 import lxml.html
-import trafilatura
 from bs4 import BeautifulSoup
-from readabilipy import simple_json_from_html_string
-from readability import Document
 
 from relation_extraction.html_parsing.parsers import Section
 from relation_extraction.html_parsing.utils import clean_tag_text, dom_write
@@ -344,16 +341,6 @@ class GeneralHTMLParser:
             print(text)
             pass
 
-        elif case == 4:
-            article = simple_json_from_html_string(self.html)
-            # article = simple_json_from_html_string(self.html, use_readability=True)
-            article
-
-        elif case == 5:
-            doc = Document(self.html)
-            html_cleaned = doc.summary()
-
-            self._export(html_cleaned)
 
         return
 
