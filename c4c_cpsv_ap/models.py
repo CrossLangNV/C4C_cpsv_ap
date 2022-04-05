@@ -35,6 +35,7 @@ class CPSVAPModel(abc.ABC, BaseModel):
         """ Generate a URI based on identifier """
         return URIRef(self.identifier, base=base)
 
+
 class Event(CPSVAPModel, abc.ABC):
     """
     Event

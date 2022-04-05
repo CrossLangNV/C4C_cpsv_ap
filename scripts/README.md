@@ -35,10 +35,10 @@ See https://graphviz.org/ for install instruction.
 
 1. Make a Graphviz file
 
-   1. https://github.com/fatestigma/ontology-visualization
+    1. https://github.com/fatestigma/ontology-visualization
    > python ./ontology_viz.py -o example_html_extraction.dot example_html_extraction_cpsv-ap.rdf
-   <!-- -O ontology.ttl -->
-   2. OR https://www.easyrdf.org/converter. example.gv. is made by
+    <!-- -O ontology.ttl -->
+    2. OR https://www.easyrdf.org/converter. example.gv. is made by
 
 2. Convert Graphiv to Image
 

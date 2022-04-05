@@ -5,7 +5,7 @@ import unittest
 from rdflib import URIRef
 
 from c4c_cpsv_ap.connector.hierarchy import Harvester, Provider, SubHarvester, SubProvider
-from c4c_cpsv_ap.models import PublicService, Concept, CPSVAPModel, PublicOrganisation
+from c4c_cpsv_ap.models import Concept, CPSVAPModel, PublicOrganisation, PublicService
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 FILENAME_RDF_DEMO = os.path.join(os.path.dirname(__file__), '../../../data/output/demo2_export.rdf')

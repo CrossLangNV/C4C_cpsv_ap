@@ -68,7 +68,8 @@ Example code to generate RDFLib graph for the concepts:
 
 # Connector
 
-In order to make the connector work, make sure to first have a RDF enpoint available and added to [environment file](secrets/cpsv_ap.env)
+In order to make the connector work, make sure to first have a RDF enpoint available and added
+to [environment file](secrets/cpsv_ap.env)
 
 # Other sources
 

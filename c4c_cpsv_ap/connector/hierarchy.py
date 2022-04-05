@@ -50,10 +50,10 @@ class CPSV_APGraph(ConjunctiveGraph):
         (subject, predicate, object_, context) = self._spoc(triple_or_quad, default=True)
 
         assert (
-                subject is not None
+            subject is not None
         ), "s can't be None in .set([s,p,o]), as it would remove (*, p, *)"
         assert (
-                predicate is not None
+            predicate is not None
         ), "p can't be None in .set([s,p,o]), as it would remove (s, *, *)"
         self.remove((subject, predicate, None, context))
         self.add((subject, predicate, object_, context))
@@ -610,7 +610,7 @@ class PublicServicesHarvester(SubHarvester):
                 debug=False
                 ) -> List[URIRef]:
         q_filter = f"""
-                values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }} 
+                values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
                 """ if graph_uri is not None else ""
 
         q = f"""

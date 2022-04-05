@@ -2,9 +2,9 @@ import unittest
 
 from rdflib.term import Literal, URIRef
 
-from c4c_cpsv_ap.open_linked_data.queries import get_types, TYPE_CONTACT_POINT, TYPE_PUBLICSERVICE, \
-    get_contact_points, get_public_services, get_contact_point_info, get_graphs, GRAPH, get_concepts, \
-    LABEL, get_classified_by_concepts, TITLE, URI, PS
+from c4c_cpsv_ap.open_linked_data.queries import get_classified_by_concepts, get_concepts, get_contact_point_info, \
+    get_contact_points, get_graphs, get_public_services, get_types, GRAPH, LABEL, PS, TITLE, TYPE_CONTACT_POINT, \
+    TYPE_PUBLICSERVICE, URI
 
 SPARQL_ENDPOINT = 'http://gpu1.crosslang.com:3030/C4C_demo'
 
