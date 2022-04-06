@@ -90,6 +90,12 @@ class GeneralHTMLParser2:
         self.html = html
         self.language = language
 
+        self._justext_preprocessor = justext.core.preprocessor
+
+        _html_root = lxml.html.fromstring(self.html)
+        # Same cleaning is needed to be able to go back from paragraphs to DOM (make use of the Xpath info).
+        self._html_root = self._justext_preprocessor(_html_root)
+
     def get_paragraphs(self) -> List[GeneralParagraph]:
         """
         Get all the paragraphs from the HTML for further processing.
@@ -97,10 +103,9 @@ class GeneralHTMLParser2:
         Returns:
 
         """
-        justext_preprocessor = justext.core.preprocessor
 
         paragraphs = justext.justext(self.html, justext.get_stoplist(self.language),
-                                     preprocessor=justext_preprocessor)
+                                     preprocessor=self._justext_preprocessor)
 
         # # Debugging
         # paragraph = paragraphs[0]
@@ -142,6 +147,15 @@ class GeneralHTMLParser2:
 
         return l_sections
 
+    @property
+    def html_root(self):
+        return self._html_root
+
+    def get_lxml_element_from_paragraph(self, paragraph: GeneralParagraph):
+        el = get_lxml_el_from_paragraph(self.html_root,
+                                        paragraph)
+
+        return el
 
 class GeneralHTMLParser:
     """

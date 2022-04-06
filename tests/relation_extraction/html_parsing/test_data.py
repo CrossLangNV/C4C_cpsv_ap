@@ -2,8 +2,7 @@ import os
 import unittest
 from typing import Dict, List
 
-from relation_extraction.html_parsing.data import data_generic, data_turnhout, DataCountries
-# Code: language
+from relation_extraction.html_parsing.data import DataCountries, DataGeneric
 from relation_extraction.html_parsing.utils import export_jsonl
 
 
@@ -17,9 +16,12 @@ class TestScriptData(unittest.TestCase):
 
     def test_turnhout(self,
                       url="https://www.turnhout.be/inname-openbaar-domein",
+                      language_code="NL"
                       ):
 
-        l_data = data_turnhout(url=url)
+        l_data = DataGeneric().extract_data(url=url,
+                                            language_code=language_code
+                                            )
 
         export_jsonl(l_data, "DEBUG_DATA.jsonl")
 
@@ -169,10 +171,31 @@ class TestTrainingData(unittest.TestCase):
 
     def test_generate_training_data(self):
 
+        # Distribution:
+        distribution_total = {}  # "label name": Number of elements
+
         for country in self.data_countries.countries:
             for muni in country.municipalities:
                 language_code = muni.language
-                for url in muni.procedures:
-                    foo = data_generic(url,
-                                       language_code=language_code)
-                    foo
+
+                parser_config = muni.parser
+
+                with self.subTest(f"{muni.name}"):
+                    for url in muni.procedures:
+
+                        foo = DataGeneric().extract_data(url,
+                                                         language_code=language_code)
+
+                        # Distribution:
+                        d_label_names = {}
+                        for item in foo:
+                            k = frozenset(item.label_names)
+                            d_label_names.setdefault(k, 0)
+                            d_label_names[k] += 1
+
+                            distribution_total.setdefault(k, 0)
+                            distribution_total[k] += 1
+
+                        print(f"Distr: {d_label_names}. {url}")
+
+        print(f"Distribution total: {distribution_total}")

@@ -2,7 +2,6 @@ import json
 from typing import List, Union
 
 import justext
-import lxml
 from lxml.etree import _Element, _ElementTree
 from pydantic import BaseModel
 
@@ -53,20 +52,3 @@ def export_jsonl(l_d_json: List[Union[dict, BaseModel]], filename):
             f.write(json_string + "\n")
 
 
-def makeParentLine(node, attach_head=False):
-    # Add how much text context is given. e.g. 2 would mean 2 parent's text
-    # nodes are also displayed
-    # if questionContains is not None:
-    #     newstr = doesThisElementContain(questionContains, lxml.html.tostring(node))
-    # else:
-    newstr = lxml.html.tostring(node, encoding="UTF-8").decode('utf8')
-    parent = node.getparent()
-    while parent is not None:
-        if attach_head and parent.tag == 'html':
-            newstr = lxml.html.tostring(parent.find(
-                './/head'), encoding='utf8').decode('utf8') + newstr
-        tag, items = parent.tag, parent.items()
-        attrs = " ".join(['{}="{}"'.format(x[0], x[1]) for x in items if len(x) == 2])
-        newstr = '<{} {}>{}</{}>'.format(tag, attrs, newstr, tag)
-        parent = parent.getparent()
-    return newstr
