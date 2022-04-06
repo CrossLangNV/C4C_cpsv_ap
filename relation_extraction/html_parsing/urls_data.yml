@@ -176,7 +176,7 @@ countries:
           titles: html_headings
 
   Slovenia:
-    language: "SI"
+    language: "SL"
     municipalities:
       Nova Gorica:
         procedures:

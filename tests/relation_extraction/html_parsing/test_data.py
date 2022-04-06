@@ -165,6 +165,7 @@ class TestTrainingData(unittest.TestCase):
 
         with self.subTest("Multiple URLs"):
             self.assertGreaterEqual(len(l_url), 1)
+            print(f"# URLs = {len(l_url)}")
 
     def test_generate_training_data(self):
 

@@ -181,7 +181,15 @@ def data_generic(url: str,
     re_pattern = re.compile(r"[^a-zA-Z0-9]+")
     basename = re_pattern.sub("_", url)
 
-    language_full = langcodes.get(language_code).display_name()
+    def get_language_full_from_code(language_code):
+
+        language_full = langcodes.get(language_code).display_name()
+        if language_full == "Norwegian":  # Default Norwegian (Spoken by ~90% of Norway)
+            return "Norwegian_Bokmal"
+
+        return language_full
+
+    language_full = get_language_full_from_code(language_code)
 
     FILENAME_INPUT_HTML = os.path.join(FOLDER_TMP, f"{basename}.html")
 
