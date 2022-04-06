@@ -25,6 +25,9 @@ class ParserModel(BaseModel):
 
     @validator("titles", pre=True)
     def check_choices(cls, value: Union[str, List[str]], values) -> Union[Enum, List[Enum]]:
+        if isinstance(value, cls.titlesChoices):
+            return value
+
         if isinstance(value, list):
             return [cls.check_choices(v_i, values=values) for v_i in value]
 
@@ -209,12 +212,6 @@ class DataGeneric:
                             html_el=html_el,
                             html_parents=s_html_parents,
                             url=url,
-                            # **{"label_names": label_names,
-                            #    "text": text,
-                            #
-                            #    "html_el": s_html,
-                            #    "html_parents": s_html_parents,
-                            #    "url": url}
                             )
 
             l_data.append(item)

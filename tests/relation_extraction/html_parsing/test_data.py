@@ -1,8 +1,10 @@
 import os
 import unittest
+from collections import Counter
 from typing import Dict, List
 
-from relation_extraction.html_parsing.data import DataCountries, DataGeneric
+from relation_extraction.html_parsing.data import DataCountries, DataGeneric, ParserModel
+from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2, justext_bold_titles
 from relation_extraction.html_parsing.utils import export_jsonl
 
 
@@ -41,6 +43,42 @@ class TestScriptData(unittest.TestCase):
 
         with self.subTest("encoding html parent"):
             self.assertIn("€", item_euro.html_parents)
+
+    def test_bold(self,
+                  url="https://laois.ie/departments/planning/applying-for-planning-permission/",
+                  language_code="EN"):
+
+        data_gen = DataGeneric()
+        parser_config = ParserModel(titles=ParserModel.titlesChoices.html_bold)
+
+        html = data_gen._tmp_html(url)
+        parser = GeneralHTMLParser2(html,
+                                    language=data_gen._get_language_full_from_code(language_code))
+
+        paragraphs = parser.get_paragraphs()
+        for paragraph in paragraphs:
+            paragraph
+
+        paragraphs = justext_bold_titles()
+
+        Counter([paragraph.is_heading for paragraph in paragraphs])
+
+        l_data = DataGeneric().extract_data(url=url,
+                                            language_code=language_code
+                                            )
+        export_jsonl(l_data, "DEBUG_DATA.jsonl")
+
+        l_data
+
+        # with self.subTest("encoding text"):
+        #     self.assertTrue(item_euro)
+        #     self.assertIn("€", item_euro.text)
+        #
+        # with self.subTest("encoding html el"):
+        #     self.assertIn("€", item_euro.html_el)
+        #
+        # with self.subTest("encoding html parent"):
+        #     self.assertIn("€", item_euro.html_parents)
 
     def test_data_countries_from_yml_template(self):
 

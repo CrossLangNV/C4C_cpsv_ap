@@ -412,3 +412,20 @@ def get_lxml_el_from_paragraph(html_root: lxml.html.etree._Element,
         raise LookupError(f"Expected exactly one element: {l_e}")
 
     return l_e[0]
+
+
+def justext_bold_titles(*args, **kwargs):
+    """
+    Based on justext 3.0.0
+
+    Same pipeline as justext, but bold titles are also considered headers.
+
+    '
+    Converts an HTML page into a list of classified paragraphs. Each paragraph
+    is represented as instance of class ˙˙justext.paragraph.Paragraph˙˙.
+    '
+    """
+
+    raise NotImplementedError()
+
+    return justext.justext(*args, **kwargs)

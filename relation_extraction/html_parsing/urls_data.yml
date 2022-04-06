@@ -157,6 +157,8 @@ countries:
       Laois:
         procedures:
           - https://laois.ie/departments/planning/applying-for-planning-permission/
+        parser:
+          titles: html_bold
 
   Norway:
     language: "NO"
