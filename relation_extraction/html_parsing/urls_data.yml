@@ -1,16 +1,22 @@
 countries:
   # Template
   Country:
-    # Default language
+    # (Optional)
+    # Default language for all municipalities
+    # ISO 639-1 codes
     language: EN
     municipalities:
       City:
-        # (Optional) Default language
-        language: EN
+        # Default language of webpages in this municipality
+        language: EN # ISO 639-1 codes
         procedures:
-          - URL
+          - URL # link to webpage containing an administrative procedure.
 
-  # Data
+        # (Optional)
+        parser:
+          titles: html_headings # Info on how to extract (sub)titles out of the webpage
+
+  # Data (fill in or extend yourself)
   Austria:
     municipalities:
       Wien:
@@ -30,6 +36,13 @@ countries:
         procedures:
           - https://stad.gent/nl/over-gent-stadsbestuur/belastingen/online-aangiften/belasting-op-woningen-zonder-inschrijving-het-bevolkingsregister-zogenaamde-tweede-verblijven
 
+      Sint-Ghislain:
+        language: FR
+        procedures:
+          - https://www.saint-ghislain.be/ma-ville/services-communaux/population-etat-civil/passeports
+        parser:
+          titles: html_headings
+
       Sint-Niklaas:
         language: NL
         procedures:
@@ -40,6 +53,21 @@ countries:
         procedures:
           - https://www.turnhout.be/inname-openbaar-domein
           - https://www.turnhout.be/subsidie-mondiale-vorming
+
+  France:
+    language: FR
+    municipalities:
+      limoges:
+        procedures:
+          - https://www.limoges.fr/pratique-mes-demarches/demande-dacte-de-naissance-mariage-ou-deces
+        parser:
+          titles: html_headings
+
+      audinghen-capgrisnez:
+        procedures:
+          - http://audinghen-capgrisnez.fr/demarches-administratives/acte-de-naissance/
+        parser:
+          titles: html_bold
 
   Germany:
     language: DE
@@ -68,6 +96,9 @@ countries:
         # Has no <h*/> headers for subtitles
         procedures:
           - https://www.comune.trento.it/Aree-tematiche/Attivita-edilizia/Interventi-edilizi/Permesso-di-costruire/Permesso-di-costruire
+
+  Ireland:
+    municipalities:
 
   Spain:
     language: ES

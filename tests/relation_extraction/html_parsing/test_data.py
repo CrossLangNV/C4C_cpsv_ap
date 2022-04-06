@@ -1,5 +1,6 @@
 import os
 import unittest
+from typing import Dict, List
 
 from relation_extraction.html_parsing.data import data_generic, data_turnhout, DataCountries
 # Code: language
@@ -112,6 +113,35 @@ class TestScriptData(unittest.TestCase):
 
                 for url in l_urls:
                     self.assertIsInstance(url, str)
+
+    def test_data_summary(self):
+
+        data_countries = DataCountries.load_yaml(self.FILENAME_YML,
+                                                 remove_template=True)
+
+        with self.subTest("# of countries"):
+            country_names = data_countries.country_names()
+            self.assertGreaterEqual(len(country_names), 1)
+
+            print(f"Countries (#={len(country_names)}): {', '.join(country_names)}")
+
+        for country in data_countries.countries:
+            name_country = country.name
+            with self.subTest(f"Country: {name_country}"):
+                muni_names = country.municipalities_names()
+                self.assertGreaterEqual(len(muni_names), 1)
+
+                print(f"{name_country} (#={len(muni_names)}): {', '.join(muni_names)}")
+
+        # Languages
+        d_lang: Dict[str, List[str]] = {}
+        for country in data_countries.countries:
+            for muni in country.municipalities:
+                d_lang.setdefault(muni.language, []).append(muni.name)
+
+        for lang, munis in d_lang.items():
+            with self.subTest(f"Language: {lang}"):
+                print(f"{lang} (#={len(munis)}): {', '.join(munis)}")
 
 
 class TestTrainingData(unittest.TestCase):

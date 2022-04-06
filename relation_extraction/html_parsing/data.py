@@ -4,6 +4,7 @@ import os.path
 import re
 import warnings
 from dataclasses import dataclass
+from enum import Enum
 from typing import Dict, List, Optional, Union
 
 import justext
@@ -20,18 +21,37 @@ from relation_extraction.html_parsing.utils import export_jsonl, makeParentLine
 FOLDER_TMP = os.path.join(os.path.dirname(__file__), "TMP")
 
 
+class ParserModel(BaseModel):
+    titles: Enum  # cls.HeadingChoices
+
+    @validator("titles", pre=True)
+    def check_choices(cls, value: str, values) -> Enum:
+        return cls.titlesChoices[value]
+
+    class titlesChoices(Enum):
+        html_headings = "html_headings"
+        html_bold = "html_bold"
+
+
 @dataclass
 class MunicipalityModel:
     """
     TODO
      * Be able to access country
     """
-    language: Optional[str]
     procedures: List[str]
-
     name: str
 
+    language: Optional[str] = None
+
+    # Optional information on how to parse the webpage
+    parser: Optional[ParserModel] = None
+
     # _country: "CountryModel"
+
+    @validator("parser", pre=True)
+    def foo(cls, value, values):
+        return value
 
 
 class CountryModel(BaseModel):
@@ -61,7 +81,13 @@ class CountryModel(BaseModel):
             l = [MunicipalityModel(**d) for d in value]
             return l
 
+        elif value is None:
+            return []
+
         return value
+
+    def municipalities_names(self) -> List[str]:
+        return [muni.name for muni in self.municipalities]
 
 
 class DataCountries(BaseModel):
