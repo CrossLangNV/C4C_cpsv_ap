@@ -22,15 +22,18 @@ FOLDER_TMP = os.path.join(os.path.dirname(__file__), "TMP")
 
 
 class ParserModel(BaseModel):
-    titles: Enum  # cls.HeadingChoices
+    titles: Union[Enum, List[Enum]]  # cls.HeadingChoices
 
     @validator("titles", pre=True)
-    def check_choices(cls, value: str, values) -> Enum:
+    def check_choices(cls, value: Union[str, List[str]], values) -> Union[Enum, List[Enum]]:
+        if isinstance(value, list):
+            return [cls.check_choices(v_i, values=values) for v_i in value]
+
         return cls.titlesChoices[value]
 
     class titlesChoices(Enum):
-        html_headings = "html_headings"
-        html_bold = "html_bold"
+        html_headings = "html_headings"  # Look at <h2/>, <h3/> ... tags
+        html_bold = "html_bold"  # Look at paragraphs/divs completely in <b/>
 
 
 @dataclass

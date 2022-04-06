@@ -4,11 +4,11 @@ countries:
     # (Optional)
     # Default language for all municipalities
     # ISO 639-1 codes
-    language: EN
+    language: "EN"
     municipalities:
       City:
         # Default language of webpages in this municipality
-        language: EN # ISO 639-1 codes
+        language: "EN" # ISO 639-1 codes
         procedures:
           - URL # link to webpage containing an administrative procedure.
 
@@ -20,42 +20,75 @@ countries:
   Austria:
     municipalities:
       Wien:
-        language: DE
+        language: "DE"
         procedures:
           - https://www.wien.gv.at/amtshelfer/finanzielles/rechnungswesen/abgaben/kommunalsteuer.html
+          - https://www.wien.gv.at/amtshelfer/verkehr/fahrzeuge/aenderungen/einzelgenehmigung.html
 
   Belgium:
     municipalities:
+      Aalter:
+        language: "NL"
+        procedures:
+          - https://www.aalter.be/verhuizen
+        parser:
+          titles: html_headings
+
+      Affligem:
+        language: "NL"
+        procedures:
+          - https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/wettiging-van-handtekening/page.aspx/169#
+        parser:
+          titles: html_headings
+
       Beerse:
-        language: NL
+        language: "NL"
         procedures:
           - https://www.beerse.be/producten/detail/839/cofinanciering
 
       Gent:
-        language: NL
+        language: "NL"
         procedures:
           - https://stad.gent/nl/over-gent-stadsbestuur/belastingen/online-aangiften/belasting-op-woningen-zonder-inschrijving-het-bevolkingsregister-zogenaamde-tweede-verblijven
 
       Sint-Ghislain:
-        language: FR
+        language: "FR"
         procedures:
           - https://www.saint-ghislain.be/ma-ville/services-communaux/population-etat-civil/passeports
         parser:
           titles: html_headings
 
       Sint-Niklaas:
-        language: NL
+        language: "NL"
         procedures:
           - https://www.sint-niklaas.be/onze-dienstverlening/persoonlijke-documenten/reizen/internationaal-paspoort
 
       Turnhout:
-        language: NL
+        language: "NL"
         procedures:
           - https://www.turnhout.be/inname-openbaar-domein
           - https://www.turnhout.be/subsidie-mondiale-vorming
 
+  Croatia:
+    language: "HR"
+    municipalities:
+      Zagreb:
+        procedures:
+          - https://www.zagreb.hr/novcana-pomoc-za-opremu-novorodjenog-djeteta/5723
+        parser:
+          titles: html_bold
+
+      Rijeka:
+        procedures:
+          # Parser might not work!
+          - https://gov.rijeka.hr/zahtjevi-i-obrasci/gospodarenje-imovinom/zahtjev-za-kupnju-nekretnine-stana-poslovnog-prostora/131
+          - https://gov.rijeka.hr/zahtjevi-i-obrasci/zdravstvo-i-socijalna-skrb/pomoci-za-djecu-i-mlade/besplatna-prilagodjena-hrana-za-dojence/145
+        parser:
+          titles: html_bold
+
+
   France:
-    language: FR
+    language: "FR"
     municipalities:
       limoges:
         procedures:
@@ -70,7 +103,7 @@ countries:
           titles: html_bold
 
   Germany:
-    language: DE
+    language: "DE"
     municipalities:
       Dortmund:
         procedures:
@@ -90,18 +123,76 @@ countries:
           - https://www.trier.de/leben-in-trier/familie-kinder/heiraten-in-trier/
 
   Italy:
-    language: IT
+    language: "IT"
     municipalities:
+      San Paolo:
+        procedures:
+          - https://www.comune.sanpaolo.bs.it/procedure%3As_italia%3Atrasferimento.residenza.estero%3Bdichiarazione?source=1104
+        parser:
+          titles: # Both
+            - html_bold
+            - html_headings
+
       Trento:
         # Has no <h*/> headers for subtitles
         procedures:
           - https://www.comune.trento.it/Aree-tematiche/Attivita-edilizia/Interventi-edilizi/Permesso-di-costruire/Permesso-di-costruire
+        parser:
+          titles: html_bold
+
+      Teramo:
+        procedures:
+          - http://www.comune.teramo.it/servizi/anagrafe-e-stato-civile/autenticazioni-di-firma/30-16.html#costi_vincoli
+        parser:
+          titles: html_headings
 
   Ireland:
+    language: "EN"
     municipalities:
+      Ireland: # Not really a municipality, but contains procedures
+        procedures:
+          - https://www.citizensinformation.ie/en/birth_family_relationships/registrar_birth_marr_death.html#ld1a9a
+          - https://www.citizensinformation.ie/en/travel_and_recreation/passports/applying_for_or_renewing_an_irish_passport.html
+
+      Laois:
+        procedures:
+          - https://laois.ie/departments/planning/applying-for-planning-permission/
+
+  Norway:
+    language: "NO"
+    municipalities:
+      Austrheim:
+        procedures:
+          - https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/
+        parser:
+          titles: html_headings
+
+      Trondheim:
+        procedures:
+          - https://www.trondheim.kommune.no/tema/sosiale-tjenester/okonomisk-bistand/bostotte/
+          # titles based on tags will not work:
+          # - https://www.trondheim.kommune.no/tema/sosiale-tjenester/okonomisk-bistand/startlan/
+        parser:
+          titles: html_headings
+
+  Slovenia:
+    language: "SI"
+    municipalities:
+      Nova Gorica:
+        procedures:
+          - "https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011101410574355/"
+        parser:
+          titles: html_bold
+
+      Postojna:
+        procedures:
+          - https://www.postojna.si/objava/400493
+          - https://www.postojna.si/objava/400485
+        parser:
+          titles: html_headings
 
   Spain:
-    language: ES
+    language: "ES"
     municipalities:
       Malaga:
         procedures:
