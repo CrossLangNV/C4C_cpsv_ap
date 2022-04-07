@@ -3,9 +3,12 @@ import unittest
 from collections import Counter
 from typing import Dict, List
 
+import justext
+
 from relation_extraction.html_parsing.data import DataCountries, DataGeneric, ParserModel
-from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2, justext_bold_titles
-from relation_extraction.html_parsing.utils import export_jsonl
+from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2
+from relation_extraction.html_parsing.justext_wrapper import BoldJustextWrapper
+from relation_extraction.html_parsing.utils import _get_language_full_from_code, _tmp_html, export_jsonl
 
 
 class TestScriptData(unittest.TestCase):
@@ -51,15 +54,18 @@ class TestScriptData(unittest.TestCase):
         data_gen = DataGeneric()
         parser_config = ParserModel(titles=ParserModel.titlesChoices.html_bold)
 
-        html = data_gen._tmp_html(url)
+        html = _tmp_html(url)
         parser = GeneralHTMLParser2(html,
-                                    language=data_gen._get_language_full_from_code(language_code))
+                                    language=_get_language_full_from_code(language_code))
 
         paragraphs = parser.get_paragraphs()
         for paragraph in paragraphs:
             paragraph
 
-        paragraphs = justext_bold_titles()
+        paragraphs = BoldJustextWrapper().justext(html,
+                                                  stoplist=justext.get_stoplist(
+                                                      _get_language_full_from_code(language_code))
+                                                  )
 
         Counter([paragraph.is_heading for paragraph in paragraphs])
 

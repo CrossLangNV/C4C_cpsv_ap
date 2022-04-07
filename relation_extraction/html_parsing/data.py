@@ -1,23 +1,15 @@
-import hashlib
-import hashlib
-import os.path
-import re
 import warnings
 from dataclasses import dataclass
 from enum import Enum
 from typing import Dict, List, Optional, Union
 
-import langcodes
 import lxml
 import yaml
 from pydantic import BaseModel, validator
 
-from data.html import get_html, url2html
 from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2, \
     GeneralParagraph
-from relation_extraction.html_parsing.utils import export_jsonl
-
-FOLDER_TMP = os.path.join(os.path.dirname(__file__), "TMP")
+from relation_extraction.html_parsing.utils import _get_language_full_from_code, _tmp_filename, _tmp_html, export_jsonl
 
 
 class ParserModel(BaseModel):
@@ -188,8 +180,8 @@ class DataGeneric:
 
         """
 
-        html = self._tmp_html(url, filename_html=filename_html)
-        language = self._get_language_full_from_code(language_code)
+        html = _tmp_html(url, filename_html=filename_html)
+        language = _get_language_full_from_code(language_code)
 
         parser = GeneralHTMLParser2(html,
                                     language=language)
@@ -217,78 +209,12 @@ class DataGeneric:
             l_data.append(item)
 
         if filename_out is None:
-            filename_out = self._tmp_filename(url, ext=".jsonl", prefix="TITLE_")
+            filename_out = _tmp_filename(url, ext=".jsonl", prefix="TITLE_")
             # filename_out = os.path.join(FOLDER_TMP, f"TITLE_{basename}.jsonl")
 
         export_jsonl(l_data, filename_out)
 
         return l_data
-
-    def _get_language_full_from_code(self,
-                                     language_code):
-
-        language_full = langcodes.get(language_code).display_name()
-        if language_full == "Norwegian":  # Default Norwegian (Spoken by ~90% of Norway)
-            return "Norwegian_Bokmal"
-
-        return language_full
-
-    def _tmp_filename(self,
-                      name,
-                      ext="",
-                      prefix="",
-                      c_max=100) -> str:
-        """
-
-        Args:
-            name:
-            prefix:
-            ext:
-            c_max: To prevent too long filenames, the name will be hashed.
-
-        Returns:
-
-        """
-
-        # Make valid by removing non-valid chars and replace with "_"
-        re_pattern = re.compile(r"[^a-zA-Z0-9]+")
-        basename = re_pattern.sub("_", name)
-
-        if len(basename) > c_max:
-            basename = f"{basename[:c_max]}_{hashlib.sha1(name.encode()).hexdigest()}"
-
-        tmp_filename = os.path.join(FOLDER_TMP, f"{prefix}{basename}{ext}")
-
-        return tmp_filename
-
-    def _tmp_html(self, url, filename_html=None) -> str:
-
-        if filename_html is None:
-            filename_html = self._tmp_filename(url, ext=".html")
-
-        try:
-            html = get_html(filename_html)
-        except FileNotFoundError:
-            url2html(url, filename_html)
-            html = get_html(filename_html)
-        # except OSError as oserr:
-        #     # Filename too long
-        #     if oserr.errno == errno.ENAMETOOLONG:
-        #
-        #         basename = f"{basename[:50]}_{hashlib.sha1(basename.encode()).hexdigest()}"
-        #         # Make a shorter filename
-        #         FILENAME_INPUT_HTML = os.path.join(FOLDER_TMP, f"{basename}.html")
-        #
-        #         try:
-        #             html = get_html(FILENAME_INPUT_HTML)
-        #         except FileNotFoundError:
-        #             url2html(url, FILENAME_INPUT_HTML)
-        #             html = get_html(FILENAME_INPUT_HTML)
-        #
-        #     else:
-        #         raise  # re-raise previously caught exception
-
-        return html
 
     def _get_label_names(self,
                          paragraph: GeneralParagraph,

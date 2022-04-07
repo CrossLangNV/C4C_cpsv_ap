@@ -53,17 +53,11 @@ class GeneralParagraph(justext.core.Paragraph):
          * Q: Unresolved reference self.heading
          * A: self.heading should be generated while parsing.
         """
-        return self.heading
 
-        # repr(self)
-        # object.__repr__(obj)
-        #
-        # return super(GeneralParagraph, self).__repr__(self)
-
-    # def __init__(self):
-    #     self.__dict__ = copy.deepcopy(foo.__dict__)
-    #
-    #     super(GeneralParagraph, self).__init__()
+        try:
+            return self.heading
+        except AttributeError:
+            return super(GeneralParagraph, self).is_heading
 
 
 class GeneralSection(Section):
@@ -156,6 +150,7 @@ class GeneralHTMLParser2:
                                         paragraph)
 
         return el
+
 
 class GeneralHTMLParser:
     """
@@ -354,7 +349,6 @@ class GeneralHTMLParser:
             text = inscriptis.get_text(self.html)
             print(text)
             pass
-
 
         return
 
