@@ -7,7 +7,7 @@ import lxml
 import yaml
 from pydantic import BaseModel, validator
 
-from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2
+from relation_extraction.html_parsing.general_parser import GeneralHTMLParser
 from relation_extraction.html_parsing.justext_wrapper import BoldJustextWrapper, GeneralParagraph, JustextWrapper
 from relation_extraction.html_parsing.utils import _get_language_full_from_code, _tmp_filename, _tmp_html, export_jsonl
 
@@ -208,10 +208,10 @@ class DataGeneric:
         html = _tmp_html(url, filename_html=filename_html)
         language = _get_language_full_from_code(language_code)
 
-        parser = GeneralHTMLParser2(html,
-                                    language,
-                                    self.justext_wrapper,
-                                    )
+        parser = GeneralHTMLParser(html,
+                                   language,
+                                   self.justext_wrapper,
+                                   )
 
         l_data = []
         for paragraph in parser.get_paragraphs():

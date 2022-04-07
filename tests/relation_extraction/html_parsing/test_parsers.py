@@ -1,7 +1,7 @@
 import unittest
 
 from data.html import url2html
-from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2
+from relation_extraction.html_parsing.general_parser import GeneralHTMLParser
 from relation_extraction.html_parsing.parsers import HeaderHTMLParser
 
 
@@ -46,8 +46,8 @@ class TestHeaderHTMLParser(unittest.TestCase):
 
         # parser = HeaderHTMLParser(html)
 
-        parser = GeneralHTMLParser2(html,
-                                    language="Dutch")
+        parser = GeneralHTMLParser(html,
+                                   language="Dutch")
 
         sections = parser.get_sections()
 
