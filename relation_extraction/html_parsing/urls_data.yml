@@ -108,19 +108,26 @@ countries:
       Dortmund:
         procedures:
           - https://rathaus.dortmund.de/wps/portal/dortmund/home/dortmund/rathaus/domap/services.domap.de/product.services.domap.de/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zijQItjAwN3Q18DEwdzQwcfc2dw3wDwwwsQo31w8EKDHAARwP9KGL041EQhd_4cP0ovFa4muJX4G5oiF-BQZgBAQW-JgQUmMFMwOOPgtzQCINMz0xPR0VFAIMqPLQ!/dz/d5/L2dBISEvZ0FBIS9nQSEh/?p_id=reisepasspasseuropap0
+        parser:
+          titles: html_bold
 
       Moers:
         procedures:
           - https://www.moers.de/de/stichwoerter/melderegisterauskuenfte-erweiterte-9498826/
 
       Salzgitter:
+        # Special
         # Has no <h*/> headers for subtitles
         procedures:
           - https://www.salzgitter.de/rathaus/fachdienste/bauordnung/Bauordnung.php
 
       Trier:
+        # Not really bold, but <span class="bold"/>. Classifier should be able to catch this.
         procedures:
           - https://www.trier.de/leben-in-trier/familie-kinder/heiraten-in-trier/
+        parser:
+          titles:
+            - html_bold
 
   Italy:
     language: "IT"
@@ -161,9 +168,11 @@ countries:
           titles: html_bold
 
   Norway:
-    language: "NO"
+    language: NB # Norwegian Bokmål
     municipalities:
       Austrheim:
+        # Is actually Nynorsk
+        language: "NN"
         procedures:
           - https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/
         parser:
@@ -182,6 +191,7 @@ countries:
     municipalities:
       Nova Gorica:
         procedures:
+          # Extremely non-standard HTML. Unable to parse currently.
           - "https://www.nova-gorica.si/za-obcane/postopki-in-obrazci/2011101410574355/"
         parser:
           titles: html_bold

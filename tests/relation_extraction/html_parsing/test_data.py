@@ -213,7 +213,8 @@ class TestTrainingData(unittest.TestCase):
             self.assertGreaterEqual(len(l_url), 1)
             print(f"# URLs = {len(l_url)}")
 
-    def test_generate_training_data(self):
+    def test_generate_training_data(self,
+                                    use_parser_config=True):
 
         # Distribution:
         distribution_total = {}  # "label name": Number of elements
@@ -222,13 +223,18 @@ class TestTrainingData(unittest.TestCase):
             for muni in country.municipalities:
                 language_code = muni.language
 
-                parser_config = muni.parser
+                if use_parser_config:
+                    parser_config = muni.parser
+                else:
+                    parser_config = None
+
+                data_generic = DataGeneric(parser_config)
 
                 with self.subTest(f"{muni.name}"):
                     for url in muni.procedures:
 
-                        foo = DataGeneric().extract_data(url,
-                                                         language_code=language_code)
+                        foo = data_generic.extract_data(url,
+                                                        language_code=language_code)
 
                         # Distribution:
                         d_label_names = {}
@@ -243,3 +249,35 @@ class TestTrainingData(unittest.TestCase):
                         print(f"Distr: {d_label_names}. {url}")
 
         print(f"Distribution total: {distribution_total}")
+
+    def test_expected_more_results_debug(self,
+                                         muni_name="Trier"):
+
+        # Get Muni
+        def get_muni():
+            for country in self.data_countries.countries:
+                for muni in country.municipalities:
+                    if muni.name == muni_name:
+                        return muni
+
+        muni = get_muni()
+
+        language_code = muni.language
+
+        data_generic = DataGeneric(muni.parser)
+
+        self.assertIsInstance(data_generic.justext_wrapper, BoldJustextWrapper)
+
+        for url in muni.procedures:
+
+            foo = data_generic.extract_data(url,
+                                            language_code=language_code)
+
+            # Distribution:
+            d_label_names = {}
+            for item in foo:
+                k = frozenset(item.label_names)
+                d_label_names.setdefault(k, 0)
+                d_label_names[k] += 1
+
+            print(f"Distr: {d_label_names}. {url}")

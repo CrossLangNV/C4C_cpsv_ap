@@ -128,6 +128,14 @@ def _get_language_full_from_code(language_code):
     For justext
     """
 
+    language_full = "_".join(langcodes.get(language_code).display_name().split())
+
+    if language_code.upper() == "NB":
+        return "Norwegian_Bokmal"
+
+    if language_code.upper() == "NN":
+        return "Norwegian_Nynorsk"
+
     language_full = langcodes.get(language_code).display_name()
     if language_full == "Norwegian":  # Default Norwegian (Spoken by ~90% of Norway)
         return "Norwegian_Bokmal"

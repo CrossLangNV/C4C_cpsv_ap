@@ -29,6 +29,19 @@ class ParserModel(BaseModel):
         html_headings = "html_headings"  # Look at <h2/>, <h3/> ... tags
         html_bold = "html_bold"  # Look at paragraphs/divs completely in <b/>
 
+    def get_justext_wrapper(self):
+
+        if isinstance(self.titles, list):
+            # Let html_bold take priority
+            if self.titlesChoices.html_bold in self.titles:
+                return BoldJustextWrapper()
+
+        if self.titles == self.titlesChoices.html_bold:
+            return BoldJustextWrapper()
+
+        # Default behaviour
+        return JustextWrapper()
+
 
 @dataclass
 class MunicipalityModel:
@@ -167,24 +180,11 @@ class DataGeneric:
             # Default .
             parser_config = ParserModel(titles=ParserModel.titlesChoices.html_headings)
 
-        self.justext_wrapper = parser_config
+        self._justext_wrapper = parser_config.get_justext_wrapper()
 
     @property
     def justext_wrapper(self) -> JustextWrapper:
         return self._justext_wrapper
-
-    @justext_wrapper.setter
-    def justext_wrapper(self, value: Union[JustextWrapper, ParserModel]):
-        if isinstance(value, ParserModel):
-
-            # TODO link JustextWrappers to ParserModel
-            if value.titles == value.titlesChoices.html_bold:
-                self._justext_wrapper = BoldJustextWrapper()
-                return
-
-        # TODO No other models yet available
-        # Default behaviour
-        self._justext_wrapper = JustextWrapper()
 
     def extract_data(self,
                      url: str,
