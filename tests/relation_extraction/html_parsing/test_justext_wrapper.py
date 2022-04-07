@@ -97,5 +97,3 @@ class TestBoldJustTextWrapper(unittest.TestCase):
         wrapper = BoldJustextWrapper()
 
         wrapper._export_debugging(html, stoplist, FILENAME_OUT)
-
-        self.assertEqual(0, 1)

@@ -16,6 +16,8 @@ class GeneralParagraph(justext.core.Paragraph):
     A group of sentences that belong together
     """
 
+    heading: bool
+
     @classmethod
     def from_justext_paragraph(cls, paragraph: justext.core.Paragraph):
         """
@@ -47,14 +49,11 @@ class GeneralParagraph(justext.core.Paragraph):
     @property
     def is_heading(self) -> bool:
         """
-        Overwrite is_heading to not use regex pattern.
-
-        Q & A:
-         * Q: Unresolved reference self.heading
-         * A: self.heading should be generated while parsing.
+        self.heading overwrites this call. This forces is_heading to not use regex pattern.
         """
 
         try:
+            # Check if exists
             return self.heading
         except AttributeError:
             return super(GeneralParagraph, self).is_heading

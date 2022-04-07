@@ -61,7 +61,12 @@ class JustextWrapper:
     def _preprocessor(self, dom):
         return justext.core.preprocessor(dom)
 
-    def _export_debugging(self, html, stoplist, filename_out):
+    def _export_debugging(self, html, stoplist,
+                          filename_out,
+                          style_header="background-color: #70D6FF;",  # color:white;
+                          style_boilerplate="background-color :#FF934F;"  # color:#f88f93;
+                          ):
+
         """
         Do same processing, but save as HTML with important annotations.
         """
@@ -70,13 +75,18 @@ class JustextWrapper:
 
         dom_debug = self.get_dom_clean(html)
 
-        style_header = "text-decoration: underline;text-decoration-color: red;"
-
         for paragraph in paragraphs:
             el = get_lxml_el_from_paragraph(dom_debug,
                                             paragraph)
 
-            el.attrib["style"] = el.attrib.get("style", "") + style_header
+            if paragraph.is_heading:
+                el.attrib["style"] = el.attrib.get("style", "") + style_header
+                # el.attrib["style"] = el.attrib.get("style", "") + style_header
+
+            # Overwrite all else
+            if paragraph.is_boilerplate:
+                el.attrib["style"] = style_boilerplate
+                # "background-color:powderblue;
 
         dom_write(dom_debug,
                   filename_out
