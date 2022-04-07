@@ -1,5 +1,6 @@
 import abc
 import re
+import warnings
 from typing import List, Union
 
 from bs4 import BeautifulSoup, Tag
@@ -82,8 +83,22 @@ class HTMLParser(abc.ABC):
         """"""
 
 
+def deprecated_metaclass(message):
+    class DeprecatedMetaclass(type):
+        def __init__(cls, name, bases, dct):
+            if not hasattr(cls, '__metaclass__'):
+                cls.__metaclass__ = DeprecatedMetaclass
+            if any(getattr(base, '__metaclass__', None) == DeprecatedMetaclass
+                   for base in bases):
+                warnings.warn(message, DeprecationWarning, stacklevel=2)
+            super(DeprecatedMetaclass, cls).__init__(name, bases, dct)
+
+
 class HeaderHTMLParser(HTMLParser):
-    """"""
+
+    def __init__(self, *args, **kwargs):
+        warnings.warn("Use GeneralParser2 instead", DeprecationWarning)
+        super(HeaderHTMLParser, self).__init__(*args, **kwargs)
 
     def get_sections(self,
                      include_sub=False) -> List[Section]:

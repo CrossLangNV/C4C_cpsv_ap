@@ -6,7 +6,8 @@ import justext
 import lxml.html
 
 from data.html import get_html, url2html
-from relation_extraction.html_parsing.general_parser import GeneralHTMLParser, GeneralHTMLParser2, GeneralParagraph
+from relation_extraction.html_parsing.general_parser import GeneralHTMLParser, GeneralHTMLParser2
+from relation_extraction.html_parsing.justext_wrapper import GeneralParagraph
 from relation_extraction.html_parsing.utils import clean_tag_text, dom_write, hashabledict
 
 FILENAME_INPUT_HTML = "PARSER_DEBUG.html"

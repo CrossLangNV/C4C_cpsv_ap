@@ -7,8 +7,8 @@ import lxml
 import yaml
 from pydantic import BaseModel, validator
 
-from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2, \
-    GeneralParagraph
+from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2
+from relation_extraction.html_parsing.justext_wrapper import BoldJustextWrapper, GeneralParagraph, JustextWrapper
 from relation_extraction.html_parsing.utils import _get_language_full_from_code, _tmp_filename, _tmp_html, export_jsonl
 
 
@@ -161,6 +161,31 @@ class DataItem(BaseModel):
 class DataGeneric:
     """"""
 
+    def __init__(self, parser_config: ParserModel = None):
+
+        if parser_config is None:
+            # Default .
+            parser_config = ParserModel(titles=ParserModel.titlesChoices.html_headings)
+
+        self.justext_wrapper = parser_config
+
+    @property
+    def justext_wrapper(self) -> JustextWrapper:
+        return self._justext_wrapper
+
+    @justext_wrapper.setter
+    def justext_wrapper(self, value: Union[JustextWrapper, ParserModel]):
+        if isinstance(value, ParserModel):
+
+            # TODO link JustextWrappers to ParserModel
+            if value.titles == value.titlesChoices.html_bold:
+                self._justext_wrapper = BoldJustextWrapper()
+                return
+
+        # TODO No other models yet available
+        # Default behaviour
+        self._justext_wrapper = JustextWrapper()
+
     def extract_data(self,
                      url: str,
                      language_code: str,
@@ -184,7 +209,9 @@ class DataGeneric:
         language = _get_language_full_from_code(language_code)
 
         parser = GeneralHTMLParser2(html,
-                                    language=language)
+                                    language,
+                                    self.justext_wrapper,
+                                    )
 
         l_data = []
         for paragraph in parser.get_paragraphs():
@@ -219,9 +246,8 @@ class DataGeneric:
     def _get_label_names(self,
                          paragraph: GeneralParagraph,
                          TITLE="title"):
-        label_heading = paragraph.is_heading  # bool
 
-        label_names = [TITLE] if label_heading else []
+        label_names = [TITLE] if paragraph.is_heading else []
 
         return label_names
 

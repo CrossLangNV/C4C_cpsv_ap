@@ -6,8 +6,7 @@ from typing import Dict, List
 import justext
 
 from relation_extraction.html_parsing.data import DataCountries, DataGeneric, ParserModel
-from relation_extraction.html_parsing.general_parser import GeneralHTMLParser2
-from relation_extraction.html_parsing.justext_wrapper import BoldJustextWrapper
+from relation_extraction.html_parsing.justext_wrapper import BoldJustextWrapper, JustextWrapper
 from relation_extraction.html_parsing.utils import _get_language_full_from_code, _tmp_html, export_jsonl
 
 
@@ -51,40 +50,41 @@ class TestScriptData(unittest.TestCase):
                   url="https://laois.ie/departments/planning/applying-for-planning-permission/",
                   language_code="EN"):
 
-        data_gen = DataGeneric()
         parser_config = ParserModel(titles=ParserModel.titlesChoices.html_bold)
 
         html = _tmp_html(url)
-        parser = GeneralHTMLParser2(html,
-                                    language=_get_language_full_from_code(language_code))
+        stoplist = justext.get_stoplist(
+            _get_language_full_from_code(language_code))
 
-        paragraphs = parser.get_paragraphs()
-        for paragraph in paragraphs:
-            paragraph
+        paragraphs = JustextWrapper().justext(html,
+                                              stoplist=stoplist)
 
-        paragraphs = BoldJustextWrapper().justext(html,
-                                                  stoplist=justext.get_stoplist(
-                                                      _get_language_full_from_code(language_code))
-                                                  )
+        paragraphs_bold = BoldJustextWrapper().justext(html,
+                                                       stoplist=stoplist)
 
-        Counter([paragraph.is_heading for paragraph in paragraphs])
+        def count_(paragraphs):
+            counter = Counter([paragraph.is_heading for paragraph in paragraphs])
+            print(counter)
 
-        l_data = DataGeneric().extract_data(url=url,
-                                            language_code=language_code
-                                            )
+            return counter
+
+        print(f"Regular justext: {count_(paragraphs)}")
+
+        print(f"Bold justext: {count_(paragraphs_bold)}")
+
+        # without proper parser_config
+        data_gen_bad = DataGeneric(parser_config=None)
+        l_data_bad = data_gen_bad.extract_data(url=url,
+                                               language_code=language_code
+                                               )
+
+        data_gen = DataGeneric(parser_config=parser_config)
+        l_data = data_gen.extract_data(url=url,
+                                       language_code=language_code
+                                       )
         export_jsonl(l_data, "DEBUG_DATA.jsonl")
 
-        l_data
-
-        # with self.subTest("encoding text"):
-        #     self.assertTrue(item_euro)
-        #     self.assertIn("€", item_euro.text)
-        #
-        # with self.subTest("encoding html el"):
-        #     self.assertIn("€", item_euro.html_el)
-        #
-        # with self.subTest("encoding html parent"):
-        #     self.assertIn("€", item_euro.html_parents)
+        self.assertLess(len(l_data_bad), len(l_data))
 
     def test_data_countries_from_yml_template(self):
 

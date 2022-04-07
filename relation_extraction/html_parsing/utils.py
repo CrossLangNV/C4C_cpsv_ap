@@ -6,6 +6,7 @@ from typing import List, Union
 
 import justext
 import langcodes
+import lxml.html
 from lxml.etree import _Element, _ElementTree
 from pydantic import BaseModel
 
@@ -132,3 +133,30 @@ def _get_language_full_from_code(language_code):
         return "Norwegian_Bokmal"
 
     return language_full
+
+
+def get_lxml_el_from_paragraph(html_root: lxml.html.etree._Element,
+                               paragraph: justext.core.Paragraph
+                               ):
+    l_e = html_root.xpath(paragraph.xpath)
+    if len(l_e) != 1:
+        raise LookupError(f"Expected exactly one element: {l_e}")
+
+    return l_e[0]
+
+
+def justext_bold_titles(*args, **kwargs):
+    """
+    Based on justext 3.0.0
+
+    Same pipeline as justext, but bold titles are also considered headers.
+
+    '
+    Converts an HTML page into a list of classified paragraphs. Each paragraph
+    is represented as instance of class ˙˙justext.paragraph.Paragraph˙˙.
+    '
+    """
+
+    raise NotImplementedError()
+
+    return justext.justext(*args, **kwargs)

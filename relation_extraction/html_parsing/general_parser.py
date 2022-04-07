@@ -1,5 +1,5 @@
-import copy
-from typing import List
+import warnings
+from typing import FrozenSet, List
 
 import inscriptis
 import justext
@@ -7,56 +7,10 @@ import lxml
 import lxml.html
 from bs4 import BeautifulSoup
 
+from relation_extraction.html_parsing.justext_wrapper import GeneralParagraph, JustextWrapper
 from relation_extraction.html_parsing.parsers import Section
-from relation_extraction.html_parsing.utils import clean_tag_text, dom_write
-
-
-class GeneralParagraph(justext.core.Paragraph):
-    """
-    A group of sentences that belong together
-    """
-
-    heading: bool
-
-    @classmethod
-    def from_justext_paragraph(cls, paragraph: justext.core.Paragraph):
-        """
-        Our adjustment of the justext Paragraph
-
-        Args:
-            paragraph:
-
-        Returns:
-
-        """
-
-        class Object(object):
-            pass
-
-        path = Object()
-        path.dom = None
-        path.xpath = None
-        self = cls(path)  # Emtpy init
-        self.__dict__ = copy.deepcopy(paragraph.__dict__)
-
-        return self
-
-    def __repr__(self):
-        class_name = self.__class__.__module__ + "." + self.__class__.__name__
-
-        return f"<{class_name}> {self.text}"
-
-    @property
-    def is_heading(self) -> bool:
-        """
-        self.heading overwrites this call. This forces is_heading to not use regex pattern.
-        """
-
-        try:
-            # Check if exists
-            return self.heading
-        except AttributeError:
-            return super(GeneralParagraph, self).is_heading
+from relation_extraction.html_parsing.utils import _get_language_full_from_code, clean_tag_text, dom_write, \
+    get_lxml_el_from_paragraph
 
 
 class GeneralSection(Section):
@@ -70,24 +24,43 @@ class GeneralHTMLParser2:
     After refactoring...
     """
 
+    _stoplist: FrozenSet[str]
+
     def __init__(self,
                  html: str,
-                 language: str):
+                 language: str,
+                 justext_wrapper: JustextWrapper = None):
         """
 
         Args:
             html: HTML as string
             language: language code. ISO language name (e.g. English, Dutch...)
+            justext_wrapper: (Optional), JustextWrapper for paragraph extraction.
         """
 
-        self.html = html
-        self.language = language
+        self._html = html
 
-        self._justext_preprocessor = justext.core.preprocessor
+        self.set_stoplist(language)
 
-        _html_root = lxml.html.fromstring(self.html)
-        # Same cleaning is needed to be able to go back from paragraphs to DOM (make use of the Xpath info).
-        self._html_root = self._justext_preprocessor(_html_root)
+        if justext_wrapper is None:
+            justext_wrapper = JustextWrapper()
+
+        self._justext_wrapper = justext_wrapper
+
+    def set_stoplist(self, language):
+        try:
+            stoplist = justext.get_stoplist(language)
+        except ValueError as e:  # Perhaps language code is given instead of language
+            warnings.warn(f"Expected full language name: \"{language}\". Trying to cast to language code instead ",
+                          UserWarning)
+            try:
+                _language = _get_language_full_from_code(language_code=language)
+            except:
+                raise e
+            else:
+                self._stoplist = justext.get_stoplist(_language)
+        else:
+            self._stoplist = stoplist
 
     def get_paragraphs(self) -> List[GeneralParagraph]:
         """
@@ -97,16 +70,10 @@ class GeneralHTMLParser2:
 
         """
 
-        paragraphs = justext.justext(self.html, justext.get_stoplist(self.language),
-                                     preprocessor=self._justext_preprocessor)
+        paragraphs = self._justext_wrapper.justext(self._html,
+                                                   self._stoplist)
 
-        # # Debugging
-        # paragraph = paragraphs[0]
-        # gen_paragraph = GeneralParagraph.from_justext_paragraph(paragraph)
-
-        gen_paragraphs = list(map(GeneralParagraph.from_justext_paragraph, paragraphs))
-
-        return gen_paragraphs
+        return paragraphs
 
     def get_sections(self) -> List[GeneralSection]:
 
@@ -141,11 +108,12 @@ class GeneralHTMLParser2:
         return l_sections
 
     @property
-    def html_root(self):
-        return self._html_root
+    def dom(self):
+        return self._justext_wrapper.get_dom_clean(self._html)
 
     def get_lxml_element_from_paragraph(self, paragraph: GeneralParagraph):
-        el = get_lxml_el_from_paragraph(self.html_root,
+
+        el = get_lxml_el_from_paragraph(self.dom,
                                         paragraph)
 
         return el
@@ -395,30 +363,3 @@ class GeneralHTMLParser:
 
         print(text)
         return text
-
-
-def get_lxml_el_from_paragraph(html_root: lxml.html.etree._Element,
-                               paragraph: justext.core.Paragraph
-                               ):
-    l_e = html_root.xpath(paragraph.xpath)
-    if len(l_e) != 1:
-        raise LookupError(f"Expected exactly one element: {l_e}")
-
-    return l_e[0]
-
-
-def justext_bold_titles(*args, **kwargs):
-    """
-    Based on justext 3.0.0
-
-    Same pipeline as justext, but bold titles are also considered headers.
-
-    '
-    Converts an HTML page into a list of classified paragraphs. Each paragraph
-    is represented as instance of class ˙˙justext.paragraph.Paragraph˙˙.
-    '
-    """
-
-    raise NotImplementedError()
-
-    return justext.justext(*args, **kwargs)

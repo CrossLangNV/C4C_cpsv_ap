@@ -1,10 +1,58 @@
+import copy
 from typing import List
 
 import justext
 from justext.core import classify_paragraphs, ParagraphMaker, revise_paragraph_classification
 
-from relation_extraction.html_parsing.general_parser import GeneralParagraph, get_lxml_el_from_paragraph
-from relation_extraction.html_parsing.utils import clean_tag_text, dom_write
+from relation_extraction.html_parsing.utils import clean_tag_text, dom_write, get_lxml_el_from_paragraph
+
+
+class GeneralParagraph(justext.core.Paragraph):
+    """
+    A group of sentences that belong together
+    """
+
+    heading: bool
+
+    @classmethod
+    def from_justext_paragraph(cls, paragraph: justext.core.Paragraph):
+        """
+        Our adjustment of the justext Paragraph
+
+        Args:
+            paragraph:
+
+        Returns:
+
+        """
+
+        class Object(object):
+            pass
+
+        path = Object()
+        path.dom = None
+        path.xpath = None
+        self = cls(path)  # Emtpy init
+        self.__dict__ = copy.deepcopy(paragraph.__dict__)
+
+        return self
+
+    def __repr__(self):
+        class_name = self.__class__.__module__ + "." + self.__class__.__name__
+
+        return f"<{class_name}> {self.text}"
+
+    @property
+    def is_heading(self) -> bool:
+        """
+        self.heading overwrites this call. This forces is_heading to not use regex pattern.
+        """
+
+        try:
+            # Check if exists
+            return self.heading
+        except AttributeError:
+            return super(GeneralParagraph, self).is_heading
 
 
 class JustextWrapper:
