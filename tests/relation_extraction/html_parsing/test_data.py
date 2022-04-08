@@ -327,8 +327,8 @@ class TestTrainingData(unittest.TestCase):
         DATA_SOURCE = os.path.join(os.path.dirname(__file__), "../../..")
         DATA_FOLDER = os.path.abspath(os.path.join(DATA_SOURCE, "data/relation_extraction/title_classifier"))
 
-        export_jsonl(l_data_train, os.path.join(DATA_FOLDER, "TITLE_train.jsonl"))
-        export_jsonl(l_data_valid, os.path.join(DATA_FOLDER, "TITLE_valid.jsonl"))
+        export_jsonl(l_data_train, os.path.join(DATA_FOLDER, "train.jsonl"))
+        export_jsonl(l_data_valid, os.path.join(DATA_FOLDER, "validation.jsonl"))
 
         return
 
