@@ -1,3 +1,4 @@
+import math
 import os
 import unittest
 from collections import Counter
@@ -213,8 +214,8 @@ class TestTrainingData(unittest.TestCase):
             self.assertGreaterEqual(len(l_url), 1)
             print(f"# URLs = {len(l_url)}")
 
-    def test_generate_training_data(self,
-                                    use_parser_config=True):
+    def test_generate_all_data(self,
+                               use_parser_config=True):
 
         # Distribution:
         distribution_total = {}  # "label name": Number of elements
@@ -281,3 +282,86 @@ class TestTrainingData(unittest.TestCase):
                 d_label_names[k] += 1
 
             print(f"Distr: {d_label_names}. {url}")
+
+    def test_generate_training_validation_data(self):
+
+        def split_muni_training_valid(split_train=.8):
+
+            l_train = []
+            l_valid = []
+
+            for country in self.data_countries.countries:
+
+                munis = country.municipalities
+                n_muni = len(munis)
+                thresh = math.floor(split_train * n_muni)
+
+                for i, muni in enumerate(munis):
+
+                    if i + 1 <= thresh:
+                        l_train.append(muni)
+                    else:
+                        l_valid.append(muni)
+
+            return l_train, l_valid
+
+        l_train, l_valid = split_muni_training_valid()
+
+        def get_all_data(l_munis):
+            l_data_all = []
+            for muni in l_munis:
+
+                data_generic = DataGeneric(muni.parser)
+
+                for url in muni.procedures:
+                    l_data_i = data_generic.extract_data(url,
+                                                         language_code=muni.language)
+
+                    l_data_all.extend(l_data_i)
+
+            return l_data_all
+
+        l_data_train = get_all_data(l_train)
+        l_data_valid = get_all_data(l_valid)
+
+        DATA_SOURCE = os.path.join(os.path.dirname(__file__), "../../..")
+        DATA_FOLDER = os.path.abspath(os.path.join(DATA_SOURCE, "data/relation_extraction/title_classifier"))
+
+        export_jsonl(l_data_train, os.path.join(DATA_FOLDER, "TITLE_train.jsonl"))
+        export_jsonl(l_data_valid, os.path.join(DATA_FOLDER, "TITLE_valid.jsonl"))
+
+        return
+
+        # # Distribution:
+        # distribution_total = {}  # "label name": Number of elements
+        #
+        # for country in self.data_countries.countries:
+        #     for muni in country.municipalities:
+        #         language_code = muni.language
+        #
+        #         if use_parser_config:
+        #             parser_config = muni.parser
+        #         else:
+        #             parser_config = None
+        #
+        #         data_generic = DataGeneric(parser_config)
+        #
+        #         with self.subTest(f"{muni.name}"):
+        #             for url in muni.procedures:
+        #
+        #                 foo = data_generic.extract_data(url,
+        #                                                 language_code=language_code)
+        #
+        #                 # Distribution:
+        #                 d_label_names = {}
+        #                 for item in foo:
+        #                     k = frozenset(item.label_names)
+        #                     d_label_names.setdefault(k, 0)
+        #                     d_label_names[k] += 1
+        #
+        #                     distribution_total.setdefault(k, 0)
+        #                     distribution_total[k] += 1
+        #
+        #                 print(f"Distr: {d_label_names}. {url}")
+        #
+        # print(f"Distribution total: {distribution_total}")
