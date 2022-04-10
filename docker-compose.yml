@@ -78,3 +78,17 @@ services:
       - "./src/BERT_classifier:/work/BERT_classifier"
     networks:
       c4cnet:
+
+  title_classifier:
+    build:
+      context: ./src/BERT_classifier
+      dockerfile: app/Dockerfile
+      args:
+        - MODEL_DIR=MODELS/title_classifier_epoch_39_Sat_Apr_9_05u50m40s_2022
+    command: uvicorn BERT_classifier.app.main:app --host 0.0.0.0 --port 5000
+    ports:
+      - "7692:5000"
+    volumes:
+      - "./src/BERT_classifier:/work/BERT_classifier"
+    networks:
+      c4cnet:
