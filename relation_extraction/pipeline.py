@@ -14,11 +14,14 @@ class RelationExtractor2(RelationExtractor):
     def __init__(self, *args,
                  parser: CityParser,
                  url: str,
+                 lang_code: str,
                  **kwargs):
         super(RelationExtractor2, self).__init__(*args, **kwargs)
 
         self.parser = parser
         self.url = url
+
+        self.lang_code = lang_code
 
     def extract_all(self, *args, verbose=0, **kwargs, ):
         if verbose:

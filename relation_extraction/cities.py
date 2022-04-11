@@ -207,8 +207,10 @@ class CityParser(abc.ABC):
             generates (title, paragraph) pairs.
         """
         for l_sub in self.parse_page(s_html, include_sub=include_sub):
-            title = l_sub[0]
-            paragraphs = l_sub[1:]
+            title = l_sub.title
+
+            paragraphs = l_sub.paragraphs
+            # TODO could be that you can use l_sub.paragraphs_text() immediately
             paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
 
             yield title, paragraphs_clean

@@ -8,7 +8,8 @@ import yaml
 from pydantic import BaseModel, validator
 
 from relation_extraction.html_parsing.general_parser import GeneralHTMLParser
-from relation_extraction.html_parsing.justext_wrapper import BoldJustextWrapper, GeneralParagraph, JustextWrapper
+from relation_extraction.html_parsing.justext_wrapper import BoldJustextWrapper, GeneralParagraph, JustextWrapper, \
+    TitleClassificationJustextWrapper
 from relation_extraction.html_parsing.utils import _get_language_full_from_code, _tmp_filename, _tmp_html, export_jsonl
 
 
@@ -28,8 +29,12 @@ class ParserModel(BaseModel):
     class titlesChoices(Enum):
         html_headings = "html_headings"  # Look at <h2/>, <h3/> ... tags
         html_bold = "html_bold"  # Look at paragraphs/divs completely in <b/>
+        text_classifier = "text_classifier"  # Use the trained title classifier based on text.
 
     def get_justext_wrapper(self):
+
+        if self.titles == self.titlesChoices.text_classifier:
+            return TitleClassificationJustextWrapper()
 
         if isinstance(self.titles, list):
             # Let html_bold take priority

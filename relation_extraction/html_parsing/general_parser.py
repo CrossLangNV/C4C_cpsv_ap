@@ -29,7 +29,7 @@ class GeneralHTMLParser:
 
         Args:
             html: HTML as string
-            language: language code. ISO language name (e.g. English, Dutch...)
+            language: ISO language name (e.g. English, Dutch...)
             justext_wrapper: (Optional), JustextWrapper for paragraph extraction.
         """
 
@@ -43,6 +43,14 @@ class GeneralHTMLParser:
         self._justext_wrapper = justext_wrapper
 
     def set_stoplist(self, language):
+        """
+
+        Args:
+            language: Full language name. Else language code (ISO 639-1)
+
+        Returns:
+
+        """
         try:
             stoplist = justext.get_stoplist(language)
         except ValueError as e:  # Perhaps language code is given instead of language

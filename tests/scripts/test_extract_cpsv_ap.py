@@ -452,3 +452,56 @@ class TestCLIBreaking(unittest.TestCase):
                  )
 
         self.assertTrue(context.exception)
+
+
+class TestCLIGeneralChunker(unittest.TestCase):
+    def test_demo(self, run=True):
+        if 1:
+            url = "https://www.trondheim.kommune.no/tema/sosiale-tjenester/okonomisk-bistand/startlan/"
+            lang = "NB"
+            country = "NO"
+            homepage = "https://www.trondheim.kommune.no/"
+
+        # auto
+        basename_html = "DEMO_GEN_CHUNKER.html"
+        basename_rdf = "DEMO_GEN_CHUNKER.rdf"
+        filename_html = os.path.join(DIR_SOURCE, "scripts", basename_html)
+        url2html(url, filename_html)
+
+        # Set args
+        l_args = [
+            "-g",
+            "-o", basename_rdf,
+            "-l", lang,
+            "-c", country,
+            "-m", homepage,
+            basename_html,
+        ]
+        # Command
+        print("copy the following command")
+        self.print_command(l_args)
+
+        if run:
+            parser = get_parser()
+            args = parser.parse_args(l_args)
+
+            def path_scripts(basename):
+                return os.path.join(DIR_SOURCE, "scripts", basename)
+
+            main(filename_html=path_scripts(args.path),
+                 filename_rdf=path_scripts(args.output),
+                 extract_concepts=args.terms,
+                 context=args.municipality,
+                 country_code=args.country,
+                 url=args.url,
+                 general=args.general,
+                 lang=args.language
+                 )
+
+        return
+
+    @staticmethod
+    def print_command(l_args):
+        print()
+        print("$ python extract_cpsv_ap.py", *l_args)
+        print()

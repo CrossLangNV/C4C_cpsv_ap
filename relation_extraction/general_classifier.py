@@ -13,6 +13,8 @@ from data.html import get_html
 from relation_extraction.aalter import AalterParser
 from relation_extraction.austrheim import AustrheimParser
 from relation_extraction.cities import ClassifierCityParser, CPSVAPRelationsClassifier
+from relation_extraction.html_parsing.data import ParserModel
+from relation_extraction.html_parsing.general_parser import GeneralHTMLParser, GeneralSection
 from relation_extraction.nova_gorica import NovaGoricaParser
 from relation_extraction.san_paolo import SanPaoloParser
 from relation_extraction.wien import WienParser
@@ -383,16 +385,23 @@ class GeneralClassifier(CPSVAPRelationsClassifier):
 
 class GeneralCityParser(ClassifierCityParser):
     """
-    City parser with a general classifier.
+    City parser with a general classifier and HTML chunker.
     """
 
-    def __init__(self, lang: str):
-        classifier = GeneralClassifier(lang=lang)
+    def __init__(self,
+                 lang_code: str,
+                 parser_model: ParserModel = None):
+        classifier = GeneralClassifier(lang=lang_code)
 
         super(GeneralCityParser, self).__init__(classifier=classifier)
 
         # Not needed, but remove warning for pretranslate method
         self.classifier: GeneralClassifier = classifier
+        self.lang_code = lang_code
+
+        if parser_model is None:
+            parser_model = ParserModel(titles=ParserModel.titlesChoices.text_classifier)
+        self.parser_model = parser_model
 
     def extract_relations(self, s_html, *args, include_sub=True, **kwargs):
         """
@@ -409,3 +418,19 @@ class GeneralCityParser(ClassifierCityParser):
         self.classifier.pretranslate(l_titles)
 
         return super(GeneralCityParser, self).extract_relations(s_html, *args, **kwargs)
+
+    # Is slow, so trying to use with cache
+    @lru_cache(maxsize=1)
+    def parse_page(self,
+                   s_html,
+                   include_sub: bool = True
+                   ) -> List[GeneralSection]:
+        justext_wrapper = self.parser_model.get_justext_wrapper()
+        html_parser = GeneralHTMLParser(s_html,
+                                        language=self.lang_code,
+                                        justext_wrapper=justext_wrapper
+                                        )
+
+        sections = html_parser.get_sections()
+
+        return sections
