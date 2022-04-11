@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html class="" lang="nl-be">
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+  <meta content="True" name="HandheldFriendly">
+  <meta content="320" name="MobileOptimized"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Icordis CMS by LCP nv (http://www.lcp.be)" name="generator">
+  <title>
+    Aangifte van een adreswijziging - Gemeente Aalter
+  </title>
+  <link data-css="Contrastskin-website" href="/css/skin-website.css?v=14022022104815" id="skin-stylesheet"
+        media="screen" rel="stylesheet" type="text/css"/>
+  <link href="/css/skin-print.css" media="print" rel="stylesheet" type="text/css"/>
+  <link href="/images/skin/favicon.ico?v=2" rel="icon" type="image/x-icon">
+  <link href="/images/skin/apple-touch-icon.png?v=2" rel="apple-touch-icon" sizes="180x180"/>
+  <link href="/images/skin/favicon-32x32.png?v=2" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="/images/skin/favicon-16x16.png?v=2" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="/images/skin/manifest.json?v=2" rel="manifest"/>
+  <link color="#5bbad5" href="/images/skin/safari-pinned-tab.svg?v=2" rel="mask-icon"/>
+  <meta content="#ffffff" name="msapplication-TileColor"/>
+  <meta content="/images/skin/mstile-144x144.png?v=2" name="msapplication-TileImage"/>
+  <meta content="#ffffff" name="theme-color"/>
+  <link href="/Nieuws/rss" rel="alternate" title="RSS nieuws" type="application/rss+xml">
+  <link href="/Events/rss" rel="alternate" title="RSS events" type="application/rss+xml">
+  <link href="https://www.aalter.be/verhuizen" rel="canonical">
+  <meta content="Gemeente Aalter" property="og:site_name">
+  <meta content="Aangifte van een adreswijziging" property="og:title">
+  <meta content="https://www.aalter.be/verhuizen" property="og:url">
+  <meta content="website" property="og:type"/>
+  <meta content="summary" name="twitter:card"/>
+  <meta content="Aangifte van een adreswijziging" property="twitter:title"/>
+  <meta content="https://www.aalter.be/images/skin/logo-og.png" property="og:image"/>
+  <meta content="https://www.aalter.be/images/skin/logo-og.png" name="twitter:image"/>
+  <script
+    src="https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-polyfill/dist/index.js">
+  </script>
+  <script
+    src="https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/node_modules/@govflanders/vl-widget-client/dist/index.js">
+  </script>
+  </meta>
+  </meta>
+  </meta>
+  </link>
+  </link>
+  </link>
+  </link>
+  </meta>
+  </meta>
+</head>
+<body class="default portal-0" id="body">
+<script>
+  var burgerprofielUAC = false;
+  var burgerprofielAPIUrl = 'https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/session/validate';
+</script>
+<div aria-hidden="true" class="widget-vlw-placeholder" id="global-header-placeholder">
+  <div class="lds-ellipsis">
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+    <div>
+    </div>
+  </div>
+</div>
+<script>
+  var sessionding = null;
+  var wasAuthorized = false;
+  var loggedOutLocal = false;
+  vl.widget.client.bootstrap('https://prod.widgets.burgerprofiel.vlaanderen.be/api/v1/widget/c606c2a7-b7f8-4429-8bc7-1b42bce109f5')
+    .then(function (widget) {
+      var placeholder = document.getElementById('global-header-placeholder');
+      widget.setMountElement(placeholder);
+      widget.mount().catch(console.error.bind(console))
+      return widget;
+    })
+    .then(function (widget) {
+      vl.widget.client.capture((widget) => {
+        window.widget = widget
+      });
+      widget.getExtension('citizen_profile').then((citizen_profile) => {
+        var websiteHasAuthenticatedSession = burgerprofielUAC;
+        var session = citizen_profile.getSession();
+        session.configure({
+          active: websiteHasAuthenticatedSession,
+          endpoints: {
+            loginUrl: '/login',
+            logoutUrl: '/logout',
+            loginRedirectUrl: window.location.href
+          }
+        });
+        var state = citizen_profile.getSession().getState();
+        $('#profiellogout').on('click', function (e) {
+          var state2 = citizen_profile.getSession().getState();
+          if (state2 == 'authenticated') {
+            e.preventDefault();
+            citizen_profile.getSession().logout();
+            loggedOutLocal = true;
+          }
+        });
+        citizen_profile.addEventListener('session.update', (event) => {
+          var state2 = citizen_profile.getSession().getState(); // of event.getSource().getState();
+          if (state2 == 'authenticated') {
+            wasAuthorized = true;
+            $('#my-profile-link').removeClass('hidden');
+            $('#my-profile-link').show();
+          } else if (state2 == 'unauthenticated') {
+            if (loggedOutLocal) {
+              loggedOutLocal = false;
+              window.location = '/logout?returnurl=/';
+            }
+            $('#my-profile-link').addClass('hidden');
+            $('#my-profile-link').hide();
+          }
+        });
+      })
+    })
+    .catch(console.error.bind(console));
+</script>
+<div id="outer-wrap">
+  <div id="inner-wrap">
+    <div class="cookie-complicance-wrapper" id="cookie-compliance">
+      <div class="container">
+        <form
+          action="/cookies?url=%2fverhuizen%3fAccess-Control-Allow-Origin%3d%252A%26Access-Control-Allow-Methods%3dGET%26Access-Control-Allow-Headers%3dContent-Type%26Access-Control-Max-Age%3d3600%26User-Agent%3dMozilla%252F5.0%2b%2528X11%253B%2bUbuntu%253B%2bLinux%2bx86_64%253B%2brv%253A52.0%2529%2bGecko%252F20100101%2bFirefox%252F52.0"
+          method="post">
+          <div class="cookie-compliance-text">
+            Deze website maakt gebruik van cookies om uw gebruikservaring te verbeteren.
+            <a class="find-more-button eu-cookie-compliance-more-button find-more-button-processed" hide-when-empty="1"
+               href="/cookies">
+         <span>
+          Meer informatie over cookies.
+         </span>
+            </a>
+          </div>
+          <div class="cookie-compliance-actions">
+            <a class="btn-primary btn-cookie-compliance btn-cookie-accept"
+               href="/cookies?url=%2fverhuizen%3fAccess-Control-Allow-Origin%3d%252A%26Access-Control-Allow-Methods%3dGET%26Access-Control-Allow-Headers%3dContent-Type%26Access-Control-Max-Age%3d3600%26User-Agent%3dMozilla%252F5.0%2b%2528X11%253B%2bUbuntu%253B%2bLinux%2bx86_64%253B%2brv%253A52.0%2529%2bGecko%252F20100101%2bFirefox%252F52.0"
+               rel="nofollow">
+              Beheer mijn cookies
+            </a>
+            <input name="__RequestVerificationToken" type="hidden"
+                   value="ZwfvAQIaBuzlEjLwB82EHQ-lC94cIkwpibWWXDK1UAM1_Xqvh5jL1g27szzU9FLz7CHYau_vh9SF6xjl9A9P288y-FJxkKP_ycJAdRNb8-A1"/>
+            <button class="btn-primary btn-cookie-compliance btn-cookie-decline" name="action" type="submit"
+                    value="acceptall">
+              Alles aanvaarden
+            </button>
+            <button class="btn-primary btn-cookie-compliance btn-cookie-decline" name="action" type="submit"
+                    value="decline">
+              Alleen essentiële cookies
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="skip" id="skip-content">
+      <a class="skip-navigation" data-scrollto="skip" href="#content-main">
+      <span>
+       Naar content
+      </span>
+      </a>
+    </div>
+    <header class="header" id="toppage">
+      <div class="header-main">
+        <div class="container">
+          <div class="header-brand">
+            <a class="brand" href="/" title="Terug naar startpagina">
+         <span class="brand-txt">
+          Gemeente Aalter
+         </span>
+            </a>
+          </div>
+          <div class="header-right">
+            <div class="header-topbar">
+              <div class="header-toplinks">
+                <ul class="nav-meta">
+                  <li class="item">
+                    <a href="/eloket">
+             <span>
+              Digitaal loket
+             </span>
+                    </a>
+                  </li>
+                  <li class="item">
+                    <a href="/diensten">
+             <span>
+              Diensten
+             </span>
+                    </a>
+                  </li>
+                  <li class="item">
+                    <a href="/producten">
+             <span>
+              A-Z
+             </span>
+                    </a>
+                  </li>
+                  <li class="item">
+                    <a href="http://stratenplan.aalter.be" target="_blank">
+             <span>
+              Stratenplan
+             </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="header-social-wrap">
+                <ul class="list-social">
+                  <li class="bullet-facebook">
+                    <a class="external" href="https://www.facebook.com/gemeentebestuurAalter/" target="_blank">
+             <span>
+              Facebook
+             </span>
+                    </a>
+                  </li>
+                  <li class="bullet-twitter">
+                    <a class="external" href="https://twitter.com/gemeenteaalter" target="_blank">
+             <span>
+              Twitter
+             </span>
+                    </a>
+                  </li>
+                  <li class="bullet-youtube">
+                    <a class="external" href="https://www.youtube.com/channel/UCjaCtD7DajVv4FiGRYlkakw" target="_blank">
+             <span>
+              Youtube
+             </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="header-search">
+              <div class="search-top" id="search" role="search">
+                <form action="/zoeken" class="search-form" id="searchForm" method="GET" name="searchForm">
+                  <div class="input-group">
+                    <label class="hidden" for="txtkeyword">
+                      Waarmee kunnen we je helpen?
+                    </label>
+                    <input autocomplete="off" class="form-control txt" data-placeholder="Waarmee kunnen we je helpen?"
+                           data-placeholder-mobile="Zoeken" id="txtkeyword" name="q"
+                           placeholder="Waarmee kunnen we je helpen?" title="Waarmee kunnen we je helpen?" type="text"/>
+                    <span class="input-group-btn">
+             <input class="btn-search" id="btnSearch" title="Zoeken" type="submit" value="Zoek"/>
+            </span>
+                    <div id="bar-loading">
+                      <ul class="loading-element">
+                        <li class="loading-element1 loading-child">
+                        </li>
+                        <li class="loading-element2 loading-child">
+                        </li>
+                        <li class="loading-element3 loading-child">
+                        </li>
+                        <li class="loading-element4 loading-child">
+                        </li>
+                        <li class="loading-element5 loading-child">
+                        </li>
+                        <li class="loading-element6 loading-child">
+                        </li>
+                        <li class="loading-element7 loading-child">
+                        </li>
+                        <li class="loading-element8 loading-child">
+                        </li>
+                        <li class="loading-element9 loading-child">
+                        </li>
+                        <li class="loading-element10 loading-child">
+                        </li>
+                        <li class="loading-element11 loading-child">
+                        </li>
+                        <li class="loading-element12 loading-child">
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </form>
+                <div id="suggestionsearch">
+                  <ul class="list-suggestionsearch">
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="my-profile-link hidden" id="my-profile-link">
+            <a class="user-profile" href="/profiel" title="Mijn Aalter - Meld je aan">
+         <span class="user-link">
+          Mijn Aalter - Meld je aan
+         </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="page-container-wrapper" id="wrapper">
+      <div class="breadcrumb-wrapper sr_skip">
+        <div class="container fade-navs">
+          <a class="btn-scroll next" href="#breadcrumbscrollleft">
+        <span class="sr_skip">
+         scroll naar links
+        </span>
+          </a>
+          <a class="btn-scroll prev" href="#breadcrumbscrollright">
+        <span class="sr_skip">
+         scroll naar rechts
+        </span>
+          </a>
+          <ol class="breadcrumb sr_skip" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+            <li class="breadcrumb-home" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+              <a href="/home" itemprop="item">
+          <span itemprop="name">
+           Home
+          </span>
+                <meta content="1" itemprop="position"/>
+              </a>
+            </li>
+            <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+              <a href="https://www.aalter.be/aanvragen-en-documenten" itemprop="item">
+          <span class="aCrumb" itemprop="name">
+           Aanvragen en documenten
+          </span>
+                <meta content="2" itemprop="position"/>
+              </a>
+            </li>
+            <li class="breadcrumb-item active">
+         <span class="aCrumb">
+          Aangifte van een adreswijziging
+         </span>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="page-inner" id="content-main">
+        <div class="visible-print sr_skip">
+          <img alt="" src="/images/skin/logo-print.jpg"/>
+        </div>
+        <div class="heading-wrapper">
+          <div class="container">
+            <h1 class="page-heading">
+         <span>
+          Aangifte van een adreswijziging
+         </span>
+            </h1>
+          </div>
+        </div>
+        <div class="readspeaker-wrapper">
+          <div class="container">
+            <div class="header-readspeaker">
+              <div class="rs_skip rsbtn rs_preserve" id="readspeaker_button1">
+                <a accesskey="L" class="rsbtn_play"
+                   href="https://app-eu.readspeaker.com/cgi-bin/rsent?customerid=8181&amp;lang=nl_be&amp;readid=content-main&amp;url=www.aalter.be%2fverhuizen%3fAccess-Control-Allow-Origin%3d%252A%26Access-Control-Allow-Methods%3dGET%26Access-Control-Allow-Headers%3dContent-Type%26Access-Control-Max-Age%3d3600%26User-Agent%3dMozilla%252F5.0%2b%2528X11%253B%2bUbuntu%253B%2bLinux%2bx86_64%253B%2brv%253A52.0%2529%2bGecko%252F20100101%2bFirefox%252F52.0"
+                   rel="nofollow" title="Laat de tekst voorlezen met ReadSpeaker">
+           <span class="rsbtn_left rspart">
+            <span class="rsbtn_text">
+             <span>
+              Lees voor
+             </span>
+            </span>
+           </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <section class="products-detail">
+            <div class="container-wrapper">
+              <div class="page-container page-column" data-show-or-hide-column="1">
+                <div class="page-content">
+                  <div class="info">
+                    <div class="local-description">
+                      <p>
+                        <a class="btn-cta eloket-btn"
+                           href="http://start.cevi.be/eloket/Formulier.aspx?FormId=6554&amp;tnr_site=259" rel="noopener"
+                           target="_blank">
+                          Adreswijziging melden
+                        </a>
+                      </p>
+                      <p>
+                        <a class="btn-cta eloket-btn" href="https://afspraken.aalter.be/product=33" rel="noopener"
+                           target="_blank">
+                          Maak een afspraak
+                        </a>
+                      </p>
+                      <hr/>
+                      <p>
+                        Als je verhuisd bent, heb je
+                        <strong>
+                          8 werkdagen
+                        </strong>
+                        de tijd om je nieuw adres te melden aan het lokaal bestuur van de gemeente waarnaar of
+                        waarbinnen je bent verhuisd. De wijkagent komt ter plaatse kijken of je effectief op het adres
+                        woont.
+                      </p>
+                      <p>
+                        Na een positieve vaststelling krijg je een uitnodiging om het adres op je identiteitskaart
+                        definitief te laten wijzigen.
+                      </p>
+                      <h2>
+              <span style="font-size: 24px;">
+               Voorwaarden
+              </span>
+                      </h2>
+                      <ul>
+                        <li>
+                          Iedereen die 18 jaar of ouder is, mag zelf de verhuizing doorgeven.
+                        </li>
+                        <li>
+                          Ouders of voogden geven de verhuizing van hun minderjarige kinderen door.
+                        </li>
+                        <li>
+                          Meerderjarige gezinsleden mogen jouw verhuizing doorgeven. Ze hebben dan wel je
+                          identiteitskaart nodig.
+                        </li>
+                        <li>
+                          Je kan de verhuizing pas doorgeven als je effectief verhuisd bent.
+                        </li>
+                        <li>
+                          Als een niet-ontvoogde minderjarige de verblijfplaats van zijn ouders voor het eerst verlaat
+                          om zijn hoofdverblijf elders te vestigen, moet hij vergezeld zijn door iemand die het
+                          ouderlijke gezag uitoefent.
+                        </li>
+                      </ul>
+                      <hr/>
+                      <h2 id="fcid-8442" tabindex="-1">
+                        Hoe melden?
+                      </h2>
+                      <ul>
+                        <li>
+                          Je kan de adreswijziging online melden via het digitaal loket van jouw (nieuwe) gemeente.
+                        </li>
+                        <li>
+                          Je kan langsgaan bij de dienst Burgerzaken van jouw (nieuwe) gemeente.
+                        </li>
+                      </ul>
+                      <h3>
+                        Controle van domicilie en aanpassing identiteitsdocumenten
+                      </h3>
+                      <p>
+                        Na de aangifte controleert een wijkagent of je werkelijk op het aangegeven adres je
+                        hoofdverblijfplaats hebt. Na deze controle word je ingeschreven op het nieuwe adres en word je
+                        uitgenodigd om jouw identiteitskaart op het gemeentehuis te laten aanpassen. Hiervoor heb je je
+                        elektronische identiteitskaart met pincode nodig.
+                      </p>
+                      <p>
+                        Vanaf het moment dat je identiteitskaart aangepast is, kan je alle andere instanties van je
+                        adresverandering op de hoogte brengen.
+                      </p>
+                      <hr/>
+                      <h2>
+                        Wat meebrengen?
+                      </h2>
+                      <ul>
+                        <li>
+                          Elektronische identiteitskaart van alle gezinsleden.
+                        </li>
+                        <li>
+                          Pincode om de chip te updaten.
+                        </li>
+                      </ul>
+                      <h3>
+                        Gelijkmatig verdeelde huisvesting
+                      </h3>
+                      <p>
+                        Voor een minderjarige die bij elk van de ouders verblijft volgens het principe van de
+                        gelijkmatig verdeelde huisvesting moeten volgende documenten worden meegebracht:
+                      </p>
+                      <ul>
+                        <li>
+                          het wederzijds akkoord van de ouders
+                        </li>
+                        <li>
+                          de gerechtelijke beslissing
+                        </li>
+                        <li>
+                          de notariële akte.
+                        </li>
+                      </ul>
+                      <hr/>
+                      <h2>
+                        Prijs
+                      </h2>
+                      <p>
+                        Gratis.
+                      </p>
+                      <hr/>
+                      <h2>
+                        Wie moet je zelf verwittigen?
+                      </h2>
+                      <ul>
+                        <li>
+                          VDAB en ACTIRIS (als je werkzoekende bent)
+                        </li>
+                        <li>
+                          werkgever
+                        </li>
+                        <li>
+                          nutsbedrijven (elektriciteits-, gas- en waterleverancier)
+                        </li>
+                        <li>
+                          kabelmaatschappij, telefoonmaatschappij en/of internetprovider
+                        </li>
+                        <li>
+                          bank- en verzekeringsmaatschappij(en)
+                        </li>
+                        <li>
+                          distributiemaatschappij(en) van dagbladen en tijdschriften
+                        </li>
+                        <li>
+                          verenigingen waarvan je lid bent
+                        </li>
+                        <li>
+                          firma's waarvan je een klantenkaart hebt
+                        </li>
+                      </ul>
+                      <h2>
+                        Wie moet je niet inlichten?
+                      </h2>
+                      <p>
+                        Volgende diensten worden automatisch ingelicht van de adreswijziging (eens dit officieel is):
+                      </p>
+                      <ul>
+                        <li>
+                          sociale zekerheidsinstellingen
+                        </li>
+                        <li>
+                          kinderbijslagfonds
+                        </li>
+                        <li>
+                          ziekenfonds
+                        </li>
+                        <li>
+                          OCMW
+                        </li>
+                        <li>
+                          arbeidsongevallenverzekeraars
+                        </li>
+                        <li>
+                          kassen voor jaarlijkse vakantie
+                        </li>
+                        <li>
+                          fondsen voor bestaanszekerheid
+                        </li>
+                        <li>
+                          gewestelijke huisvestingsmaatschappijen
+                        </li>
+                        <li>
+                          Kind en Gezin
+                        </li>
+                        <li>
+                          VDAB en ACTIRIS
+                        </li>
+                        <li>
+                          De adreswijziging moet niet langer aangebracht worden op het inschrijvingsbewijs van jouw
+                          voertuig(en). Het wordt automatisch aangepast in de databank van de Dienst Inschrijvingen van
+                          Voertuigen (DIV) van de FOD Mobiliteit en Vervoer. Het kentekenbewijs zal enkel nog het adres
+                          vermelden dat geldig was op het moment van uitgifte.
+                        </li>
+                      </ul>
+                      <hr/>
+                      <h2>
+                        Verhuizen naar het buitenland
+                      </h2>
+                      <p>
+                        Wie voor langere tijd of definitief naar het buitenland verhuist, moet hiervan aangifte doen aan
+                        het loket in het gemeentehuis. Je doet dit best zo dicht mogelijk bij de datum van vertrek. Met
+                        het bewijs van je aangifte, het formulier Model 8, kan je je aanmelden in het consulaat of bij
+                        de ambassade in het land van bestemming.
+                      </p>
+                      <p>
+                        Wil je vooraf informatie inwinnen, dan kan je terecht bij de stichting
+                        <a href="http://www.viw.be/nl" rel="noopener" target="_blank"
+                           title="Vlamingen in het buitenland">
+                          Vlamingen in de Wereld
+                        </a>
+                        .
+                      </p>
+                    </div>
+                  </div>
+                  <div class="container-wrapper" data-check-empty="true">
+                    <div class="box box-eloket box-grid box-list">
+                      <h2 class="box-title">
+              <span>
+               Digitaal loket
+              </span>
+                      </h2>
+                      <div class="box-block">
+                        <ul class="list">
+                          <li>
+                            <a href="https://www.aalter.be/verhuizen" target='"_blank"'>
+                 <span>
+                  Aangifte van een adreswijziging
+                 </span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="side-bar">
+                  <div class="box box-contact box box-contact">
+                    <h2 class="box-title">
+             <span>
+              Contact
+             </span>
+                    </h2>
+                    <div class="box-block box-contact-block">
+                      <div class="box-contact-block-row">
+                        <div class="contact-content">
+                          <div class="contact-info-container">
+                            <h3 class="box-subtitle">
+                 <span>
+                  Burgerzaken
+                 </span>
+                            </h3>
+                            <dl class="contact-info">
+                              <dt class="lbl-address">
+                  <span>
+                   Adres
+                  </span>
+                              </dt>
+                              <dd class="txt-address">
+                  <span class="txt-streetnr">
+                   Europalaan 22
+                  </span>
+                                <span class="txt-postal">
+                   <span class="sr-only">
+                    ,
+                   </span>
+                   9880
+                  </span>
+                                <span class="txt-city">
+                   Aalter
+                  </span>
+                              </dd>
+                              <dt class="lbl-phone">
+                  <span>
+                   tel.
+                  </span>
+                              </dt>
+                              <dd class="txt-phone">
+                  <span data-label="tel.">
+                   <a class="phone" href="tel:093252200">
+                    09 325 22 00
+                   </a>
+                  </span>
+                              </dd>
+                              <dt class="lbl-fax">
+                  <span>
+                   Fax
+                  </span>
+                              </dt>
+                              <dd class="txt-fax">
+                  <span data-label="Fax">
+                   09 325 22 40
+                  </span>
+                              </dd>
+                              <dt class="lbl-mail">
+                  <span>
+                   E-mail
+                  </span>
+                              </dt>
+                              <dd class="txt-mail">
+                  <span data-label="E-mail">
+                   <a class="mail" href="mailto:%62%75%72%67%65%72%7a%61%6b%65%6e%40%61%61%6c%74%65%72%2e%62%65">
+                    burgerzaken@aalter.be
+                   </a>
+                  </span>
+                              </dd>
+                            </dl>
+                          </div>
+                          <div class="contact-hours-container">
+                            <h2 class="box-title">
+                 <span>
+                  Openingsuren
+                 </span>
+                            </h2>
+                            <div class="hours-info">
+                              <div class="hours-today">
+                                <div class="hours-block">
+                                  <h3 class="box-subtitle">
+                    <span>
+                     Vandaag
+                    </span>
+                                  </h3>
+                                  <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     8.30 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     12.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                </div>
+                              </div>
+                              <div class="hours-tomorrow">
+                                <div class="hours-block">
+                                  <h3 class="box-subtitle">
+                    <span>
+                     Morgen
+                    </span>
+                                  </h3>
+                                  <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     8.30 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     12.00 u
+                    </span>
+                    <span class="txt-divider">
+                     &amp;
+                    </span>
+                    <span class="txt-from">
+                     16.00 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     19.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                </div>
+                              </div>
+                            </div>
+                            <a class="btn-primary btn-more-hours" href="/Burgerzaken">
+                              Meer openingsuren
+                            </a>
+                          </div>
+                          <div class="contact-hourinfo">
+                            <p>
+                              <strong>
+                                Opgelet corona-maatregel
+                              </strong>
+                              : het gemeentehuis en het OCMW in Aalter-centrum zijn enkel toegankelijk na afspraak. Maak
+                              een afspraak via
+                              <a href="http://www.aalter.be/afspraak" rel="noopener" target="_blank">
+                                www.aalter.be/afspraak
+                              </a>
+                              of tel. 09 325 22 00.
+                            </p>
+                            <p>
+                              Vraag akten en attesten online aan via
+                              <a href="http://www.aalter.be/eloket" rel="noopener" target="_blank">
+                                www.aalter.be/eloket
+                              </a>
+                              of
+                              <a href="https://www.aalter.be/mijn-burgerprofiel" rel="noopener" target="_blank">
+                                Mijn Burgerprofiel
+                              </a>
+                              . Zie
+                              <a href="http://www.aalter.be/corona">
+                                www.aalter.be/corona
+                              </a>
+                              .
+                            </p>
+                            <p>
+                              Telefonisch contact is mogelijk van maandag tot en met vrijdag van 8.30 u tot 12.00 u en
+                              van 13.30 u tot 17.00 u (op dinsdag tot 19.00 u). Op zaterdag van 9.00 u tot 12.00 u.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <script type="application/ld+json">
+                      {
+                        "@context": "http://schema.org",
+                        "@type": "PostalAddress",
+                        "addressLocality": "Aalter",
+                        "postalCode": "9880",
+                        "streetAddress": "Europalaan 22"
+                      }
+                    </script>
+                  </div>
+                  <div class="box box-contact box box-contact">
+                    <h2 class="box-title">
+             <span>
+              Contact
+             </span>
+                    </h2>
+                    <div class="box-block box-contact-block">
+                      <div class="box-contact-block-row">
+                        <div class="contact-content">
+                          <div class="contact-info-container">
+                            <h3 class="box-subtitle">
+                 <span>
+                  Contactpunt Knesselare
+                 </span>
+                            </h3>
+                            <dl class="contact-info">
+                              <dt class="lbl-address">
+                  <span>
+                   Adres
+                  </span>
+                              </dt>
+                              <dd class="txt-address">
+                  <span class="txt-streetnr">
+                   De Plaats 14
+                  </span>
+                                <span class="txt-postal">
+                   <span class="sr-only">
+                    ,
+                   </span>
+                   9910
+                  </span>
+                                <span class="txt-city">
+                   Aalter
+                  </span>
+                              </dd>
+                              <dt class="lbl-phone">
+                  <span>
+                   tel.
+                  </span>
+                              </dt>
+                              <dd class="txt-phone">
+                  <span data-label="tel.">
+                   <a class="phone" href="tel:093252200">
+                    09 325 22 00
+                   </a>
+                  </span>
+                              </dd>
+                              <dt class="lbl-mail">
+                  <span>
+                   E-mail
+                  </span>
+                              </dt>
+                              <dd class="txt-mail">
+                  <span data-label="E-mail">
+                   <a class="mail" href="mailto:%67%65%6d%65%65%6e%74%65%40%61%61%6c%74%65%72%2e%62%65">
+                    gemeente@aalter.be
+                   </a>
+                  </span>
+                              </dd>
+                            </dl>
+                            <div class="contact-social">
+                              <h4 class="title">
+                  <span>
+                   Volg ons op
+                  </span>
+                              </h4>
+                              <ul class="list-social">
+                                <li class="bullet-facebook">
+                                  <a class="external" href="https://www.facebook.com/gemeentebestuurAalter/"
+                                     target="_blank">
+                    <span>
+                     Facebook
+                    </span>
+                                  </a>
+                                </li>
+                                <li class="bullet-twitter">
+                                  <a class="external" href="https://twitter.com/gemeenteaalter" target="_blank">
+                    <span>
+                     Twitter
+                    </span>
+                                  </a>
+                                </li>
+                                <li class="bullet-youtube">
+                                  <a class="external" href="https://www.youtube.com/channel/UCjaCtD7DajVv4FiGRYlkakw"
+                                     target="_blank">
+                    <span>
+                     Youtube
+                    </span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="contact-hours-container">
+                            <h2 class="box-title">
+                 <span>
+                  Openingsuren
+                 </span>
+                            </h2>
+                            <div class="hours-info">
+                              <div class="hours-today">
+                                <div class="hours-block">
+                                  <h3 class="box-subtitle">
+                    <span>
+                     Vandaag
+                    </span>
+                                  </h3>
+                                  <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     16.00 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     19.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                </div>
+                              </div>
+                              <div class="hours-tomorrow">
+                                <div class="hours-block">
+                                  <h3 class="box-subtitle">
+                    <span>
+                     Morgen
+                    </span>
+                                  </h3>
+                                  <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     8.30 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     12.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                </div>
+                              </div>
+                            </div>
+                            <a class="btn-primary btn-more-hours" href="/contactpunt-knesselare">
+                              Meer openingsuren
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <script type="application/ld+json">
+                      {
+                        "@context": "http://schema.org",
+                        "@type": "PostalAddress",
+                        "addressLocality": "Aalter",
+                        "postalCode": "9910",
+                        "streetAddress": "De Plaats 14"
+                      }
+                    </script>
+                  </div>
+                  <div class="box box-contact box box-contact">
+                    <h2 class="box-title">
+             <span>
+              Contact
+             </span>
+                    </h2>
+                    <div class="box-block box-contact-block">
+                      <div class="box-contact-block-row">
+                        <div class="contact-content">
+                          <div class="contact-info-container">
+                            <h3 class="box-subtitle">
+                 <span>
+                  Eerste lijn (contactpunt Knesselare)
+                 </span>
+                            </h3>
+                            <dl class="contact-info">
+                              <dt class="lbl-address">
+                  <span>
+                   Adres
+                  </span>
+                              </dt>
+                              <dd class="txt-address">
+                  <span class="txt-streetnr">
+                   De Plaats 14
+                  </span>
+                                <span class="txt-postal">
+                   <span class="sr-only">
+                    ,
+                   </span>
+                   9910
+                  </span>
+                                <span class="txt-city">
+                   Aalter
+                  </span>
+                              </dd>
+                              <dt class="lbl-phone">
+                  <span>
+                   tel.
+                  </span>
+                              </dt>
+                              <dd class="txt-phone">
+                  <span data-label="tel.">
+                   <a class="phone" href="tel:093252200">
+                    09 325 22 00
+                   </a>
+                  </span>
+                              </dd>
+                              <dt class="lbl-fax">
+                  <span>
+                   Fax
+                  </span>
+                              </dt>
+                              <dd class="txt-fax">
+                  <span data-label="Fax">
+                   09 325 22 40
+                  </span>
+                              </dd>
+                              <dt class="lbl-mail">
+                  <span>
+                   E-mail
+                  </span>
+                              </dt>
+                              <dd class="txt-mail">
+                  <span data-label="E-mail">
+                   <a class="mail" href="mailto:%65%65%72%73%74%65%2e%6c%69%6a%6e%40%61%61%6c%74%65%72%2e%62%65">
+                    eerste.lijn@aalter.be
+                   </a>
+                  </span>
+                              </dd>
+                            </dl>
+                            <div class="contact-social">
+                              <h4 class="title">
+                  <span>
+                   Volg ons op
+                  </span>
+                              </h4>
+                              <ul class="list-social">
+                                <li class="bullet-facebook">
+                                  <a class="external" href="https://www.facebook.com/gemeentebestuurAalter/"
+                                     target="_blank">
+                    <span>
+                     Facebook
+                    </span>
+                                  </a>
+                                </li>
+                                <li class="bullet-twitter">
+                                  <a class="external" href="https://twitter.com/gemeenteaalter" target="_blank">
+                    <span>
+                     Twitter
+                    </span>
+                                  </a>
+                                </li>
+                                <li class="bullet-youtube">
+                                  <a class="external" href="https://www.youtube.com/channel/UCjaCtD7DajVv4FiGRYlkakw"
+                                     target="_blank">
+                    <span>
+                     Youtube
+                    </span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="contact-hours-container">
+                            <h2 class="box-title">
+                 <span>
+                  Openingsuren
+                 </span>
+                            </h2>
+                            <div class="hours-info">
+                              <div class="hours-today">
+                                <div class="hours-block">
+                                  <h3 class="box-subtitle">
+                    <span>
+                     Vandaag
+                    </span>
+                                  </h3>
+                                  <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     16.00 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     19.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                </div>
+                              </div>
+                              <div class="hours-tomorrow">
+                                <div class="hours-block">
+                                  <h3 class="box-subtitle">
+                    <span>
+                     Morgen
+                    </span>
+                                  </h3>
+                                  <span class="txt-hours">
+                    <span class="txt-open">
+                     open van
+                    </span>
+                    <span class="txt-from">
+                     8.30 u
+                    </span>
+                    <span class="txt-time-divider">
+                     tot
+                    </span>
+                    <span class="txt-to">
+                     12.00 u
+                    </span>
+                    <span class="txt-divider">
+                     (enkel op afspraak)
+                    </span>
+                   </span>
+                                </div>
+                              </div>
+                            </div>
+                            <a class="btn-primary btn-more-hours" href="/eerste-lijn-knesselare">
+                              Meer openingsuren
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <script type="application/ld+json">
+                      {
+                        "@context": "http://schema.org",
+                        "@type": "PostalAddress",
+                        "addressLocality": "Aalter",
+                        "postalCode": "9910",
+                        "streetAddress": "De Plaats 14"
+                      }
+                    </script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="footer" id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <ul class="list">
+            <li class="politie">
+              <a href="http://www.lokalepolitie.be/5423" target="_blank">
+          <span>
+           Politiezone Aalter
+          </span>
+              </a>
+            </li>
+            <li class="hulpverlening">
+              <a href="https://www.zonemeetjesland.be/" target="_blank">
+          <span>
+           Hulpverleningszone Meetjesland
+          </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <div class="iso">
+              <a href="https://www.aalter.be/iso-9001">
+              </a>
+            </div>
+            <div class="iso2">
+              <a href="https://www.aalter.be/iso-37120">
+              </a>
+            </div>
+            <ul class="list">
+              <li class="footer-list-item">
+                <a href="/proclaimer">
+                  Proclaimer / privacybeleid
+                </a>
+              </li>
+              <li class="footer-list-item">
+                <a href="/cookiebeleid">
+                  Cookiebeleid
+                </a>
+              </li>
+              <li class="footer-list-item">
+                <a href="/toegankelijkheidsverklaring">
+                  Toegankelijkheidsverklaring
+                </a>
+              </li>
+              <li class="footer-list-item">
+                <a href="/sitemap">
+                  Sitemap
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="footer-right">
+            <ul class="list">
+              <li>
+                <a class="lcplink" href="http://www.lcp.be/" rel="noopener" target="_blank"
+                   title="e-gov en internet services door LCP">
+           <span>
+            lcp.nv 2022 ©
+           </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <div class="toppos sr_skip">
+      <div id="totop">
+        <a class="btn-totop" data-scrollto="totop" href="#outer-wrap" title="Naar top">
+       <span>
+        Naar top
+       </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/bundles/website?v=9uNRdzvkG7DBJ5aAC2pTaIctUIac2Xu0kbhN-JR4iZA1">
+</script>
+<script type="text/javascript">
+  <!--
+  window.rsConf = {ui: {disableDetachment: true, displayDownload: false}, general: {usePost: true}};
+  //-->
+</script>
+<script src="//cdn1.readspeaker.com/script/8181/webReader/webReader.js?pids=wr&amp;noDefaultSkin=1¬ools=1"
+        type="text/javascript">
+</script>
+</body>
+</html>

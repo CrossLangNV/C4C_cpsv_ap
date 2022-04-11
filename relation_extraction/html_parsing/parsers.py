@@ -97,7 +97,7 @@ def deprecated_metaclass(message):
 class HeaderHTMLParser(HTMLParser):
 
     def __init__(self, *args, **kwargs):
-        warnings.warn("Use GeneralParser2 instead", DeprecationWarning)
+        warnings.warn("Use GeneralParser instead", DeprecationWarning)
         super(HeaderHTMLParser, self).__init__(*args, **kwargs)
 
     def get_sections(self,

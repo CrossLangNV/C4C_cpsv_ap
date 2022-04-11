@@ -80,7 +80,7 @@ class GeneralHTMLParser:
 
     def get_sections(self) -> List[GeneralSection]:
 
-        last_section = None
+        prev_section = None
         l_sections = []
 
         for paragraph in self.get_paragraphs():
@@ -91,22 +91,23 @@ class GeneralHTMLParser:
             text = paragraph.text
 
             if paragraph.is_heading:
-                if last_section is not None:
-                    l_sections.append(last_section)
+                if prev_section is not None:
+                    l_sections.append(prev_section)
 
                 # Make a new section.
-                last_section = GeneralSection(title=text,
+                prev_section = GeneralSection(title=text,
                                               paragraphs=[])
 
             else:
-                if last_section is None:
-                    last_section = GeneralSection(title=None,
+                if prev_section is None:
+                    prev_section = GeneralSection(title="",
                                                   paragraphs=[])
 
-                last_section.add_paragraph(text)
+                prev_section.add_paragraph(text)
 
-        if last_section != l_sections[-1]:
-            l_sections.append(last_section)
+        if prev_section is not None:
+            if (l_sections == []) or (prev_section != l_sections[-1]):
+                l_sections.append(prev_section)
 
         return l_sections
 

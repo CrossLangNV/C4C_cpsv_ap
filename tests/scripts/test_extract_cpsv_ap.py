@@ -331,21 +331,30 @@ class TestCLIGeneral(unittest.TestCase):
              lang=args.language
              )
 
-    def test_general_args(self):
-        parser = get_parser()
+    def test_general_args(self,
+                          FILENAME_RDF=os.path.join(DIR_EXAMPLES, "DEMO_PROCEDURE_GENERAL.rdf"),
+                          FILENAME_HTML=os.path.join(DIR_EXAMPLES, "scripts/DEMO_PROCEDURE.html"),
+                          ):
+
+        LANG = "NL"
+        URL = "https://www.aalter.be/verhuizen"
+
+        # Save locally
+        url2html(URL, FILENAME_HTML)
 
         # Set args
         l_args = [
             "-g",
-            "-o", os.path.join(DIR_EXAMPLES, "DEMO_PROCEDURE_GENERAL.rdf"),
-            "-l", "NL",
+            "-o", FILENAME_RDF,
+            "-l", LANG,
             "-c", "BE",
             "-m", "aalter.be",
-            os.path.join(DIR_SOURCE, "scripts/DEMO_PROCEDURE.html"),
+            FILENAME_HTML,
         ]
         # Command
         self.print_command(l_args)
 
+        parser = get_parser()
         args = parser.parse_args(l_args)
 
         main(filename_html=args.path,
@@ -379,7 +388,7 @@ class TestCLIGeneral(unittest.TestCase):
         # auto
         basename_html = "DEMO_PROCEDURE.html"
         basename_rdf = "DEMO_PROCEDURE_GENERAL.rdf"
-        filename_html = os.path.join(DIR_SOURCE, "scripts", basename_html)
+        filename_html = os.path.join(DIR_EXAMPLES, basename_html)
         url2html(url, filename_html)
 
         # Set args

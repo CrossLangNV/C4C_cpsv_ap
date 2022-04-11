@@ -7,86 +7,74 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServicebb073923a50c42b6869e51afb4d8ad01">
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationb1abaa9e51e14d6e9910bd1adff73873"/>
-    <dct:description>De Stad Gent heft een belasting op de woningen zonder inschrijving in het bevolkingsregister of vreemdelingenregister.</dct:description>
-    <dct:identifier>PublicServicebb073923a50c42b6869e51afb4d8ad01</dct:identifier>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost98536955223c43488746f7a00e582856"/>
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement6f7651c8b9e2419980ab51a81c576477"/>
-    <dct:title>
-   Belasting op woningen zonder inschrijving in het bevolkingsregister (zogenaamde 'tweede verblijven') | Stad Gent
-  </dct:title>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidencec844003038ce42c59f98f638b7d2e7e0"/>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint4d14f3a2ba08453d881207eb8389bffe"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint4d14f3a2ba08453d881207eb8389bffe">
-    <schema:telephone>09 210 10 10
-Gentinfo@stad.gent</schema:telephone>
-    <schema:telephone>09 210 10 10</schema:telephone>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointb8901ec576cb4e238ba4a822279cc5a7">
+    <schema:email>eerste.lijn@aalter.be</schema:email>
+    <schema:telephone>09 325 22 00</schema:telephone>
+    <schema:telephone>www.aalter.be/afspraak
+of tel. 09 325 22 00.</schema:telephone>
+    <schema:email>gemeente@aalter.be</schema:email>
     <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:email>09 210 10 10
-Gentinfo@stad.gent</schema:email>
-    <schema:telephone>Woodrow Wilsonplein 1,
-9000 Gent
-09 266 74 80
-stadsbelastingen@stad.gent</schema:telephone>
-    <schema:email>Woodrow Wilsonplein 1,
-9000 Gent
-09 266 74 80
-stadsbelastingen@stad.gent</schema:email>
+    <schema:telephone>09 325 22 40</schema:telephone>
+    <schema:email>burgerzaken@aalter.be</schema:email>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidencec844003038ce42c59f98f638b7d2e7e0">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
-    <dct:identifier>Evidencec844003038ce42c59f98f638b7d2e7e0</dct:identifier>
-    <dct:description>Aangifte
-Het indienen van een aangifte kan enkel via het digitale aangifteformulier of schriftelijk.
-* U ontvangt schriftelijk een 'Voorstel van aangifte' (een vooraf volledig ingevulde aangifte). U dient dit enkel bij wijziging verbeterd via de post terug te sturen naar de Stad Gent.
-* U ontvangt schriftelijk een 'Aangifte' (een vooraf gedeeltelijk ingevulde aangifte). U dient dit verbeterd en/of vervolledigd via de post terug te sturen naar de Stad Gent.
-* Indien u geen aangifte ontvangt, kan u steeds een aangifte doen op basis van een blanco PDF-formulier.
-Bezwaarschrift
-De belastingschuldige of zijn vertegenwoordiger kan tegen een aanslag, een belastingverhoging of een administratieve geldboete, een schriftelijk bezwaarschrift indienen bij het college van burgemeester en schepenen (t.a.v. Stadsbelastingen - Departement Financiën - cel bezwaarschriften). Dit moet gebeuren binnen een termijn van drie maanden te rekenen vanaf de derde werkdag volgend op de datum van verzending van het aanslagbiljet of vanaf de kennisgeving van de aanslag of vanaf de datum van de contante inning.
-Het bezwaarschrift moet schriftelijk ingediend worden en ondertekend zijn door de belastingschuldige of zijn vertegenwoordiger en gemotiveerd zijn. Het moet de naam, de hoedanigheid en het adres of de zetel van de belastingplichtige vermelden. Het moet ook het voorwerp van het bezwaarschrift en een opgave van de feiten en de middelen vermelden. Als de belastingschuldige of zijn vertegenwoordiger wil uitgenodigd worden op de hoorzitting moet dit in het bezwaarschrift worden gevraagd.
-Het bezwaarschrift kan ook online worden ingediend in zover in deze mogelijkheid wordt voorzien en binnen de termijnen en onder de voorwaarden vermeld in dit artikel. Meldingen via andere duurzame dragers zoals e-mail worden niet als bezwaarschrift aanvaard.</dct:description>
-    <dct:title>DEFAULT NAME</dct:title>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost98536955223c43488746f7a00e582856">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costc56ac910e3fc4604a453f56c231c82c6">
+    <dct:identifier>Costc56ac910e3fc4604a453f56c231c82c6</dct:identifier>
     <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:identifier>Cost98536955223c43488746f7a00e582856</dct:identifier>
-    <dct:description>De belasting is voor het hele jaar verschuldigd.</dct:description>
+    <dct:description>Gratis.</dct:description>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement6f7651c8b9e2419980ab51a81c576477">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-    <dct:description>Wie?
-De natuurlijke- of rechtspersoon die op 1 januari van het aanslagjaar eigenaar is van de woning zonder inschrijving in het bevolkingsregister (zie artikel 4 van het reglement belasting op de tweede verblijven).
-Wanneer?
-U moet ten laatste op 30 juni van het aanslagjaar een aangifte indienen bij het stadsbestuur door middel van een door het stadsbestuur voorgeschreven formulier. Een belastingplichtige die geen aangifteformulier gekregen heeft, moet er zelf één vragen.</dct:description>
-    <dct:identifier>CriterionRequirement6f7651c8b9e2419980ab51a81c576477</dct:identifier>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService7535499c6abb4a01a590b2f5c258f0f2">
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule6d953c41d660452599945e8fd220e930"/>
+    <dct:identifier>PublicService7535499c6abb4a01a590b2f5c258f0f2</dct:identifier>
+    <dct:title>
+     Aangifte van een adreswijziging - Gemeente Aalter
+    </dct:title>
+    <dct:description></dct:description>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costc56ac910e3fc4604a453f56c231c82c6"/>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidencedbd19f153e5b495a9e7fa94946b509a7"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirementd3f0e43ea8f34ca9a19fab23980a6f27"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationbc96a4698a064d2bac2754caa95b3d7d"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointb8901ec576cb4e238ba4a822279cc5a7"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule6d953c41d660452599945e8fd220e930">
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:description>Je kan de adreswijziging online melden via het digitaal loket van jouw (nieuwe) gemeente.
+Je kan langsgaan bij de dienst Burgerzaken van jouw (nieuwe) gemeente.</dct:description>
+    <dct:identifier>Rule6d953c41d660452599945e8fd220e930</dct:identifier>
     <dct:title>DEFAULT NAME</dct:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirementd3f0e43ea8f34ca9a19fab23980a6f27">
+    <dct:description>Iedereen die 18 jaar of ouder is, mag zelf de verhuizing doorgeven.
+Ouders of voogden geven de verhuizing van hun minderjarige kinderen door.
+Meerderjarige gezinsleden mogen jouw verhuizing doorgeven. Ze hebben dan wel je identiteitskaart nodig.
+Je kan de verhuizing pas doorgeven als je effectief verhuisd bent.
+Als een niet-ontvoogde minderjarige de verblijfplaats van zijn ouders voor het eerst verlaat om zijn hoofdverblijf elders te vestigen, moet hij vergezeld zijn door iemand die het ouderlijke gezag uitoefent.</dct:description>
+    <dct:identifier>CriterionRequirementd3f0e43ea8f34ca9a19fab23980a6f27</dct:identifier>
+    <dct:title>DEFAULT NAME</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidencedbd19f153e5b495a9e7fa94946b509a7">
+    <dct:identifier>Evidencedbd19f153e5b495a9e7fa94946b509a7</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:description>Elektronische identiteitskaart van alle gezinsleden.
+Pincode om de chip te updaten.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf7d6483ab70f463ca2f9ffe759d676ea">
+    <skos:prefLabel>De Plaats 14
+09 325 22 00
+09 325 22 40
+www.aalter.be/afspraak
+of tel. 09 325 22 00.</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationbc96a4698a064d2bac2754caa95b3d7d">
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <dct:spatial rdf:resource="aalter.be"/>
+    <cv:hasAddress rdf:nodeID="Nf7d6483ab70f463ca2f9ffe759d676ea"/>
   </rdf:Description>
   <rdf:Description rdf:about="aalter.be">
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationb1abaa9e51e14d6e9910bd1adff73873">
-    <cv:hasAddress rdf:nodeID="Nfb6b36fbd8834c2db3496b111f639dd0"/>
-    <dct:spatial rdf:resource="aalter.be"/>
-    <skos:prefLabel># TODO</skos:prefLabel>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nfb6b36fbd8834c2db3496b111f639dd0">
-    <skos:prefLabel>1.200
-1.220
-1.500
-1.526
-1.551
-1.578
-09 210 10 10
-Gentinfo@stad.gent
-09 210 10 10
-Woodrow Wilsonplein 1,
-9000 Gent
-09 266 74 80
-stadsbelastingen@stad.gent</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
   </rdf:Description>
 </rdf:RDF>

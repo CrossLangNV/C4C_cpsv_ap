@@ -7,58 +7,55 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint644c1fcde12e420eab802f7d5468a539">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint658a6c5f32b64c26a8c494867fda96fd">
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:telephone>09 325 22 00</schema:telephone>
+    <schema:email>burgerzaken@aalter.be</schema:email>
     <schema:telephone>09 325 22 40</schema:telephone>
     <schema:email>eerste.lijn@aalter.be</schema:email>
     <schema:email>gemeente@aalter.be</schema:email>
-    <schema:email>burgerzaken@aalter.be</schema:email>
-    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
     <schema:telephone>www.aalter.be/afspraak
 of tel. 09 325 22 00.</schema:telephone>
-    <schema:telephone>09 325 22 00</schema:telephone>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement72d09537d19f416a9b8f084ff23a71b5">
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:description>* Iedereen die 18 jaar of ouder is, mag zelf de verhuizing doorgeven.
-* Ouders of voogden geven de verhuizing van hun minderjarige kinderen door.
-* Meerderjarige gezinsleden mogen jouw verhuizing doorgeven. Ze hebben dan wel je identiteitskaart nodig.
-* Je kan de verhuizing pas doorgeven als je effectief verhuisd bent.
-* Als een niet-ontvoogde minderjarige de verblijfplaats van zijn ouders voor het eerst verlaat om zijn hoofdverblijf elders te vestigen, moet hij vergezeld zijn door iemand die het ouderlijke gezag uitoefent.</dct:description>
-    <dct:identifier>CriterionRequirement72d09537d19f416a9b8f084ff23a71b5</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService0bed2287d21246e89da5f9ccf13f6fae">
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint644c1fcde12e420eab802f7d5468a539"/>
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule2c68adc1b119412b9952fb8a9ac25699"/>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <dct:description></dct:description>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation215785d99deb4b83b5c009d1739fb0b0"/>
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidencee8d6e1f1f7fb4b68bb8d3d6b5a87d810"/>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost1eab6105b0d54abea879ec2867414696"/>
-    <dct:identifier>PublicService0bed2287d21246e89da5f9ccf13f6fae</dct:identifier>
-    <dct:title>
-        Aangifte van een adreswijziging - Gemeente Aalter
-    </dct:title>
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement72d09537d19f416a9b8f084ff23a71b5"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation215785d99deb4b83b5c009d1739fb0b0">
-    <skos:prefLabel># TODO</skos:prefLabel>
-    <cv:hasAddress rdf:nodeID="N86120b7f93a54f12a91e2bf139960512"/>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <dct:spatial rdf:resource="www.aalter.be"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule2c68adc1b119412b9952fb8a9ac25699">
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
-    <dct:identifier>Rule2c68adc1b119412b9952fb8a9ac25699</dct:identifier>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule7fff760147884383a34d1c75563b8a90">
     <dct:title>DEFAULT NAME</dct:title>
     <dct:description>* Je kan de adreswijziging online melden via het digitaal loket van jouw (nieuwe) gemeente.
 * Je kan langsgaan bij de dienst Burgerzaken van jouw (nieuwe) gemeente.
 Controle van domicilie en aanpassing identiteitsdocumenten
 Na de aangifte controleert een wijkagent of je werkelijk op het aangegeven adres je hoofdverblijfplaats hebt. Na deze controle word je ingeschreven op het nieuwe adres en word je uitgenodigd om jouw identiteitskaart op het gemeentehuis te laten aanpassen. Hiervoor heb je je elektronische identiteitskaart met pincode nodig.
 Vanaf het moment dat je identiteitskaart aangepast is, kan je alle andere instanties van je adresverandering op de hoogte brengen.</dct:description>
+    <dct:identifier>Rule7fff760147884383a34d1c75563b8a90</dct:identifier>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidencee8d6e1f1f7fb4b68bb8d3d6b5a87d810">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService55cbaa3216444228ab691e84ddb165cb">
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement806b32bd00f245e299a3b95bf3651631"/>
+    <dct:description></dct:description>
+    <dct:title>
+    Aangifte van een adreswijziging - Gemeente Aalter
+  </dct:title>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <dct:identifier>PublicService55cbaa3216444228ab691e84ddb165cb</dct:identifier>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule7fff760147884383a34d1c75563b8a90"/>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence506a5a5a6c4b4b50bf65b1e570797f96"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint658a6c5f32b64c26a8c494867fda96fd"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation0eb3a538a4804293b38739027a5f6595"/>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost93a485707bbf402ca9c006829e5a3e88"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation0eb3a538a4804293b38739027a5f6595">
+    <cv:hasAddress rdf:nodeID="Nd6639544cdb9458ab1692746ce037440"/>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <dct:spatial rdf:resource="www.aalter.be"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost93a485707bbf402ca9c006829e5a3e88">
+    <dct:identifier>Cost93a485707bbf402ca9c006829e5a3e88</dct:identifier>
+    <dct:description>Gratis.</dct:description>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence506a5a5a6c4b4b50bf65b1e570797f96">
+    <dct:identifier>Evidence506a5a5a6c4b4b50bf65b1e570797f96</dct:identifier>
     <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:title>DEFAULT NAME</dct:title>
     <dct:description>* Elektronische identiteitskaart van alle gezinsleden.
 * Pincode om de chip te updaten.
 Gelijkmatig verdeelde huisvesting
@@ -66,23 +63,26 @@ Voor een minderjarige die bij elk van de ouders verblijft volgens het principe v
 * het wederzijds akkoord van de ouders
 * de gerechtelijke beslissing
 * de notariële akte.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement806b32bd00f245e299a3b95bf3651631">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:identifier>CriterionRequirement806b32bd00f245e299a3b95bf3651631</dct:identifier>
+    <dct:description>* Iedereen die 18 jaar of ouder is, mag zelf de verhuizing doorgeven.
+* Ouders of voogden geven de verhuizing van hun minderjarige kinderen door.
+* Meerderjarige gezinsleden mogen jouw verhuizing doorgeven. Ze hebben dan wel je identiteitskaart nodig.
+* Je kan de verhuizing pas doorgeven als je effectief verhuisd bent.
+* Als een niet-ontvoogde minderjarige de verblijfplaats van zijn ouders voor het eerst verlaat om zijn hoofdverblijf elders te vestigen, moet hij vergezeld zijn door iemand die het ouderlijke gezag uitoefent.</dct:description>
     <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>Evidencee8d6e1f1f7fb4b68bb8d3d6b5a87d810</dct:identifier>
   </rdf:Description>
   <rdf:Description rdf:about="www.aalter.be">
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost1eab6105b0d54abea879ec2867414696">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:description>Gratis.</dct:description>
-    <dct:identifier>Cost1eab6105b0d54abea879ec2867414696</dct:identifier>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N86120b7f93a54f12a91e2bf139960512">
-    <skos:prefLabel>De Plaats 14
+  <rdf:Description rdf:nodeID="Nd6639544cdb9458ab1692746ce037440">
+    <skos:prefLabel>www.aalter.be/afspraak
+of tel. 09 325 22 00.
 09 325 22 00
 09 325 22 40
-www.aalter.be/afspraak
-of tel. 09 325 22 00.</skos:prefLabel>
+De Plaats 14</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
   </rdf:Description>
 </rdf:RDF>

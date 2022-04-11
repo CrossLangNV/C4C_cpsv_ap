@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup, Tag
 from pydantic import BaseModel
 
 from c4c_cpsv_ap.models import BusinessEvent, Event, LifeEvent
+from relation_extraction.html_parsing.parsers import Section
 from relation_extraction.utils import clean_text
 
 
@@ -164,7 +165,7 @@ class CityParser(abc.ABC):
     @abc.abstractmethod
     def parse_page(self,
                    s_html: str,
-                   include_sub: bool = True):
+                   include_sub: bool = True) -> List[Section]:
         """
         Converts a html page to paragraphs with their title.
 
@@ -206,12 +207,9 @@ class CityParser(abc.ABC):
         Returns:
             generates (title, paragraph) pairs.
         """
-        for l_sub in self.parse_page(s_html, include_sub=include_sub):
-            title = l_sub.title
-
-            paragraphs = l_sub.paragraphs
-            # TODO could be that you can use l_sub.paragraphs_text() immediately
-            paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
+        for section in self.parse_page(s_html, include_sub=include_sub):
+            title = section.title
+            paragraphs_clean = section.paragraphs_text()
 
             yield title, paragraphs_clean
 
@@ -222,6 +220,8 @@ class ClassifierCityParser(CityParser):
     """
 
     def __init__(self, classifier: CPSVAPRelationsClassifier, *args, **kwargs):
+        """
+        """
         super(ClassifierCityParser, self).__init__(*args, **kwargs)
 
         self.classifier = classifier
@@ -229,16 +229,9 @@ class ClassifierCityParser(CityParser):
     def parse_page(self,
                    s_html,
                    include_sub: bool = True
-                   ) -> List[List[str]]:
+                   ) -> List[Section]:
         """
-        AKA Chunking
-
-        Args:
-            s_html:
-            include_sub:
-
-        Returns:
-
+        With HeaderHTMLParser
         """
         soup = BeautifulSoup(s_html, 'html.parser')
 
@@ -303,6 +296,9 @@ class ClassifierCityParser(CityParser):
         l = [[s for s in l_sub if s] for l_sub in l]
         # Filter empty subs:
         l = [l_sub for l_sub in l if len(l_sub)]
+
+        # Convert to sections
+        l = [Section(l_sub[0], l_sub[1:]) for l_sub in l]
 
         return l
 

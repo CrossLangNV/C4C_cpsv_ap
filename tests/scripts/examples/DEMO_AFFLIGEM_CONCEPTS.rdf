@@ -7,554 +7,706 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServicef60ac96f90d341bf808d513b3706165b">
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9190ca9e07084e1ca98d5d7a498a7a6f"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0bbfb7afc0404303b2a25105cf21ebb8"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept08112abefae349bfa38bc0fdd6adef6c"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptec903eb3e2384715979479f15468ef93"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept766d1b8ce5aa42acb9b898cd8827e277"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5ef5db852dca4dce8a925b5eb52ff84e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept31803ea82a834548b9a7e9d759905d27"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept33987ec53a9843ccb6f8999a71a30378"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept4f9b6834ff5142c1bbe3d8e9e36253db"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept370b95c4fc0a4467bcc35338c6e04c48"/>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation4bb0087f66484983a2b067dd9c8e8cb4"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta602fb729b3a4b7f955080488dba366f"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte668aa6a94214a1a80c4ec622009db9d"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5dc29dd3a0d2431eb787ff5a874d00dc"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept8483e94ef6b44c17afad84030847276a"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptfd86c808aaaa4d94bc59dd1064a73ced"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5106cbd84b2c4bc4954af272d521b966"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept37533fba2f7441c2a1cd0abb953c7d9c"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd4dbfbd9d792486896d58078d63caf1b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc1985e3343b64cc79ae0b31b417fccf4"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept02ad94783c7f4728b31051903519cc1e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6a6f4725455e43f7907477b558dade43"/>
-    <dct:title>
-		Affligem.be wettiging van handtekening
-	</dct:title>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept890629fcf0e14413a8047ee8030d858c"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept35afcc63fb134ca2ac31c57641a0da68"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6fa958d52a5649059717f60b7f0a17a1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9af770ec0c61432e8e6a00464023cc66"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept524cbac556c844b0b86a788bd6e1773b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb25e5a9929a74a68b8f3af438c5b5922"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptfed4f725df8946969bc259be458f8fd0"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0e400aa7b9a9412a8cffb0b29fc81ee1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept718cc5af973042ff8008c233e8448a82"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept02cbd984862a4dad851f5563624508f6"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept634931a8bc544a448df40fc5cbf99dc6"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptfbdb76725384421a82cd0a01e9d480a5"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd65a0ebea7cb42b8b78ca17b39ceea55"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdd9ae549e05b4e758e652e99ffedc42d"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta9ccf11c179046ab9194b9c955353a99"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept641f300151c5437cac8a98b9fe297bcb"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0e8ade584c704cdc85c5d0a353079445"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf5b52ad6afd244fcafaf4d40bd943b79"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9baaf8cff14042148409f4f3da7e2abc"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept137538daf6a142a5adad328cb411d010"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept030ea07a4aa8454f8d6632eb889442dd"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept89e9f28e12a4451fa32966e884bc2ded"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept8eb0f988a48543f79429aa07563cc21d"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept76857bcdf22f415d89f668f4a3916fb2"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf21d24a3e6de4e6cba321911549bf158"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd6c31009d49e459db886cec85d099c09"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept98193741074e4235b71d3e07eb521926"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept3aef4dbe66a449ab83ed541f49627469"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte65091d7100043efad7a08f6286a88a6"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept4371ba974be6463eb47cbe1696e74ed0"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5ab83243238548769f6829653b2e9c83"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte444f60588cd414c897ea4df910e54c3"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept37a699fd5ac64060b37d4bb2a7577667"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc5c2785e7fbf4a3d9f12b0881e351359"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept93994660b461424b9ebcbf817f9a6b88"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta88731fb15cd422c8eb763fb9a81e3f1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1a124a187732451aac373aca7744dda6"/>
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequiremente9bf25fc87ee40449c04d6629fdc8a94"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte9a68e1df63146e0aa4c2d7d72caad8b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept06157cc5d80a49b3846826a777336fc9"/>
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule70e3855ab1304cc1971389574491ec23"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept3ce6ccfed9a44bfeac811cab4eb93e6d"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta6d1818e66ef47079b68b2f9057d7879"/>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptbf3db475a2f141c4b62f42d8db45b8cf"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept227afb25690b466aaf7a546f7f976f30"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept58751a1922ce429cac3290639e80d382"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5abc375964c649eba3476eb05b75a7e9"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept462a9f1d46cc4c0b9982c06f05d50b36"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte155d8fa3e0b4fae9e3b340016f6409e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept352f99baa0b94c59984e2b3b9aaa8502"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd752cdf77a054ee49bf2b9a540968ce9"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte603765a9a1246b0bd56d3560eec69ef"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf40780de2ea24a878e89e531cfb1a89e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf43b29bcf53547c8aa0b28c211f88215"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept164b2b4085134d329d5771018d33697d"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5cf727a9fb97431195647d434a31969f"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept702efb05f57f456e9cf14abff3f277d0"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept3e5194e4bb7c47e78084e78021d76d31"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte26b5fac0d024c279289d3b9c96006d7"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept97f4ce4002e844bfab7527e7630b750f"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0bb97d94ea66492ba4967e291a85da01"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9971692fec84472f9320878243503690"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdedede803e9f4efdac9d5a55f060f9c1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptcb974a12603f46269bb859de33f71fbc"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept12a2eee1583e4ab7bcc0157d88236336"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb1e13c6806a148c38491af53d059b684"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept27d9a082b84749a2878c1ab827d15f89"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf1acf8fcf5494e2db919ae28971d3761"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd41fd121c5044725b506bdca1e32f21e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept65827630fef54b5d8912f81ba38f8b9a"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept04cbd3d0b3ef494884341878e4f07e96"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept3af467a4ef314790b57e0ccf0440925f"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf8f537b8d3314a37902eea4df4dadade"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept7f90420a631c4e4aa9adc1f15804dbb7"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept68ff2745ace74de5b5dc94ebb71952ee"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6ff3ee8d1e844263adeb7cd4f353136b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepteb3ac43ee7584c0682c31c5f8a0038e9"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc5d11d810f944bb180039220e5a20a32"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptbc978419c4ae4f2d8bf659e59bd01835"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept87930a2ac9894e2ab3af64eae500f09e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept52e1a61103e44ae6b9443f05a4a5ae5f"/>
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidenceb3013c34a7e1464089b7ce4c3843cd03"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf11c10b335ff4c17b1b77f7cac029927"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5653aab80ae64ebe94052bf457a3032f"/>
-    <cv:isGroupedBy rdf:resource="http://cefat4cities.crosslang.com/content/LifeEvent698c7e949b234589b0a4539a98ddd658"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6627757e04be459797e5f7fc108e9bfe"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptec595328fb3a4efd8cc3c51ec3aac1dc"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0ccf960a1561445795e95efad0050e2b"/>
-    <dct:identifier>PublicServicef60ac96f90d341bf808d513b3706165b</dct:identifier>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept86ce95c985ba475fa3667d4d4fc32f36"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept778e98cb17b542c18491fab693e365ce"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptbf4b0bb332614514b455360922e64057"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept79912e7a4fc845c48c6631a4eee15a5d"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd7ce260107d842948539218e2c259ce9"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0f83dde02ed94adb8c5527ce39cba231"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd457259ae67d40eeac4a89b63f5e9cff"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte3ec958047034d6e8dbdce163c34217b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdcc8e7bd42fb4158a82bb9c42ad0fb3c"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf136dce172a5477dbd64739093c849b1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept8e39366afc204c8f8e4548997c351263"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptddc3d2a0284142c3aa210bf38788be12"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept51f06ce8c6b447a1a572a25d43f612da"/>
-    <dct:description></dct:description>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept603b7f0463714f69b842295e69053e30"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd3ca778079614d37be25ccc71769aed1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept4a1bda7a5c9148aea9145e149d6fadb7"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept15117b0d233e47fa8f0fd3bf6e1f1217"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9f499c3581f0460391db61c6ef57c17f"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept83aafe3e4f644dacb0e95ff803151319"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0add584829bc43a99c8ff10130b2bd27"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptaf1d7bfc5349460c8e15b3f14ed2804e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1472610d996b43fbab3845bad1ddad82"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept11cbf3bf549d48b798dda4c408f90b19"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptcdba138fa02c4ece8820b63aec626d2f"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2d6d64c38fe0485689d1c009f69b48c6"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptfb43fb497e8541d9b30c43578358c767"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte3006fe8b474453795c63fb9ef8bfb32"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept3e89cd330ff646359e22bf18de0a4492"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0c05c23cf10548dd8336e0d0f12ddd67"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta893f65078c444899383c13a9c5225fc"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2b7fd78cc810487d89d29f24b7614e26"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept518207af7fe3469a8e863f3aca4f9787"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept15ffe642f2be400d8565e4db05f4e7a3"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept892fec58a0384475b10b5a480b682c56"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept8ed0e757c3ef4a35a3cf8a6e33d4bba4"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept611ff143925847ea8a70fad34e4ad6b6"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept36c4fed0678646769d13f873b6f07da4"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept25353aebb9a6465c8abbf2c8ece321a0"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptfc100d9a83cd489c8aa392638ebb8d66"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc9d2e07631a34d5196a698b6c1ce796b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc1f928820d7a44b6b8bd19671914d3ae"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte8074ae79549494788c350c9558b8314"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb490b062d5e34822bf5ef024017e652d"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte58a5a3a3888474b9d60758059938adb"/>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointa41ac7eabf3749bbb49cfb228db6eb6e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc2a5d52a32164aae8865c92cc250a3bb"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta99cf468d43442d29186e390e666d452"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept78faefd9d8e5439c9aaefd7580c0fa64"/>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost0ea397f37d2b4643a5176ce364099079"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept306204db35564312befe3bf933d193b1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdef7a145076c402ea599d2fd81e22b96"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5fde2d97f33744c3b8de6e8f776a3186"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptafe83dbd70664700ad5b608fed5e7c4e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdff60e0ceaf5464897edbb9220ed630a"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb4eaef00ab394605808ace261fef32af"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6262e788b5854426bb33da1a38e3ad95"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6a2c1dd7035e4d408157492da26153e1"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptff7624eed22f47d7afd7de9621b1292e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept7098e054c11a43baa250143c0f6ccf6e"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept4fb71ee3e68f442c90de302f5261d672"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept698a02e12a594e68b8651d496c15914b"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept8cb6385fcda14910ae2604d5efbb3ee6"/>
-    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf8f35122c6a14c2ba14e7a8c18dab97c"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept27d9a082b84749a2878c1ab827d15f89">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>vastgesteld</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept68ff2745ace74de5b5dc94ebb71952ee">
-    <skos:prefLabel>bevestigt</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost0ea397f37d2b4643a5176ce364099079">
-    <dct:identifier>Cost0ea397f37d2b4643a5176ce364099079</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:description>Het wettigen van een handtekening is gratis.</dct:description>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept030ea07a4aa8454f8d6632eb889442dd">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>bevoegde</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5abc375964c649eba3476eb05b75a7e9">
-    <skos:prefLabel>bedrieglijke</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptec595328fb3a4efd8cc3c51ec3aac1dc">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>betekent</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept25353aebb9a6465c8abbf2c8ece321a0">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>papier</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepteb3ac43ee7584c0682c31c5f8a0038e9">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>waar je</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc9d2e07631a34d5196a698b6c1ce796b">
-    <skos:prefLabel>het document waarop de</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept718cc5af973042ff8008c233e8448a82">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>persoon en een door hem of haar ondertekende volmacht</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept8cb6385fcda14910ae2604d5efbb3ee6">
-    <skos:prefLabel>na of de te legaliseren</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept137538daf6a142a5adad328cb411d010">
-    <skos:prefLabel>een</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept4a1bda7a5c9148aea9145e149d6fadb7">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>gelegaliseerd</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf40780de2ea24a878e89e531cfb1a89e">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>haar</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0e8ade584c704cdc85c5d0a353079445">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptfe1d8471ef134b3e9be2739306c9f2dc">
     <skos:prefLabel>handtekening moet gewettigd worden</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept7f90420a631c4e4aa9adc1f15804dbb7">
-    <skos:prefLabel>mag</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd65a0ebea7cb42b8b78ca17b39ceea55">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>laat</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd7ce260107d842948539218e2c259ce9">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>de te legaliseren</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept3e5194e4bb7c47e78084e78021d76d31">
-    <skos:prefLabel>bestemd</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept36c4fed0678646769d13f873b6f07da4">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>handtekene betekent dat een daartoe</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept93994660b461424b9ebcbf817f9a6b88">
-    <skos:prefLabel>wit vel papier kan nooit gelegaliseerd</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept892fec58a0384475b10b5a480b682c56">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>die van de persoon van wie de identiteit wordt</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf5b52ad6afd244fcafaf4d40bd943b79">
-    <skos:prefLabel>meebrengen</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9971692fec84472f9320878243503690">
-    <skos:prefLabel>van de persoon van</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptcdba138fa02c4ece8820b63aec626d2f">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>doel</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9baaf8cff14042148409f4f3da7e2abc">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>tot</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept52e1a61103e44ae6b9443f05a4a5ae5f">
-    <skos:prefLabel>op</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte8074ae79549494788c350c9558b8314">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>legaliseren</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept524cbac556c844b0b86a788bd6e1773b">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>deze</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd752cdf77a054ee49bf2b9a540968ce9">
-    <skos:prefLabel>woonplaats</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte3006fe8b474453795c63fb9ef8bfb32">
-    <skos:prefLabel>de</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept37533fba2f7441c2a1cd0abb953c7d9c">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptbc1491a256f745a8b14a21b388d9d998">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:prefLabel>gaan</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept35afcc63fb134ca2ac31c57641a0da68">
-    <skos:prefLabel>zijn gemachtigde gaat na of de te legaliseren</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept87930a2ac9894e2ab3af64eae500f09e">
-    <skos:prefLabel>akte</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept634931a8bc544a448df40fc5cbf99dc6">
-    <skos:prefLabel>een eigenhandig geschreven testament</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept37a699fd5ac64060b37d4bb2a7577667">
-    <skos:prefLabel>kan</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept8eb0f988a48543f79429aa07563cc21d">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>testament</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept7098e054c11a43baa250143c0f6ccf6e">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>gemeente</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc5c2785e7fbf4a3d9f12b0881e351359">
-    <skos:prefLabel>hem</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept06157cc5d80a49b3846826a777336fc9">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>het wettigen van een</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf11c10b335ff4c17b1b77f7cac029927">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>laat je de handtekening van</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte668aa6a94214a1a80c4ec622009db9d">
-    <skos:prefLabel>op een</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule70e3855ab1304cc1971389574491ec23">
-    <dct:description>De burgemeester van de gemeente of zijn gemachtigde gaat na of de te legaliseren
-										handtekening overeenstemt met die van de persoon van wie de identiteit wordt
-										vastgesteld. Een handtekening op een wit vel papier kan nooit gelegaliseerd
-										worden.</dct:description>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
-    <dct:identifier>Rule70e3855ab1304cc1971389574491ec23</dct:identifier>
-    <dct:title>DEFAULT NAME</dct:title>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/LifeEvent698c7e949b234589b0a4539a98ddd658">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Event"/>
-    <dct:relation rdf:resource="http://cefat4cities.crosslang.com/content/PublicServicef60ac96f90d341bf808d513b3706165b"/>
-    <dct:title>identiteitsbewijzen,
-						rijbewijzen en afschriften - afschriften, uittreksels en
-						getuigschriften</dct:title>
-    <dct:identifier>LifeEvent698c7e949b234589b0a4539a98ddd658</dct:identifier>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept603b7f0463714f69b842295e69053e30">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>wat meebrengen</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept4f9b6834ff5142c1bbe3d8e9e36253db">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>het document waarop</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptec903eb3e2384715979479f15468ef93">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>voorwaarden</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept3ce6ccfed9a44bfeac811cab4eb93e6d">
-    <skos:prefLabel>gemeente of zijn gemachtigde gaat na of de te legaliseren</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb25e5a9929a74a68b8f3af438c5b5922">
-    <skos:prefLabel>bevoegde overheid de echtheid van een handtekening schriftelijk bevestigt</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf8f35122c6a14c2ba14e7a8c18dab97c">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>ondertekende</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf43b29bcf53547c8aa0b28c211f88215">
-    <skos:prefLabel>bij</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5ab83243238548769f6829653b2e9c83">
-    <skos:prefLabel>identiteit</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0add584829bc43a99c8ff10130b2bd27">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>dan moet je de</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept83aafe3e4f644dacb0e95ff803151319">
-    <skos:prefLabel>bij het gemeentebestuur van de gemeente</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0f83dde02ed94adb8c5527ce39cba231">
-    <skos:prefLabel>moet gewettigd</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept97f4ce4002e844bfab7527e7630b750f">
-    <skos:prefLabel>laten wettigen bij het gemeentebestuur van de gemeente</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept15117b0d233e47fa8f0fd3bf6e1f1217">
-    <skos:prefLabel>strafbare</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept4371ba974be6463eb47cbe1696e74ed0">
-    <skos:prefLabel>bijgevolg</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept8e39366afc204c8f8e4548997c351263">
-    <skos:prefLabel>het</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptfc100d9a83cd489c8aa392638ebb8d66">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>procedure</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept3aef4dbe66a449ab83ed541f49627469">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>nodig</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept58751a1922ce429cac3290639e80d382">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>wat</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5106cbd84b2c4bc4954af272d521b966">
-    <skos:prefLabel>wettigen</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept611ff143925847ea8a70fad34e4ad6b6">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>het mag bijgevolg niet gaan</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2d6d64c38fe0485689d1c009f69b48c6">
-    <skos:prefLabel>het wettigen</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5dc29dd3a0d2431eb787ff5a874d00dc">
-    <skos:prefLabel>oogmerken</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc1f928820d7a44b6b8bd19671914d3ae">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>van</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6627757e04be459797e5f7fc108e9bfe">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>de formaliteit moet nuttig of nodig zijn</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept306204db35564312befe3bf933d193b1">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>nuttig of nodig zijn</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta6d1818e66ef47079b68b2f9057d7879">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>haar ondertekende volmacht</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta602fb729b3a4b7f955080488dba366f">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>bijvoorbeeld</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptcb974a12603f46269bb859de33f71fbc">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>een louter</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte444f60588cd414c897ea4df910e54c3">
-    <skos:prefLabel>nooit</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept766d1b8ce5aa42acb9b898cd8827e277">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>identiteitskaart van deze persoon</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept33987ec53a9843ccb6f8999a71a30378">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>zijn gemachtigde gaat na</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf8f537b8d3314a37902eea4df4dadade">
-    <skos:prefLabel>je kunt je handtekening</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5ef5db852dca4dce8a925b5eb52ff84e">
-    <skos:prefLabel>document</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept76857bcdf22f415d89f668f4a3916fb2">
-    <skos:prefLabel>wordt</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5653aab80ae64ebe94052bf457a3032f">
-    <skos:prefLabel>een eigenhandig</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept98193741074e4235b71d3e07eb521926">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2e077072ffac49bba6115c360c1b4077">
     <skos:prefLabel>nuttig</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1472610d996b43fbab3845bad1ddad82">
-    <skos:prefLabel>worden</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServicee27a0624112b4db6bdfb48043d617c9a">
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6f4aa7e0aa3d4555919589855367b187"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb39c71f9c11c4f16ad86aa73065b0315"/>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost12b24da7ccf846068be0cc2ed628c04c"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept56460077bb054f6194563693433bc36e"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdcfcff52650b4f6a92bb4a27b3ef49f4"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5f9d1ca642374973b9d763b9560da051"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5b9823b7326d4d3ba58a9f600d210c53"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept217f8b6156c14308b7948ea3f8338f76"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0d24ffb142c34521b5150c2172c49caf"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept66d3f3a86a264d709a942eb8644610a1"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte3a1f37278c54d4682d4fe891051a2ce"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2a99cc36eae145eeb3b9a3f940a3adc4"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept600d4b849f16419cb414ebd8f5acc092"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept960f8536d7314c37882b99938c072f87"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta3015b554c7d467492641cb3e86fd47e"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6739829b2a674b8387a536dc7a6af21b"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptcc8972b27288454aac2d6ad7c9f57abe"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptebabb0b736ea440d95290875d398674a"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb4862c2751a348f7b51b57ba144b7140"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf7354ab9cc124e7fa9ec47d441364b47"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept33b8bfe4ce504dd0a98c086851c362ed"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept77306fcca0ad4b3f9a282dae09c1a2ab"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc76ad5c2312d4d71bb875772ff4f22f9"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2a5f496b6cea40258cb448bf5754adc8"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5034af1b53224d969638f711f62f1a5d"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5c57b0213d7a44888e53da49f9f627d7"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept18fc662c1ac342f1aeef54645266d68b"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptfd11655b6d6141ada7414c3e0f1dbeba"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf72b835e19c14d0588669147f9db143c"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1c38dc660ecd47c1ad7555c9c19bebc2"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb7f2be4506f54bcdbd3f9c5c26b39f2c"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6bdd7047b9dd466884e7eb8a7f7aa38a"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept41b4fa47618746379921d881037b1f55"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptbabcea22c83f48ab90bf9051019eb29f"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept70a4ace585114e88acbf2dc08a5f3c85"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept29547a7a73564201b4dc96189f90f19c"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation37baa74701394eaebe8cd17c5954660b"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept3be254413981419a8d3d06999b61fbef"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept4a9d6b7de0514e828e0ee66e33a33209"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept721f83e472484f1daf8954e60a10f79d"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept8e38be3e00c147df9d4e8250b6c20506"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept3d470ce7070044f9b0e41398452c0681"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2d44961388da4689aec2fde56f9122e2"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept12b93b0012a24c4c8fe97022e23245d3"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept4db3f5cd3b2e44ec8299e00258ab4f76"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept36d111b438774cbaa3aa8977b153bad9"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept8f5399e38df348d7aa9a9e1a2acf16a6"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptda282724471f4fa9a306d2d2e554ec40"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept7a9a7532e17647749fdee156d0faa093"/>
+    <dct:title>
+    Affligem.be wettiging van handtekening
+  </dct:title>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept18da84ebc3d34e67848e10cf668b6adb"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept56c7576bdcb04bfa849a0e4d06d97470"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb65cbea089e14ebab6d7e6cd2e088497"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd26ad2b9ad9d4507a24cec99a9f65b56"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept67a23b5cc0484f4baddee1ef3ab7b861"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept393f9aa7e83d400e871848f8ec37bae0"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6defc82dfafb4ac3bc27f139adc28dea"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0a032850299945c786318fbda5fc8ed8"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf0540f8079ac4b959e914469a733f164"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2ca7896bb8db4116916e63986ef660f6"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept871a89d37cb74a8faf5122fa85758644"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept117fd27f39e24410b5c22c55760629a7"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept23b4a7e60739448bbcd4dad8be714557"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept41b5627958e74f1bb5da9fae2d3fca86"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdce3802dbdb54746afb208b15413e415"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte90092596c894478a4ef311ae4c9edfb"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc3c7c7c9cb364e20aa3a3a0b444afcdb"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept06ffdbc99ddb4825814c25bbfc15c040"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1b896e62158b4186ac5bb0cda0a5da2f"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept40057580fb7140be80a7e16a9684577e"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2083acc6e6464c5fa46e2285bf735d35"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept7dce86fa012e4bebb352923751caa53f"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptefcfdd28b3794dc3af7d2a1b61c3ffe2"/>
+    <dct:description></dct:description>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptfe1d8471ef134b3e9be2739306c9f2dc"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2363378c3d6440a28a70acd631e25ee1"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc37482c9c4c3420fb01e0b5130a33f56"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1c73219c13a7466b8eb11595dbe55021"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd7bdd573201b4b28888313e7045e81df"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept847386a515c74377bd1c04cca72a1dc4"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta3f53146bb364e679b65db4af5ba28e5"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptfb33fad13a8d47129cc1d74093e6fab7"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2acc77c84ed74d668f3fb7915c8d1880"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept50c411424ea0438491d3371e43c32131"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptcf8b0c99ca5847a4b5c61f0bd63aa987"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept3747b99f6b324d369453a68c58c4ccb6"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta0aadab88d7a4685b00ede7714c6ca9e"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd4b867c96aa64c7198662d393c080fac"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2f7b657194dc40219239d121a205b101"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept65f898a9fc594493b5b7b4566949be61"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept4a4e86f9504b454f959a52434978d87e"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptced4236fde654f0d830c8ec703576b53"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept8ba060298e144cddb98d7605218ad966"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptbbbd90b25e3848b8a713cc872fe94736"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9260a2d89fc14b73b448fd16c0200d8b"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept3ff29ef340cb4eefb799567d543c7979"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2b15881339d24d7180743f99c7b1ae14"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepteabbb31a998f4fec9cf96c72537e85df"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept6b01664227e54a6ba402b739fc79fab5"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptda291a691f2241c885fdc56ff430fbb7"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc24a3344f66a4e2499c1d7e3bc671938"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept0c4073a413104ab0869471de7bcff822"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2ff6ec8083924bafbdab0efa2a51fdc8"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf4f46a015dcb43bb9de660387a8f3570"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept62d537898dbe46fa9b98363f3aa0f818"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept7cbb37c3597d444cbc6e4e5288b9f027"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc5add586edd143388c4954cac67c14da"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc447e1302da34e068584a65873df0f06"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb1ec95ab22e849b3b5250eca6e448855"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept644a5afe22ef4b11a502dd8bb44ebd7c"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf553e2e6469a43868aebdcb1f6b3eab0"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd2e055b84c314162900c6e20de97d0e8"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2e077072ffac49bba6115c360c1b4077"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte6d47d5dfabb450d9afa6290a7da17f4"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdc35c98eb032485aad3f5bebc7cc4c59"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept214f40d7ad41417fad09537dd068eab0"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirementfcbc359b6b144620a45a35a55e4c7d51"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept39c47ed3c2be467fbd25625275075d91"/>
+    <cv:isGroupedBy rdf:resource="http://cefat4cities.crosslang.com/content/LifeEvent38e8f5879956431a8ff5954be09d9efb"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept06401d02cd704f61a9943c3fffc0e5e6"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept915f234398314af29d48e5ac18c61fcb"/>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidencef7db3c112b1249888ed18547b5700c23"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptbe0e9bfc583042ceabc4391e20c75c24"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept653c5e55ff004f7b874b3603711d9e26"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint73ba8f6c1b864948a70cc00890dc6339"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1cf59a62c22e493088cf9e7dc4d1d4fb"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9e6914e1f16d4f658a30a6b783a23f90"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept837c95580f3a47e4a0e9c1e67faad71f"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept35171d36252a4d09b669f2d692aea786"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept20185e37776147d2b287b792ad89e264"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept612a8a00638a432f899204c520226986"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptd429e0ab3c0045f7a76327c1aa745082"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptbc1491a256f745a8b14a21b388d9d998"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept271866faae5c4bbeb398a17510538de5"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc88c3adacdd84baeb6edeaa9119fa6c7"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb2252a672acf449ab6ee10b3b7a67d24"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptc721d0ee49dc47799d031fa7e0a30180"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta81bf85482844f5b819c29b6ae2d3f61"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte88f5328457545f5b796471ec6bf0fa2"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptbfd2a5453a9d4c718e46fdd6c29ae772"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept80263ecec9374c7d9d0ec0b2aec65719"/>
+    <dct:identifier>PublicServicee27a0624112b4db6bdfb48043d617c9a</dct:identifier>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdaf84813b4b84b8b82358ebd9fb5e1e1"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptb4d8b1a4e1774ce7a7332c5ed5713ec0"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept097e69471b7d498da368d94a04090985"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptafcb44e111c14ca1825d937c9e586c6f"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule994773366429493980e1ab1f055f9ec7"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1cb79ea546594732bccc657e2756ca57"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept71992c3268574853920acc9249947995"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept7c516e742c9e4265b7daff1b6358d4f4"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1465585f384c430c8a0b30b796e61b9a"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept50329dc9b2b64e6b82a3454708647649"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9c225d7623744616b16eea9ffe4405d0"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept28c73df7c6db49549f958279d5520fd1"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept5263777a473a44b8907ab2c48ee6ccd7"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept72e1338a04b64f9d8d1ec26daefc1254"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf2f629e112e542e08fdf5300e98f2174"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept31bafc1510c74c82b80faf518147fae3"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2173b2efb868463592b4ed4a906fa6a8"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte41a62ed2bdc4425898320c8b0c5df8e"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepted73225956494169ad44e1b222ec4b2f"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptdc8a18881ba34572af0a462a00b17bea"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept9ffd1fb22135427287c35fcdfc85b865"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptbc0330080d0e466caafc73e11339d07f"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept11ae21c7f1bd42bea7cb839f8c0107f9"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2f105e873b164918bff14c8a8969b3d4"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept2126be0e7de34876a8cc6da1df3f22e6"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1402b24e1be14e48b001e615c2ca80d2"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepta5edfe154b2b43a2a61c39591976a449"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept777c1337c66f406fb31678838ef8e521"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept74342a5c2ed24be0b944f5160c12ceb0"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepteee67f70dc144c0e9e292c9e2aec3449"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Conceptf8f3944b6b2b4254adbf580251f05962"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concepte80cf70bc05841058e03ee184f88aec6"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept1b46be21eb934f36bd8e6c351577a2c5"/>
+    <cv:isClassifiedBy rdf:resource="http://cefat4cities.crosslang.com/content/Concept88070d84c7134f77a0de610ae7d09ef0"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2173b2efb868463592b4ed4a906fa6a8">
+    <skos:prefLabel>bevestigt</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept8483e94ef6b44c17afad84030847276a">
-    <skos:prefLabel>zijn</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9e6914e1f16d4f658a30a6b783a23f90">
+    <skos:prefLabel>woonplaats</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept352f99baa0b94c59984e2b3b9aaa8502">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdcfcff52650b4f6a92bb4a27b3ef49f4">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>gewettigd</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptbbbd90b25e3848b8a713cc872fe94736">
+    <skos:prefLabel>hem</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept3747b99f6b324d369453a68c58c4ccb6">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>geschreven</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept65f898a9fc594493b5b7b4566949be61">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>deze</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc24a3344f66a4e2499c1d7e3bc671938">
+    <skos:prefLabel>wettiging</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept41b4fa47618746379921d881037b1f55">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>identiteitskaart van deze</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6f4aa7e0aa3d4555919589855367b187">
+    <skos:prefLabel>bij</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept18da84ebc3d34e67848e10cf668b6adb">
+    <skos:prefLabel>identiteitskaart</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5263777a473a44b8907ab2c48ee6ccd7">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>van</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2acc77c84ed74d668f3fb7915c8d1880">
+    <skos:prefLabel>echtheid</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1cf59a62c22e493088cf9e7dc4d1d4fb">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>private akte</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2f105e873b164918bff14c8a8969b3d4">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>strafbare</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2ff6ec8083924bafbdab0efa2a51fdc8">
     <skos:prefLabel>de persoon van wie de handtekene gewettigd</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc1985e3343b64cc79ae0b31b417fccf4">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptced4236fde654f0d830c8ec703576b53">
+    <skos:prefLabel>het document</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte88f5328457545f5b796471ec6bf0fa2">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>laten</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept217f8b6156c14308b7948ea3f8338f76">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>je identiteitskaart</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptfd11655b6d6141ada7414c3e0f1dbeba">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>een eigenhandig geschreven testament bijvoorbeeld</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1cb79ea546594732bccc657e2756ca57">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>daartoe</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept612a8a00638a432f899204c520226986">
+    <skos:prefLabel>laat je de handtekening van iemand anders wettigen</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept31bafc1510c74c82b80faf518147fae3">
+    <skos:prefLabel>bevoegde overheid de echtheid van een handtekening schriftelijk bevestigt</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept66d3f3a86a264d709a942eb8644610a1">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>bestemd</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdaf84813b4b84b8b82358ebd9fb5e1e1">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>bij het gemeentebestuur van de gemeente</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept56c7576bdcb04bfa849a0e4d06d97470">
+    <skos:prefLabel>identiteitskaart van deze persoon</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept23b4a7e60739448bbcd4dad8be714557">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>het mag bijgevolg niet gaan om</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0d24ffb142c34521b5150c2172c49caf">
+    <skos:prefLabel>wat meebrengen</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2363378c3d6440a28a70acd631e25ee1">
+    <skos:prefLabel>van de persoon van</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost12b24da7ccf846068be0cc2ed628c04c">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:identifier>Cost12b24da7ccf846068be0cc2ed628c04c</dct:identifier>
+    <dct:description>Het wettigen van een handtekening is gratis.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation37baa74701394eaebe8cd17c5954660b">
+    <dct:spatial rdf:resource="https://affligem.be/"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <cv:hasAddress rdf:nodeID="Nf28bcd2ee37f48deb1d8eeae64223a4a"/>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb7f2be4506f54bcdbd3f9c5c26b39f2c">
+    <skos:prefLabel>het wettigen van een</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept393f9aa7e83d400e871848f8ec37bae0">
+    <skos:prefLabel>dat</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept7cbb37c3597d444cbc6e4e5288b9f027">
+    <skos:prefLabel>worden</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1c73219c13a7466b8eb11595dbe55021">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>burgemeester</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd26ad2b9ad9d4507a24cec99a9f65b56">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>betekent</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta3f53146bb364e679b65db4af5ba28e5">
+    <skos:prefLabel>een door hem</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept40057580fb7140be80a7e16a9684577e">
+    <skos:prefLabel>te</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1b896e62158b4186ac5bb0cda0a5da2f">
+    <skos:prefLabel>tot</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept36d111b438774cbaa3aa8977b153bad9">
+    <skos:prefLabel>inhoud</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept960f8536d7314c37882b99938c072f87">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>zijn gemachtigde gaat na of de te legaliseren</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://affligem.be/">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf0540f8079ac4b959e914469a733f164">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>waar je woont</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte90092596c894478a4ef311ae4c9edfb">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>nodig</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5034af1b53224d969638f711f62f1a5d">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>je</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte41a62ed2bdc4425898320c8b0c5df8e">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>de burgemeester van de gemeente</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte80cf70bc05841058e03ee184f88aec6">
+    <skos:prefLabel>haar</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/LifeEvent38e8f5879956431a8ff5954be09d9efb">
+    <dct:title>identiteitsbewijzen,
+            rijbewijzen en afschriften - afschriften, uittreksels en
+            getuigschriften</dct:title>
+    <dct:relation rdf:resource="http://cefat4cities.crosslang.com/content/PublicServicee27a0624112b4db6bdfb48043d617c9a"/>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Event"/>
+    <dct:identifier>LifeEvent38e8f5879956431a8ff5954be09d9efb</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2a5f496b6cea40258cb448bf5754adc8">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>vastgesteld</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept18fc662c1ac342f1aeef54645266d68b">
+    <skos:prefLabel>legaliseren</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept11ae21c7f1bd42bea7cb839f8c0107f9">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>moet gewettigd worden</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd7bdd573201b4b28888313e7045e81df">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>zijn gemachtigde gaat na</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept097e69471b7d498da368d94a04090985">
+    <skos:prefLabel>nuttig of nodig zijn</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2126be0e7de34876a8cc6da1df3f22e6">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>woont</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9c225d7623744616b16eea9ffe4405d0">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>kunt</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept8f5399e38df348d7aa9a9e1a2acf16a6">
+    <skos:prefLabel>op</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptbfd2a5453a9d4c718e46fdd6c29ae772">
+    <skos:prefLabel>gemeente of zijn gemachtigde gaat na of de te legaliseren</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept271866faae5c4bbeb398a17510538de5">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>een eigenhandig</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte3a1f37278c54d4682d4fe891051a2ce">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>een eigenhandig geschreven</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept3d470ce7070044f9b0e41398452c0681">
+    <skos:prefLabel>gaat</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept71992c3268574853920acc9249947995">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>gemeentebestuur</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptafcb44e111c14ca1825d937c9e586c6f">
+    <skos:prefLabel>moet</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepted73225956494169ad44e1b222ec4b2f">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>de te legaliseren</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta3015b554c7d467492641cb3e86fd47e">
+    <skos:prefLabel>het mag bijgevolg niet gaan</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5c57b0213d7a44888e53da49f9f627d7">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>wettiging van</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept7c516e742c9e4265b7daff1b6358d4f4">
+    <skos:prefLabel>door</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept117fd27f39e24410b5c22c55760629a7">
+    <skos:prefLabel>een eigenhandig geschreven testament</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf553e2e6469a43868aebdcb1f6b3eab0">
+    <skos:prefLabel>een andere gemeente</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb2252a672acf449ab6ee10b3b7a67d24">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>de formaliteit moet nuttig</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptebabb0b736ea440d95290875d398674a">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>bijgevolg</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept28c73df7c6db49549f958279d5520fd1">
+    <skos:prefLabel>hebben</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1c38dc660ecd47c1ad7555c9c19bebc2">
+    <skos:prefLabel>moet zijn</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0a032850299945c786318fbda5fc8ed8">
+    <skos:prefLabel>bedrieglijke</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept8e38be3e00c147df9d4e8250b6c20506">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>die van de persoon van wie de identiteit wordt</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd2e055b84c314162900c6e20de97d0e8">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>op een</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0c4073a413104ab0869471de7bcff822">
+    <skos:prefLabel>handtekene betekent dat een daartoe</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept600d4b849f16419cb414ebd8f5acc092">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>strafbare oogmerken</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule994773366429493980e1ab1f055f9ec7">
+    <dct:title>DEFAULT NAME</dct:title>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:identifier>Rule994773366429493980e1ab1f055f9ec7</dct:identifier>
+    <dct:description>De burgemeester van de gemeente of zijn gemachtigde gaat na of de te legaliseren
+                    handtekening overeenstemt met die van de persoon van wie de identiteit wordt
+                    vastgesteld. Een handtekening op een wit vel papier kan nooit gelegaliseerd
+                    worden.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc37482c9c4c3420fb01e0b5130a33f56">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>bijvoorbeeld</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptefcfdd28b3794dc3af7d2a1b61c3ffe2">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>het document waarop de</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb4d8b1a4e1774ce7a7332c5ed5713ec0">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>de echtheid van een</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept06ffdbc99ddb4825814c25bbfc15c040">
+    <skos:prefLabel>immorele</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta0aadab88d7a4685b00ede7714c6ca9e">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>na of de te legaliseren</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept653c5e55ff004f7b874b3603711d9e26">
+    <skos:prefLabel>waar</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept67a23b5cc0484f4baddee1ef3ab7b861">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>gratis</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdc8a18881ba34572af0a462a00b17bea">
+    <skos:prefLabel>iemand</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept20185e37776147d2b287b792ad89e264">
+    <skos:prefLabel>uitzonderingen</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptcf8b0c99ca5847a4b5c61f0bd63aa987">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:prefLabel>het wettigen van een handtekening</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptfb43fb497e8541d9b30c43578358c767">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>door</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6a6f4725455e43f7907477b558dade43">
-    <skos:prefLabel>geschreven</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept12b93b0012a24c4c8fe97022e23245d3">
+    <skos:prefLabel>handtekening overeenstemt</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb490b062d5e34822bf5ef024017e652d">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1402b24e1be14e48b001e615c2ca80d2">
+    <skos:prefLabel>laten wettigen</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>overheid</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0c05c23cf10548dd8336e0d0f12ddd67">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept7a9a7532e17647749fdee156d0faa093">
     <skos:prefLabel>persoon</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte3ec958047034d6e8dbdce163c34217b">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5b9823b7326d4d3ba58a9f600d210c53">
+    <skos:prefLabel>wit</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2083acc6e6464c5fa46e2285bf735d35">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>wat</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidencef7db3c112b1249888ed18547b5700c23">
+    <dct:description>• het document waarop de handtekening moet gewettigd worden
+• je identiteitskaart
+Laat je de handtekening van iemand anders wettigen, dan moet je de
+                    identiteitskaart van deze persoon en een door hem of haar ondertekende volmacht
+                    meebrengen.</dct:description>
+    <dct:identifier>Evidencef7db3c112b1249888ed18547b5700c23</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:title>DEFAULT NAME</dct:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept7dce86fa012e4bebb352923751caa53f">
+    <skos:prefLabel>wettigen bij het gemeentebestuur van de gemeente</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept4db3f5cd3b2e44ec8299e00258ab4f76">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>wettigen of legaliseren van een handtekene betekent dat een daartoe</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2a99cc36eae145eeb3b9a3f940a3adc4">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>andere</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepteee67f70dc144c0e9e292c9e2aec3449">
+    <skos:prefLabel>formaliteit</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirementfcbc359b6b144620a45a35a55e4c7d51">
+    <dct:description>• De persoon van wie de handtekening gewettigd moet worden, moet zijn
+                    woonplaats
+hebben in een Belgische gemeente.
+• Het document mag niet bestemd zijn voor immorele, bedrieglijke of
+strafbare oogmerken.
+• De formaliteit moet nuttig of nodig zijn. Het mag bijgevolg niet gaan om
+                    een louter
+private akte (een eigenhandig geschreven testament bijvoorbeeld).</dct:description>
+    <dct:identifier>CriterionRequirementfcbc359b6b144620a45a35a55e4c7d51</dct:identifier>
+    <dct:title>DEFAULT NAME</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept837c95580f3a47e4a0e9c1e67faad71f">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>haar ondertekende volmacht</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1b46be21eb934f36bd8e6c351577a2c5">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>je kunt je handtekening</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept721f83e472484f1daf8954e60a10f79d">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>mag</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta5edfe154b2b43a2a61c39591976a449">
+    <skos:prefLabel>moet gewettigd</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf8f3944b6b2b4254adbf580251f05962">
+    <skos:prefLabel>dan</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9ffd1fb22135427287c35fcdfc85b865">
+    <skos:prefLabel>overheid</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2d44961388da4689aec2fde56f9122e2">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>gemachtigde</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept70a4ace585114e88acbf2dc08a5f3c85">
+    <skos:prefLabel>te bewijzen</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6bdd7047b9dd466884e7eb8a7f7aa38a">
     <skos:prefLabel>hem of haar ondertekende volmacht</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointa41ac7eabf3749bbb49cfb228db6eb6e">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept33b8bfe4ce504dd0a98c086851c362ed">
+    <skos:prefLabel>een</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept8ba060298e144cddb98d7605218ad966">
+    <skos:prefLabel>identiteit</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept06401d02cd704f61a9943c3fffc0e5e6">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>niet</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept56460077bb054f6194563693433bc36e">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>procedure</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc5add586edd143388c4954cac67c14da">
+    <skos:prefLabel>gelegaliseerd</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb39c71f9c11c4f16ad86aa73065b0315">
+    <skos:prefLabel>persoon en een door hem of haar ondertekende volmacht</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept644a5afe22ef4b11a502dd8bb44ebd7c">
+    <skos:prefLabel>anders</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb1ec95ab22e849b3b5250eca6e448855">
+    <skos:prefLabel>handtekening</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept29547a7a73564201b4dc96189f90f19c">
+    <skos:prefLabel>volmacht</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept39c47ed3c2be467fbd25625275075d91">
+    <skos:prefLabel>handtekening laten wettigen bij het gemeentebestuur van de gemeente</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2b15881339d24d7180743f99c7b1ae14">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>het document waarop</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9260a2d89fc14b73b448fd16c0200d8b">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>wordt</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6b01664227e54a6ba402b739fc79fab5">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>het document mag</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint73ba8f6c1b864948a70cc00890dc6339">
     <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
     <schema:telephone>Bellestraat 99, 1790 Affligem
 T 053-64 00 01
@@ -565,363 +717,211 @@ T 053-64 00 01
 F 053-68 04 80
 bevolking@affligem.be</schema:email>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptbc978419c4ae4f2d8bf659e59bd01835">
-    <skos:prefLabel>inhoud</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf72b835e19c14d0588669147f9db143c">
+    <skos:prefLabel>bewijzen</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd457259ae67d40eeac4a89b63f5e9cff">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc721d0ee49dc47799d031fa7e0a30180">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>het document</skos:prefLabel>
+    <skos:prefLabel>oogmerken</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptfd86c808aaaa4d94bc59dd1064a73ced">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf4f46a015dcb43bb9de660387a8f3570">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>je</skos:prefLabel>
+    <skos:prefLabel>voorwaarden</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0ccf960a1561445795e95efad0050e2b">
-    <skos:prefLabel>volmacht</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept78faefd9d8e5439c9aaefd7580c0fa64">
-    <skos:prefLabel>dat</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept74342a5c2ed24be0b944f5160c12ceb0">
+    <skos:prefLabel>voor</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptaf1d7bfc5349460c8e15b3f14ed2804e">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept50c411424ea0438491d3371e43c32131">
+    <skos:prefLabel>belgische</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept847386a515c74377bd1c04cca72a1dc4">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:prefLabel>een door hem of haar ondertekende volmacht</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte58a5a3a3888474b9d60758059938adb">
-    <skos:prefLabel>daartoe</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5f9d1ca642374973b9d763b9560da051">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>de persoon van wie de handtekene gewettigd moet worden</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf2f629e112e542e08fdf5300e98f2174">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>de</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptcc8972b27288454aac2d6ad7c9f57abe">
+    <skos:prefLabel>nodig zijn</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9f499c3581f0460391db61c6ef57c17f">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd4b867c96aa64c7198662d393c080fac">
+    <skos:prefLabel>wit vel</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept214f40d7ad41417fad09537dd068eab0">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>na</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept915f234398314af29d48e5ac18c61fcb">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>kan</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptda291a691f2241c885fdc56ff430fbb7">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
     <skos:prefLabel>wie</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepteabbb31a998f4fec9cf96c72537e85df">
+    <skos:prefLabel>overeenstemt</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept04cbd3d0b3ef494884341878e4f07e96">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd429e0ab3c0045f7a76327c1aa745082">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>bewijzen</skos:prefLabel>
+    <skos:prefLabel>een belgische gemeente</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta9ccf11c179046ab9194b9c955353a99">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdc35c98eb032485aad3f5bebc7cc4c59">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>identiteitskaart van deze</skos:prefLabel>
+    <skos:prefLabel>zijn</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte9a68e1df63146e0aa4c2d7d72caad8b">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>voor</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdef7a145076c402ea599d2fd81e22b96">
-    <skos:prefLabel>formaliteit</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept3be254413981419a8d3d06999b61fbef">
+    <skos:prefLabel>papier</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="N1cbb0cd687f44e548fbf03716f5cd981">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept80263ecec9374c7d9d0ec0b2aec65719">
+    <skos:prefLabel>vel</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc447e1302da34e068584a65873df0f06">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>doel</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept35171d36252a4d09b669f2d692aea786">
+    <skos:prefLabel>legaliseren van een</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc88c3adacdd84baeb6edeaa9119fa6c7">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>een louter</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte6d47d5dfabb450d9afa6290a7da17f4">
+    <skos:prefLabel>eigenhandig</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept3ff29ef340cb4eefb799567d543c7979">
+    <skos:prefLabel>meebrengen</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept72e1338a04b64f9d8d1ec26daefc1254">
+    <skos:prefLabel>waar je</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1465585f384c430c8a0b30b796e61b9a">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>je kunt je</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2f7b657194dc40219239d121a205b101">
+    <skos:prefLabel>schriftelijk</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept88070d84c7134f77a0de610ae7d09ef0">
+    <skos:prefLabel>bedrag</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb4862c2751a348f7b51b57ba144b7140">
+    <skos:prefLabel>laat je de handtekening van</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept4a4e86f9504b454f959a52434978d87e">
+    <skos:prefLabel>wit vel papier kan nooit gelegaliseerd</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept871a89d37cb74a8faf5122fa85758644">
+    <skos:prefLabel>louter</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept77306fcca0ad4b3f9a282dae09c1a2ab">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>het mag</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptda282724471f4fa9a306d2d2e554ec40">
+    <skos:prefLabel>de formaliteit moet nuttig of nodig zijn</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept777c1337c66f406fb31678838ef8e521">
+    <skos:prefLabel>het</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdce3802dbdb54746afb208b15413e415">
+    <skos:prefLabel>nooit</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept41b5627958e74f1bb5da9fae2d3fca86">
+    <skos:prefLabel>waarop</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta81bf85482844f5b819c29b6ae2d3f61">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>laat</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptbc0330080d0e466caafc73e11339d07f">
+    <skos:prefLabel>testament</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept50329dc9b2b64e6b82a3454708647649">
+    <skos:prefLabel>document</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept4a9d6b7de0514e828e0ee66e33a33209">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>dan moet je de</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf7354ab9cc124e7fa9ec47d441364b47">
+    <skos:prefLabel>echter</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptfb33fad13a8d47129cc1d74093e6fab7">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>echtheid van een</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc76ad5c2312d4d71bb875772ff4f22f9">
+    <skos:prefLabel>wettigen</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb65cbea089e14ebab6d7e6cd2e088497">
+    <skos:prefLabel>bevoegde</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc3c7c7c9cb364e20aa3a3a0b444afcdb">
+    <skos:prefLabel>gemeente</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept62d537898dbe46fa9b98363f3aa0f818">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>laten wettigen bij het gemeentebestuur van de gemeente</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6739829b2a674b8387a536dc7a6af21b">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <skos:prefLabel>akte</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptbabcea22c83f48ab90bf9051019eb29f">
+    <skos:prefLabel>ondertekende</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf28bcd2ee37f48deb1d8eeae64223a4a">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
     <skos:prefLabel>Bellestraat 99, 1790 Affligem
 T 053-64 00 01
 F 053-68 04 80
 bevolking@affligem.be</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept702efb05f57f456e9cf14abff3f277d0">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>handtekening</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta99cf468d43442d29186e390e666d452">
-    <skos:prefLabel>burgemeester</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9af770ec0c61432e8e6a00464023cc66">
-    <skos:prefLabel>de persoon van wie de handtekene gewettigd moet worden</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept02cbd984862a4dad851f5563624508f6">
-    <skos:prefLabel>vel</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept3af467a4ef314790b57e0ccf0440925f">
-    <skos:prefLabel>strafbare oogmerken</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd3ca778079614d37be25ccc71769aed1">
-    <skos:prefLabel>gaat</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept15ffe642f2be400d8565e4db05f4e7a3">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>gratis</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidenceb3013c34a7e1464089b7ce4c3843cd03">
-    <dct:identifier>Evidenceb3013c34a7e1464089b7ce4c3843cd03</dct:identifier>
-    <dct:description>• het document waarop de handtekening moet gewettigd worden
-• je identiteitskaart
-Laat je de handtekening van iemand anders wettigen, dan moet je de
-										identiteitskaart van deze persoon en een door hem of haar ondertekende volmacht
-										meebrengen.</dct:description>
-    <dct:title>DEFAULT NAME</dct:title>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd6c31009d49e459db886cec85d099c09">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>de burgemeester van de gemeente</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept1a124a187732451aac373aca7744dda6">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>echter</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf21d24a3e6de4e6cba321911549bf158">
-    <skos:prefLabel>iemand</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept641f300151c5437cac8a98b9fe297bcb">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>een belgische gemeente</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept227afb25690b466aaf7a546f7f976f30">
-    <skos:prefLabel>woont</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd41fd121c5044725b506bdca1e32f21e">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>laten wettigen</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation4bb0087f66484983a2b067dd9c8e8cb4">
-    <dct:spatial rdf:resource="https://affligem.be/"/>
-    <skos:prefLabel># TODO</skos:prefLabel>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <cv:hasAddress rdf:nodeID="N1cbb0cd687f44e548fbf03716f5cd981"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptfed4f725df8946969bc259be458f8fd0">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>belgische</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta893f65078c444899383c13a9c5225fc">
-    <skos:prefLabel>nodig zijn</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept4fb71ee3e68f442c90de302f5261d672">
-    <skos:prefLabel>immorele</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf136dce172a5477dbd64739093c849b1">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>te bewijzen</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept698a02e12a594e68b8651d496c15914b">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>wit</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequiremente9bf25fc87ee40449c04d6629fdc8a94">
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>CriterionRequiremente9bf25fc87ee40449c04d6629fdc8a94</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-    <dct:description>• De persoon van wie de handtekening gewettigd moet worden, moet zijn
-										woonplaats
-hebben in een Belgische gemeente.
-• Het document mag niet bestemd zijn voor immorele, bedrieglijke of
-strafbare oogmerken.
-• De formaliteit moet nuttig of nodig zijn. Het mag bijgevolg niet gaan om
-										een louter
-private akte (een eigenhandig geschreven testament bijvoorbeeld).</dct:description>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5fde2d97f33744c3b8de6e8f776a3186">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>moet gewettigd worden</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept89e9f28e12a4451fa32966e884bc2ded">
-    <skos:prefLabel>het mag</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb4eaef00ab394605808ace261fef32af">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptbe0e9bfc583042ceabc4391e20c75c24">
     <skos:prefLabel>om</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept11cbf3bf549d48b798dda4c408f90b19">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>laat je de handtekening van iemand anders wettigen</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept8ed0e757c3ef4a35a3cf8a6e33d4bba4">
-    <skos:prefLabel>louter</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6defc82dfafb4ac3bc27f139adc28dea">
+    <skos:prefLabel>het wettigen</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0bb97d94ea66492ba4967e291a85da01">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2ca7896bb8db4116916e63986ef660f6">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>legaliseren van een</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte26b5fac0d024c279289d3b9c96006d7">
-    <skos:prefLabel>handtekening laten wettigen bij het gemeentebestuur van de gemeente</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6fa958d52a5649059717f60b7f0a17a1">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>je identiteitskaart</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdd9ae549e05b4e758e652e99ffedc42d">
-    <skos:prefLabel>de echtheid van een</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept51f06ce8c6b447a1a572a25d43f612da">
-    <skos:prefLabel>waarop</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept9190ca9e07084e1ca98d5d7a498a7a6f">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>een andere gemeente</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept86ce95c985ba475fa3667d4d4fc32f36">
-    <skos:prefLabel>uitzonderingen</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptf1acf8fcf5494e2db919ae28971d3761">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>overeenstemt</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept08112abefae349bfa38bc0fdd6adef6c">
-    <skos:prefLabel>waar</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptb1e13c6806a148c38491af53d059b684">
-    <skos:prefLabel>te</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept79912e7a4fc845c48c6631a4eee15a5d">
-    <skos:prefLabel>gemeentebestuur</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept462a9f1d46cc4c0b9982c06f05d50b36">
-    <skos:prefLabel>anders</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdedede803e9f4efdac9d5a55f060f9c1">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>wettiging van</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc2a5d52a32164aae8865c92cc250a3bb">
-    <skos:prefLabel>hebben</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0bbfb7afc0404303b2a25105cf21ebb8">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>niet</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept370b95c4fc0a4467bcc35338c6e04c48">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>het document mag</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept890629fcf0e14413a8047ee8030d858c">
-    <skos:prefLabel>de formaliteit moet nuttig</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte155d8fa3e0b4fae9e3b340016f6409e">
-    <skos:prefLabel>wettigen of legaliseren van een handtekene betekent dat een daartoe</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept518207af7fe3469a8e863f3aca4f9787">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>dan</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept5cf727a9fb97431195647d434a31969f">
-    <skos:prefLabel>bedrag</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept0e400aa7b9a9412a8cffb0b29fc81ee1">
-    <skos:prefLabel>andere</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6a2c1dd7035e4d408157492da26153e1">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>echtheid</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept31803ea82a834548b9a7e9d759905d27">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>een eigenhandig geschreven testament bijvoorbeeld</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte603765a9a1246b0bd56d3560eec69ef">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>echtheid van een</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptbf3db475a2f141c4b62f42d8db45b8cf">
-    <skos:prefLabel>wettiging</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepte65091d7100043efad7a08f6286a88a6">
-    <skos:prefLabel>identiteitskaart</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdff60e0ceaf5464897edbb9220ed630a">
-    <skos:prefLabel>schriftelijk</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptfbdb76725384421a82cd0a01e9d480a5">
-    <skos:prefLabel>wit vel</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept02ad94783c7f4728b31051903519cc1e">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>gemachtigde</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept3e89cd330ff646359e22bf18de0a4492">
-    <skos:prefLabel>gewettigd</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept65827630fef54b5d8912f81ba38f8b9a">
-    <skos:prefLabel>private akte</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept12a2eee1583e4ab7bcc0157d88236336">
-    <skos:prefLabel>laten</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6262e788b5854426bb33da1a38e3ad95">
     <skos:prefLabel>heeft</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept2b7fd78cc810487d89d29f24b7614e26">
-    <skos:prefLabel>waar je woont</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept778e98cb17b542c18491fab693e365ce">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>na</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptff7624eed22f47d7afd7de9621b1292e">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>het mag bijgevolg niet gaan om</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept164b2b4085134d329d5771018d33697d">
-    <skos:prefLabel>een door hem</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concepta88731fb15cd422c8eb763fb9a81e3f1">
-    <skos:prefLabel>moet zijn</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptd4dbfbd9d792486896d58078d63caf1b">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>een eigenhandig geschreven</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptddc3d2a0284142c3aa210bf38788be12">
-    <skos:prefLabel>wettigen bij het gemeentebestuur van de gemeente</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptafe83dbd70664700ad5b608fed5e7c4e">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>handtekening overeenstemt</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://affligem.be/">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptbf4b0bb332614514b455360922e64057">
-    <skos:prefLabel>je kunt je</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptc5d11d810f944bb180039220e5a20a32">
-    <skos:prefLabel>kunt</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Conceptdcc8e7bd42fb4158a82bb9c42ad0fb3c">
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
-    <skos:prefLabel>moet</skos:prefLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Concept6ff3ee8d1e844263adeb7cd4f353136b">
-    <skos:prefLabel>eigenhandig</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
   </rdf:Description>
 </rdf:RDF>
