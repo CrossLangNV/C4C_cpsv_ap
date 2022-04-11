@@ -4,7 +4,8 @@ from typing import List
 
 import justext
 
-from relation_extraction.html_parsing.justext_wrapper import BoldJustextWrapper, JustextWrapper
+from relation_extraction.html_parsing.justext_wrapper import BoldJustextWrapper, JustextWrapper, \
+    TitleClassificationJustextWrapper
 from relation_extraction.html_parsing.utils import _get_language_full_from_code, _tmp_html
 
 
@@ -84,8 +85,10 @@ class TestBoldJustTextWrapper(unittest.TestCase):
             self.assertFalse(par_sub.is_boilerplate, "Shouldn't be boilerplate")
 
     def test_debug_export(self,
-                          url="https://laois.ie/departments/planning/applying-for-planning-permission/",
-                          language_code="EN",
+                          # url="https://laois.ie/departments/planning/applying-for-planning-permission/",
+                          # language_code="EN",
+                          url="https://www.salzgitter.de/rathaus/fachdienste/bauordnung/Bauordnung.php",
+                          language_code="DE",
                           FILENAME_OUT=os.path.join(os.path.dirname(__file__), "GEN_PARSER_DEBUG.html")
                           ):
 
@@ -97,3 +100,23 @@ class TestBoldJustTextWrapper(unittest.TestCase):
         wrapper = BoldJustextWrapper()
 
         wrapper._export_debugging(html, stoplist, FILENAME_OUT)
+
+
+class TestTitleClassificationJustextWrapper(unittest.TestCase):
+    def setUp(self,
+              # url="https://laois.ie/departments/planning/applying-for-planning-permission/",
+              # language_code="EN",
+              url="https://www.trondheim.kommune.no/tema/sosiale-tjenester/okonomisk-bistand/startlan/",
+              language_code="NB",
+              FILENAME_OUT=os.path.join(os.path.dirname(__file__), "GEN_PARSER_DEBUG.html")
+              ) -> None:
+        # Input
+        self.html = _tmp_html(url)
+        self.stoplist = justext.get_stoplist(language=_get_language_full_from_code(language_code))
+        self.FILENAME_OUT = FILENAME_OUT
+
+    def test_detect_bold(self, ):
+        # Output to test
+        wrapper = TitleClassificationJustextWrapper()
+
+        wrapper._export_debugging(self.html, self.stoplist, self.FILENAME_OUT)

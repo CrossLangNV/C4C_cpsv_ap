@@ -2,8 +2,10 @@ import copy
 from typing import List
 
 import justext
+import lxml.html
 from justext.core import classify_paragraphs, ParagraphMaker, revise_paragraph_classification
 
+from connectors.bert_classifier import BERTConnector
 from relation_extraction.html_parsing.utils import clean_tag_text, dom_write, get_lxml_el_from_paragraph
 
 
@@ -112,7 +114,8 @@ class JustextWrapper:
     def _export_debugging(self, html, stoplist,
                           filename_out,
                           style_header="background-color: #70D6FF;",  # color:white;
-                          style_boilerplate="background-color :#FF934F;"  # color:#f88f93;
+                          style_boilerplate="background-color :#FF934F;",
+                          style_regular="background-color: white;"  # color:#f88f93;
                           ):
 
         """
@@ -127,14 +130,18 @@ class JustextWrapper:
             el = get_lxml_el_from_paragraph(dom_debug,
                                             paragraph)
 
-            if paragraph.is_heading:
+            # Overwrite all else
+            if paragraph.is_boilerplate:
+                el.attrib["style"] = el.attrib.get("style", "") + style_boilerplate
+                # "background-color:powderblue;
+
+            elif paragraph.is_heading:
                 el.attrib["style"] = el.attrib.get("style", "") + style_header
                 # el.attrib["style"] = el.attrib.get("style", "") + style_header
 
-            # Overwrite all else
-            if paragraph.is_boilerplate:
-                el.attrib["style"] = style_boilerplate
-                # "background-color:powderblue;
+            # Text
+            else:
+                el.attrib["style"] = el.attrib.get("style", "") + style_regular
 
         dom_write(dom_debug,
                   filename_out
@@ -193,3 +200,97 @@ class BoldJustextWrapper(JustextWrapper):
                     paragraph.heading = True
 
         return paragraphs
+
+
+class TitleClassificationJustextWrapper(JustextWrapper):
+    """
+    Headers will be detected with a text classifier.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super(TitleClassificationJustextWrapper, self).__init__(*args, **kwargs)
+
+        # Initialise classifier model
+        self._title_classifier_connector = BERTConnector(url="http://title_classifier:5000")
+        labels = self._title_classifier_connector.get_labels()
+        self._i_label_title = labels.names.index("title")
+
+    def make_paragraphs(self,
+                        dom,
+                        verbose=1) -> List[GeneralParagraph]:
+        """
+        Change heading already to include <strong/> and <b/> as headers
+
+        Args:
+            dom:
+
+        Returns:
+
+        TODO
+         * Include <b/>
+
+        """
+
+        paragraphs = super(TitleClassificationJustextWrapper, self).make_paragraphs(dom)
+
+        # One at a time
+        one_at_a_time = False
+        if one_at_a_time:
+            for i, paragraph in enumerate(paragraphs):
+                if verbose:
+                    print(f"Paragraph extraction {i + 1}/{len(paragraphs)}")
+
+                el = get_lxml_el_from_paragraph(dom,
+                                                paragraph)
+
+                # Pre-classify headings.
+                if self._classify_title(paragraph, el):
+                    paragraph.heading = True
+
+        # ALl at once
+        else:
+
+            l_el = [get_lxml_el_from_paragraph(dom,
+                                               par) for par in paragraphs]
+
+            if verbose:
+                print(f"Paragraph extraction - Start")
+
+            l_b_titles = self._classify_title_all(paragraphs, l_el)
+
+            if verbose:
+                print(f"Paragraph extraction - End")
+
+            for i, (paragraph, b_title) in enumerate(zip(paragraphs, l_b_titles)):
+
+                # Pre-classify headings.
+                if b_title:
+                    paragraph.heading = True
+
+        return paragraphs
+
+    def _classify_title(self,
+                        paragraph: GeneralParagraph,
+                        element: lxml.html.HtmlElement,
+                        threshold: float = .5,  # Optional, to possibly play with later.
+                        ) -> bool:
+
+        result = self._title_classifier_connector.post_classify_text(paragraph.text)
+        p_title = result.probabilities[self._i_label_title]
+
+        return p_title >= threshold
+
+    def _classify_title_all(self,
+                            l_paragraph: List[GeneralParagraph],
+                            l_element: List[lxml.html.HtmlElement],
+                            threshold: float = .5,  # Optional, to possibly play with later.
+                            ) -> List[bool]:
+
+        text_lines = [par.text for par in l_paragraph]
+
+        results = self._title_classifier_connector.post_classify_text_lines(text_lines)
+        l_p_title = [l_p_i[self._i_label_title] for l_p_i in results.probabilities]
+
+        l_b_title = [p >= threshold for p in l_p_title]
+
+        return l_b_title

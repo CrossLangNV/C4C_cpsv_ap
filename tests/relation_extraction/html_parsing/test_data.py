@@ -331,37 +331,3 @@ class TestTrainingData(unittest.TestCase):
         export_jsonl(l_data_valid, os.path.join(DATA_FOLDER, "validation.jsonl"))
 
         return
-
-        # # Distribution:
-        # distribution_total = {}  # "label name": Number of elements
-        #
-        # for country in self.data_countries.countries:
-        #     for muni in country.municipalities:
-        #         language_code = muni.language
-        #
-        #         if use_parser_config:
-        #             parser_config = muni.parser
-        #         else:
-        #             parser_config = None
-        #
-        #         data_generic = DataGeneric(parser_config)
-        #
-        #         with self.subTest(f"{muni.name}"):
-        #             for url in muni.procedures:
-        #
-        #                 foo = data_generic.extract_data(url,
-        #                                                 language_code=language_code)
-        #
-        #                 # Distribution:
-        #                 d_label_names = {}
-        #                 for item in foo:
-        #                     k = frozenset(item.label_names)
-        #                     d_label_names.setdefault(k, 0)
-        #                     d_label_names[k] += 1
-        #
-        #                     distribution_total.setdefault(k, 0)
-        #                     distribution_total[k] += 1
-        #
-        #                 print(f"Distr: {d_label_names}. {url}")
-        #
-        # print(f"Distribution total: {distribution_total}")

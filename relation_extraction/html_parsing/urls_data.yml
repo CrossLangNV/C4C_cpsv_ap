@@ -171,7 +171,7 @@ countries:
     language: NB # Norwegian Bokmål
     municipalities:
       Austrheim:
-        # Is actually Nynorsk
+        # Is Nynorsk insteaf of Bokmål
         language: "NN"
         procedures:
           - https://austrheim.kommune.no/innhald/helse-sosial-og-omsorg/pleie-og-omsorg/omsorgsbustader/

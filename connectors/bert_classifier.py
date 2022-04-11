@@ -1,6 +1,8 @@
+from typing import List
+
 import requests
 
-from BERT_classifier.app.models import Labels, Results, Text
+from BERT_classifier.app.models import Labels, Results, ResultsLines, Text, TextLines
 
 
 class BERTConnector:
@@ -32,3 +34,21 @@ class BERTConnector:
         results = Results(**response.json())
 
         return results
+
+    def post_classify_text_lines(self, text_lines: List[str]) -> ResultsLines:
+        response = self._post("/classify_text_lines",
+                              json=TextLines(text=text_lines).dict())
+
+        response.raise_for_status()
+
+        results_lines = ResultsLines(**response.json())
+
+        return results_lines
+
+    def _post(self, url_path, json=None):
+        response = requests.post(self.url + url_path,
+                                 json=json)
+
+        response.raise_for_status()
+
+        return response
