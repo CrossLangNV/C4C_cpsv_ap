@@ -113,9 +113,10 @@ class JustextWrapper:
 
     def _export_debugging(self, html, stoplist,
                           filename_out,
-                          style_header="background-color: #70D6FF;",  # color:white;
-                          style_boilerplate="background-color :#FF934F;",
-                          style_regular="background-color: white;"  # color:#f88f93;
+
+                          heading_bg="#70D6FF",
+                          boilerplate_bg="#FF934F",
+                          regular_bg="white",
                           ):
 
         """
@@ -130,18 +131,35 @@ class JustextWrapper:
             el = get_lxml_el_from_paragraph(dom_debug,
                                             paragraph)
 
-            # Overwrite all else
-            if paragraph.is_boilerplate:
-                el.attrib["style"] = el.attrib.get("style", "") + style_boilerplate
-                # "background-color:powderblue;
+            # Wrap content
+            # el.attrib["display"] = el.attrib.get("display", "") + "display: inline-block"
+
+            """
+            style_header="background-color: white; border:2px dashed #70D6FF; padding:0.03em 0.25em;",
+            style_boilerplate="background-color :#FF934F;",
+            style_regular="background-color: white;"
+            """
+
+            # Both heading and boilerplate:
+            if paragraph.is_boilerplate and paragraph.is_heading:
+
+                el.attrib["style"] = el.attrib.get("style",
+                                                   "") + f"background: repeating-linear-gradient(-55deg, {boilerplate_bg}, {boilerplate_bg} 20px, {header_bg} 10px, {header_bg} 30px);"
+
+                continue
 
             elif paragraph.is_heading:
-                el.attrib["style"] = el.attrib.get("style", "") + style_header
+                el.attrib["style"] = el.attrib.get("style", "") + f"background-color: {heading_bg};"
                 # el.attrib["style"] = el.attrib.get("style", "") + style_header
 
-            # Text
+            # Overwrite all else
+            elif paragraph.is_boilerplate:
+                el.attrib["style"] = el.attrib.get("style", "") + f"background-color: {boilerplate_bg};"
+                # "background-color:powderblue;
+
+                # Text
             else:
-                el.attrib["style"] = el.attrib.get("style", "") + style_regular
+                el.attrib["style"] = el.attrib.get("style", "") + f"background-color: {regular_bg};"
 
         dom_write(dom_debug,
                   filename_out
