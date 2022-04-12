@@ -3,7 +3,7 @@ from typing import Dict, Generator, List
 
 from bs4 import BeautifulSoup
 
-from c4c_cpsv_ap.models import BusinessEvent, Event, LifeEvent
+from c4c_cpsv_ap.models import BusinessEvent, Event, Info, LifeEvent
 from data.html import FILENAME_HTML_AFFLIGEM_SITEMAP, get_html
 from relation_extraction.cities import CityParser, Relations
 from relation_extraction.utils import clean_text
@@ -15,11 +15,14 @@ class Sitemap:
     level: int
     children: List
 
-    def __init__(self, name,
+    def __init__(self, name: str,
                  url,
                  level,
                  parent=None
                  ):
+        # Cleanup
+        if name is not None:
+            name = ' '.join(name.split())
         self.name = name
         self.url = url
         self.level = level
@@ -109,17 +112,20 @@ class AffligemParser(CityParser):
             paragraphs = l_sub[1:]
             paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
 
+            info = Info(name=title,
+                        description=paragraphs_clean)
+
             if title == self.criterionRequirement:
-                d.criterionRequirement = paragraphs_clean
+                d.add_criterion_requirement(info)
 
             elif title == self.rule:
-                d.rule = paragraphs_clean
+                d.add_rule(info)
 
             elif title == self.evidence:
-                d.evidence = paragraphs_clean
+                d.add_evidence(info)
 
             elif title == self.cost:
-                d.cost = paragraphs_clean
+                d.add_cost(info)
 
         return d
 
