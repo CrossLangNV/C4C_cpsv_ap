@@ -48,7 +48,7 @@ See https://graphviz.org/ for install instruction.
 
    > dot -Tpng example_html_extraction.py.dot -o example_html_extraction.png
 
-![Example CPSV-AP Graph](file.png)
-![Example CPSV-AP Graph](example_html_extraction.png)
+![Example CPSV-AP Graph](EXAMPLES/file.png)
+![Example CPSV-AP Graph](EXAMPLES/example_html_extraction.png)
 
 

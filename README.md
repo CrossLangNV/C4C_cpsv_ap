@@ -23,7 +23,7 @@ This CLI can be used after building the images with our docker-compose file.
 
 > docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -h
 
-![scripts/extract_script_help.png](scripts/extract_script_help.png)
+![scripts/extract_script_help.png](scripts/EXAMPLES/extract_script_help.png)
 
 An example to run the extraction:
 
@@ -32,7 +32,7 @@ An example to run the extraction:
 The output is saved in [tests/scripts/examples/DEMO_PROCEDURE.html](tests/scripts/examples/DEMO_PROCEDURE.html) and can
 be visualized with [RDF Grapher](https://www.ldf.fi/service/rdf-grapher):
 
-![Visualisation of extracted CPSV-AP RDF](scripts/example_sint_niklaas.png)
+![Visualisation of extracted CPSV-AP RDF](scripts/EXAMPLES/example_sint_niklaas.png)
 
 ## Validation
 
