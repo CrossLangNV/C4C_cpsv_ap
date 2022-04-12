@@ -6,11 +6,29 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:nodeID="Nbaeaac4cd3d345e1989d58551bfc2de2">
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
-    <skos:prefLabel>Vodnikova 14</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint24fbbc7ef4d740c7ad65b0e85f0c6c95">
+    <schema:hoursAvailable rdf:resource="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification452f75f22a584f78a431362790769e2c"/>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:telephone>6100 342.</schema:telephone>
+    <schema:telephone>01/610 1111</schema:telephone>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification80cae852185d4809a82fda712e94a3f4">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServicef9ea89e297c24d32812e20aa8d5afc9e">
+    <dct:title>
+    Grad Zagreb službene stranice
+  </dct:title>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation57fa31a5674c41cf93b7dcda1d7e5363"/>
+    <dct:identifier>PublicServicef9ea89e297c24d32812e20aa8d5afc9e</dct:identifier>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint24fbbc7ef4d740c7ad65b0e85f0c6c95"/>
+    <dct:description></dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation57fa31a5674c41cf93b7dcda1d7e5363">
+    <cv:hasAddress rdf:nodeID="N2f54f8a9cb9b45df89d4651d70e9e1b8"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <dct:spatial rdf:resource="www.zagreb.hr"/>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification452f75f22a584f78a431362790769e2c">
     <schema:description>: HR3423600001813300007, Model: HR68, Poziv na broj odobrenja:  5703-OIB podnositelja zahtjeva,
 u opisu plaćanja navesti: ime i prezime podnositelja zahtjeva, novčana pomoć za opremu
 novorođenog djeteta. Uz zahtjev se mora priložiti i dokaz o uplati upravne pristojbe. Ukoliko se
@@ -18,29 +36,11 @@ ne slažu ime i prezime podnositelja i podaci sa potvrde o uplati upravne pristo
 upravna pristojba nije plaćena.</schema:description>
     <rdf:type rdf:resource="https://schema.org/OpeningHoursSpecification"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointdd11d8de4afb495b8afc426454adc1e1">
-    <schema:hoursAvailable rdf:resource="http://cefat4cities.crosslang.com/content/OpeningHoursSpecification80cae852185d4809a82fda712e94a3f4"/>
-    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:telephone>6100 342.</schema:telephone>
-    <schema:telephone>01/610 1111</schema:telephone>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService9c03c29d09f640bfb51966fe86bb2f39">
-    <dct:identifier>PublicService9c03c29d09f640bfb51966fe86bb2f39</dct:identifier>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationf93fb94b6eb14191bca13e87b3097a67"/>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointdd11d8de4afb495b8afc426454adc1e1"/>
-    <dct:title>
-    Grad Zagreb službene stranice
-  </dct:title>
-    <dct:description></dct:description>
+  <rdf:Description rdf:nodeID="N2f54f8a9cb9b45df89d4651d70e9e1b8">
+    <skos:prefLabel>Vodnikova 14</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
   </rdf:Description>
   <rdf:Description rdf:about="www.zagreb.hr">
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationf93fb94b6eb14191bca13e87b3097a67">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <skos:prefLabel># TODO</skos:prefLabel>
-    <dct:spatial rdf:resource="www.zagreb.hr"/>
-    <cv:hasAddress rdf:nodeID="Nbaeaac4cd3d345e1989d58551bfc2de2"/>
   </rdf:Description>
 </rdf:RDF>

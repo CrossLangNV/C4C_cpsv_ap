@@ -7,57 +7,57 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServicea6d0ec6fb13044958cf939962e5111ea">
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost33fe9bc1f16d470b8389172a4aea342d"/>
+  <rdf:Description rdf:nodeID="N39c478aee0c3403b976bdaf1334ca835">
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+    <skos:prefLabel>Trg Edvarda Kardelja 1
+1022 hPa
+telefon: 05/335-0-352</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint45502404074944918ca0b63f43bcf42a">
+    <schema:email>mestna.obcina@nova-gorica.si</schema:email>
+    <schema:telephone>telefon: 05/335-0-352</schema:telephone>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost343b03036a4743aaa11ea5ba152799ab">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:description>Takse ni.</dct:description>
+    <dct:identifier>Cost343b03036a4743aaa11ea5ba152799ab</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationa3214162f45247ec9bd8efc7be41e763">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <dct:spatial rdf:resource="www.nova-gorica.si"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <cv:hasAddress rdf:nodeID="N39c478aee0c3403b976bdaf1334ca835"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService50de72021ab540b7b67bb016427fa211">
     <dct:title>
     Postopki in obrazci - Za občane
   </dct:title>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost343b03036a4743aaa11ea5ba152799ab"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint45502404074944918ca0b63f43bcf42a"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement2d5dce89bf3744a28cc9cc8d52298960"/>
     <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule6ec6744d340d406d821947094eeebdfd"/>
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement9252d2baf2b3480abb61a29452d4f35a"/>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation313e021b754448deaefba811659231c4"/>
-    <dct:identifier>PublicServicea6d0ec6fb13044958cf939962e5111ea</dct:identifier>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointe6b1f4693b2b46dea8431a70ca530094"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule278d0c0b6d9f4180b9c2074c320adf98"/>
     <dct:description></dct:description>
+    <dct:identifier>PublicService50de72021ab540b7b67bb016427fa211</dct:identifier>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationa3214162f45247ec9bd8efc7be41e763"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation313e021b754448deaefba811659231c4">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <cv:hasAddress rdf:nodeID="N53077b1e234c4a328c28d5cf5cfcac50"/>
-    <skos:prefLabel># TODO</skos:prefLabel>
-    <dct:spatial rdf:resource="www.nova-gorica.si"/>
+  <rdf:Description rdf:about="www.nova-gorica.si">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule6ec6744d340d406d821947094eeebdfd">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule278d0c0b6d9f4180b9c2074c320adf98">
+    <dct:title>DEFAULT NAME</dct:title>
     <dct:description>Enkratna občinska denarna pomoč ob rojstvu otroka pripada staršem otroka ob pogoju, da je otrok živorojen, da je državljan Republike Slovenije in da ima vsaj z enim od staršev stalno bivališče v Mestni občini Nova Gorica.
 Po izteku 3 mesecev od dneva rojstva otroka starša ne moreta več uveljavljati pravice do enkratne občinske denarne pomoči ob rojstvu otroka.
 Enkratna občinska denarna pomoč ob rojstvu otroka se nakaže po dokončnosti odločbe na transakcijski račun tistega od staršev, ki je naveden v vlogi in ima stalno bivališče v Mestni občini Nova Gorica.
 Višina enkratne občinske denarne pomoči ob rojstvu otroka znaša 500,00 EUR .</dct:description>
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>Rule6ec6744d340d406d821947094eeebdfd</dct:identifier>
+    <dct:identifier>Rule278d0c0b6d9f4180b9c2074c320adf98</dct:identifier>
     <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement9252d2baf2b3480abb61a29452d4f35a">
-    <dct:description>Vloga za enkratno denarno pomoč ob rojstvu otroka</dct:description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement2d5dce89bf3744a28cc9cc8d52298960">
     <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>CriterionRequirement9252d2baf2b3480abb61a29452d4f35a</dct:identifier>
+    <dct:description>Vloga za enkratno denarno pomoč ob rojstvu otroka</dct:description>
+    <dct:identifier>CriterionRequirement2d5dce89bf3744a28cc9cc8d52298960</dct:identifier>
     <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointe6b1f4693b2b46dea8431a70ca530094">
-    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:email>mestna.obcina@nova-gorica.si</schema:email>
-    <schema:telephone>telefon: 05/335-0-352</schema:telephone>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost33fe9bc1f16d470b8389172a4aea342d">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:description>Takse ni.</dct:description>
-    <dct:identifier>Cost33fe9bc1f16d470b8389172a4aea342d</dct:identifier>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N53077b1e234c4a328c28d5cf5cfcac50">
-    <skos:prefLabel>1022 hPa
-telefon: 05/335-0-352
-Trg Edvarda Kardelja 1</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="www.nova-gorica.si">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
 </rdf:RDF>

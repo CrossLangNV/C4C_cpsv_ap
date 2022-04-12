@@ -7,31 +7,48 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation9ac92ec1930b47adbfc3e6026f2cffd7">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation016d51085f3d4f2894dff0f83802c0f4">
+    <cv:hasAddress rdf:nodeID="N308a255e795b4daf9fc70109542ebea2"/>
     <skos:prefLabel># TODO</skos:prefLabel>
-    <cv:hasAddress rdf:nodeID="N545657f94d73455bb05437321fddff14"/>
     <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
     <dct:spatial rdf:resource="www.wien.gv.at"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServiceadc7e3aeac4c4122b91c77d44c8df7d0">
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement5154738922164b32a4dca8dbb69819b6"/>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint18aebc88e4e74bdeb2e4d12444a373d3"/>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation9ac92ec1930b47adbfc3e6026f2cffd7"/>
-    <dct:description>Informationen über die Einzelgenehmigung von Fahrzeugen.</dct:description>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidenceee45cd344bb846d4a2ac2462b0a84602"/>
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule8564ccbda3ac4fdaacf5b00d31f829a8"/>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost7de9065a7f7f49a29a251f2ed9a742ce"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement14f3cb86cc1e49ad96ffc560a02be36c">
+    <dct:identifier>CriterionRequirement14f3cb86cc1e49ad96ffc560a02be36c</dct:identifier>
+    <dct:title>DEFAULT NAME</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:description>* Vom Ausland importierte Fahrzeuge ohne EU -Betriebserlaubnis (Diese gibt es frühestens ab dem Baujahr 1995 für PKW aus den alten EU -Ländern.)
+* Fahrzeuge für die kein Typenschein erlangt werden kann und die nicht in der Genehmigungsdatenbank enthalten sind
+* Einzel- und Sonderanfertigungen
+Das Fahrzeug muss den Baujahrsvorschriften des österreichischen Kraftfahrrecht bzw. den EU -Vorschriften entsprechen.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService867f6fac106244feae177f34ece67011">
     <dct:title>
     Einzelgenehmigung von Fahrzeugen - Antrag
   </dct:title>
-    <dct:identifier>PublicServiceadc7e3aeac4c4122b91c77d44c8df7d0</dct:identifier>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint471ae34494aa43b48da393490703d997"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rulef5ba8e7ba752475daea7b24c81904692"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement14f3cb86cc1e49ad96ffc560a02be36c"/>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costf479161cd6aa4e20bce6b511f73e1217"/>
+    <dct:description>Informationen über die Einzelgenehmigung von Fahrzeugen.</dct:description>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation016d51085f3d4f2894dff0f83802c0f4"/>
+    <dct:identifier>PublicService867f6fac106244feae177f34ece67011</dct:identifier>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence007a53a189bf48619073e253c9caf184"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="N545657f94d73455bb05437321fddff14">
-    <skos:prefLabel>Start</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rulef5ba8e7ba752475daea7b24c81904692">
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:description>Fahrzeuge ohne EU -Betriebserlaubnis, die aus dem Ausland importiert wurden, Fahrzeuge für die kein Typenschein erlangt werden kann und die nicht in der Genehmigungsdatenbank enthalten sind und Einzel- und Sonderanfertigungen müssen bei der Abteilung für Verkehrsorganisation und technische Verkehrsangelegenheiten ( MA 46) gesondert genehmigt werden.</dct:description>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:identifier>Rulef5ba8e7ba752475daea7b24c81904692</dct:identifier>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidenceee45cd344bb846d4a2ac2462b0a84602">
+  <rdf:Description rdf:about="www.wien.gv.at">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence007a53a189bf48619073e253c9caf184">
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:identifier>Evidence007a53a189bf48619073e253c9caf184</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
     <dct:description>Anträge können mit dem Antragsformular, vor Ort, postalisch, per Fax oder per E-Mail gestellt werden. Der Antrag muss folgende Angaben enthalten:
 * Name (inklusive Geburtsdatum) bzw. Firmenname (inklusive Firmenbuchnummer und UID -Nummer) sowie für Rückfragen: Telefonnummer oder E-Mail -Adresse der Antragstellerin oder des Antragstellers
 Für die Bearbeitung und Terminvergabe werden folgende Unterlagen im Original benötigt (eine einge scannte Beilage ist nicht ausreichend):
@@ -41,36 +58,19 @@ Für die Bearbeitung und Terminvergabe werden folgende Unterlagen im Original be
 * Die empfohlene Vorlage eines positiven Anmeldegutachtens § 57a von ARBÖ , ÖAMTC , Ziviltechniker, staatlich autorisierten Prüfstellen oder Fachwerkstätte (kein Pickerl) beschleunigt das Verfahren erfahrungsgemäß wesentlich.
 * Vollmacht, falls die FahrzeugbesitzerInnen nicht persönlich kommen
 Es können zusätzliche Unterlagen erforderlich sein. Das kann erst im Zuge der Einreichung oder der Fahrzeugüberprüfung festgestellt und bekannt gegeben werden.</dct:description>
-    <dct:identifier>Evidenceee45cd344bb846d4a2ac2462b0a84602</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
-    <dct:title>DEFAULT NAME</dct:title>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement5154738922164b32a4dca8dbb69819b6">
-    <dct:description>* Vom Ausland importierte Fahrzeuge ohne EU -Betriebserlaubnis (Diese gibt es frühestens ab dem Baujahr 1995 für PKW aus den alten EU -Ländern.)
-* Fahrzeuge für die kein Typenschein erlangt werden kann und die nicht in der Genehmigungsdatenbank enthalten sind
-* Einzel- und Sonderanfertigungen
-Das Fahrzeug muss den Baujahrsvorschriften des österreichischen Kraftfahrrecht bzw. den EU -Vorschriften entsprechen.</dct:description>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>CriterionRequirement5154738922164b32a4dca8dbb69819b6</dct:identifier>
-  </rdf:Description>
-  <rdf:Description rdf:about="www.wien.gv.at">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule8564ccbda3ac4fdaacf5b00d31f829a8">
-    <dct:identifier>Rule8564ccbda3ac4fdaacf5b00d31f829a8</dct:identifier>
-    <dct:description>Fahrzeuge ohne EU -Betriebserlaubnis, die aus dem Ausland importiert wurden, Fahrzeuge für die kein Typenschein erlangt werden kann und die nicht in der Genehmigungsdatenbank enthalten sind und Einzel- und Sonderanfertigungen müssen bei der Abteilung für Verkehrsorganisation und technische Verkehrsangelegenheiten ( MA 46) gesondert genehmigt werden.</dct:description>
-    <dct:title>DEFAULT NAME</dct:title>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost7de9065a7f7f49a29a251f2ed9a742ce">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:identifier>Cost7de9065a7f7f49a29a251f2ed9a742ce</dct:identifier>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costf479161cd6aa4e20bce6b511f73e1217">
     <dct:description>Zirka 60 bis 160 Euro (abhängig von den erforderlichen Nachweisen und der Fahrzeugkategorie).
 Die Zahlung kann vor Ort in bar oder per Bankomat, in Ausnahmefällen oder bei schriftlicher Zusendung auch mit Zahlungsanweisung erfolgen.
 Die Verrechnung erfolgt über die Abteilung Rechnungs- und Abgabenwesen - Buchhaltungsabteilung 40 .</dct:description>
+    <dct:identifier>Costf479161cd6aa4e20bce6b511f73e1217</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint18aebc88e4e74bdeb2e4d12444a373d3">
+  <rdf:Description rdf:nodeID="N308a255e795b4daf9fc70109542ebea2">
+    <skos:prefLabel>Start</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint471ae34494aa43b48da393490703d997">
     <schema:telephone>Straße und Verkehr, Montag bis Freitag von 7 bis 18 Uhr: +43 1 955 59.</schema:telephone>
     <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
   </rdf:Description>

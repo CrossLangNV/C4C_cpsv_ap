@@ -29,7 +29,8 @@ An example to run the extraction:
 
 > docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -g -o scripts/DEMO_BELGIUM_GENERAL.rdf -l NL -c BE -m http://stad.gent scripts/DEMO_PROCEDURE.html
 
-The output is saved in [scripts/DEMO_PROCEDURE.html](scripts/DEMO_PROCEDURE.html) and can be visualized with [RDF Grapher](https://www.ldf.fi/service/rdf-grapher):
+The output is saved in [tests/scripts/examples/DEMO_PROCEDURE.html](tests/scripts/examples/DEMO_PROCEDURE.html) and can
+be visualized with [RDF Grapher](https://www.ldf.fi/service/rdf-grapher):
 
 ![Visualisation of extracted CPSV-AP RDF](scripts/example_sint_niklaas.png)
 

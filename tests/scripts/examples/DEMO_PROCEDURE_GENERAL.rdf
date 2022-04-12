@@ -1,80 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF
-   xmlns:cpsv="http://purl.org/vocab/cpsv#"
    xmlns:cv="http://data.europa.eu/m8g/"
    xmlns:dct="http://purl.org/dc/terms/"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointb8901ec576cb4e238ba4a822279cc5a7">
-    <schema:email>eerste.lijn@aalter.be</schema:email>
-    <schema:telephone>09 325 22 00</schema:telephone>
-    <schema:telephone>www.aalter.be/afspraak
-of tel. 09 325 22 00.</schema:telephone>
-    <schema:email>gemeente@aalter.be</schema:email>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointc793d2ae02ae44ad80bd580be4153269">
     <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:telephone>09 325 22 40</schema:telephone>
-    <schema:email>burgerzaken@aalter.be</schema:email>
+    <schema:telephone>Telefon: 94 84 79 47</schema:telephone>
+    <schema:telephone>Du kan kontakte Intrum låneadministrasjonen på telefon 73 54 23 20, e-post
+laaneadm@intrum.com</schema:telephone>
+    <schema:email>Du kan kontakte Intrum låneadministrasjonen på telefon 73 54 23 20, e-post
+laaneadm@intrum.com</schema:email>
+    <schema:email>bofin@trondheim.kommune.no</schema:email>
+    <schema:email>laaneadm@intrum.com</schema:email>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costc56ac910e3fc4604a453f56c231c82c6">
-    <dct:identifier>Costc56ac910e3fc4604a453f56c231c82c6</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:description>Gratis.</dct:description>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService7535499c6abb4a01a590b2f5c258f0f2">
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule6d953c41d660452599945e8fd220e930"/>
-    <dct:identifier>PublicService7535499c6abb4a01a590b2f5c258f0f2</dct:identifier>
-    <dct:title>
-     Aangifte van een adreswijziging - Gemeente Aalter
-    </dct:title>
-    <dct:description></dct:description>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costc56ac910e3fc4604a453f56c231c82c6"/>
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidencedbd19f153e5b495a9e7fa94946b509a7"/>
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirementd3f0e43ea8f34ca9a19fab23980a6f27"/>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationbc96a4698a064d2bac2754caa95b3d7d"/>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointb8901ec576cb4e238ba4a822279cc5a7"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule6d953c41d660452599945e8fd220e930">
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
-    <dct:description>Je kan de adreswijziging online melden via het digitaal loket van jouw (nieuwe) gemeente.
-Je kan langsgaan bij de dienst Burgerzaken van jouw (nieuwe) gemeente.</dct:description>
-    <dct:identifier>Rule6d953c41d660452599945e8fd220e930</dct:identifier>
-    <dct:title>DEFAULT NAME</dct:title>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirementd3f0e43ea8f34ca9a19fab23980a6f27">
-    <dct:description>Iedereen die 18 jaar of ouder is, mag zelf de verhuizing doorgeven.
-Ouders of voogden geven de verhuizing van hun minderjarige kinderen door.
-Meerderjarige gezinsleden mogen jouw verhuizing doorgeven. Ze hebben dan wel je identiteitskaart nodig.
-Je kan de verhuizing pas doorgeven als je effectief verhuisd bent.
-Als een niet-ontvoogde minderjarige de verblijfplaats van zijn ouders voor het eerst verlaat om zijn hoofdverblijf elders te vestigen, moet hij vergezeld zijn door iemand die het ouderlijke gezag uitoefent.</dct:description>
-    <dct:identifier>CriterionRequirementd3f0e43ea8f34ca9a19fab23980a6f27</dct:identifier>
-    <dct:title>DEFAULT NAME</dct:title>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidencedbd19f153e5b495a9e7fa94946b509a7">
-    <dct:identifier>Evidencedbd19f153e5b495a9e7fa94946b509a7</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:description>Elektronische identiteitskaart van alle gezinsleden.
-Pincode om de chip te updaten.</dct:description>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Nf7d6483ab70f463ca2f9ffe759d676ea">
-    <skos:prefLabel>De Plaats 14
-09 325 22 00
-09 325 22 40
-www.aalter.be/afspraak
-of tel. 09 325 22 00.</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationbc96a4698a064d2bac2754caa95b3d7d">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation8a171485816945149ad49899675188ec">
+    <dct:spatial rdf:resource="https://www.trondheim.kommune.no/"/>
+    <cv:hasAddress rdf:nodeID="N4602c93dfac44ac7b3840ef3774120f6"/>
     <skos:prefLabel># TODO</skos:prefLabel>
     <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <dct:spatial rdf:resource="aalter.be"/>
-    <cv:hasAddress rdf:nodeID="Nf7d6483ab70f463ca2f9ffe759d676ea"/>
   </rdf:Description>
-  <rdf:Description rdf:about="aalter.be">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement540e1e0aeef844b0975a55096a5a8ec8">
+    <dct:description>Dersom det foreligger særlige forhold eller hensyn som har betydning for behandlingen av din søknad, så bør det redegjøres for dette i søknaden.</dct:description>
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:identifier>CriterionRequirement540e1e0aeef844b0975a55096a5a8ec8</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServiceeb35ef5d239a4ee3880287671bc5a9bb">
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costa5f9b95d049743c1a98c2a13770306e6"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <dct:title>
+   Startlån - Trondheim kommune
+  </dct:title>
+    <dct:description>Velkommen til Trondheim kommune. Her finner du informasjon om våre tjenester.</dct:description>
+    <dct:identifier>PublicServiceeb35ef5d239a4ee3880287671bc5a9bb</dct:identifier>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement540e1e0aeef844b0975a55096a5a8ec8"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointc793d2ae02ae44ad80bd580be4153269"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation8a171485816945149ad49899675188ec"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costa5f9b95d049743c1a98c2a13770306e6">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:description>Dersom du opplever midlertidig inntektsnedgang og/ eller dersom du får uforutsette utgifter som gjør at du ikke får til å betale startlånet ditt som ordinært, så kan du for en periode søke om betalingslettelse for startlånet ditt. Du må minimum påregne å betale renter på startlånet.
+Søknad om betalingslettelser sendes til kommunens kredittforvalter Intrum gjennom nettsiden til Intrum på
+Min side Intrum
+. Du kan alternativt sende søknad på epost til
+laaneadm@intrum.com
+. Du kan også kontakte kundeservice hos Intrum låneadministrasjon på 73 54 23 20.</dct:description>
+    <dct:identifier>Costa5f9b95d049743c1a98c2a13770306e6</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N4602c93dfac44ac7b3840ef3774120f6">
+    <skos:prefLabel>7004 Trondheim.
+Telefon: 94 84 79 47</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.trondheim.kommune.no/">
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
 </rdf:RDF>

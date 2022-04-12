@@ -333,7 +333,7 @@ class TestCLIGeneral(unittest.TestCase):
 
     def test_general_args(self,
                           FILENAME_RDF=os.path.join(DIR_EXAMPLES, "DEMO_PROCEDURE_GENERAL.rdf"),
-                          FILENAME_HTML=os.path.join(DIR_EXAMPLES, "scripts/DEMO_PROCEDURE.html"),
+                          FILENAME_HTML=os.path.join(DIR_EXAMPLES, "DEMO_PROCEDURE.html"),
                           ):
 
         LANG = "NL"
@@ -380,10 +380,10 @@ class TestCLIGeneral(unittest.TestCase):
             country = "BE"
             homepage = "https://www.turnhout.be"
 
-        url = "https://www.comune.trento.it/Aree-tematiche/Attivita-edilizia/Interventi-edilizi/Permesso-di-costruire"
-        lang = "IT"
-        country = "IT"
-        homepage = "https://www.comune.trento.it"
+        url = "https://www.trondheim.kommune.no/tema/sosiale-tjenester/okonomisk-bistand/startlan/"
+        lang = "NB"
+        country = "NO"
+        homepage = "https://www.trondheim.kommune.no/"
 
         # auto
         basename_html = "DEMO_PROCEDURE.html"
@@ -409,7 +409,7 @@ class TestCLIGeneral(unittest.TestCase):
             args = parser.parse_args(l_args)
 
             def path_scripts(basename):
-                return os.path.join(DIR_SOURCE, "scripts", basename)
+                return os.path.join(DIR_EXAMPLES, basename)
 
             main(filename_html=path_scripts(args.path),
                  filename_rdf=path_scripts(args.output),

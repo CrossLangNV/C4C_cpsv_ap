@@ -7,68 +7,68 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="austrheim.kommune.no">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServiceed8ff484c6c44a97a0212eade0b3a0cf">
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rulec5309ef2a25c439ea569ee4228d0e70f"/>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costa1d3f6c0844f46e48e1266d719c5314d"/>
-    <dct:title>
-    Austrheim kommune - Omsorgsbustader
-  </dct:title>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation18502926576b433c8a918ad935e2453d"/>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint80a75ebabce54d289d82d0ead3adbe53"/>
-    <dct:identifier>PublicServiceed8ff484c6c44a97a0212eade0b3a0cf</dct:identifier>
-    <dct:description></dct:description>
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement53986fbc1d6644838da8e929267f8c33"/>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation18502926576b433c8a918ad935e2453d">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationd5c29b7c4d154e88960a2eb4a0b02a97">
     <dct:spatial rdf:resource="austrheim.kommune.no"/>
-    <skos:prefLabel># TODO</skos:prefLabel>
     <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <cv:hasAddress rdf:nodeID="N9bce778673b54216a6166c74ad776d25"/>
+    <cv:hasAddress rdf:nodeID="N035b8e4903a745c3b995b31b5874965c"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement53986fbc1d6644838da8e929267f8c33">
-    <dct:description>* du er 18 år eller eldre
-* du må ha legeuttale
-* du må ha eit fysisk eller psykisk funksjonstap
-* du må betale husleige</dct:description>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>CriterionRequirement53986fbc1d6644838da8e929267f8c33</dct:identifier>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint80a75ebabce54d289d82d0ead3adbe53">
-    <schema:email>56162000
-post@austrheim.kommune.no
-Sætremarka 2, 5943 Austrheim</schema:email>
-    <schema:email>post@austrheim.kommune.no</schema:email>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointd0fcce1a645f48c7bdad877a236d7d76">
     <schema:telephone>56162000
 post@austrheim.kommune.no
 Sætremarka 2, 5943 Austrheim</schema:telephone>
     <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:email>post@austrheim.kommune.no</schema:email>
+    <schema:email>56162000
+post@austrheim.kommune.no
+Sætremarka 2, 5943 Austrheim</schema:email>
     <schema:telephone>Leiar, Hege Bergsvik Sætre tlf. 56 16 21 24/mob. 400 37 532</schema:telephone>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="N9bce778673b54216a6166c74ad776d25">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirementd08f8eafa4c34798bbc332f608cba75b">
+    <dct:description>* du er 18 år eller eldre
+* du må ha legeuttale
+* du må ha eit fysisk eller psykisk funksjonstap
+* du må betale husleige</dct:description>
+    <dct:identifier>CriterionRequirementd08f8eafa4c34798bbc332f608cba75b</dct:identifier>
+    <dct:title>DEFAULT NAME</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost852cd4ae66ce4048aa53665fac6a4691">
+    <dct:description>Prisen er avhengig av kva leigeavtale du får.</dct:description>
+    <dct:identifier>Cost852cd4ae66ce4048aa53665fac6a4691</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService0e76c59ac1434643825cbcf15e68ab14">
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost852cd4ae66ce4048aa53665fac6a4691"/>
+    <dct:title>
+    Austrheim kommune - Omsorgsbustader
+  </dct:title>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <dct:description></dct:description>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointd0fcce1a645f48c7bdad877a236d7d76"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rulefdddae741bf84e7293d18676d25bc07c"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationd5c29b7c4d154e88960a2eb4a0b02a97"/>
+    <dct:identifier>PublicService0e76c59ac1434643825cbcf15e68ab14</dct:identifier>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirementd08f8eafa4c34798bbc332f608cba75b"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N035b8e4903a745c3b995b31b5874965c">
     <skos:prefLabel>Leiar, Hege Bergsvik Sætre tlf. 56 16 21 24/mob. 400 37 532
-Sætremarka 2
-5943 Austrheim
 56162000
 post@austrheim.kommune.no
-Sætremarka 2, 5943 Austrheim</skos:prefLabel>
+Sætremarka 2, 5943 Austrheim
+Sætremarka 2
+5943 Austrheim</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costa1d3f6c0844f46e48e1266d719c5314d">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:identifier>Costa1d3f6c0844f46e48e1266d719c5314d</dct:identifier>
-    <dct:description>Prisen er avhengig av kva leigeavtale du får.</dct:description>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rulec5309ef2a25c439ea569ee4228d0e70f">
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>Rulec5309ef2a25c439ea569ee4228d0e70f</dct:identifier>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rulefdddae741bf84e7293d18676d25bc07c">
     <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:identifier>Rulefdddae741bf84e7293d18676d25bc07c</dct:identifier>
     <dct:description>* Vi vurderer søknaden din, og finn det tilbodet som passar best for deg.
 * Vi tar kontakt med deg dersom vi treng fleire opplysningar eller ønskjer å besøkje deg.
 * Vi prøver å svare deg innan 14 dagar. Dersom vi ikkje klarar det, tar vi kontakt med deg og fortel kor lang tid det vil ta før du får svaret.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="austrheim.kommune.no">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
 </rdf:RDF>
