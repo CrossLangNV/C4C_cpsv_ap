@@ -425,10 +425,10 @@ class GeneralCityParser(ClassifierCityParser):
                    s_html,
                    include_sub: bool = True
                    ) -> List[GeneralSection]:
-        justext_wrapper = self.parser_model.get_justext_wrapper()
+        justext_wrapper = self.parser_model.get_justext_wrapper_class()
         html_parser = GeneralHTMLParser(s_html,
                                         language=self.lang_code,
-                                        justext_wrapper=justext_wrapper
+                                        justext_wrapper_class=justext_wrapper
                                         )
 
         sections = html_parser.get_sections()

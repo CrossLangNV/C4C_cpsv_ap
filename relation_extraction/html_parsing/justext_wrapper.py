@@ -1,12 +1,13 @@
 import copy
-from typing import List
+import warnings
+from typing import FrozenSet, Iterator, List, Tuple
 
 import justext
 import lxml.html
 from justext.core import classify_paragraphs, ParagraphMaker, revise_paragraph_classification
 
 from connectors.bert_classifier import BERTConnector
-from relation_extraction.html_parsing.utils import clean_tag_text, dom_write, get_lxml_el_from_paragraph
+from relation_extraction.html_parsing.utils import _get_language_full_from_code, clean_tag_text, dom_write
 
 
 class GeneralParagraph(justext.core.Paragraph):
@@ -64,11 +65,10 @@ class JustextWrapper:
     Will have identical functionality as the original one, but make it more convenient to change and adapt the flow.
     """
 
-    def justext(self,
-                html_text: str,
-                stoplist,
-                **kwargs
-                ) -> List[GeneralParagraph]:
+    def __init__(self,
+                 html_text: str,
+                 stoplist,
+                 **kwargs):
         """
         (!) Identical to justext.justext(*args, **kwargs) 3.0.0
 
@@ -76,28 +76,31 @@ class JustextWrapper:
         is represented as instance of class ˙˙justext.paragraph.Paragraph˙˙.
         """
 
-        dom = self.get_dom_clean(html_text, **kwargs)
+        self._html_text = html_text
 
-        paragraphs = self.make_paragraphs(dom)
+        paragraphs = self._make_paragraphs()
 
         # (!) paragraph.headig is decided here by calling paragraph.is_heading
         classify_paragraphs(paragraphs, stoplist, **kwargs)
         revise_paragraph_classification(paragraphs, **kwargs)
 
-        # paragraphs = justext.justext(html_text, stoplist, *args, **kwargs)
+        self._paragraphs = paragraphs
 
-        return paragraphs
+    @property
+    def paragraphs(self) -> List[GeneralParagraph]:
+        return self._paragraphs
 
-    def get_dom_clean(self, html_text, *args, **kwargs):
-        dom = self._html_to_dom(html_text, *args, **kwargs)
+    def get_dom_clean(self, *args, **kwargs) -> lxml.html.HtmlElement:
+
+        dom = self._html_to_dom(self._html_text, *args, **kwargs)
         dom = self._preprocessor(dom)
 
         return dom
 
-    def make_paragraphs(self, dom) -> List[GeneralParagraph]:
+    def _make_paragraphs(self) -> List[GeneralParagraph]:
         """Init of the paragraphs"""
 
-        paragraphs = ParagraphMaker.make_paragraphs(dom)
+        paragraphs = ParagraphMaker.make_paragraphs(self.get_dom_clean())
 
         # (!) New
         paragraphs = list(map(GeneralParagraph.from_justext_paragraph, paragraphs))
@@ -111,9 +114,36 @@ class JustextWrapper:
     def _preprocessor(self, dom):
         return justext.core.preprocessor(dom)
 
-    def _export_debugging(self, html, stoplist,
-                          filename_out,
+    def iterator_paragraph_element(self,
+                                   paragraphs: List[GeneralParagraph] = None,
+                                   dom=None) -> Iterator[Tuple[GeneralParagraph, lxml.html.HtmlElement]]:
 
+        if paragraphs is None:
+            paragraphs = self.paragraphs
+        if dom is None:
+            dom = self.get_dom_clean()
+
+        for paragraph in paragraphs:
+            el = self._get_element_from_paragraph(paragraph,
+                                                  dom=dom)
+
+            yield paragraph, el
+
+    def _get_element_from_paragraph(self,
+                                    paragraph,
+                                    dom=None):
+
+        if dom is None:
+            dom = self.get_dom_clean()
+
+        l_e = dom.xpath(paragraph.xpath)
+        if len(l_e) != 1:
+            raise LookupError(f"Expected exactly one element: {l_e}")
+
+        return l_e[0]
+
+    def _export_debugging(self,
+                          filename_out,
                           heading_bg="#70D6FF",
                           boilerplate_bg="#FF934F",
                           regular_bg="white",
@@ -123,13 +153,9 @@ class JustextWrapper:
         Do same processing, but save as HTML with important annotations.
         """
 
-        paragraphs = self.justext(html, stoplist)
+        dom_debug = self.get_dom_clean()
 
-        dom_debug = self.get_dom_clean(html)
-
-        for paragraph in paragraphs:
-            el = get_lxml_el_from_paragraph(dom_debug,
-                                            paragraph)
+        for paragraph, el in self.iterator_paragraph_element(dom=dom_debug):
 
             # Wrap content
             # el.attrib["display"] = el.attrib.get("display", "") + "display: inline-block"
@@ -144,7 +170,7 @@ class JustextWrapper:
             if paragraph.is_boilerplate and paragraph.is_heading:
 
                 el.attrib["style"] = el.attrib.get("style",
-                                                   "") + f"background: repeating-linear-gradient(-55deg, {boilerplate_bg}, {boilerplate_bg} 20px, {header_bg} 10px, {header_bg} 30px);"
+                                                   "") + f"background: repeating-linear-gradient(-55deg, {boilerplate_bg}, {boilerplate_bg} 20px, {heading_bg} 10px, {heading_bg} 30px);"
 
                 continue
 
@@ -169,12 +195,9 @@ class JustextWrapper:
 class BoldJustextWrapper(JustextWrapper):
     """
     Headers that are in full bold will also be detected as heading
-
-    TODO
-     * Detect both <b/> and <strong/>
     """
 
-    def make_paragraphs(self, dom) -> List[GeneralParagraph]:
+    def _make_paragraphs(self) -> List[GeneralParagraph]:
         """
         Change heading already to include <strong/> and <b/> as headers
 
@@ -188,7 +211,9 @@ class BoldJustextWrapper(JustextWrapper):
 
         """
 
-        paragraphs = super(BoldJustextWrapper, self).make_paragraphs(dom)
+        dom = self.get_dom_clean()
+
+        paragraphs = super(BoldJustextWrapper, self)._make_paragraphs()
 
         # (!) Initialise is_heading.
         # TODO might be nicer to change the "is_heading" classifier in Paragraph class
@@ -196,16 +221,22 @@ class BoldJustextWrapper(JustextWrapper):
 
         return paragraphs
 
-    def _heading_include_strong(self, paragraphs, dom):
+    def _heading_include_strong(self, paragraphs=None, dom=None):
         """
         Heuristic: If a paragraph is fully <strong/>, it is most likely a title.
 
         Overwrites input paragraphs
         """
 
+        if paragraphs is None:
+            paragraphs = self.paragraphs
+
+        if dom is None:
+            dom = self.get_dom_clean()
+
         for paragraph in paragraphs:
-            el = get_lxml_el_from_paragraph(dom,
-                                            paragraph)
+            el = self._get_element_from_paragraph(paragraph,
+                                                  dom=dom)
 
             # is there a <strong/> or <b/>?
             if l_strong_children := (el.xpath(".//strong") + el.xpath(".//b")):
@@ -226,16 +257,15 @@ class TitleClassificationJustextWrapper(JustextWrapper):
     """
 
     def __init__(self, *args, **kwargs):
-        super(TitleClassificationJustextWrapper, self).__init__(*args, **kwargs)
-
         # Initialise classifier model
         self._title_classifier_connector = BERTConnector(url="http://title_classifier:5000")
         labels = self._title_classifier_connector.get_labels()
         self._i_label_title = labels.names.index("title")
 
-    def make_paragraphs(self,
-                        dom,
-                        verbose=1) -> List[GeneralParagraph]:
+        super(TitleClassificationJustextWrapper, self).__init__(*args, **kwargs)
+
+    def _make_paragraphs(self,
+                         verbose=1) -> List[GeneralParagraph]:
         """
         Change heading already to include <strong/> and <b/> as headers
 
@@ -249,7 +279,8 @@ class TitleClassificationJustextWrapper(JustextWrapper):
 
         """
 
-        paragraphs = super(TitleClassificationJustextWrapper, self).make_paragraphs(dom)
+        dom = self.get_dom_clean()
+        paragraphs = super(TitleClassificationJustextWrapper, self)._make_paragraphs()
 
         # One at a time
         one_at_a_time = False
@@ -258,8 +289,8 @@ class TitleClassificationJustextWrapper(JustextWrapper):
                 if verbose:
                     print(f"Paragraph extraction {i + 1}/{len(paragraphs)}")
 
-                el = get_lxml_el_from_paragraph(dom,
-                                                paragraph)
+                el = self._get_element_from_paragraph(paragraph,
+                                                      dom)
 
                 # Pre-classify headings.
                 if self._classify_title(paragraph, el):
@@ -268,8 +299,7 @@ class TitleClassificationJustextWrapper(JustextWrapper):
         # ALl at once
         else:
 
-            l_el = [get_lxml_el_from_paragraph(dom,
-                                               par) for par in paragraphs]
+            l_el = [self._get_element_from_paragraph(par, dom) for par in paragraphs]
 
             if verbose:
                 print(f"Paragraph extraction - Start")
@@ -312,3 +342,29 @@ class TitleClassificationJustextWrapper(JustextWrapper):
         l_b_title = [p >= threshold for p in l_p_title]
 
         return l_b_title
+
+
+def get_stoplist(language_or_language_code) -> FrozenSet[str]:
+    """
+    Same as justext.get_stoplist, but tries to convert to language
+    Args:
+        language_or_language_code: Full language name or ISO 639-1 language code
+
+    Returns:
+        stoplist
+    """
+
+    try:
+        stoplist = justext.get_stoplist(language_or_language_code)
+    except ValueError as e:  # Perhaps language code is given instead of language
+        warnings.warn(
+            f"Expected full language name: \"{language_or_language_code}\". Trying to cast to language code instead ",
+            UserWarning)
+        try:
+            _language = _get_language_full_from_code(language_code=language_or_language_code)
+        except:
+            raise e
+        else:
+            return justext.get_stoplist(_language)
+    else:
+        return stoplist

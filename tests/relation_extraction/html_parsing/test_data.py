@@ -57,11 +57,11 @@ class TestScriptData(unittest.TestCase):
         stoplist = justext.get_stoplist(
             _get_language_full_from_code(language_code))
 
-        paragraphs = JustextWrapper().justext(html,
-                                              stoplist=stoplist)
+        paragraphs = JustextWrapper(html,
+                                    stoplist=stoplist).paragraphs
 
-        paragraphs_bold = BoldJustextWrapper().justext(html,
-                                                       stoplist=stoplist)
+        paragraphs_bold = BoldJustextWrapper(html,
+                                             stoplist=stoplist).paragraphs
 
         def count_(paragraphs):
             counter = Counter([paragraph.is_heading for paragraph in paragraphs])
@@ -267,7 +267,7 @@ class TestTrainingData(unittest.TestCase):
 
         data_generic = DataGeneric(muni.parser)
 
-        self.assertIsInstance(data_generic.justext_wrapper, BoldJustextWrapper)
+        self.assertIsInstance(data_generic.justext_wrapper_class, type(BoldJustextWrapper))
 
         for url in muni.procedures:
 

@@ -3,7 +3,7 @@ import unittest
 import warnings
 
 from data.html import url2html
-from scripts.extract_cpsv_ap import get_parser, main
+from scripts.extract_cpsv_ap import extract_cpsv_ap_from_html, get_parser
 
 DIR_SOURCE = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 FILENAME_AFFLIGEM = os.path.join(DIR_SOURCE, "data/relation_extraction/AFFLIGEM_HANDTEKENING.html")
@@ -73,15 +73,15 @@ class TestCLI(unittest.TestCase):
         # Command
         self.print_command(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     def test_4_concept_extraction(self):
         """
@@ -106,15 +106,15 @@ class TestCLI(unittest.TestCase):
 
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     def test_5_Norway(self):
         parser = get_parser()
@@ -136,15 +136,15 @@ class TestCLI(unittest.TestCase):
 
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     def test_5_Belgium(self):
         parser = get_parser()
@@ -164,15 +164,15 @@ class TestCLI(unittest.TestCase):
 
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     def test_5_Italy(self):
         parser = get_parser()
@@ -194,15 +194,15 @@ class TestCLI(unittest.TestCase):
 
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     def test_5_Slovenia(self):
         parser = get_parser()
@@ -222,15 +222,15 @@ class TestCLI(unittest.TestCase):
 
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     def test_5_Austria(self):
         parser = get_parser()
@@ -251,15 +251,15 @@ class TestCLI(unittest.TestCase):
 
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     def test_5_Croatia(self):
         parser = get_parser()
@@ -285,15 +285,15 @@ class TestCLI(unittest.TestCase):
 
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     @staticmethod
     def print_command(l_args):
@@ -321,15 +321,15 @@ class TestCLIGeneral(unittest.TestCase):
 
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     def test_general_args(self,
                           FILENAME_RDF=os.path.join(DIR_EXAMPLES, "DEMO_PROCEDURE_GENERAL.rdf"),
@@ -357,15 +357,15 @@ class TestCLIGeneral(unittest.TestCase):
         parser = get_parser()
         args = parser.parse_args(l_args)
 
-        main(filename_html=args.path,
-             filename_rdf=args.output,
-             extract_concepts=args.terms,
-             context=args.municipality,
-             country_code=args.country,
-             url=args.url,
-             general=args.general,
-             lang=args.language
-             )
+        extract_cpsv_ap_from_html(filename_html=args.path,
+                                  filename_rdf=args.output,
+                                  extract_concepts=args.terms,
+                                  context=args.municipality,
+                                  country_code=args.country,
+                                  url=args.url,
+                                  general=args.general,
+                                  lang=args.language
+                                  )
 
     def test_demo(self, run=True):
         if 1:
@@ -411,15 +411,15 @@ class TestCLIGeneral(unittest.TestCase):
             def path_scripts(basename):
                 return os.path.join(DIR_EXAMPLES, basename)
 
-            main(filename_html=path_scripts(args.path),
-                 filename_rdf=path_scripts(args.output),
-                 extract_concepts=args.terms,
-                 context=args.municipality,
-                 country_code=args.country,
-                 url=args.url,
-                 general=args.general,
-                 lang=args.language
-                 )
+            extract_cpsv_ap_from_html(filename_html=path_scripts(args.path),
+                                      filename_rdf=path_scripts(args.output),
+                                      extract_concepts=args.terms,
+                                      context=args.municipality,
+                                      country_code=args.country,
+                                      url=args.url,
+                                      general=args.general,
+                                      lang=args.language
+                                      )
 
         return
 
@@ -450,15 +450,15 @@ class TestCLIBreaking(unittest.TestCase):
         args = parser.parse_args(l_args)
 
         with self.assertRaises(FileNotFoundError) as context:
-            main(filename_html=args.path,
-                 filename_rdf=args.output,
-                 extract_concepts=args.terms,
-                 context=args.municipality,
-                 country_code=args.country,
-                 url=args.url,
-                 general=args.general,
-                 lang=args.language
-                 )
+            extract_cpsv_ap_from_html(filename_html=args.path,
+                                      filename_rdf=args.output,
+                                      extract_concepts=args.terms,
+                                      context=args.municipality,
+                                      country_code=args.country,
+                                      url=args.url,
+                                      general=args.general,
+                                      lang=args.language
+                                      )
 
         self.assertTrue(context.exception)
 
@@ -497,15 +497,15 @@ class TestCLIGeneralChunker(unittest.TestCase):
             def path_scripts(basename):
                 return os.path.join(DIR_SOURCE, "scripts", basename)
 
-            main(filename_html=path_scripts(args.path),
-                 filename_rdf=path_scripts(args.output),
-                 extract_concepts=args.terms,
-                 context=args.municipality,
-                 country_code=args.country,
-                 url=args.url,
-                 general=args.general,
-                 lang=args.language
-                 )
+            extract_cpsv_ap_from_html(filename_html=path_scripts(args.path),
+                                      filename_rdf=path_scripts(args.output),
+                                      extract_concepts=args.terms,
+                                      context=args.municipality,
+                                      country_code=args.country,
+                                      url=args.url,
+                                      general=args.general,
+                                      lang=args.language
+                                      )
 
         return
 
@@ -514,3 +514,52 @@ class TestCLIGeneralChunker(unittest.TestCase):
         print()
         print("$ python extract_cpsv_ap.py", *l_args)
         print()
+
+
+class TestCLISaveHTMLParsing(unittest.TestCase):
+    def test_demo(self,
+                  url="https://www.trondheim.kommune.no/tema/sosiale-tjenester/okonomisk-bistand/startlan/",
+                  lang="NB",
+                  country="NO",
+                  homepage="https://www.trondheim.kommune.no/",
+                  run=True):
+        # auto
+        basename_html = "DEMO_GEN_CHUNKER.html"
+        basename_rdf = "DEMO_GEN_CHUNKER.rdf"
+        filename_html = os.path.join(DIR_SOURCE, "scripts", basename_html)
+        url2html(url, filename_html)
+
+        # Set args
+        l_args = [
+
+            "-m", homepage,
+
+        ]
+        # Command
+        print("copy the following command")
+        print_command(l_args)
+
+        if run:
+            parser = get_parser()
+            args = parser.parse_args(l_args)
+
+            def path_scripts(basename):
+                return os.path.join(DIR_SOURCE, "scripts", basename)
+
+            extract_cpsv_ap_from_html(filename_html=path_scripts(basename_html),
+                                      filename_rdf=path_scripts(basename_rdf),
+                                      extract_concepts=False,
+                                      context=args.municipality,
+                                      country_code=country,
+                                      url=url,
+                                      general=True,
+                                      lang=lang
+                                      )
+
+        return
+
+
+def print_command(l_args):
+    print()
+    print("$ python extract_cpsv_ap.py", *l_args)
+    print()

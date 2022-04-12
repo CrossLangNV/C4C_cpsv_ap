@@ -1,7 +1,7 @@
 import warnings
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, Type, Union
 
 import lxml
 import yaml
@@ -31,21 +31,21 @@ class ParserModel(BaseModel):
         html_bold = "html_bold"  # Look at paragraphs/divs completely in <b/>
         text_classifier = "text_classifier"  # Use the trained title classifier based on text.
 
-    def get_justext_wrapper(self):
+    def get_justext_wrapper_class(self) -> Type[JustextWrapper]:
 
         if self.titles == self.titlesChoices.text_classifier:
-            return TitleClassificationJustextWrapper()
+            return TitleClassificationJustextWrapper
 
         if isinstance(self.titles, list):
             # Let html_bold take priority
             if self.titlesChoices.html_bold in self.titles:
-                return BoldJustextWrapper()
+                return BoldJustextWrapper
 
         if self.titles == self.titlesChoices.html_bold:
-            return BoldJustextWrapper()
+            return BoldJustextWrapper
 
         # Default behaviour
-        return JustextWrapper()
+        return JustextWrapper
 
 
 @dataclass
@@ -185,11 +185,11 @@ class DataGeneric:
             # Default .
             parser_config = ParserModel(titles=ParserModel.titlesChoices.html_headings)
 
-        self._justext_wrapper = parser_config.get_justext_wrapper()
+        self._justext_wrapper_class = parser_config.get_justext_wrapper_class()
 
     @property
-    def justext_wrapper(self) -> JustextWrapper:
-        return self._justext_wrapper
+    def justext_wrapper_class(self) -> Type[JustextWrapper]:
+        return self._justext_wrapper_class
 
     def extract_data(self,
                      url: str,
@@ -215,7 +215,7 @@ class DataGeneric:
 
         parser = GeneralHTMLParser(html,
                                    language,
-                                   self.justext_wrapper,
+                                   self.justext_wrapper_class,
                                    )
 
         l_data = []

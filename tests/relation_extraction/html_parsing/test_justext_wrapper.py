@@ -21,8 +21,7 @@ class TestJustTextWrapper(unittest.TestCase):
         paras_baseline = justext.justext(html, stoplist)
 
         # To test
-        wrapper = JustextWrapper()
-        paras = wrapper.justext(html, stoplist)
+        paras = JustextWrapper(html, stoplist).paragraphs
 
         with self.subTest("Same number of items"):
             self.assertEqual(len(paras_baseline), len(paras))
@@ -50,8 +49,7 @@ class TestBoldJustTextWrapper(unittest.TestCase):
         paras_baseline = justext.justext(html, stoplist)
 
         # Output to test
-        wrapper = BoldJustextWrapper()
-        paras = wrapper.justext(html, stoplist)
+        paras = BoldJustextWrapper(html, stoplist).paragraphs
 
         def _get_subtitle(paras: List[justext.core.Paragraph], subtitle_text: str) -> justext.core.Paragraph:
 
@@ -97,9 +95,9 @@ class TestBoldJustTextWrapper(unittest.TestCase):
         stoplist = justext.get_stoplist(language=_get_language_full_from_code(language_code))
 
         # Output to test
-        wrapper = BoldJustextWrapper()
+        wrapper = BoldJustextWrapper(html, stoplist)
 
-        wrapper._export_debugging(html, stoplist, FILENAME_OUT)
+        wrapper._export_debugging(FILENAME_OUT)
 
 
 class TestTitleClassificationJustextWrapper(unittest.TestCase):
@@ -117,6 +115,6 @@ class TestTitleClassificationJustextWrapper(unittest.TestCase):
 
     def test_detect_bold(self, ):
         # Output to test
-        wrapper = TitleClassificationJustextWrapper()
+        wrapper = TitleClassificationJustextWrapper(self.html, self.stoplist)
 
-        wrapper._export_debugging(self.html, self.stoplist, self.FILENAME_OUT)
+        wrapper._export_debugging(self.FILENAME_OUT)

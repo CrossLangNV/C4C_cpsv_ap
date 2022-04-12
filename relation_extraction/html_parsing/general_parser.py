@@ -1,11 +1,8 @@
-import warnings
-from typing import FrozenSet, List
+from typing import List, Type
 
-import justext
-
-from relation_extraction.html_parsing.justext_wrapper import GeneralParagraph, JustextWrapper
+from relation_extraction.html_parsing.justext_wrapper import GeneralParagraph, get_stoplist, JustextWrapper
 from relation_extraction.html_parsing.parsers import Section
-from relation_extraction.html_parsing.utils import _get_language_full_from_code, get_lxml_el_from_paragraph
+from relation_extraction.html_parsing.utils import get_lxml_el_from_paragraph
 
 
 class GeneralSection(Section):
@@ -17,53 +14,30 @@ class GeneralSection(Section):
 class GeneralHTMLParser:
     """
     After refactoring...
-    """
 
-    _stoplist: FrozenSet[str]
+    Uses Justext for html parsing
+    """
 
     def __init__(self,
                  html: str,
                  language: str,
-                 justext_wrapper: JustextWrapper = None):
+                 justext_wrapper_class: Type[JustextWrapper] = None):
         """
 
         Args:
             html: HTML as string
             language: ISO language name (e.g. English, Dutch...)
-            justext_wrapper: (Optional), JustextWrapper for paragraph extraction.
+            justext_wrapper_class: (Optional), JustextWrapper for paragraph extraction.
         """
 
         self._html = html
 
-        self.set_stoplist(language)
+        if justext_wrapper_class is None:
+            justext_wrapper_class = JustextWrapper
 
-        if justext_wrapper is None:
-            justext_wrapper = JustextWrapper()
-
-        self._justext_wrapper = justext_wrapper
-
-    def set_stoplist(self, language):
-        """
-
-        Args:
-            language: Full language name. Else language code (ISO 639-1)
-
-        Returns:
-
-        """
-        try:
-            stoplist = justext.get_stoplist(language)
-        except ValueError as e:  # Perhaps language code is given instead of language
-            warnings.warn(f"Expected full language name: \"{language}\". Trying to cast to language code instead ",
-                          UserWarning)
-            try:
-                _language = _get_language_full_from_code(language_code=language)
-            except:
-                raise e
-            else:
-                self._stoplist = justext.get_stoplist(_language)
-        else:
-            self._stoplist = stoplist
+        stoplist = get_stoplist(language)
+        self._justext_wrapper = justext_wrapper_class(html_text=self._html,
+                                                      stoplist=stoplist)
 
     def get_paragraphs(self) -> List[GeneralParagraph]:
         """
@@ -73,10 +47,7 @@ class GeneralHTMLParser:
 
         """
 
-        paragraphs = self._justext_wrapper.justext(self._html,
-                                                   self._stoplist)
-
-        return paragraphs
+        return self._justext_wrapper.paragraphs
 
     def get_sections(self) -> List[GeneralSection]:
 
@@ -113,7 +84,7 @@ class GeneralHTMLParser:
 
     @property
     def dom(self):
-        return self._justext_wrapper.get_dom_clean(self._html)
+        return self._justext_wrapper.get_dom_clean()
 
     def get_lxml_element_from_paragraph(self, paragraph: GeneralParagraph):
 
