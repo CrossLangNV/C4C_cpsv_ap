@@ -358,7 +358,7 @@ def get_stoplist(language_or_language_code) -> FrozenSet[str]:
         stoplist = justext.get_stoplist(language_or_language_code)
     except ValueError as e:  # Perhaps language code is given instead of language
         warnings.warn(
-            f"Expected full language name: \"{language_or_language_code}\". Trying to cast to language code instead ",
+            f"Expected full language name: \"{language_or_language_code}\". Trying to cast from language code instead ",
             UserWarning)
         try:
             _language = _get_language_full_from_code(language_code=language_or_language_code)

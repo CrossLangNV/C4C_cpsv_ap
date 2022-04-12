@@ -320,7 +320,7 @@ class ClassifierCityParser(CityParser):
 
         for i, (title, paragraph) in enumerate(self._paragraph_generator(s_html, include_sub=include_sub)):
             if verbose:
-                print(f"classifying paragraph {i + 1}/{n}")
+                print(f"Classifying section for relations {i + 1}/{n}")
 
             if self.classifier.predict_criterion_requirement(title, paragraph):
                 d.criterionRequirement = paragraph

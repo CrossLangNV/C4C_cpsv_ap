@@ -526,34 +526,24 @@ class TestCLISaveHTMLParsing(unittest.TestCase):
         # auto
         basename_html = "DEMO_GEN_CHUNKER.html"
         basename_rdf = "DEMO_GEN_CHUNKER.rdf"
+        basename_html_parsing = "HTML_PARSING_DEBUG.html"
+
         filename_html = os.path.join(DIR_SOURCE, "scripts", basename_html)
         url2html(url, filename_html)
 
-        # Set args
-        l_args = [
-
-            "-m", homepage,
-
-        ]
-        # Command
-        print("copy the following command")
-        print_command(l_args)
-
         if run:
-            parser = get_parser()
-            args = parser.parse_args(l_args)
-
             def path_scripts(basename):
                 return os.path.join(DIR_SOURCE, "scripts", basename)
 
             extract_cpsv_ap_from_html(filename_html=path_scripts(basename_html),
                                       filename_rdf=path_scripts(basename_rdf),
                                       extract_concepts=False,
-                                      context=args.municipality,
+                                      context=homepage,
                                       country_code=country,
                                       url=url,
                                       general=True,
-                                      lang=lang
+                                      lang=lang,
+                                      filename_html_parsing=path_scripts(basename_html_parsing)
                                       )
 
         return

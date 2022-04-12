@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import warnings
 from functools import lru_cache
 from typing import List
 
@@ -390,7 +391,16 @@ class GeneralCityParser(ClassifierCityParser):
 
     def __init__(self,
                  lang_code: str,
-                 parser_model: ParserModel = None):
+                 parser_model: ParserModel = None,
+                 filename_html_parsing: str = None):
+        """
+
+        Args:
+            lang_code:
+            parser_model:
+            filename_html_parsing (Optional): filename to where to save html parsing
+        """
+
         classifier = GeneralClassifier(lang=lang_code)
 
         super(GeneralCityParser, self).__init__(classifier=classifier)
@@ -402,6 +412,8 @@ class GeneralCityParser(ClassifierCityParser):
         if parser_model is None:
             parser_model = ParserModel(titles=ParserModel.titlesChoices.text_classifier)
         self.parser_model = parser_model
+
+        self._filename_html_parsing = filename_html_parsing
 
     def extract_relations(self, s_html, *args, include_sub=True, **kwargs):
         """
@@ -423,13 +435,20 @@ class GeneralCityParser(ClassifierCityParser):
     @lru_cache(maxsize=1)
     def parse_page(self,
                    s_html,
-                   include_sub: bool = True
+                   include_sub: bool = True,
                    ) -> List[GeneralSection]:
-        justext_wrapper = self.parser_model.get_justext_wrapper_class()
+        justext_wrapper_class = self.parser_model.get_justext_wrapper_class()
         html_parser = GeneralHTMLParser(s_html,
                                         language=self.lang_code,
-                                        justext_wrapper_class=justext_wrapper
+                                        justext_wrapper_class=justext_wrapper_class
                                         )
+
+        if (filename_html_parsing := self._filename_html_parsing) is not None:
+            try:
+                html_parser._justext_wrapper._export_debugging(filename_html_parsing)
+            except Exception as e:
+                warnings.warn(f"Tried to export HTML parsing result to {filename_html_parsing}, but failed",
+                              UserWarning)
 
         sections = html_parser.get_sections()
 

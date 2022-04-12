@@ -114,7 +114,11 @@ def extract_cpsv_ap_from_html(filename_html,
         raise FileNotFoundError(f"Could not find HTML file: {filename_html}") from e
 
     if general:
-        city_parser = GeneralCityParser(lang_code=lang)
+        city_parser = GeneralCityParser(lang_code=lang,
+                                        filename_html_parsing=filename_html_parsing)
+
+
+
     else:
         city_parser = get_municipality_parser(country_code=country_code,
                                               url=url)
