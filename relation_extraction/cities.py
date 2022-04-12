@@ -10,22 +10,47 @@ from typing import Generator, List, Optional, Tuple, Union
 from bs4 import BeautifulSoup, Tag
 from pydantic import BaseModel
 
-from c4c_cpsv_ap.models import BusinessEvent, Event, LifeEvent
+from c4c_cpsv_ap.models import BusinessEvent, Event, Info, LifeEvent
 from relation_extraction.html_parsing.parsers import Section
 from relation_extraction.utils import clean_text
 
 
 class Relations(BaseModel):
-    criterionRequirement: Optional[str]
-    rule: Optional[str]
-    evidence: Optional[str]
-    cost: Optional[str]
+    # TODO add explicit classes
+    criterionRequirements: List[Info] = []
+    rules: List[Info] = []
+    evidences: List[Info] = []
+    costs: List[Info] = []
 
     # Event
     events: Optional[List[Event]]
 
     # life_event: Optional[List[Event]]
     # business_event: Optional[List[Event]]
+
+    def get_criterion_requirements(self) -> List[Info]:
+        return self.criterionRequirements
+
+    def get_rules(self) -> List[Info]:
+        return self.rules
+
+    def get_evidence(self) -> List[Info]:
+        return self.evidences
+
+    def get_cost(self) -> List[Info]:
+        return self.costs
+
+    def add_criterion_requirement(self, info: Info):
+        self.criterionRequirements.append(info)
+
+    def add_rule(self, info: Info):
+        self.rules.append(info)
+
+    def add_evidence(self, info: Info):
+        self.evidences.append(info)
+
+    def add_cost(self, info: Info):
+        self.costs.append(info)
 
     def get_events(self) -> List[Event]:
         return self.events
@@ -322,17 +347,20 @@ class ClassifierCityParser(CityParser):
             if verbose:
                 print(f"Classifying section for relations {i + 1}/{n}")
 
+            info = Info(name=title,
+                        description=paragraph)
+
             if self.classifier.predict_criterion_requirement(title, paragraph):
-                d.criterionRequirement = paragraph
+                d.add_criterion_requirement(info)
 
             if self.classifier.predict_rule(title, paragraph):
-                d.rule = paragraph
+                d.add_rule(info)
 
             if self.classifier.predict_evidence(title, paragraph):
-                d.evidence = paragraph
+                d.add_evidence(info)
 
             if self.classifier.predict_cost(title, paragraph):
-                d.cost = paragraph
+                d.add_cost(info)
 
         return d
 

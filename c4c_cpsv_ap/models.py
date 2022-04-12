@@ -36,13 +36,18 @@ class CPSVAPModel(abc.ABC, BaseModel):
         return URIRef(self.identifier, base=base)
 
 
-class Event(CPSVAPModel, abc.ABC):
+class Info(BaseModel):
+    # Title and paragraph text
+    name: str
+    description: Optional[str]
+
+
+class Event(CPSVAPModel, Info, abc.ABC):
     """
     Event
     """
 
     identifier: str
-    name: str
 
     description: Optional[str] = None
     type: Optional[int] = None
@@ -91,25 +96,18 @@ class Cost(CPSVAPModel):
     value: Optional[float]
 
 
-class CriterionRequirement(CPSVAPModel):
+class CriterionRequirement(CPSVAPModel, Info):
     """
     CPSV-AP Criterion Requirement
     """
     identifier: str
-    name: str
     # Code [0..n] TODO find definition
     type: List[Code]
 
-    # Optional:
-    description: Optional[str]
 
-
-class Evidence(CPSVAPModel):
+class Evidence(CPSVAPModel, Info):
     identifier: str
-    name: str
 
-    # -- Optional --
-    description: Optional[str]
     # Linguistic system
     language: Optional[List[str]]
     # Document
