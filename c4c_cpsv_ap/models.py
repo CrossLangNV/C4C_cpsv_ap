@@ -14,6 +14,21 @@ from rdflib import URIRef
 from c4c_cpsv_ap.namespace import C4C
 
 
+class lang_str(str):
+    """
+    Mock of an RDF literal. Can be string or string with language information.
+    """
+
+    def __new__(cls, value: str, language_code=None):
+        obj = super().__new__(cls, value)
+        obj._language_code = language_code
+        return obj
+
+    @property
+    def language_code(self):
+        return self._language_code
+
+
 class CPSVAPModel(abc.ABC, BaseModel):
     """
     Abstract class for the RDF object models.
@@ -38,8 +53,19 @@ class CPSVAPModel(abc.ABC, BaseModel):
 
 class Info(BaseModel):
     # Title and paragraph text
-    name: str
-    description: Optional[str]
+    name: Union[lang_str, List[lang_str]]
+    description: Optional[Union[lang_str, List[lang_str]]]
+
+    @validator("name", "description", pre=True, check_fields=False)
+    def cast_from_string(cls, value: Union[str, lang_str, List[lang_str]]) -> Union[lang_str, List[lang_str]]:
+        """
+        If a string is given, cast
+        """
+
+        if isinstance(value, str):
+            return lang_str(value)
+
+        return value
 
 
 class Event(CPSVAPModel, Info, abc.ABC):
