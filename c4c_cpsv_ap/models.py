@@ -27,7 +27,7 @@ class CPSVAPModel(abc.ABC, BaseModel):
         Automatically generates an ID if not provided.
         """
         if not v:
-            return cls.__name__ + _id_generator()
+            return f"{cls.__name__}_{_id_generator()}"
 
         return v
 
