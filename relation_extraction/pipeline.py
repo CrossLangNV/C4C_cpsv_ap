@@ -1,6 +1,15 @@
+import os
+import time
+
+from rdflib import Literal
+
 from c4c_cpsv_ap.models import Cost, CriterionRequirement, Evidence, Rule
+from connectors.translation import ETranslationConnector
 from relation_extraction.cities import CityParser
 from relation_extraction.methods import RelationExtractor
+
+CEF_LOGIN = os.environ.get("CEF_LOGIN")
+CEF_PASSW = os.environ.get("CEF_PASSW")
 
 
 class RelationExtractor2(RelationExtractor):
@@ -109,3 +118,50 @@ class RelationExtractor2(RelationExtractor):
                 self.provider.public_services.add_event(uri_ps=ps.get_uri(),
                                                         uri_event=uri_event,
                                                         context=self.context)
+
+    def translate(self, target: str, source: str):
+        """
+
+        Args:
+            target: Language code
+            source: Language code
+
+        Returns:
+
+        """
+
+        # Go over all Literals
+
+        # Translate
+
+        # Add to
+
+        print("Translating labels - Start")
+        t0 = time.time()
+
+        g = self.provider.graph
+
+        l_to_translate = []
+
+        for s, p, o, c in g.quads():
+            # Check one by one.
+            if isinstance(o, Literal) and o.language and (o.language.upper() == source.upper()):
+                # if o.language.upper() == source.upper():
+                l_to_translate.append((s, p, o, c))
+
+        translator = ETranslationConnector(username=CEF_LOGIN,
+                                           password=CEF_PASSW)
+
+        l_text_source = [str(o) for s, p, o, c in l_to_translate]
+        l_text_target = translator.trans_list_blocking(l_text_source,
+                                                       target=target,
+                                                       source=source)
+
+        for (s, p, _, c), text_trans in zip(l_to_translate, l_text_target):
+            quad_trans = (s, p, Literal(text_trans, lang=target), c)
+            g.add(quad_trans)
+
+        t1 = time.time()
+        print(f"Translating labels - End ({t1 - t0:.2f} s)")
+
+        return

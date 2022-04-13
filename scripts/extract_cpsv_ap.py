@@ -134,6 +134,8 @@ def extract_cpsv_ap_from_html(filename_html,
     relation_extractor.extract_all(extract_concepts=extract_concepts,
                                    verbose=2)
 
+    relation_extractor.translate("EN", source=lang)
+
     print("Success")
 
     # -- Save to RDF --
