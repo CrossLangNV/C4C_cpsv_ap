@@ -29,6 +29,7 @@ services:
       - URL_ORION=http://orion:1026
     depends_on:
       - relations_classifier_bert_api_cpu
+      - title_classifier
 
   mongo-db:
     image: mongo:4.4

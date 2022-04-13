@@ -158,7 +158,10 @@ class RelationExtractor:
         Export to RDF
         """
 
-        print(self.provider.graph.serialize(destination))
+        s = self.provider.graph.serialize(destination)
+
+        if destination is None:
+            print(s)
 
 
 def get_public_service_name(html: str) -> str:

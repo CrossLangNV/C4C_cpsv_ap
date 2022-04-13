@@ -7,34 +7,47 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule26932f49cfa2479e9f64e8848509e1eb">
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>Rule26932f49cfa2479e9f64e8848509e1eb</dct:identifier>
-    <dct:description>Je kan de adreswijziging online melden via het digitaal loket van
-jouw (nieuwe) gemeente.
-Je kan langsgaan bij de dienst Burgerzaken van jouw (nieuwe)
-gemeente.</dct:description>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServiceece4afcc4ad7460d816cbb0aa905a1fb">
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationf6bc154bd8ed42799d4abee33784f3a5"/>
-    <dct:description></dct:description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService_f09940da86dd4a1e844ad64b4e03c4d8">
     <dct:title>
     Aangifte van een adreswijziging - Gemeente Aalter
   </dct:title>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint83f73683fb6c40e8a147f87c4a2107a0"/>
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule26932f49cfa2479e9f64e8848509e1eb"/>
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidenceb43547dd87aa4bc8af8e19434a625b97"/>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costd57aba4f7a6a42dda50995ca5f1ac109"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule_6e9be496a1784b2786bfc4ec10e5ef92"/>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence_bded9b88e2d445bbbd9d11e786a23b16"/>
+    <dct:description></dct:description>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost_ef2a56d6fda44170bfb8ab85980351fa"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint7709d3a3c166462bb029f855c4588b8d"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement_3ec5b933ad32450584ffb459fed8284f"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationdcc21d23e10a44c6a1bf50160cc41ab7"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule_bcb1c7b3c2104463a99f69bf6f8754cc"/>
+    <dct:identifier>PublicService_f09940da86dd4a1e844ad64b4e03c4d8</dct:identifier>
     <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <dct:identifier>PublicServiceece4afcc4ad7460d816cbb0aa905a1fb</dct:identifier>
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirementb95268b9c1dc455c9bd39d4dff04afb0"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirementb95268b9c1dc455c9bd39d4dff04afb0">
-    <dct:identifier>CriterionRequirementb95268b9c1dc455c9bd39d4dff04afb0</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:description>Iedereen die 18 jaar of ouder is, mag zelf de verhuizing doorgeven.
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint7709d3a3c166462bb029f855c4588b8d">
+    <schema:telephone>09 325 22 40</schema:telephone>
+    <schema:email>eerste.lijn@aalter.be</schema:email>
+    <schema:telephone>www.aalter.be/afspraak
+of tel. 09 325 22 00.</schema:telephone>
+    <schema:email>gemeente@aalter.be</schema:email>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:telephone>09 325 22 00</schema:telephone>
+    <schema:email>burgerzaken@aalter.be</schema:email>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence_bded9b88e2d445bbbd9d11e786a23b16">
+    <dct:description xml:lang="NL">Elektronische identiteitskaart van alle gezinsleden.
+Pincode om de chip te updaten.</dct:description>
+    <dct:identifier>Evidence_bded9b88e2d445bbbd9d11e786a23b16</dct:identifier>
+    <dct:title xml:lang="NL">Wat meebrengen?</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationdcc21d23e10a44c6a1bf50160cc41ab7">
+    <dct:spatial rdf:resource="www.aalter.be"/>
+    <cv:hasAddress rdf:nodeID="N19887d7d7c8847a994d2f264bbaf3c58"/>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement_3ec5b933ad32450584ffb459fed8284f">
+    <dct:identifier>CriterionRequirement_3ec5b933ad32450584ffb459fed8284f</dct:identifier>
+    <dct:description xml:lang="NL">Iedereen die 18 jaar of ouder is, mag zelf de verhuizing doorgeven.
 Ouders of voogden geven de verhuizing van hun minderjarige kinderen
 door.
 Meerderjarige gezinsleden mogen jouw verhuizing doorgeven. Ze hebben
@@ -44,44 +57,39 @@ Als een niet-ontvoogde minderjarige de verblijfplaats van zijn
 ouders voor het eerst verlaat om zijn hoofdverblijf elders te
 vestigen, moet hij vergezeld zijn door iemand die het ouderlijke
 gezag uitoefent.</dct:description>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:title xml:lang="NL">Voorwaarden</dct:title>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationf6bc154bd8ed42799d4abee33784f3a5">
-    <skos:prefLabel># TODO</skos:prefLabel>
-    <dct:spatial rdf:resource="www.aalter.be"/>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <cv:hasAddress rdf:nodeID="N52ac2b6db8fe4e5ebcae98d5e101f8b1"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule_6e9be496a1784b2786bfc4ec10e5ef92">
+    <dct:identifier>Rule_6e9be496a1784b2786bfc4ec10e5ef92</dct:identifier>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:title xml:lang="NL">Hoe melden?</dct:title>
+    <dct:description xml:lang="NL">Je kan de adreswijziging online melden via het digitaal loket van
+jouw (nieuwe) gemeente.
+Je kan langsgaan bij de dienst Burgerzaken van jouw (nieuwe)
+gemeente.</dct:description>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint83f73683fb6c40e8a147f87c4a2107a0">
-    <schema:email>gemeente@aalter.be</schema:email>
-    <schema:email>burgerzaken@aalter.be</schema:email>
-    <schema:telephone>09 325 22 00</schema:telephone>
-    <schema:telephone>09 325 22 40</schema:telephone>
-    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:email>eerste.lijn@aalter.be</schema:email>
-    <schema:telephone>www.aalter.be/afspraak
-of tel. 09 325 22 00.</schema:telephone>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costd57aba4f7a6a42dda50995ca5f1ac109">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:identifier>Costd57aba4f7a6a42dda50995ca5f1ac109</dct:identifier>
-    <dct:description>Gratis.</dct:description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule_bcb1c7b3c2104463a99f69bf6f8754cc">
+    <dct:identifier>Rule_bcb1c7b3c2104463a99f69bf6f8754cc</dct:identifier>
+    <dct:description></dct:description>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:title xml:lang="NL">Waarmee kunnen we je helpen?</dct:title>
   </rdf:Description>
   <rdf:Description rdf:about="www.aalter.be">
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidenceb43547dd87aa4bc8af8e19434a625b97">
-    <dct:identifier>Evidenceb43547dd87aa4bc8af8e19434a625b97</dct:identifier>
-    <dct:title>DEFAULT NAME</dct:title>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
-    <dct:description>Elektronische identiteitskaart van alle gezinsleden.
-Pincode om de chip te updaten.</dct:description>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="N52ac2b6db8fe4e5ebcae98d5e101f8b1">
+  <rdf:Description rdf:nodeID="N19887d7d7c8847a994d2f264bbaf3c58">
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
-    <skos:prefLabel>09 325 22 40
-De Plaats 14
-09 325 22 00
+    <skos:prefLabel>De Plaats 14
 www.aalter.be/afspraak
-of tel. 09 325 22 00.</skos:prefLabel>
+of tel. 09 325 22 00.
+09 325 22 40
+09 325 22 00</skos:prefLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost_ef2a56d6fda44170bfb8ab85980351fa">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:identifier>Cost_ef2a56d6fda44170bfb8ab85980351fa</dct:identifier>
+    <dct:description xml:lang="NL">Elektronische identiteitskaart van alle gezinsleden.
+Pincode om de chip te updaten.</dct:description>
   </rdf:Description>
 </rdf:RDF>

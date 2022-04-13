@@ -38,9 +38,18 @@ class RelationExtractor2(RelationExtractor):
         if verbose:
             print("Relation extraction req/rule/evidence/cost - Finish")
 
+        def add_lang2info(info):
+            info.name.language_code = self.lang_code
+
+            # Add language info
+            if info.description:
+                info.description.language_code = self.lang_code
+
         if d_relations.criterionRequirements:
 
             for info in d_relations.criterionRequirements:
+                add_lang2info(info)
+
                 crit_req = CriterionRequirement(**info.dict(),
                                                 identifier=None,
                                                 type=[],
@@ -54,6 +63,8 @@ class RelationExtractor2(RelationExtractor):
         if d_relations.rules:
 
             for info in d_relations.rules:
+                add_lang2info(info)
+
                 rule = Rule(**info.dict(),
                             identifier=None,
                             )
@@ -66,6 +77,8 @@ class RelationExtractor2(RelationExtractor):
         if d_relations.evidences:
 
             for info in d_relations.evidences:
+                add_lang2info(info)
+
                 evidence = Evidence(**info.dict(),
                                     identifier=None,
                                     )
@@ -77,6 +90,8 @@ class RelationExtractor2(RelationExtractor):
 
         if d_relations.costs:
             for info in d_relations.evidences:
+                add_lang2info(info)
+
                 cost = Cost(**info.dict(),
                             identifier=None,
                             )

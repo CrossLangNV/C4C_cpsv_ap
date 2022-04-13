@@ -28,6 +28,11 @@ class lang_str(str):
     def language_code(self):
         return self._language_code
 
+    @language_code.setter
+    def language_code(self, value):
+        # TODO check that it matches an existing language code
+        self._language_code = value
+
 
 class CPSVAPModel(abc.ABC, BaseModel):
     """
@@ -62,7 +67,7 @@ class Info(BaseModel):
         If a string is given, cast
         """
 
-        if isinstance(value, str):
+        if not isinstance(value, (lang_str, list)):
             return lang_str(value)
 
         return value
