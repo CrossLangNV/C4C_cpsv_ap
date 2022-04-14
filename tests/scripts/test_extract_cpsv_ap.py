@@ -475,7 +475,11 @@ class TestCLIGeneralChunker(unittest.TestCase):
         # auto
         basename_html = "DEMO_GEN_CHUNKER.html"
         basename_rdf = "DEMO_GEN_CHUNKER.rdf"
-        filename_html = os.path.join(DIR_SOURCE, "scripts", basename_html)
+
+        def path_scripts(basename):
+            return os.path.join(DIR_SOURCE, "scripts/EXAMPLES", basename)
+
+        filename_html = path_scripts(basename_html)
         url2html(url, filename_html)
 
         # Set args
@@ -494,9 +498,6 @@ class TestCLIGeneralChunker(unittest.TestCase):
         if run:
             parser = get_parser()
             args = parser.parse_args(l_args)
-
-            def path_scripts(basename):
-                return os.path.join(DIR_SOURCE, "scripts", basename)
 
             extract_cpsv_ap_from_html(filename_html=path_scripts(args.path),
                                       filename_rdf=path_scripts(args.output),
@@ -529,13 +530,13 @@ class TestCLISaveHTMLParsing(unittest.TestCase):
         basename_rdf = "DEMO_GEN_CHUNKER.rdf"
         basename_html_parsing = "HTML_PARSING_DEBUG.html"
 
-        filename_html = os.path.join(DIR_SOURCE, "scripts", basename_html)
+        def path_scripts(basename):
+            return os.path.join(DIR_SOURCE, "scripts/EXAMPLES", basename)
+
+        filename_html = path_scripts(basename_html)
         url2html(url, filename_html)
 
         if run:
-            def path_scripts(basename):
-                return os.path.join(DIR_SOURCE, "scripts", basename)
-
             extract_cpsv_ap_from_html(filename_html=path_scripts(basename_html),
                                       filename_rdf=path_scripts(basename_rdf),
                                       extract_concepts=False,
