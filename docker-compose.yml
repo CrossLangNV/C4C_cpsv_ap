@@ -93,3 +93,34 @@ services:
       - "./src/BERT_classifier:/work/BERT_classifier"
     networks:
       c4cnet:
+
+  fuseki:
+    # In ro-rdf API set endpoint to http://fuseki:3030/<dataset>
+    # in order to connect to this dataset
+    container_name: fuseki
+    build:
+      context: ./fuseki
+    #    image: stain/jena-fuseki
+    # Fix database problem (https://github.com/stain/jena-docker/issues/34#issuecomment-846905725)
+    ports:
+      - 7630:3030
+    volumes:
+      - fuseki-data:/fuseki
+    environment:
+      - ADMIN_PASSWORD=$FUSEKI_PASS
+      - FUSEKI_BASE=/fuseki
+      - JVM_ARGS=-Xmx3g
+      - FUSEKI_DATASET_1=CEFAT4Cities # Creates empty dataset
+    networks:
+      - c4cnet
+
+    depends_on:
+      - fuseki-data
+
+  fuseki-data:
+    image: busybox
+    volumes:
+      - /fuseki #<container_name>:<mount_point>
+
+volumes:
+  fuseki-data:
