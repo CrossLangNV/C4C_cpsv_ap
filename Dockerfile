@@ -19,5 +19,3 @@ RUN pip3 install git+https://github.com/CrossLangNV/DGFISMA_RDF.git@fb9e840b200d
 #ARG GIT_TOKEN
 #RUN git clone https://${GIT_TOKEN}@github.com/CrossLangNV/C4C_term_extraction.git
 ENV PYTHONPATH "${PYTHONPATH}:/app"
-
-CMD ["bash"]

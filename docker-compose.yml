@@ -29,6 +29,7 @@ services:
       - URL_ORION=http://orion:1026
     depends_on:
       - relations_classifier_bert_api_cpu
+      - title_classifier
 
   mongo-db:
     image: mongo:4.4
@@ -71,8 +72,23 @@ services:
       dockerfile: app/Dockerfile
       args:
         - MODEL_DIR=MODELS/epoch_35_Mon_Mar_21_142602_2022_d5fa026ea92211ec98150242ac120002
+    command: uvicorn BERT_classifier.app.main:app --host 0.0.0.0 --port 5000
     ports:
       - "7690:5000"
+    volumes:
+      - "./src/BERT_classifier:/work/BERT_classifier"
+    networks:
+      c4cnet:
+
+  title_classifier:
+    build:
+      context: ./src/BERT_classifier
+      dockerfile: app/Dockerfile
+      args:
+        - MODEL_DIR=MODELS/title_classifier_epoch_39_Sat_Apr_9_05u50m40s_2022
+    command: uvicorn BERT_classifier.app.main:app --host 0.0.0.0 --port 5000
+    ports:
+      - "7692:5000"
     volumes:
       - "./src/BERT_classifier:/work/BERT_classifier"
     networks:

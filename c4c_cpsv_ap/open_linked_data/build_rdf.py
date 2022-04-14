@@ -1,9 +1,8 @@
 from rdflib.graph import Graph
-from rdflib.namespace import RDF, Namespace, DCAT, DCTERMS, SKOS
-from rdflib.term import Literal, URIRef
-from rdflib.term import _serial_number_generator
+from rdflib.namespace import DCAT, DCTERMS, Namespace, RDF, SKOS
+from rdflib.term import _serial_number_generator, Literal, URIRef
 
-from c4c_cpsv_ap.open_linked_data.node import PublicService, ContactPoint, PublicOrganisation
+from c4c_cpsv_ap.open_linked_data.node import ContactPoint, PublicOrganisation, PublicService
 
 CPSV = Namespace("http://purl.org/vocab/cpsv#")
 CV = Namespace("http://data.europa.eu/m8g/")
@@ -95,7 +94,7 @@ class CPSV_APGraph(Graph):
         loc_uri = URIRef(public_organisation.get_spatial())
 
         q = """
-        
+
         """
 
         t_label = [None, SKOS.prefLabel, Literal(label)]
@@ -167,11 +166,11 @@ class CPSV_APGraph(Graph):
         q = """
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-        
+
         SELECT ?subject
         WHERE {{
             ?subject rdf:type skos:Concept ;
-                skos:prefLabel "{term}" .  
+                skos:prefLabel "{term}" .
         }}
         """
 

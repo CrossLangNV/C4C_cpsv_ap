@@ -30,21 +30,18 @@ def main(filename: str,
 
     DEFAULT_NAME = "DEFAULT NAME"
 
-    crit_req = CriterionRequirement(identifier=None,
-                                    name=DEFAULT_NAME,
+    crit_req = CriterionRequirement(**d_relations.criterionRequirements[0].dict(),
+                                    identifier=None,
                                     type=[],
-                                    description=d_relations.criterionRequirement
                                     )
-    rule = Rule(identifier=None,
-                description=d_relations.rule,
-                name=DEFAULT_NAME
+    rule = Rule(**d_relations.rules[0].dict(),
+                identifier=None,
                 )
-    evidence = Evidence(identifier=None,
-                        name=DEFAULT_NAME,
-                        description=d_relations.evidence
+    evidence = Evidence(**d_relations.evidences[0].dict(),
+                        identifier=None,
                         )
-    cost = Cost(identifier=None,
-                description=d_relations.cost
+    cost = Cost(**d_relations.costs[0].dict(),
+                identifier=None,
                 )
 
     events = d_relations.events

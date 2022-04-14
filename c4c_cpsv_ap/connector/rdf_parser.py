@@ -1,8 +1,8 @@
-from typing import List, Dict
+from typing import Dict, List
 
-from SPARQLWrapper.Wrapper import JSON, SPARQLWrapper, GET
 from rdflib import Namespace
-from rdflib.term import Literal, URIRef, Identifier
+from rdflib.term import Identifier, Literal, URIRef
+from SPARQLWrapper.Wrapper import GET, JSON, SPARQLWrapper
 
 TYPE_PUBLICSERVICE = Namespace('http://purl.org/vocab/cpsv#').PublicService
 
@@ -66,7 +66,7 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
         """
 
         q_filter = f"""
-        values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }} 
+        values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
         """ if graph_uri is not None else ''
 
         q = f"""
@@ -96,24 +96,24 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
 
     def get_relations(self):
         """ Find the different types of entities for the dropdown menus.
-        
-        :return: 
+
+        :return:
         """
 
         q = f"""
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX cpsv: <http://purl.org/vocab/cpsv#>
             PREFIX terms: <http://purl.org/dc/terms/>
-    
+
             SELECT distinct ?{PRED}
-            WHERE {{ 
+            WHERE {{
                 Graph ?graph {{
                     ?uri rdf:type <http://purl.org/vocab/cpsv#PublicService> ;
                         ?{PRED} ?object .
                     ?object a ?type	. # Filters Literals
                 }}
             }}
-            
+
             ORDER BY ?{PRED}
         """
 
@@ -127,15 +127,15 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
             PREFIX terms: <http://purl.org/dc/terms/>
 
             SELECT distinct ?{PRED}
-            WHERE {{ 
-                
+            WHERE {{
+
                 Graph ?graph {{
                     ?uri rdf:type <http://purl.org/vocab/cpsv#PublicService> .
                       ?object ?{PRED} ?uri .
                     ?object a ?type	. # Filters Literals
                 }}
             }}
-            
+
             ORDER BY ?{PRED}
         """
 
@@ -165,7 +165,7 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
                        {has_uri.n3()} ?{URI} .
                 }}
             }}
-            
+
             ORDER BY ?{URI}
         """
 
@@ -216,7 +216,7 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
                     ?{URI} skos:prefLabel ?{LABEL}
                 }}
             }}
-            
+
             ORDER BY ?{LABEL} ?{URI}
         """
 
@@ -250,7 +250,7 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
                     ?{URI} skos:prefLabel ?{LABEL}
                 }}
             }}
-            
+
             ORDER BY ?{LABEL} ?{URI}
         """
 
@@ -327,12 +327,12 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
             PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
             PREFIX cv: <http://data.europa.eu/m8g/>
             PREFIX dcat: <http://www.w3.org/ns/dcat#>
-            
+
             SELECT distinct ?{URI}
             WHERE {{
                 Graph ?graph {{
                     ?{URI} a cpsv:PublicService .
-                                   
+
                     OPTIONAL{{
                         ?{URI} cpsv:isClassifiedBy ?uri_c .
                         ?uri_c skos:prefLabel ?{VALUE_C} .
@@ -368,9 +368,9 @@ class SPARQLPublicServicesProvider(SPARQLConnector):
             PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
             PREFIX cpsv: <http://purl.org/vocab/cpsv#>
             PREFIX terms: <http://purl.org/dc/terms/>
-    
+
             SELECT distinct ?pred ?pred_link
-            WHERE { 
+            WHERE {
                 Graph ?graph {
                     ?uri rdf:type <http://purl.org/vocab/cpsv#PublicService> ;
                         ?pred ?object .
@@ -394,7 +394,7 @@ class SPARQLContactPointProvider(SPARQLConnector):
 
         q = f"""
             PREFIX dcat: <http://www.w3.org/ns/dcat#>
-            
+
             SELECT distinct ?{URI}
             WHERE {{
                 Graph ?graph {{
@@ -422,12 +422,12 @@ class SPARQLContactPointProvider(SPARQLConnector):
 
         q_cp_as_sub = f"""
             PREFIX dcat: <http://www.w3.org/ns/dcat#>
-            
+
             SELECT distinct ?{URI} ?{PRED} ?{OBJ}
             WHERE {{
                 Graph ?graph {{
                     Values ?{URI} {{ {uri.n3()} }}
-                    ?{URI} a dcat:ContactPoint .      
+                    ?{URI} a dcat:ContactPoint .
                     ?{URI} ?{PRED} ?{OBJ}
                 }}
             }}
@@ -436,12 +436,12 @@ class SPARQLContactPointProvider(SPARQLConnector):
 
         q_cp_as_obj = f"""
             PREFIX dcat: <http://www.w3.org/ns/dcat#>
-            
+
             SELECT distinct ?{SUBJ} ?{PRED} ?{URI}
             WHERE {{
                 Graph ?graph {{
                     Values ?{URI} {{ {uri.n3()} }}
-                    ?{URI} a dcat:ContactPoint .      
+                    ?{URI} a dcat:ContactPoint .
                     ?{SUBJ} ?{PRED} ?{URI} .
                 }}
             }}
@@ -470,7 +470,7 @@ class SPARQLContactPointProvider(SPARQLConnector):
             SELECT distinct ?{URI} ?{LABEL}
             WHERE {{
                 Graph ?graph {{
-                    ?uri_cp a dcat:ContactPoint .      
+                    ?uri_cp a dcat:ContactPoint .
                     ?{URI} {has_uri.n3()} ?uri_cp .
     				OPTIONAL{{
                     	?{URI} <http://purl.org/dc/terms/title> ?{LABEL}

@@ -38,5 +38,3 @@ COPY $MODEL_DIR/config.json /tmp/app_model/
 COPY $MODEL_DIR/vocab.txt /tmp/app_model/
 
 ENV PYTHONPATH "${PYTHONPATH}:/work"
-
-CMD ["uvicorn", "BERT_classifier.app.main:app", "--host", "0.0.0.0", "--port", "5000"]

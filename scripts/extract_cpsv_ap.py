@@ -1,6 +1,7 @@
 import argparse
 import os.path
 import warnings
+from typing import List, Union
 
 from data.html import get_html
 from relation_extraction.aalter import AalterParser
@@ -75,29 +76,45 @@ def get_parser():
     return parser
 
 
-def main(filename_html,
-         filename_rdf,
-         context,
-         country_code: str,
-         lang,  # Only needed when using general
-         url: str = None,
-         extract_concepts: bool = False,
-         general: bool = False,
-         ):
+def extract_cpsv_ap_from_html(filename_html,
+                              filename_rdf,
+                              context,
+                              country_code: str,
+                              lang: str,  # Only needed when using general
+                              url: str = None,
+                              extract_concepts: bool = False,
+                              general: bool = False,
+                              filename_html_parsing: str = None,
+                              translation: Union[str, List[str]] = "EN"
+                              ):
     """
     Extract the administrative procedure ontology out of a html page,
     as defined by the CPSV-AP vocabulary.
 
     Input
-        - HTML
-        - general:
+        - filename_html: Filename of the HTML
+        - context: URL of the homepage of the municipality
+        - general (optional):
             flag whether to use the general classifier.
+        - filename_html_parsing (optional):
+            filename to save intermediate HTML parsing to. Marks detected headings and boilerplate text.
+
     Output
-        - RDF (based on CPSV-AP)
+        - RDF (based on CPSV-AP) saved to *filename_rdf*
 
     Returns:
-
+        0 if successful
     """
+
+    # Cleaning input
+    if lang is not None:
+        lang = lang.upper()
+
+    if translation is not None:
+        if isinstance(translation, str):
+            translation = translation.upper()
+        else:
+            translation = [l_i.upper() for l_i in translation]
 
     if not os.path.exists(filename_html):
         warnings.warn(f"Could not find {filename_html}", UserWarning)
@@ -109,7 +126,9 @@ def main(filename_html,
         raise FileNotFoundError(f"Could not find HTML file: {filename_html}") from e
 
     if general:
-        city_parser = GeneralCityParser(lang=lang)
+        city_parser = GeneralCityParser(lang_code=lang,
+                                        filename_html_parsing=filename_html_parsing)
+
     else:
         city_parser = get_municipality_parser(country_code=country_code,
                                               url=url)
@@ -119,10 +138,13 @@ def main(filename_html,
                                             url=url,
                                             context=context,
                                             country_code=country_code,
+                                            lang_code=lang
                                             )
 
     relation_extractor.extract_all(extract_concepts=extract_concepts,
                                    verbose=2)
+
+    relation_extractor.translate(translation, source=lang)
 
     print("Success")
 
@@ -135,7 +157,19 @@ def main(filename_html,
     return 0
 
 
-# TODO use general parser or be able specify a parser by name instead of rule-based selection.
+def main(args: argparse.Namespace):
+    """Run the script from args"""
+    return extract_cpsv_ap_from_html(filename_html=args.path,
+                                     filename_rdf=args.output,
+                                     extract_concepts=args.terms,
+                                     context=args.municipality,
+                                     country_code=args.country,
+                                     url=args.url,
+                                     general=args.general,
+                                     lang=args.language
+                                     )
+
+
 def get_municipality_parser(country_code: str = "",
                             url: str = ""
                             ) -> CityParser:
@@ -161,12 +195,4 @@ if __name__ == '__main__':
     parser = get_parser()
     args = parser.parse_args()
 
-    main(filename_html=args.path,
-         filename_rdf=args.output,
-         extract_concepts=args.terms,
-         context=args.municipality,
-         country_code=args.country,
-         url=args.url,
-         general=args.general,
-         lang=args.language
-         )
+    main(args)

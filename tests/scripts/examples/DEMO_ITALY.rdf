@@ -6,58 +6,58 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint0940e7b1af624300bd0d2233531c66dd">
-    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:telephone>Comune di San Paolo - Partita IVA dell'amministrazione: 00627690985 - PEC:
-comune.sanpaolo@pec.regione.lombardia.it</schema:telephone>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationf811968291b44cb899faa80baef6d192">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <dct:spatial rdf:resource="www.comune.sanpaolo.bs.it"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <cv:hasAddress rdf:nodeID="N5dd0533661db4d2cbcae9e940fad0acc"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costb41da94ddb1540d3bcee00fab4dd5283">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:identifier>Costb41da94ddb1540d3bcee00fab4dd5283</dct:identifier>
+    <dct:description>La presentazione della pratica non prevede alcun pagamento</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="www.comune.sanpaolo.bs.it">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService6aadea1136c146098a0f8a284384ea5a">
+    <dct:description></dct:description>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costb41da94ddb1540d3bcee00fab4dd5283"/>
+    <dct:title>
+    Trasferimento della residenza all'estero | Sportello Telematico Unificato
+  </dct:title>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationf811968291b44cb899faa80baef6d192"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <dct:identifier>PublicService6aadea1136c146098a0f8a284384ea5a</dct:identifier>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointb457043c2fbc445b81f155472fa54025"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointb457043c2fbc445b81f155472fa54025">
     <schema:email>ragioneria@comune.sanpaolo.bs.it</schema:email>
-    <schema:email>Comune di San Paolo - Partita IVA dell'amministrazione: 00627690985 - PEC:
-comune.sanpaolo@pec.regione.lombardia.it</schema:email>
-    <schema:email>Piazza Aldo Moro, 27
-25020 San Paolo (BS)
-0309970001
-comune.sanpaolo@pec.regione.lombardia.it
-servizidemografici@comune.sanpaolo.bs.it
-anagrafe@comune.sanpaolo.bs.it</schema:email>
     <schema:telephone>Piazza Aldo Moro, 27
 25020 San Paolo (BS)
 0309970001
 comune.sanpaolo@pec.regione.lombardia.it
 servizidemografici@comune.sanpaolo.bs.it
 anagrafe@comune.sanpaolo.bs.it</schema:telephone>
+    <schema:email>Comune di San Paolo - Partita IVA dell'amministrazione: 00627690985 - PEC:
+comune.sanpaolo@pec.regione.lombardia.it</schema:email>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:telephone>Comune di San Paolo - Partita IVA dell'amministrazione: 00627690985 - PEC:
+comune.sanpaolo@pec.regione.lombardia.it</schema:telephone>
+    <schema:email>Piazza Aldo Moro, 27
+25020 San Paolo (BS)
+0309970001
+comune.sanpaolo@pec.regione.lombardia.it
+servizidemografici@comune.sanpaolo.bs.it
+anagrafe@comune.sanpaolo.bs.it</schema:email>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Nf91ca7b72dcb48c5bd77de7cc7fa0337">
+  <rdf:Description rdf:nodeID="N5dd0533661db4d2cbcae9e940fad0acc">
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
     <skos:prefLabel>Piazza Aldo Moro, 27
 25020 San Paolo (BS)
 0309970001
 comune.sanpaolo@pec.regione.lombardia.it
 servizidemografici@comune.sanpaolo.bs.it
 anagrafe@comune.sanpaolo.bs.it</skos:prefLabel>
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService7a7574fc61504be78c348979949b7378">
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint0940e7b1af624300bd0d2233531c66dd"/>
-    <dct:title>
-        Trasferimento della residenza all'estero | Sportello Telematico Unificato
-    </dct:title>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost4d60fea0c0f14646b7da4bfcadd1f6be"/>
-    <dct:identifier>PublicService7a7574fc61504be78c348979949b7378</dct:identifier>
-    <dct:description></dct:description>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation4dc0b149989b4e20863ad657759ade77"/>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation4dc0b149989b4e20863ad657759ade77">
-    <cv:hasAddress rdf:nodeID="Nf91ca7b72dcb48c5bd77de7cc7fa0337"/>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <skos:prefLabel># TODO</skos:prefLabel>
-    <dct:spatial rdf:resource="www.comune.sanpaolo.bs.it"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost4d60fea0c0f14646b7da4bfcadd1f6be">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:description>La presentazione della pratica non prevede alcun pagamento</dct:description>
-    <dct:identifier>Cost4d60fea0c0f14646b7da4bfcadd1f6be</dct:identifier>
-  </rdf:Description>
-  <rdf:Description rdf:about="www.comune.sanpaolo.bs.it">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
 </rdf:RDF>

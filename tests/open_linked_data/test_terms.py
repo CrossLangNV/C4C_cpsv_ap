@@ -14,7 +14,6 @@ KEY_TERMS = 'terms'
 
 class TestTerms(unittest.TestCase):
     def test_rdf_and_export(self):
-
         df = pd.read_csv(FILENAME_WIEN_PROCEDURES_VOC,
                          delimiter=','
                          )

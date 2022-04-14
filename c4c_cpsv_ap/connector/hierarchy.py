@@ -9,7 +9,7 @@ from rdflib.plugins.stores.sparqlstore import SPARQLStore
 from rdflib.term import _serial_number_generator, Identifier, Literal, URIRef
 
 from c4c_cpsv_ap.models import BusinessEvent, Concept, Cost, CPSVAPModel, CriterionRequirement, Event, Evidence, \
-    LifeEvent, \
+    lang_str, LifeEvent, \
     PublicOrganisation, \
     PublicService, Rule
 from c4c_cpsv_ap.namespace import C4C, CPSV, CV, SCHEMA, VCARD
@@ -22,6 +22,17 @@ LABEL = "label"
 GRAPH = "graph"
 TITLE = "title"
 DESCRIPTION = "description"
+
+
+class CLLiteral(Literal):
+    def __new__(cls, value, lang=None, *args, **kwargs):
+        """Make it easier to work with language strings"""
+
+        if isinstance(value, lang_str):
+            lang = value.language_code
+
+        obj = super().__new__(cls, value, lang=lang, *args, **kwargs)
+        return obj
 
 
 class CPSV_APGraph(ConjunctiveGraph):
@@ -50,10 +61,10 @@ class CPSV_APGraph(ConjunctiveGraph):
         (subject, predicate, object_, context) = self._spoc(triple_or_quad, default=True)
 
         assert (
-                subject is not None
+            subject is not None
         ), "s can't be None in .set([s,p,o]), as it would remove (*, p, *)"
         assert (
-                predicate is not None
+            predicate is not None
         ), "p can't be None in .set([s,p,o]), as it would remove (s, *, *)"
         self.remove((subject, predicate, None, context))
         self.add((subject, predicate, object_, context))
@@ -304,7 +315,7 @@ class ConceptsProvider(SubProvider, ConceptsHarvester):
         self.provider.graph.add((uri_ref, RDF.type, SKOS.Concept, context))
 
         # Mandatory
-        self.provider.graph.add((uri_ref, SKOS.prefLabel, Literal(concept.pref_label), context))
+        self.provider.graph.add((uri_ref, SKOS.prefLabel, CLLiteral(concept.pref_label), context))
 
         return uri_ref
 
@@ -334,13 +345,13 @@ class CostProvider(SubProvider, CostHarvester):
 
         self.provider.graph.add((uri_c, RDF.type, CV.Cost, context))
 
-        self.provider.graph.add((uri_c, DCTERMS.identifier, Literal(cost.identifier), context))
+        self.provider.graph.add((uri_c, DCTERMS.identifier, CLLiteral(cost.identifier), context))
         if cost.value:
-            self.provider.graph.add((uri_c, CV.value, Literal(cost.value), context))
+            self.provider.graph.add((uri_c, CV.value, CLLiteral(cost.value), context))
         if cost.currency:
-            self.provider.graph.add((uri_c, CV.currency, Literal(cost.value), context))
+            self.provider.graph.add((uri_c, CV.currency, CLLiteral(cost.value), context))
         if cost.description:
-            self.provider.graph.add((uri_c, DCTERMS.description, Literal(cost.description), context))
+            self.provider.graph.add((uri_c, DCTERMS.description, CLLiteral(cost.description), context))
 
         return uri_c
 
@@ -373,11 +384,13 @@ class CriterionRequirementProvider(SubProvider, CriterionRequirementHarvester):
 
         self.provider.graph.add((uri_cr, RDF.type, CV.CriterionRequirement, context))
 
-        self.provider.graph.add((uri_cr, DCTERMS.identifier, Literal(crit_req.identifier), context))
+        self.provider.graph.add((uri_cr, DCTERMS.identifier, CLLiteral(crit_req.identifier), context))
+
         if crit_req.description:
-            self.provider.graph.add((uri_cr, DCTERMS.description, Literal(crit_req.description), context))
+            self.provider.graph.add((uri_cr, DCTERMS.description, CLLiteral(crit_req.description),
+                                     context))
         # name
-        self.provider.graph.add((uri_cr, DCTERMS.title, Literal(crit_req.name), context))
+        self.provider.graph.add((uri_cr, DCTERMS.title, CLLiteral(crit_req.name), context))
 
         # TODO add optional relations
 
@@ -406,14 +419,14 @@ class EventProvider(SubProvider, EventHarvester):
 
         self.provider.graph.add((uri_e, RDF.type, CV.Event, context))
 
-        self.provider.graph.add((uri_e, DCTERMS.identifier, Literal(event.identifier), context))
+        self.provider.graph.add((uri_e, DCTERMS.identifier, CLLiteral(event.identifier), context))
 
-        self.provider.graph.add((uri_e, DCTERMS.title, Literal(event.name), context))
+        self.provider.graph.add((uri_e, DCTERMS.title, CLLiteral(event.name), context))
 
         if event.description:
-            self.provider.graph.add((uri_e, DCTERMS.description, Literal(event.description), context))
+            self.provider.graph.add((uri_e, DCTERMS.description, CLLiteral(event.description), context))
         if event.type:
-            self.provider.graph.add((uri_e, DCTERMS.type, Literal(event.type), context))
+            self.provider.graph.add((uri_e, DCTERMS.type, CLLiteral(event.type), context))
         if event.related_service:
             for public_service in event.related_service:
                 self.provider.graph.add((uri_e, DCTERMS.relation, public_service.get_uri(), context))
@@ -450,10 +463,10 @@ class EvidenceProvider(SubProvider, EvidenceHarvester):
 
         self.provider.graph.add((uri_e, RDF.type, CV.Evidence, context))
 
-        self.provider.graph.add((uri_e, DCTERMS.identifier, Literal(evidence.identifier), context))
+        self.provider.graph.add((uri_e, DCTERMS.identifier, CLLiteral(evidence.identifier), context))
         if evidence.description:
-            self.provider.graph.add((uri_e, DCTERMS.description, Literal(evidence.description), context))
-        self.provider.graph.add((uri_e, DCTERMS.title, Literal(evidence.name), context))
+            self.provider.graph.add((uri_e, DCTERMS.description, CLLiteral(evidence.description), context))
+        self.provider.graph.add((uri_e, DCTERMS.title, CLLiteral(evidence.name), context))
 
         # TODO add optional relations
 
@@ -510,9 +523,9 @@ class PublicOrganisationsHarvester(SubHarvester):
             if isinstance(label, dict):
                 # One is enough
                 lang, label_val = list(label.items())[0]
-                label_lit = Literal(label_val, lang=lang)
+                label_lit = CLLiteral(label_val, lang=lang)
             else:
-                label_lit = Literal(label)
+                label_lit = CLLiteral(label)
 
             return label_lit
 
@@ -538,7 +551,7 @@ class PublicOrganisationsHarvester(SubHarvester):
     def get_spatial(self, uri: URIRef, context=None) -> List[URIRef]:
         return [o for _, _, o in self.harvester.graph.triples((uri, DCTERMS.spatial, None), context=context)]
 
-    def get_preferred_label(self, uri: URIRef, context=None) -> Literal:
+    def get_preferred_label(self, uri: URIRef, context=None) -> CLLiteral:
         """ Only a single label is allowed """
 
         return get_single_el_from_list(
@@ -562,7 +575,7 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
         # Mandatory
         pref_label = obj.pref_label
         if isinstance(pref_label, str):
-            self.provider.graph.add((uri_ref, SKOS.prefLabel, Literal(obj.pref_label), context))
+            self.provider.graph.add((uri_ref, SKOS.prefLabel, CLLiteral(obj.pref_label), context))
 
         elif isinstance(pref_label, dict):
             # ! only one allowed
@@ -573,7 +586,7 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
                     warnings.warn("Only one label allowed for Public services. We break the loop.")
                     break
 
-                _t = (uri_ref, SKOS.prefLabel, Literal(label_val, lang=lang), context)
+                _t = (uri_ref, SKOS.prefLabel, CLLiteral(label_val, lang=lang), context)
                 self.provider.graph.add(_t)
 
         else:
@@ -589,7 +602,7 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
         # Address
         if obj.has_address:
             if 0:
-                self.provider.graph.add((uri_ref, CV.hasAddress, Literal(obj.has_address), context))
+                self.provider.graph.add((uri_ref, CV.hasAddress, CLLiteral(obj.has_address), context))
             else:
                 # Link to VCARD entity instead
                 _bnode = rdflib.BNode()
@@ -598,7 +611,7 @@ class PublicOrganisationsProvider(SubProvider, PublicOrganisationsHarvester):
 
                 # TODO address info: street, locality, postal-code, country-name
                 #  see https://www.w3.org/2006/vcard/ns# https://www.w3.org/TR/vcard-rdf/
-                self.provider.graph.add((_bnode, SKOS.prefLabel, Literal(obj.has_address), context))
+                self.provider.graph.add((_bnode, SKOS.prefLabel, CLLiteral(obj.has_address), context))
 
         return uri_ref
 
@@ -610,7 +623,7 @@ class PublicServicesHarvester(SubHarvester):
                 debug=False
                 ) -> List[URIRef]:
         q_filter = f"""
-                values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }} 
+                values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
                 """ if graph_uri is not None else ""
 
         q = f"""
@@ -701,9 +714,9 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
         self.provider.graph.add((uri_ps, RDF.type, CPSV.PublicService, context))
 
         # Mandatory
-        self.provider.graph.add((uri_ps, DCTERMS.identifier, Literal(public_service.identifier), context))
-        self.provider.graph.add((uri_ps, DCTERMS.description, Literal(public_service.description), context))
-        self.provider.graph.add((uri_ps, DCTERMS.title, Literal(public_service.name), context))
+        self.provider.graph.add((uri_ps, DCTERMS.identifier, CLLiteral(public_service.identifier), context))
+        self.provider.graph.add((uri_ps, DCTERMS.description, CLLiteral(public_service.description), context))
+        self.provider.graph.add((uri_ps, DCTERMS.title, CLLiteral(public_service.name), context))
 
         uri_public_org = \
             list(self.provider.public_organisations.search(public_service.has_competent_authority, context=context))[0]
@@ -711,7 +724,7 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
 
         # keyword
         for keyword in public_service.keyword:
-            self.provider.graph.add((uri_ps, DCAT.keyword, Literal(keyword), context))
+            self.provider.graph.add((uri_ps, DCAT.keyword, CLLiteral(keyword), context))
 
         # Event:
         for event in public_service.is_grouped_by:
@@ -725,8 +738,8 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
             self.provider.graph.add((uri_event, RDF.type, type_event, context))
 
             # Properties
-            self.provider.graph.add((uri_event, DCTERMS.identifier, Literal(event.identifier), context))
-            self.provider.graph.add((uri_event, DCTERMS.title, Literal(event.name), context))
+            self.provider.graph.add((uri_event, DCTERMS.identifier, CLLiteral(event.identifier), context))
+            self.provider.graph.add((uri_event, DCTERMS.title, CLLiteral(event.name), context))
 
             # isGroupedBy
             self.provider.graph.add((uri_ps, CV.isGroupedBy, uri_event, context))
@@ -748,10 +761,10 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
             self.provider.graph.add((uri_ps, CV.hasContactPoint, uri_contact_point, context))
 
             for email in contact_point.email:
-                self.provider.graph.add((uri_contact_point, SCHEMA.email, Literal(email), context))
+                self.provider.graph.add((uri_contact_point, SCHEMA.email, CLLiteral(email), context))
 
             for telephone in contact_point.telephone:
-                self.provider.graph.add((uri_contact_point, SCHEMA.telephone, Literal(telephone), context))
+                self.provider.graph.add((uri_contact_point, SCHEMA.telephone, CLLiteral(telephone), context))
 
             for hours in contact_point.opening_hours:
                 uri_opening_hours_specification = uriref_generator("OpeningHoursSpecification", C4C)
@@ -761,7 +774,8 @@ class PublicServicesProvider(SubProvider, PublicServicesHarvester):
                 self.provider.graph.add(
                     (uri_contact_point, SCHEMA.hoursAvailable, uri_opening_hours_specification, context))
 
-                self.provider.graph.add((uri_opening_hours_specification, SCHEMA.description, Literal(hours), context))
+                self.provider.graph.add(
+                    (uri_opening_hours_specification, SCHEMA.description, CLLiteral(hours), context))
 
         return uri_ps
 
@@ -845,9 +859,9 @@ class RuleProvider(SubProvider, RuleHarvester):
 
         self.provider.graph.add((uri_r, RDF.type, CPSV.Rule, context))
 
-        self.provider.graph.add((uri_r, DCTERMS.identifier, Literal(rule.identifier), context))
-        self.provider.graph.add((uri_r, DCTERMS.description, Literal(rule.description), context))
-        self.provider.graph.add((uri_r, DCTERMS.title, Literal(rule.name), context))
+        self.provider.graph.add((uri_r, DCTERMS.identifier, CLLiteral(rule.identifier), context))
+        self.provider.graph.add((uri_r, DCTERMS.description, CLLiteral(rule.description), context))
+        self.provider.graph.add((uri_r, DCTERMS.title, CLLiteral(rule.name), context))
 
         # TODO add optional relations
 

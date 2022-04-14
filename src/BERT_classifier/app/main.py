@@ -3,7 +3,7 @@ import warnings
 
 from fastapi import FastAPI
 
-from BERT_classifier.app.models import Labels, Results, Text
+from BERT_classifier.app.models import Labels, Results, ResultsLines, Text, TextLines
 from BERT_classifier.bert_based_classifier.trainer_bert_sequence_classifier import TrainerBertSequenceClassifier
 
 # See Dockerfile for file.
@@ -50,6 +50,28 @@ async def classify_text(text: Text) -> Results:
 
     results = Results(probabilities=probabilities[0].tolist(),
                       **labels.dict())
+
+    return results
+
+
+@app.post("/classify_text_lines", response_model=ResultsLines)
+async def classify_text_lines(text: TextLines) -> ResultsLines:
+    """
+    Predict the likelihood of the text corresponding to one the labels.
+    To find the name of these labels, see */labels*
+
+    Args:
+        text:
+
+    Returns:
+
+    """
+    _, probabilities = trainer_bert_sequence_classifier.predict(text.text)
+
+    labels = (await get_labels())
+
+    results = ResultsLines(probabilities=probabilities.tolist(),
+                           **labels.dict())
 
     return results
 

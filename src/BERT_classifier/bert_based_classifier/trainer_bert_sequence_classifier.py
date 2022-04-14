@@ -14,13 +14,15 @@ from datasets import Dataset, load_dataset, load_from_disk
 from numpy import ndarray
 from sklearn.metrics import accuracy_score, f1_score
 from torch.utils.data import DataLoader
-from tqdm import tqdm, trange
+from tqdm import trange
 from tqdm.auto import tqdm
 from transformers import AdamW, AutoModelForSequenceClassification, AutoTokenizer, CONFIG_NAME, get_scheduler, \
     WEIGHTS_NAME
 
 # to dismiss warning message related to FastTokenizers.
 os.environ["TOKENIZERS_PARALLELISM"] = "true"
+
+INPUT_KEY = "text"
 
 
 class TrainerBertSequenceClassifier():
@@ -56,14 +58,14 @@ class TrainerBertSequenceClassifier():
 
     def preprocess_data(self,
                         input_dir: Union[str, Path],
-                        key_labels: str
+                        key_labels: str,
                         ):
 
         '''
         Method for preprocessing the data provided in the input_dir (train.jsonl and validation.jsonl). Method filters the data to corpus, languages; one hot encoding of the labels; tokenization of the 'text' field of the jsonl files. Preprocessed data is saved in the self._preprocessed_data_dir directory.
-        
+
         :param input_dir: path where train.jsonl and validation.jsonl files are stored. I.e. the files containing the training and validation data.
-        :param corpora: list of corpora to consider, via the 'appears_in' field of the provided jsonl files, and the _filter_to_corpus method. 
+        :param corpora: list of corpora to consider, via the 'appears_in' field of the provided jsonl files, and the _filter_to_corpus method.
         :param languages: list of languages to consider, via the 'language' field of the provided jsonl files, and the _filter_to_language method.
         :return: None.
         '''
@@ -109,14 +111,14 @@ class TrainerBertSequenceClassifier():
               ):
         '''
         Method to train a Bert for sequence classification model.
-        
+
         :param corpora: List of strings. Corpora to consider (i.e. via the 'appears in' field of self._dataset).
         :param batch_size: int.
         :param epochs: int. Number of epochs.
         :param lr: float. Learning rate.
         :param warm_up: Boolean. If true, the first epoch will be warm up.
         :param gpu: int. GPU number.
-        :param save_model_each: int. Model will be saved in self._output_dir each save_model_each epoch.     
+        :param save_model_each: int. Model will be saved in self._output_dir each save_model_each epoch.
         :return: None.
         '''
 
@@ -421,13 +423,13 @@ class TrainerBertSequenceClassifier():
         end = time.time()
         self._logger.info(f"Training took: {end - start:.3f} s")
 
-    def predict(self, documents: List[str], batch_size: int = 16, gpu: int = 0) -> Tuple[ndarray, ndarray]:
-
+    def predict(self, documents: List[str], batch_size: int = 16, gpu: int = 0,
+                input_key: str = INPUT_KEY) -> Tuple[ndarray, ndarray]:
         '''
         Inference on set of documents using a trained BertForSequenceClassification model.
-        
+
         :param documents: List of strings
-        :param batch_size: int. 
+        :param batch_size: int.
         :param gpu. int.
         '''
 
@@ -435,7 +437,7 @@ class TrainerBertSequenceClassifier():
 
         # create a hugging face dataset from the list of strings provided (the documents to do inference on...)
 
-        dataset = Dataset.from_dict({'text': documents})
+        dataset = Dataset.from_dict({input_key: documents})
 
         if not hasattr(self, 'model') or not hasattr(self, 'tokenizer'):
             self._logger.info(
@@ -482,7 +484,7 @@ class TrainerBertSequenceClassifier():
 
         '''
         Load a trained BertForSequenceClassification models, and accompanying BertTokenizer. Classification layers can be both trained or untrained.
-        
+
         :param num_labels. Number of unique labels for multi_label classification problem.
         :param eurovoc_concept_2_id. Dict. Eurovoc concepts (i.e. descriptors) as keys, and id as value.
         :return: None.
@@ -571,11 +573,12 @@ class TrainerBertSequenceClassifier():
         # tokenize (use batches)
         return dataset.map(self._tokenize_function, batched=True)
 
-    def _tokenize_function(self, items: Dict) -> Dict:
+    def _tokenize_function(self, items: Dict,
+                           input_key=INPUT_KEY) -> Dict:
 
         # tokenizer will truncate to max_length of the model.
 
-        return self.tokenizer(items["text"], truncation=True, padding=True)  # , max_length=1024 )
+        return self.tokenizer(items[input_key], truncation=True, padding=True)  # , max_length=1024 )
 
     def _remove_irrelevant_columns(self, dataset: Dataset) -> Dataset:
 

@@ -14,6 +14,26 @@ from rdflib import URIRef
 from c4c_cpsv_ap.namespace import C4C
 
 
+class lang_str(str):
+    """
+    Mock of an RDF literal. Can be string or string with language information.
+    """
+
+    def __new__(cls, value: str, language_code=None):
+        obj = super().__new__(cls, value)
+        obj._language_code = language_code
+        return obj
+
+    @property
+    def language_code(self):
+        return self._language_code
+
+    @language_code.setter
+    def language_code(self, value):
+        # TODO check that it matches an existing language code
+        self._language_code = value
+
+
 class CPSVAPModel(abc.ABC, BaseModel):
     """
     Abstract class for the RDF object models.
@@ -27,7 +47,7 @@ class CPSVAPModel(abc.ABC, BaseModel):
         Automatically generates an ID if not provided.
         """
         if not v:
-            return cls.__name__ + _id_generator()
+            return f"{cls.__name__}_{_id_generator()}"
 
         return v
 
@@ -35,13 +55,30 @@ class CPSVAPModel(abc.ABC, BaseModel):
         """ Generate a URI based on identifier """
         return URIRef(self.identifier, base=base)
 
-class Event(CPSVAPModel, abc.ABC):
+
+class Info(BaseModel):
+    # Title and paragraph text
+    name: Union[lang_str, List[lang_str]]
+    description: Optional[Union[lang_str, List[lang_str]]]
+
+    @validator("name", "description", pre=True, check_fields=False)
+    def cast_from_string(cls, value: Union[str, lang_str, List[lang_str]]) -> Union[lang_str, List[lang_str]]:
+        """
+        If a string is given, cast
+        """
+
+        if not isinstance(value, (lang_str, list)):
+            return lang_str(value)
+
+        return value
+
+
+class Event(CPSVAPModel, Info, abc.ABC):
     """
     Event
     """
 
     identifier: str
-    name: str
 
     description: Optional[str] = None
     type: Optional[int] = None
@@ -90,25 +127,18 @@ class Cost(CPSVAPModel):
     value: Optional[float]
 
 
-class CriterionRequirement(CPSVAPModel):
+class CriterionRequirement(CPSVAPModel, Info):
     """
     CPSV-AP Criterion Requirement
     """
     identifier: str
-    name: str
     # Code [0..n] TODO find definition
     type: List[Code]
 
-    # Optional:
-    description: Optional[str]
 
-
-class Evidence(CPSVAPModel):
+class Evidence(CPSVAPModel, Info):
     identifier: str
-    name: str
 
-    # -- Optional --
-    description: Optional[str]
     # Linguistic system
     language: Optional[List[str]]
     # Document
@@ -211,6 +241,8 @@ class PublicService(CPSVAPModel):
         """
         if isinstance(v, ContactPoint):
             return [v]
+        elif v is None:
+            return []  # empty
         else:
             return v
 

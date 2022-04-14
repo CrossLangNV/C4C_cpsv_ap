@@ -32,16 +32,14 @@ This CLI can be used after building the images with our docker-compose file.
 
 ![image](https://user-images.githubusercontent.com/8747446/161078551-6ce66a33-9fe5-4619-af65-b711cac44632.png)
 
-
 An example to run the extraction:
 
 > docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -g -o scripts/DEMO_BELGIUM_GENERAL.rdf -l NL -c BE -m http://stad.gent scripts/DEMO_PROCEDURE.html
 
-The output is saved in [scripts/DEMO_PROCEDURE.html](scripts/DEMO_PROCEDURE.html) and can be visualized with [RDF Grapher](https://www.ldf.fi/service/rdf-grapher):
+The output is saved in [tests/scripts/examples/DEMO_PROCEDURE.html](tests/scripts/examples/DEMO_PROCEDURE.html) and can
+be visualized with [RDF Grapher](https://www.ldf.fi/service/rdf-grapher):
 
-![Visualisation of extracted CPSV-AP RDF]
-![image](https://user-images.githubusercontent.com/8747446/161078882-eae61bd5-1348-4be8-bb9c-b38b72b75c07.png)
-
+![Visualisation of extracted CPSV-AP RDF](https://user-images.githubusercontent.com/8747446/161078882-eae61bd5-1348-4be8-bb9c-b38b72b75c07.png)
 
 ## Validation
 

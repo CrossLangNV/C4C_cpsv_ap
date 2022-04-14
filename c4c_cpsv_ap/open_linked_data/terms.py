@@ -2,7 +2,7 @@ from typing import Dict
 
 from dgfisma_rdf.concepts.build_rdf import ConceptGraph as ConceptGraph_, EN
 from rdflib import Literal, URIRef
-from rdflib.namespace import SKOS, RDF
+from rdflib.namespace import RDF, SKOS
 
 
 class ConceptGraph(ConceptGraph_):

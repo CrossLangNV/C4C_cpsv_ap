@@ -3,9 +3,9 @@ import os
 import unittest
 from typing import List
 
-from c4c_cpsv_ap.connector.hierarchy import Provider, get_single_el_from_list
-from c4c_cpsv_ap.models import PublicService, PublicOrganisation, BusinessEvent, _id_generator, Concept, ContactPoint, \
-    LifeEvent
+from c4c_cpsv_ap.connector.hierarchy import get_single_el_from_list, Provider
+from c4c_cpsv_ap.models import _id_generator, BusinessEvent, Concept, ContactPoint, LifeEvent, PublicOrganisation, \
+    PublicService
 
 FUSEKI_ENDPOINT = os.environ["FUSEKI_ENDPOINT"]
 ROOT = os.path.join(os.path.dirname(__file__), '../../..')

@@ -7,91 +7,91 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence5efa93c4f3dd4b34bae091ad4dda72f6">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>Evidence5efa93c4f3dd4b34bae091ad4dda72f6</dct:identifier>
-    <dct:description>• het document waarop de handtekening moet gewettigd worden
-• je identiteitskaart
-Laat je de handtekening van iemand anders wettigen, dan moet je de
-										identiteitskaart van deze persoon en een door hem of haar ondertekende volmacht
-										meebrengen.</dct:description>
+  <rdf:Description rdf:nodeID="N024e1c2919bb4a7aa8921b63ab1d6286">
+    <skos:prefLabel>Bellestraat 99, 1790 Affligem
+T 053-64 00 01
+F 053-68 04 80
+bevolking@affligem.be</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costa26c7fa2d23b411db60b90a5587fae0d">
-    <dct:identifier>Costa26c7fa2d23b411db60b90a5587fae0d</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:description>Het wettigen van een handtekening is gratis.</dct:description>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirementfe07ebde66374490b7aa3ad2c4daf314">
-    <dct:description>• De persoon van wie de handtekening gewettigd moet worden, moet zijn
-										woonplaats
-hebben in een Belgische gemeente.
-• Het document mag niet bestemd zijn voor immorele, bedrieglijke of
-strafbare oogmerken.
-• De formaliteit moet nuttig of nodig zijn. Het mag bijgevolg niet gaan om
-										een louter
-private akte (een eigenhandig geschreven testament bijvoorbeeld).</dct:description>
-    <dct:title>DEFAULT NAME</dct:title>
-    <dct:identifier>CriterionRequirementfe07ebde66374490b7aa3ad2c4daf314</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Ruleea60f8585e7c45219858a6d7fefa8de3">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule2bcba7bcf0ab4c68ab1897ead3afa9d5">
     <dct:description>De burgemeester van de gemeente of zijn gemachtigde gaat na of de te legaliseren
-										handtekening overeenstemt met die van de persoon van wie de identiteit wordt
-										vastgesteld. Een handtekening op een wit vel papier kan nooit gelegaliseerd
-										worden.</dct:description>
-    <dct:identifier>Ruleea60f8585e7c45219858a6d7fefa8de3</dct:identifier>
+                    handtekening overeenstemt met die van de persoon van wie de identiteit wordt
+                    vastgesteld. Een handtekening op een wit vel papier kan nooit gelegaliseerd
+                    worden.</dct:description>
     <dct:title>DEFAULT NAME</dct:title>
     <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:identifier>Rule2bcba7bcf0ab4c68ab1897ead3afa9d5</dct:identifier>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServiced06640d67f8445ce9948a9c97c165110">
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <dct:description></dct:description>
-    <cv:isGroupedBy rdf:resource="http://cefat4cities.crosslang.com/content/LifeEvent8c405903ffa94b7a9c23b01aac676adc"/>
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence5efa93c4f3dd4b34bae091ad4dda72f6"/>
-    <dct:identifier>PublicServiced06640d67f8445ce9948a9c97c165110</dct:identifier>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costa26c7fa2d23b411db60b90a5587fae0d"/>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation4dd0790927444a00829cb6311e05e44b"/>
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirementfe07ebde66374490b7aa3ad2c4daf314"/>
-    <dct:title>
-		Affligem.be wettiging van handtekening
-	</dct:title>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointd270ca88d18f44e5a791c21b2b7a286a"/>
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Ruleea60f8585e7c45219858a6d7fefa8de3"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation601067f2a8764bdaa6b51cfabd227e03">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <cv:hasAddress rdf:nodeID="N024e1c2919bb4a7aa8921b63ab1d6286"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <dct:spatial rdf:resource="https://affligem.be/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointd270ca88d18f44e5a791c21b2b7a286a">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint7833d47b26f045e5812f5c7e97c319c2">
+    <schema:email>Bellestraat 99, 1790 Affligem
+T 053-64 00 01
+F 053-68 04 80
+bevolking@affligem.be</schema:email>
     <schema:telephone>Bellestraat 99, 1790 Affligem
 T 053-64 00 01
 F 053-68 04 80
 bevolking@affligem.be</schema:telephone>
     <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:email>Bellestraat 99, 1790 Affligem
-T 053-64 00 01
-F 053-68 04 80
-bevolking@affligem.be</schema:email>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Nc74518eabd4440718fd1c3d49173af44">
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
-    <skos:prefLabel>Bellestraat 99, 1790 Affligem
-T 053-64 00 01
-F 053-68 04 80
-bevolking@affligem.be</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence2ab7503dafb3420191e7a1d91222fb97">
+    <dct:description>• het document waarop de handtekening moet gewettigd worden
+• je identiteitskaart
+Laat je de handtekening van iemand anders wettigen, dan moet je de
+                    identiteitskaart van deze persoon en een door hem of haar ondertekende volmacht
+                    meebrengen.</dct:description>
+    <dct:title>DEFAULT NAME</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:identifier>Evidence2ab7503dafb3420191e7a1d91222fb97</dct:identifier>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation4dd0790927444a00829cb6311e05e44b">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <skos:prefLabel># TODO</skos:prefLabel>
-    <cv:hasAddress rdf:nodeID="Nc74518eabd4440718fd1c3d49173af44"/>
-    <dct:spatial rdf:resource="https://affligem.be/"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService127aa7093836452e81e11bd91081ae1e">
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint7833d47b26f045e5812f5c7e97c319c2"/>
+    <dct:description></dct:description>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement91ddc1a2cc16463983fbc1c5c1dd968f"/>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costb6831ec361794b15bae2c3e783807e83"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule2bcba7bcf0ab4c68ab1897ead3afa9d5"/>
+    <cv:isGroupedBy rdf:resource="http://cefat4cities.crosslang.com/content/LifeEvent2777fc7a0a9a4b32a96d1c5b00cd42b8"/>
+    <dct:identifier>PublicService127aa7093836452e81e11bd91081ae1e</dct:identifier>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence2ab7503dafb3420191e7a1d91222fb97"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation601067f2a8764bdaa6b51cfabd227e03"/>
+    <dct:title>
+    Affligem.be wettiging van handtekening
+  </dct:title>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/LifeEvent8c405903ffa94b7a9c23b01aac676adc">
-    <dct:identifier>LifeEvent8c405903ffa94b7a9c23b01aac676adc</dct:identifier>
-    <dct:title>identiteitsbewijzen,
-						rijbewijzen en afschriften - afschriften, uittreksels en
-						getuigschriften</dct:title>
-    <dct:relation rdf:resource="http://cefat4cities.crosslang.com/content/PublicServiced06640d67f8445ce9948a9c97c165110"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/LifeEvent2777fc7a0a9a4b32a96d1c5b00cd42b8">
     <rdf:type rdf:resource="http://data.europa.eu/m8g/Event"/>
+    <dct:relation rdf:resource="http://cefat4cities.crosslang.com/content/PublicService127aa7093836452e81e11bd91081ae1e"/>
+    <dct:title>identiteitsbewijzen,
+            rijbewijzen en afschriften - afschriften, uittreksels en
+            getuigschriften</dct:title>
+    <dct:identifier>LifeEvent2777fc7a0a9a4b32a96d1c5b00cd42b8</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costb6831ec361794b15bae2c3e783807e83">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:description>Het wettigen van een handtekening is gratis.</dct:description>
+    <dct:identifier>Costb6831ec361794b15bae2c3e783807e83</dct:identifier>
   </rdf:Description>
   <rdf:Description rdf:about="https://affligem.be/">
     <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement91ddc1a2cc16463983fbc1c5c1dd968f">
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:description>• De persoon van wie de handtekening gewettigd moet worden, moet zijn
+                    woonplaats
+hebben in een Belgische gemeente.
+• Het document mag niet bestemd zijn voor immorele, bedrieglijke of
+strafbare oogmerken.
+• De formaliteit moet nuttig of nodig zijn. Het mag bijgevolg niet gaan om
+                    een louter
+private akte (een eigenhandig geschreven testament bijvoorbeeld).</dct:description>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:identifier>CriterionRequirement91ddc1a2cc16463983fbc1c5c1dd968f</dct:identifier>
   </rdf:Description>
 </rdf:RDF>

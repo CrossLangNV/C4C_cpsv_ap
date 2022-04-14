@@ -30,23 +30,33 @@ class TestAffligem(unittest.TestCase):
                      "strafbare oogmerken.\n" \
                      "• De formaliteit moet nuttig of nodig zijn. Het mag bijgevolg niet gaan om een louter\n" \
                      "private akte (een eigenhandig geschreven testament bijvoorbeeld)."
-            s = d_relations.criterionRequirement
-            self.assert_multiline(s_true, s)
+            s = d_relations.criterionRequirements
+
+            self.assertEqual(1, len(s))
+            self.assert_multiline(s_true, s[0].description)
 
         with self.subTest("rule"):
             s_true = "De burgemeester van de gemeente of zijn gemachtigde gaat na of de te legaliseren handtekening overeenstemt met die van de persoon van wie de identiteit wordt vastgesteld. Een handtekening op een wit vel papier kan nooit gelegaliseerd worden."
-            s = d_relations.rule
-            self.assert_multiline(s_true, s)
+            s = d_relations.rules
+
+            self.assertEqual(1, len(s))
+            self.assert_multiline(s_true, s[0].description)
+
         with self.subTest("evidence"):
             s_true = "• het document waarop de handtekening moet gewettigd worden\n" \
                      "• je identiteitskaart\n" \
                      "Laat je de handtekening van iemand anders wettigen, dan moet je de identiteitskaart van deze persoon en een door hem of haar ondertekende volmacht meebrengen."
-            s = d_relations.evidence
-            self.assert_multiline(s_true, s)
+            s = d_relations.evidences
+
+            self.assertEqual(1, len(s))
+            self.assert_multiline(s_true, s[0].description)
+
         with self.subTest("cost"):
             s_true = "Het wettigen van een handtekening is gratis."
-            s = d_relations.cost
-            self.assert_multiline(s_true, s)
+            s = d_relations.costs
+
+            self.assertEqual(1, len(s))
+            self.assert_multiline(s_true, s[0].description)
 
     def test_attest_gezinssamenstelling(self):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/aanvraag-samenstelling-van-het-gezin/page.aspx/825"
@@ -63,9 +73,10 @@ class TestAffligem(unittest.TestCase):
                      "•  een derde persoon op voorwaarde dat die in het bezit is van een volmacht en de identiteitskaart (of kopie ervan) van de\n" \
                      "aanvrager."
 
-            s = d_relations.criterionRequirement
+            s = d_relations.criterionRequirements
 
-            self.assert_multiline(s_true, s)
+            self.assertEqual(1, len(s))
+            self.assert_multiline(s_true, s[0].description)
 
     def test_extract_event(self):
         url = "https://www.affligem.be/Affligem/Nederlands/Leven/bouwen-en-wonen/adresverandering/page.aspx/60"

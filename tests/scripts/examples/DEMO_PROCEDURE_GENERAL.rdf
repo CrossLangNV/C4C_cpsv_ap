@@ -1,92 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF
-   xmlns:cpsv="http://purl.org/vocab/cpsv#"
    xmlns:cv="http://data.europa.eu/m8g/"
    xmlns:dct="http://purl.org/dc/terms/"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServicebb073923a50c42b6869e51afb4d8ad01">
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationb1abaa9e51e14d6e9910bd1adff73873"/>
-    <dct:description>De Stad Gent heft een belasting op de woningen zonder inschrijving in het bevolkingsregister of vreemdelingenregister.</dct:description>
-    <dct:identifier>PublicServicebb073923a50c42b6869e51afb4d8ad01</dct:identifier>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost98536955223c43488746f7a00e582856"/>
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement6f7651c8b9e2419980ab51a81c576477"/>
-    <dct:title>
-   Belasting op woningen zonder inschrijving in het bevolkingsregister (zogenaamde 'tweede verblijven') | Stad Gent
-  </dct:title>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidencec844003038ce42c59f98f638b7d2e7e0"/>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint4d14f3a2ba08453d881207eb8389bffe"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint4d14f3a2ba08453d881207eb8389bffe">
-    <schema:telephone>09 210 10 10
-Gentinfo@stad.gent</schema:telephone>
-    <schema:telephone>09 210 10 10</schema:telephone>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointc793d2ae02ae44ad80bd580be4153269">
     <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
-    <schema:email>09 210 10 10
-Gentinfo@stad.gent</schema:email>
-    <schema:telephone>Woodrow Wilsonplein 1,
-9000 Gent
-09 266 74 80
-stadsbelastingen@stad.gent</schema:telephone>
-    <schema:email>Woodrow Wilsonplein 1,
-9000 Gent
-09 266 74 80
-stadsbelastingen@stad.gent</schema:email>
+    <schema:telephone>Telefon: 94 84 79 47</schema:telephone>
+    <schema:telephone>Du kan kontakte Intrum låneadministrasjonen på telefon 73 54 23 20, e-post
+laaneadm@intrum.com</schema:telephone>
+    <schema:email>Du kan kontakte Intrum låneadministrasjonen på telefon 73 54 23 20, e-post
+laaneadm@intrum.com</schema:email>
+    <schema:email>bofin@trondheim.kommune.no</schema:email>
+    <schema:email>laaneadm@intrum.com</schema:email>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidencec844003038ce42c59f98f638b7d2e7e0">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
-    <dct:identifier>Evidencec844003038ce42c59f98f638b7d2e7e0</dct:identifier>
-    <dct:description>Aangifte
-Het indienen van een aangifte kan enkel via het digitale aangifteformulier of schriftelijk.
-* U ontvangt schriftelijk een 'Voorstel van aangifte' (een vooraf volledig ingevulde aangifte). U dient dit enkel bij wijziging verbeterd via de post terug te sturen naar de Stad Gent.
-* U ontvangt schriftelijk een 'Aangifte' (een vooraf gedeeltelijk ingevulde aangifte). U dient dit verbeterd en/of vervolledigd via de post terug te sturen naar de Stad Gent.
-* Indien u geen aangifte ontvangt, kan u steeds een aangifte doen op basis van een blanco PDF-formulier.
-Bezwaarschrift
-De belastingschuldige of zijn vertegenwoordiger kan tegen een aanslag, een belastingverhoging of een administratieve geldboete, een schriftelijk bezwaarschrift indienen bij het college van burgemeester en schepenen (t.a.v. Stadsbelastingen - Departement Financiën - cel bezwaarschriften). Dit moet gebeuren binnen een termijn van drie maanden te rekenen vanaf de derde werkdag volgend op de datum van verzending van het aanslagbiljet of vanaf de kennisgeving van de aanslag of vanaf de datum van de contante inning.
-Het bezwaarschrift moet schriftelijk ingediend worden en ondertekend zijn door de belastingschuldige of zijn vertegenwoordiger en gemotiveerd zijn. Het moet de naam, de hoedanigheid en het adres of de zetel van de belastingplichtige vermelden. Het moet ook het voorwerp van het bezwaarschrift en een opgave van de feiten en de middelen vermelden. Als de belastingschuldige of zijn vertegenwoordiger wil uitgenodigd worden op de hoorzitting moet dit in het bezwaarschrift worden gevraagd.
-Het bezwaarschrift kan ook online worden ingediend in zover in deze mogelijkheid wordt voorzien en binnen de termijnen en onder de voorwaarden vermeld in dit artikel. Meldingen via andere duurzame dragers zoals e-mail worden niet als bezwaarschrift aanvaard.</dct:description>
-    <dct:title>DEFAULT NAME</dct:title>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost98536955223c43488746f7a00e582856">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:identifier>Cost98536955223c43488746f7a00e582856</dct:identifier>
-    <dct:description>De belasting is voor het hele jaar verschuldigd.</dct:description>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement6f7651c8b9e2419980ab51a81c576477">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-    <dct:description>Wie?
-De natuurlijke- of rechtspersoon die op 1 januari van het aanslagjaar eigenaar is van de woning zonder inschrijving in het bevolkingsregister (zie artikel 4 van het reglement belasting op de tweede verblijven).
-Wanneer?
-U moet ten laatste op 30 juni van het aanslagjaar een aangifte indienen bij het stadsbestuur door middel van een door het stadsbestuur voorgeschreven formulier. Een belastingplichtige die geen aangifteformulier gekregen heeft, moet er zelf één vragen.</dct:description>
-    <dct:identifier>CriterionRequirement6f7651c8b9e2419980ab51a81c576477</dct:identifier>
-    <dct:title>DEFAULT NAME</dct:title>
-  </rdf:Description>
-  <rdf:Description rdf:about="aalter.be">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationb1abaa9e51e14d6e9910bd1adff73873">
-    <cv:hasAddress rdf:nodeID="Nfb6b36fbd8834c2db3496b111f639dd0"/>
-    <dct:spatial rdf:resource="aalter.be"/>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation8a171485816945149ad49899675188ec">
+    <dct:spatial rdf:resource="https://www.trondheim.kommune.no/"/>
+    <cv:hasAddress rdf:nodeID="N4602c93dfac44ac7b3840ef3774120f6"/>
     <skos:prefLabel># TODO</skos:prefLabel>
     <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Nfb6b36fbd8834c2db3496b111f639dd0">
-    <skos:prefLabel>1.200
-1.220
-1.500
-1.526
-1.551
-1.578
-09 210 10 10
-Gentinfo@stad.gent
-09 210 10 10
-Woodrow Wilsonplein 1,
-9000 Gent
-09 266 74 80
-stadsbelastingen@stad.gent</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement540e1e0aeef844b0975a55096a5a8ec8">
+    <dct:description>Dersom det foreligger særlige forhold eller hensyn som har betydning for behandlingen av din søknad, så bør det redegjøres for dette i søknaden.</dct:description>
+    <dct:title>DEFAULT NAME</dct:title>
+    <dct:identifier>CriterionRequirement540e1e0aeef844b0975a55096a5a8ec8</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicServiceeb35ef5d239a4ee3880287671bc5a9bb">
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Costa5f9b95d049743c1a98c2a13770306e6"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <dct:title>
+   Startlån - Trondheim kommune
+  </dct:title>
+    <dct:description>Velkommen til Trondheim kommune. Her finner du informasjon om våre tjenester.</dct:description>
+    <dct:identifier>PublicServiceeb35ef5d239a4ee3880287671bc5a9bb</dct:identifier>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement540e1e0aeef844b0975a55096a5a8ec8"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointc793d2ae02ae44ad80bd580be4153269"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation8a171485816945149ad49899675188ec"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Costa5f9b95d049743c1a98c2a13770306e6">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:description>Dersom du opplever midlertidig inntektsnedgang og/ eller dersom du får uforutsette utgifter som gjør at du ikke får til å betale startlånet ditt som ordinært, så kan du for en periode søke om betalingslettelse for startlånet ditt. Du må minimum påregne å betale renter på startlånet.
+Søknad om betalingslettelser sendes til kommunens kredittforvalter Intrum gjennom nettsiden til Intrum på
+Min side Intrum
+. Du kan alternativt sende søknad på epost til
+laaneadm@intrum.com
+. Du kan også kontakte kundeservice hos Intrum låneadministrasjon på 73 54 23 20.</dct:description>
+    <dct:identifier>Costa5f9b95d049743c1a98c2a13770306e6</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N4602c93dfac44ac7b3840ef3774120f6">
+    <skos:prefLabel>7004 Trondheim.
+Telefon: 94 84 79 47</skos:prefLabel>
     <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.trondheim.kommune.no/">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
   </rdf:Description>
 </rdf:RDF>

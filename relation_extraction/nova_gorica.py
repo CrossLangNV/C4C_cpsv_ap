@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup, Tag
 
 from relation_extraction.aalter import AalterParser
 from relation_extraction.cities import RegexCPSVAPRelationsClassifier
+from relation_extraction.html_parsing.parsers import Section
 from relation_extraction.utils import clean_text
 
 
@@ -44,7 +45,7 @@ class NovaGoricaParser(AalterParser):  # CityParser
     def parse_page(self,
                    s_html,
                    include_sub: bool = True
-                   ) -> List[List[str]]:
+                   ) -> List[Section]:
         soup = BeautifulSoup(s_html, 'html.parser')
 
         # Find the Title
@@ -150,15 +151,19 @@ class NovaGoricaParser(AalterParser):  # CityParser
         # Filter empty subs:
         l = list(filter(lambda l_sub: len(l_sub), l))
 
+        # Convert to sections
+        l = [Section(l_sub[0], l_sub[1:]) for l_sub in l]
+
         return l
 
     def _filter_header(self, tag: Tag):
-        if re.match(r'^h[1-6]$', tag.name):
+
+        if super(NovaGoricaParser, self)._filter_header(tag):
             return True
 
         # TODO Also do something with accordion headers.
 
-        # Bold title
+        # Bold title and ":" at the end
         if tag.name == "strong":
             text = tag.get_text(separator=" ", strip=True)
             if re.match(r'^(.)+:$', text):

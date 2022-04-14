@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:cpsv="http://purl.org/vocab/cpsv#"
+   xmlns:cv="http://data.europa.eu/m8g/"
+   xmlns:dct="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:schema="https://schema.org/"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint1ad0496ac41d4ca4996a07fd7ea46f0e">
+    <schema:email>bofin@trondheim.kommune.no</schema:email>
+    <schema:email>laaneadm@intrum.com</schema:email>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:telephone>Du kan kontakte Intrum låneadministrasjonen på telefon 73 54 23 20, e-post
+laaneadm@intrum.com</schema:telephone>
+    <schema:telephone>Telefon: 94 84 79 47</schema:telephone>
+    <schema:email>Du kan kontakte Intrum låneadministrasjonen på telefon 73 54 23 20, e-post
+laaneadm@intrum.com</schema:email>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService_3a2430c5cb9b4bab92a8b8424965f3c6">
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationdd539d46280844679e12fc961fd95b73"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement_287e2754a0e4432095d9c79971a132cd"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement_e8acc5f6988a4a028f452a35fc11aa64"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement_65a9c1a4805346f4958318b1b8addc85"/>
+    <dct:identifier>PublicService_3a2430c5cb9b4bab92a8b8424965f3c6</dct:identifier>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence_508b7fd2fe764b2eaed09d87d49ce489"/>
+    <dct:description>Velkommen til Trondheim kommune. Her finner du informasjon om våre tjenester.</dct:description>
+    <dct:title>
+   Startlån - Trondheim kommune
+  </dct:title>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint1ad0496ac41d4ca4996a07fd7ea46f0e"/>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence_b3de363551a84f3282b2675fd74a4ffe"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement_4a27c7fb9fde4c16a7c8b7fc493eba33"/>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost_8e85b3721c344cc6b82035e5f1a31f1f"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement_1bd121aacd1a4851bab3f8bc4a5b3fa7"/>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost_1b439a934f3d4e498d78f879ce45b0d3"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement_65a9c1a4805346f4958318b1b8addc85">
+    <dct:description xml:lang="NB">Søkere må være over 18 år, ha gyldig oppholdstillatelse og varig bosetting i Norge samt ha mottatt siste års skattemelding
+Ektefeller, samboere og registrerte partnere skal søke sammen. Venner eller andre familiemedlemmer kan ikke søke sammen</dct:description>
+    <dct:identifier>CriterionRequirement_65a9c1a4805346f4958318b1b8addc85</dct:identifier>
+    <dct:title xml:lang="NB">Krav til søker</dct:title>
+    <dct:description xml:lang="EN">Applicants must be over 18 years of age, have a valid residence permit and permanent settlement in Norway and have received the last year’s tax return
+Spouses, cohabitants and registered partners must apply together. Friends or other family members can't search together</dct:description>
+    <dct:title xml:lang="EN">Requirements for the applicant</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement_287e2754a0e4432095d9c79971a132cd">
+    <dct:description xml:lang="NB">betalingsanmerkninger
+forventning om inntektsreduksjon eller økning av faste utgifter slik at betjeningsevnen ikke blir tilstrekkelig fremover
+forventning om inntektsøkning og/eller egenkapital som tilsier at søkerne vil oppnå tilstrekkelig finansiering til formålet i det ordinære kredittmarkedet</dct:description>
+    <dct:title xml:lang="NB">Søkere kan ikke ha</dct:title>
+    <dct:title xml:lang="EN">Applicants may not have</dct:title>
+    <dct:identifier>CriterionRequirement_287e2754a0e4432095d9c79971a132cd</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:description xml:lang="EN">payment Notes
+expectation of a reduction in income or increase in fixed expenses so that the capacity to operate is not sufficient in the future
+expectation of an increase in income and/or equity indicating that applicants will obtain sufficient funding for the purpose of the ordinary credit market</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence_b3de363551a84f3282b2675fd74a4ffe">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:identifier>Evidence_b3de363551a84f3282b2675fd74a4ffe</dct:identifier>
+    <dct:description xml:lang="NB">Saksbehandlingstiden (køen) er for tiden cirka ca. 6 måneder
+For dokumentasjonskrav se søknadsskjemaet eller punktet under om søknad og vedlegg
+Oppdaterte nedbetalingsplaner med månedlig terminbeløp for gjeld/ kreditter. For kredittkort kan siste månedsfaktura benyttes. Dersom gjeld er innfridd, så må det dokumenteres fra kreditor. All gjeld på skattemeldingen må dokumenteres, også dersom gjeld er innfridd.</dct:description>
+    <dct:title xml:lang="NB">Saksbehandlingstid</dct:title>
+    <dct:description xml:lang="EN">The processing time (the queue) is currently about 6 months
+For documentation requirements see the application form or the point below regarding the application and attachments
+Updated repayment plans with monthly instalments for debt/credits. For credit cards, last month’s invoice can be used. If the debt has been met, it must be documented from the creditor. All debt on the tax return must be documented, even if debt has been met.</dct:description>
+    <dct:title xml:lang="EN">Case processing time</dct:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement_4a27c7fb9fde4c16a7c8b7fc493eba33">
+    <dct:identifier>CriterionRequirement_4a27c7fb9fde4c16a7c8b7fc493eba33</dct:identifier>
+    <dct:title xml:lang="EN">Other conditions</dct:title>
+    <dct:description xml:lang="EN">The credit currently has the following conditions:</dct:description>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:title xml:lang="NB">Øvrige vilkår</dct:title>
+    <dct:description xml:lang="NB">Kreditten har for tiden følgende vilkår:</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement_e8acc5f6988a4a028f452a35fc11aa64">
+    <dct:identifier>CriterionRequirement_e8acc5f6988a4a028f452a35fc11aa64</dct:identifier>
+    <dct:title xml:lang="EN">Who can apply</dct:title>
+    <dct:title xml:lang="NB">Hvem kan søke</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost_8e85b3721c344cc6b82035e5f1a31f1f">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:description xml:lang="NB">Saksbehandlingstiden (køen) er for tiden cirka ca. 6 måneder
+For dokumentasjonskrav se søknadsskjemaet eller punktet under om søknad og vedlegg
+Oppdaterte nedbetalingsplaner med månedlig terminbeløp for gjeld/ kreditter. For kredittkort kan siste månedsfaktura benyttes. Dersom gjeld er innfridd, så må det dokumenteres fra kreditor. All gjeld på skattemeldingen må dokumenteres, også dersom gjeld er innfridd.</dct:description>
+    <dct:identifier>Cost_8e85b3721c344cc6b82035e5f1a31f1f</dct:identifier>
+    <dct:description xml:lang="EN">The processing time (the queue) is currently about 6 months
+For documentation requirements see the application form or the point below regarding the application and attachments
+Updated repayment plans with monthly instalments for debt/credits. For credit cards, last month’s invoice can be used. If the debt has been met, it must be documented from the creditor. All debt on the tax return must be documented, even if debt has been met.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost_1b439a934f3d4e498d78f879ce45b0d3">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:identifier>Cost_1b439a934f3d4e498d78f879ce45b0d3</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement_1bd121aacd1a4851bab3f8bc4a5b3fa7">
+    <dct:title xml:lang="NB">Særlige forhold</dct:title>
+    <dct:description xml:lang="EN">If there are special circumstances or considerations that affect the processing of your application, this should be explained in the application.</dct:description>
+    <dct:title xml:lang="EN">Special conditions</dct:title>
+    <dct:description xml:lang="NB">Dersom det foreligger særlige forhold eller hensyn som har betydning for behandlingen av din søknad, så bør det redegjøres for dette i søknaden.</dct:description>
+    <dct:identifier>CriterionRequirement_1bd121aacd1a4851bab3f8bc4a5b3fa7</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence_508b7fd2fe764b2eaed09d87d49ce489">
+    <dct:identifier>Evidence_508b7fd2fe764b2eaed09d87d49ce489</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:title xml:lang="EN">Mailing address:</dct:title>
+    <dct:title xml:lang="NB">Postadresse:</dct:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationdd539d46280844679e12fc961fd95b73">
+    <dct:spatial rdf:resource="https://www.trondheim.kommune.no/"/>
+    <cv:hasAddress rdf:nodeID="Nb140e0a1375a45ccbf45863b31634df6"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nb140e0a1375a45ccbf45863b31634df6">
+    <skos:prefLabel>7004 Trondheim.
+Telefon: 94 84 79 47</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.trondheim.kommune.no/">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+</rdf:RDF>

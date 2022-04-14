@@ -9,12 +9,12 @@ from BERT_classifier.bert_based_classifier.trainer_bert_sequence_classifier impo
 def main_with_args(preprocessed_data_dir: str,
                    output_dir: str,
                    model_name_or_path: str,
-                   batch_size: int,
-                   epochs: int,
-                   initial_lr: float,
-                   warm_up: bool,
-                   gpu: int,
-                   save_model_each: int, ):
+                   batch_size: int = 4,
+                   epochs: int = 40,
+                   initial_lr: float = 5e-5,
+                   warm_up: bool = True,
+                   gpu: int = 0,
+                   save_model_each: int = 10):
     # initialize a Trainer
     trainer_bert_sequence_classifier = TrainerBertSequenceClassifier(model_name_or_path, preprocessed_data_dir,
                                                                      output_dir)

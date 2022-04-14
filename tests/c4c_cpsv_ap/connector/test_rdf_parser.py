@@ -1,12 +1,14 @@
 import unittest
 
-from SPARQLWrapper.Wrapper import POST
 from rdflib.term import Literal, URIRef
+from SPARQLWrapper.Wrapper import POST
 
-from c4c_cpsv_ap.connector.rdf_parser import SPARQLConnector, SPARQLPublicServicesProvider, SPARQLContactPointProvider, \
-    SUBJ, OBJ, URI, LABEL
+from c4c_cpsv_ap.connector.rdf_parser import LABEL, OBJ, SPARQLConnector, SPARQLContactPointProvider, \
+    SPARQLPublicServicesProvider, SUBJ, URI
 
 SPARQL_ENDPOINT = 'http://gpu1.crosslang.com:3030/C4C_demo/query'
+
+
 # SPARQL_ENDPOINT = 'https://django.cefat4cities.crosslang.com/cpsv/api/dataset'
 
 
@@ -395,7 +397,7 @@ class TestReadOnly(unittest.TestCase):
             self.assertFalse(len(r), 'Triple should not exist yet!')
 
         q_insert = f"""
-        INSERT DATA {{ 
+        INSERT DATA {{
             GRAPH {URIRef(self.PRED).n3()} {{
                 {URIRef(self.SUB).n3()} {URIRef(self.PRED).n3()} {Literal(self.OBJECT).n3()}
             }}
@@ -432,7 +434,7 @@ class TestReadOnly(unittest.TestCase):
         """
 
         q_remove = f"""
-        DELETE DATA {{ 
+        DELETE DATA {{
             GRAPH {URIRef(self.SUB).n3()} {{
                 {URIRef(self.SUB).n3()} {URIRef(self.PRED).n3()} {Literal(self.OBJECT).n3()}
             }}

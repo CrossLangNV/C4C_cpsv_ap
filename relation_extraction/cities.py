@@ -10,21 +10,47 @@ from typing import Generator, List, Optional, Tuple, Union
 from bs4 import BeautifulSoup, Tag
 from pydantic import BaseModel
 
-from c4c_cpsv_ap.models import BusinessEvent, Event, LifeEvent
+from c4c_cpsv_ap.models import BusinessEvent, Event, Info, LifeEvent
+from relation_extraction.html_parsing.parsers import Section
 from relation_extraction.utils import clean_text
 
 
 class Relations(BaseModel):
-    criterionRequirement: Optional[str]
-    rule: Optional[str]
-    evidence: Optional[str]
-    cost: Optional[str]
+    # TODO add explicit classes
+    criterionRequirements: List[Info] = []
+    rules: List[Info] = []
+    evidences: List[Info] = []
+    costs: List[Info] = []
 
     # Event
     events: Optional[List[Event]]
 
     # life_event: Optional[List[Event]]
     # business_event: Optional[List[Event]]
+
+    def get_criterion_requirements(self) -> List[Info]:
+        return self.criterionRequirements
+
+    def get_rules(self) -> List[Info]:
+        return self.rules
+
+    def get_evidence(self) -> List[Info]:
+        return self.evidences
+
+    def get_cost(self) -> List[Info]:
+        return self.costs
+
+    def add_criterion_requirement(self, info: Info):
+        self.criterionRequirements.append(info)
+
+    def add_rule(self, info: Info):
+        self.rules.append(info)
+
+    def add_evidence(self, info: Info):
+        self.evidences.append(info)
+
+    def add_cost(self, info: Info):
+        self.costs.append(info)
 
     def get_events(self) -> List[Event]:
         return self.events
@@ -164,7 +190,7 @@ class CityParser(abc.ABC):
     @abc.abstractmethod
     def parse_page(self,
                    s_html: str,
-                   include_sub: bool = True):
+                   include_sub: bool = True) -> List[Section]:
         """
         Converts a html page to paragraphs with their title.
 
@@ -206,10 +232,9 @@ class CityParser(abc.ABC):
         Returns:
             generates (title, paragraph) pairs.
         """
-        for l_sub in self.parse_page(s_html, include_sub=include_sub):
-            title = l_sub[0]
-            paragraphs = l_sub[1:]
-            paragraphs_clean = "\n".join(filter(lambda s: s, paragraphs))
+        for section in self.parse_page(s_html, include_sub=include_sub):
+            title = section.title
+            paragraphs_clean = section.paragraphs_text()
 
             yield title, paragraphs_clean
 
@@ -220,6 +245,8 @@ class ClassifierCityParser(CityParser):
     """
 
     def __init__(self, classifier: CPSVAPRelationsClassifier, *args, **kwargs):
+        """
+        """
         super(ClassifierCityParser, self).__init__(*args, **kwargs)
 
         self.classifier = classifier
@@ -227,16 +254,9 @@ class ClassifierCityParser(CityParser):
     def parse_page(self,
                    s_html,
                    include_sub: bool = True
-                   ) -> List[List[str]]:
+                   ) -> List[Section]:
         """
-        AKA Chunking
-
-        Args:
-            s_html:
-            include_sub:
-
-        Returns:
-
+        With HeaderHTMLParser
         """
         soup = BeautifulSoup(s_html, 'html.parser')
 
@@ -302,6 +322,9 @@ class ClassifierCityParser(CityParser):
         # Filter empty subs:
         l = [l_sub for l_sub in l if len(l_sub)]
 
+        # Convert to sections
+        l = [Section(l_sub[0], l_sub[1:]) for l_sub in l]
+
         return l
 
     def extract_relations(self, s_html: str, url: str, *args, include_sub=True, verbose=0, **kwargs) -> Relations:
@@ -322,19 +345,22 @@ class ClassifierCityParser(CityParser):
 
         for i, (title, paragraph) in enumerate(self._paragraph_generator(s_html, include_sub=include_sub)):
             if verbose:
-                print(f"classifying paragraph {i + 1}/{n}")
+                print(f"Classifying section for relations {i + 1}/{n}")
+
+            info = Info(name=title,
+                        description=paragraph)
 
             if self.classifier.predict_criterion_requirement(title, paragraph):
-                d.criterionRequirement = paragraph
+                d.add_criterion_requirement(info)
 
             if self.classifier.predict_rule(title, paragraph):
-                d.rule = paragraph
+                d.add_rule(info)
 
             if self.classifier.predict_evidence(title, paragraph):
-                d.evidence = paragraph
+                d.add_evidence(info)
 
             if self.classifier.predict_cost(title, paragraph):
-                d.cost = paragraph
+                d.add_cost(info)
 
         return d
 

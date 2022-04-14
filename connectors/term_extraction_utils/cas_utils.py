@@ -1,8 +1,8 @@
 import base64
 import os
-from typing import List, Generator
+from typing import Generator, List
 
-from cassis import load_cas_from_xmi, load_typesystem, Cas, typesystem
+from cassis import Cas, load_cas_from_xmi, load_typesystem, typesystem
 
 # [Annotation]
 TAG_TYPE = "com.crosslang.uimahtmltotext.uima.type.ValueBetweenTagType"

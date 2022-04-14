@@ -26,7 +26,6 @@ class AustrheimParser(AalterParser):  # CityParser
     """
 
     def __init__(self, classifier: AustrheimCPSVAPRelationsClassifier = None):
-
         if classifier is None:
             # Default behaviour
             classifier = AustrheimCPSVAPRelationsClassifier()

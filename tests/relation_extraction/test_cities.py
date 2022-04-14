@@ -17,6 +17,16 @@ DIR_EXAMPLE_FILES = os.path.join(os.path.dirname(__file__), "EXAMPLE_FILES")
 url2filename = lambda page: os.path.join(DIR_EXAMPLE_FILES, re.sub(r'\W+', '_', page) + ".html")
 
 
+class TestCaseExtra(unittest.TestCase):
+    def assert_in_list(self, s, l):
+        b = False
+        for a in l:
+            if s in a:
+                b = True
+
+        self.assertTrue(b, f"Could not find \"{s}\" in {l}")
+
+
 class TestDifferentCities(unittest.TestCase):
     def setUp(self) -> None:
         # 1. Countries
@@ -109,7 +119,7 @@ class TestDifferentCities(unittest.TestCase):
         self.assertTrue(l)
 
 
-class TestAalter(unittest.TestCase):
+class TestAalter(TestCaseExtra):
     """
     Belgium, Dutch
     """
@@ -169,52 +179,60 @@ class TestAalter(unittest.TestCase):
         # E ID
         d_relations1 = self.parser.extract_relations(self.html1, url=self.url1)
 
-        crit_req = d_relations1.criterionRequirement
+        crit_req = d_relations1.criterionRequirements
         s_in = "De pasfoto die je meebrengt mag maximaal 6 maanden oud zijn en " \
                "moet voldoen aan de normen van de International Civil Aviation Organization (pdf)."
 
         with self.subTest("criterion requirement"):
+            l_cr = [cr.description for cr in crit_req]
+
             self.assertTrue(crit_req)
 
-            self.assertIn(s_in.replace(" ", ""), crit_req.replace(" ", ""))
+            self.assert_in_list(s_in.replace(" ", ""),
+                                [a.replace(" ", "") for a in l_cr])
 
         with self.subTest("#TODO correct chunking"):
-            self.assertIn(s_in, crit_req)
+            self.assert_in_list(s_in, l_cr)
 
-        rule1 = d_relations1.rule
+        rule1 = d_relations1.rules
         s_in = "Belgen ouder dan 12 jaar die in het buitenland wonen kunnen een eID krijgen bij de Belgische consulaire beroepspost waar ze zijn ingeschreven. De levertermijn is wel langer."
         with self.subTest("Rule"):
             self.assertTrue(rule1)
 
-            self.assertIn(s_in, rule1)
+            l_r = [r.description for r in rule1]
+            self.assert_in_list(s_in, l_r)
 
-        cost_eid = d_relations1.cost
+        cost_eid = d_relations1.costs
         with self.subTest("cost"):
             self.assertTrue(cost_eid)
 
-            self.assertIn("12 tot 18 jaar is de identiteitskaart 6 jaar geldig", cost_eid)
+            self.assert_in_list("12 tot 18 jaar is de identiteitskaart 6 jaar geldig",
+                                [c.description for c in cost_eid])
 
         with self.subTest("#TODO Chunking tables"):
-            self.assertIn("Spoed: levering gemeentehuis (1 dag)", cost_eid)
+            self.assert_in_list("Spoed: levering gemeentehuis (1 dag)",
+                                [c.description for c in cost_eid])
 
     def test_extract_relations2(self):
         # Change in address
         d_relations2 = self.parser.extract_relations(self.html2, url=self.url2)
 
         with self.subTest("rule2"):
-            rule2 = d_relations2.rule
+            rule2 = d_relations2.rules
 
             self.assertTrue(rule2)
 
             s_in = "Na deze controle word je ingeschreven op het nieuwe adres en word je uitgenodigd om jouw identiteitskaart op het gemeentehuis te laten aanpassen."
-            self.assertIn(s_in, rule2)
+            self.assert_in_list(s_in,
+                                [r.description for r in rule2])
 
         with self.subTest("evidence"):
-            evidence = d_relations2.evidence
+            evidence = d_relations2.evidences
 
             self.assertTrue(evidence)
 
-            self.assertIn("Pincode om de chip te updaten.", evidence)
+            self.assert_in_list("Pincode om de chip te updaten.",
+                                [e.description for e in evidence])
 
     def test_RelationExtractor(self,
                                debug=False):
@@ -230,7 +248,7 @@ class TestAalter(unittest.TestCase):
         self.assertTrue(ps)
 
 
-class TestAustrheim(unittest.TestCase):
+class TestAustrheim(TestCaseExtra):
     """
     Norway, Norwegian
     """
@@ -256,22 +274,26 @@ class TestAustrheim(unittest.TestCase):
         d_relations = self.parser.extract_relations(self.html, url=self.url)
 
         with self.subTest("criterionRequirement"):
-            crit_requirement = d_relations.criterionRequirement
+            crit_requirement = d_relations.criterionRequirements
 
             self.assertTrue(crit_requirement)
 
-            self.assertIn("ha eit fysisk eller psykisk funksjonstap", crit_requirement)
+            l_descr = [cr.description for cr in crit_requirement]
+
+            self.assert_in_list("ha eit fysisk eller psykisk funksjonstap",
+                                l_descr)
 
             # Check encoding!
-            self.assertIn("du må ha legeuttale", crit_requirement)
+            self.assert_in_list("du må ha legeuttale",
+                                l_descr)
 
         with self.subTest("rule"):
-            rule = d_relations.rule
+            rule = d_relations.rules
 
             self.assertTrue(rule)
 
         with self.subTest("cost"):
-            cost = d_relations.cost
+            cost = d_relations.costs
 
             self.assertTrue(cost)
 
@@ -289,7 +311,7 @@ class TestAustrheim(unittest.TestCase):
         self.assertTrue(ps)
 
 
-class TestNovaGorica(unittest.TestCase):
+class TestNovaGorica(TestCaseExtra):
     """
     Slovenia, Slovene
     """
@@ -354,63 +376,63 @@ class TestNovaGorica(unittest.TestCase):
         # Birth
         d_relations = self.parser.extract_relations(self.html, url=self.url)
 
-        crit_req = d_relations.criterionRequirement
+        crit_req = d_relations.criterionRequirements
         with self.subTest("criterion requirement"):
             self.assertTrue(crit_req)
 
             s_in = "Vloga za enkratno denarno pomoč ob rojstvu otroka"
-            self.assertEqual(s_in, crit_req)
 
-        rule_birth = d_relations.rule
+            self.assertIn(s_in, [cr.description for cr in crit_req])
+
+        rule_birth = d_relations.rules
         s_in = "Višina enkratne občinske denarne pomoči ob rojstvu otroka znaša 500,00 EUR"
         with self.subTest("Rule"):
             self.assertTrue(rule_birth)
 
-            self.assertIn(s_in, rule_birth)
+            self.assert_in_list(s_in, [r.description for r in rule_birth])
 
-        cost_birth = d_relations.cost
+        cost_birth = d_relations.costs
         with self.subTest("cost"):
             self.assertTrue(cost_birth)
 
-            self.assertEqual("Takse ni.",
-                             cost_birth)
+            self.assertIn("Takse ni.", [c.description for c in cost_birth])
 
     def test_extract_relations2(self):
         # Change in address
         d_relations = self.parser.extract_relations(self.html2, url=self.url2)
 
-        crit_req = d_relations.criterionRequirement
+        crit_req = d_relations.criterionRequirements
         with self.subTest("criterion requirement"):
             self.assertTrue(crit_req)
 
             s_in = "a prenehanja opravljanja dejavnosti avto-taksi prevozov"
-            self.assertIn(s_in, crit_req)
 
-        rule = d_relations.rule
+            self.assert_in_list(s_in, [cr.description for cr in crit_req])
+
+        rule = d_relations.rules
         with self.subTest("Rule"):
             self.assertTrue(rule)
 
             # different tags act weird, so separate test
             s_in = "potrebna sprememba dovoljenja"
-            self.assertIn(s_in, rule)
+            self.assert_in_list(s_in, [r.description for r in rule])
 
             s_in = " ko se spremeni katerikoli pogoj in s tem priloga k vlogi podani ob pridobitvi dovoljenja; vlogo za spremembo je potrebno podati v"
-            self.assertIn(s_in, rule)
+            self.assert_in_list(s_in, [r.description for r in rule])
 
-        evidence = d_relations.evidence
+        evidence = d_relations.evidences
         with self.subTest("Evidence"):
             self.assertTrue(evidence)
 
             s_in = "taksi (glej postopek Prijava obveznosti plačila občinske takse - Pri"
 
-            self.assertIn(s_in, evidence)
+            self.assert_in_list(s_in, [e.description for e in evidence])
 
-        cost = d_relations.cost
+        cost = d_relations.costs
         with self.subTest("cost"):
             self.assertTrue(cost)
 
-            self.assertIn("22,60 EUR.",
-                          cost)
+            self.assert_in_list("22,60 EUR.", [c.description for c in cost])
 
     def test_RelationExtractor(self,
                                debug=False):
@@ -426,7 +448,7 @@ class TestNovaGorica(unittest.TestCase):
         self.assertTrue(ps)
 
 
-class TestSanPaolo(unittest.TestCase):
+class TestSanPaolo(TestCaseExtra):
     """
     Italy, Italian
     """
@@ -461,27 +483,26 @@ class TestSanPaolo(unittest.TestCase):
             title = "Moduli da compilare e documenti da allegare"
             self.assertIn(title, titles, "TODO chunker did not include evidence block.")
 
+
     def test_extract_relations(self):
         d_relations = self.parser.extract_relations(self.html, url=self.url)
 
-        evidence = d_relations.evidence
+        evidence = d_relations.evidences
         with self.subTest("#TODO evidence"):
             self.assertTrue(evidence)
 
             s_in = "Dichiarazione di trasferimento di residenza all'estero	"
-            self.assertIn(s_in,
-                          evidence)
+            self.assert_in_list(s_in, [a.description for a in evidence])
 
             s_in = "Copia del documento d'identità di tutti i soggetti"
-            self.assertIn(s_in,
-                          evidence)
+            self.assert_in_list(s_in, [a.description for a in evidence])
 
-        cost = d_relations.cost
+        cost = d_relations.costs
         with self.subTest("cost"):
             self.assertTrue(cost)
 
-            self.assertIn("La presentazione della pratica non prevede alcun pagamento",
-                          cost)
+            self.assert_in_list("La presentazione della pratica non prevede alcun pagamento",
+                                [a.description for a in cost])
 
     def test_RelationExtractor(self,
                                debug=False):
@@ -497,7 +518,7 @@ class TestSanPaolo(unittest.TestCase):
         self.assertTrue(ps)
 
 
-class TestWien(unittest.TestCase):
+class TestWien(TestCaseExtra):
     """
     Austria, German
     """
@@ -537,41 +558,36 @@ class TestWien(unittest.TestCase):
     def test_extract_relations(self):
         d_relations = self.parser.extract_relations(self.html, url=self.url)
 
-        criterionRequirement = d_relations.criterionRequirement
+        criterionRequirement = d_relations.criterionRequirements
         with self.subTest("criterion requirement"):
             self.assertTrue(criterionRequirement)
 
             s_in = "Das Fahrzeug muss den Baujahrsvorschriften des österreichischen Kraftfahrrecht bzw. den EU"
-            self.assertIn(s_in,
-                          criterionRequirement)
+            self.assert_in_list(s_in, [a.description for a in criterionRequirement])
 
-        rule = d_relations.rule
+        rule = d_relations.rules
         with self.subTest("rule"):
             self.assertTrue(rule)
 
             s_in = "technische Verkehrsangelegenheiten ("
-            self.assertIn(s_in,
-                          rule)
+            self.assert_in_list(s_in, [a.description for a in rule])
 
             s_in = "MA 46) gesondert genehmigt werden."
-            self.assertIn(s_in,
-                          rule)
+            self.assert_in_list(s_in, [a.description for a in rule])
 
-        evidence = d_relations.evidence
+        evidence = d_relations.evidences
         with self.subTest("evidence"):
             self.assertTrue(evidence)
 
             s_in = "Vollmacht, falls die FahrzeugbesitzerInnen nicht persönlich kommen"
-            self.assertIn(s_in,
-                          evidence)
+            self.assert_in_list(s_in, [a.description for a in evidence])
 
-        cost = d_relations.cost
+        cost = d_relations.costs
         with self.subTest("cost"):
             self.assertTrue(cost)
 
             s_in = "Zirka 60 bis 160 Euro"
-            self.assertIn(s_in,
-                          cost)
+            self.assert_in_list(s_in, [a.description for a in cost])
 
     def test_RelationExtractor(self,
                                debug=False):

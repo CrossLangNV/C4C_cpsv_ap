@@ -90,9 +90,15 @@ class RelationExtractor:
                                            concepts=concepts)
 
     def extract_public_organisation(self):
-        contact_info_split = self.get_contact_info_split()
-        l_address = contact_info_split.address
-        address = '\n'.join(l_address)
+
+        try:
+            contact_info_split = self.get_contact_info_split()
+        except Exception as e:
+            warnings.warn(f"Unable to extract contact info:\n{e}", UserWarning)
+            address = None
+        else:
+            l_address = contact_info_split.address
+            address = '\n'.join(l_address)
 
         # Prefered label can most likely be extracted from the name of the service
         # within the contact information.
@@ -115,8 +121,14 @@ class RelationExtractor:
          * add the identifier extraction results
         """
 
+        try:
+            description = get_public_service_description(self.html)
+        except Exception as e:
+            warnings.warn(f"Unable to extract public service description:\n{e}", UserWarning)
+            description = ""
+
         public_service = PublicService(name=get_public_service_name(self.html),
-                                       description=get_public_service_description(self.html),
+                                       description=description,
                                        identifier=None,
                                        has_competent_authority=public_org,
                                        has_contact_point=contact_info,
@@ -129,14 +141,17 @@ class RelationExtractor:
         return public_service
 
     def extract_contact_info(self) -> ContactPoint:
-        contact_info_split = self.get_contact_info_split()
 
-        contact_info = ContactPoint(email=contact_info_split.email,
-                                    telephone=contact_info_split.telephone,
-                                    opening_hours=contact_info_split.opening_hours
-                                    )
-
-        return contact_info
+        try:
+            contact_info_split = self.get_contact_info_split()
+        except Exception as e:
+            warnings.warn(f"Unable to extract contact info:\n{e}", UserWarning)
+        else:
+            contact_info = ContactPoint(email=contact_info_split.email,
+                                        telephone=contact_info_split.telephone,
+                                        opening_hours=contact_info_split.opening_hours
+                                        )
+            return contact_info
 
     def get_contact_info_split(self) -> ContactInfoSplit:
         conn = ConnectorTermExtraction(TERM_EXTRACTION)
@@ -158,7 +173,10 @@ class RelationExtractor:
         Export to RDF
         """
 
-        print(self.provider.graph.serialize(destination))
+        s = self.provider.graph.serialize(destination)
+
+        if destination is None:
+            print(s)
 
 
 def get_public_service_name(html: str) -> str:

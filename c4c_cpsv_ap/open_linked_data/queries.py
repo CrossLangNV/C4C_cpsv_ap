@@ -1,8 +1,8 @@
 from typing import List
 
-from SPARQLWrapper import SPARQLWrapper, JSON
 from rdflib.namespace import DCAT, Namespace, SKOS
 from rdflib.term import Literal, URIRef
+from SPARQLWrapper import JSON, SPARQLWrapper
 
 from c4c_cpsv_ap.open_linked_data.build_rdf import CPSV
 
@@ -40,15 +40,15 @@ def get_types(endpoint):
 
 def get_contact_points(endpoint, graph_uri=None):
     q_filter = f"""
-    values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }} 
+    values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
     """ if graph_uri is not None else ''
 
     q = f"""
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     SELECT distinct ?{URI} ?{GRAPH}
-    WHERE {{ 
-        {q_filter} 
+    WHERE {{
+        {q_filter}
         Graph ?{GRAPH} {{
             ?{URI} rdf:type {TYPE_CONTACT_POINT.n3()} ;
         }}
@@ -68,22 +68,22 @@ def get_contact_point_info(endpoint, cp_uri,
         cp_uri = URIRef(cp_uri)
 
     q_filter = f"""
-    values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }} 
+    values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
     """ if graph_uri is not None else ''
 
     q = f"""
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX schema: <https://schema.org/>
     PREFIX vcard2006: <http://www.w3.org/2006/vcard/ns#>
-    
+
     SELECT distinct ({cp_uri.n3()} as ?{URI}) ?{PRED} ?{LABEL} ?{GRAPH}
-    WHERE {{  
-        {q_filter} 
+    WHERE {{
+        {q_filter}
         Graph ?{GRAPH} {{
-            VALUES ?{PRED} {{schema:openingHours vcard2006:hasTelephone vcard2006:hasEmail}} 
+            VALUES ?{PRED} {{schema:openingHours vcard2006:hasTelephone vcard2006:hasEmail}}
             {cp_uri.n3()} rdf:type {DCAT.ContactPoint.n3()} ;
-                ?{PRED} ?{LABEL} .     
-        }}    
+                ?{PRED} ?{LABEL} .
+        }}
     }}
     """
     # print(q)
@@ -95,7 +95,7 @@ def get_contact_point_info(endpoint, cp_uri,
 
 def get_public_services(endpoint, graph_uri=None):
     q_filter = f"""
-    values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }} 
+    values ?{GRAPH} {{ {URIRef(graph_uri).n3()} }}
     """ if graph_uri is not None else ''
 
     q = f"""
@@ -104,12 +104,12 @@ def get_public_services(endpoint, graph_uri=None):
 	PREFIX terms: <http://purl.org/dc/terms/>
 
     SELECT distinct ?{URI} ?{TITLE} ?{DESCRIPTION} ?{GRAPH}
-    WHERE {{ 
+    WHERE {{
         {q_filter}
         Graph ?{GRAPH} {{
             ?{URI} rdf:type {TYPE_PUBLICSERVICE.n3()} ;
                 terms:title ?{TITLE} ;
-                terms:description ?{DESCRIPTION} . 
+                terms:description ?{DESCRIPTION} .
         }}
     }}
     """
@@ -123,7 +123,7 @@ def get_public_services(endpoint, graph_uri=None):
 def get_graphs(endpoint):
     q = f"""
     SELECT distinct ?{GRAPH}
-    WHERE {{  
+    WHERE {{
         Graph ?{GRAPH} {{ }}
     }}
     """
@@ -155,7 +155,7 @@ def get_concepts(endpoint,
     SELECT distinct ?{LABEL}
     WHERE {{
         {q_filter}
-        Graph ?{GRAPH} {{ 
+        Graph ?{GRAPH} {{
             ?concept skos:prefLabel ?{LABEL}
         }}
     }}
@@ -195,7 +195,7 @@ def get_classified_by_concepts(endpoint,
     WHERE {{
         {q_filter}
         {q_filter_ps}
-        Graph ?{GRAPH} {{ 
+        Graph ?{GRAPH} {{
             ?{PS} cpsv:isClassifiedBy ?concept .
             ?concept skos:prefLabel ?{LABEL}
         }}
