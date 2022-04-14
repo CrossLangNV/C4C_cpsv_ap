@@ -1,6 +1,7 @@
 import argparse
 import os.path
 import warnings
+from typing import List, Union
 
 from data.html import get_html
 from relation_extraction.aalter import AalterParser
@@ -83,7 +84,8 @@ def extract_cpsv_ap_from_html(filename_html,
                               url: str = None,
                               extract_concepts: bool = False,
                               general: bool = False,
-                              filename_html_parsing: str = None
+                              filename_html_parsing: str = None,
+                              translation: Union[str, List[str]] = "EN"
                               ):
     """
     Extract the administrative procedure ontology out of a html page,
@@ -117,8 +119,6 @@ def extract_cpsv_ap_from_html(filename_html,
         city_parser = GeneralCityParser(lang_code=lang,
                                         filename_html_parsing=filename_html_parsing)
 
-
-
     else:
         city_parser = get_municipality_parser(country_code=country_code,
                                               url=url)
@@ -134,7 +134,7 @@ def extract_cpsv_ap_from_html(filename_html,
     relation_extractor.extract_all(extract_concepts=extract_concepts,
                                    verbose=2)
 
-    relation_extractor.translate("EN", source=lang)
+    relation_extractor.translate(translation, source=lang)
 
     print("Success")
 

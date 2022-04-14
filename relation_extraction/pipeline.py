@@ -153,13 +153,23 @@ class RelationExtractor2(RelationExtractor):
                                            password=CEF_PASSW)
 
         l_text_source = [str(o) for s, p, o, c in l_to_translate]
-        l_text_target = translator.trans_list_blocking(l_text_source,
-                                                       target=target,
-                                                       source=source)
 
-        for (s, p, _, c), text_trans in zip(l_to_translate, l_text_target):
-            quad_trans = (s, p, Literal(text_trans, lang=target), c)
-            g.add(quad_trans)
+        if isinstance(target, str):
+            target = [target]
+
+        for target_i in target:
+
+            if target_i == source:
+                # No need to translate
+                continue
+
+            l_text_target = translator.trans_list_blocking(l_text_source,
+                                                           target=target_i,
+                                                           source=source)
+
+            for (s, p, _, c), text_trans in zip(l_to_translate, l_text_target):
+                quad_trans = (s, p, Literal(text_trans, lang=target_i), c)
+                g.add(quad_trans)
 
         t1 = time.time()
         print(f"Translating labels - End ({t1 - t0:.2f} s)")

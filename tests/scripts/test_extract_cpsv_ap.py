@@ -328,7 +328,8 @@ class TestCLIGeneral(unittest.TestCase):
                                   country_code=args.country,
                                   url=args.url,
                                   general=args.general,
-                                  lang=args.language
+                                  lang=args.language,
+                                  translation=["EN", "FR", "NL", "DE", "UK"]
                                   )
 
     def test_general_args(self,
@@ -504,7 +505,7 @@ class TestCLIGeneralChunker(unittest.TestCase):
                                       country_code=args.country,
                                       url=args.url,
                                       general=args.general,
-                                      lang=args.language
+                                      lang=args.language,
                                       )
 
         return
@@ -543,7 +544,7 @@ class TestCLISaveHTMLParsing(unittest.TestCase):
                                       url=url,
                                       general=True,
                                       lang=lang,
-                                      filename_html_parsing=path_scripts(basename_html_parsing)
+                                      filename_html_parsing=path_scripts(basename_html_parsing),
                                       )
 
         return

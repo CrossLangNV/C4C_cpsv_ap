@@ -7,20 +7,130 @@
    xmlns:schema="https://schema.org/"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement_eabbf646b4704974a622aa7752427f9d">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost_7d1a9c9bb6f4414db2742a8ddd418d7b">
+    <dct:identifier>Cost_7d1a9c9bb6f4414db2742a8ddd418d7b</dct:identifier>
+    <dct:description xml:lang="FR">Carte d’identité électronique de tous les membres de la famille.
+Code PIN pour mettre à jour la puce.</dct:description>
+    <dct:description xml:lang="DE">Elektronischer Personalausweis für alle Familienangehörigen.
+PIN-Code zur Aktualisierung des Chip.</dct:description>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+    <dct:description xml:lang="NL">Elektronische identiteitskaart van alle gezinsleden.
+Pincode om de chip te updaten.</dct:description>
+    <dct:description xml:lang="EN">Electronic identity card of all family members.
+Pin code to update the chip.</dct:description>
+    <dct:description xml:lang="UK">Електронна ідентифікаційна картка всіх членів сім'ї.
+PIN-код для оновлення чіпа.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence_2648aca1fafb4a0b986395159a381ed5">
+    <dct:description xml:lang="DE">Elektronischer Personalausweis für alle Familienangehörigen.
+PIN-Code zur Aktualisierung des Chip.</dct:description>
+    <dct:title xml:lang="UK">Що ви приносите?</dct:title>
+    <dct:description xml:lang="UK">Електронна ідентифікаційна картка всіх членів сім'ї.
+PIN-код для оновлення чіпа.</dct:description>
+    <dct:title xml:lang="EN">What do you bring?</dct:title>
+    <dct:title xml:lang="FR">Quelles sont les conséquences?</dct:title>
+    <dct:description xml:lang="FR">Carte d’identité électronique de tous les membres de la famille.
+Code PIN pour mettre à jour la puce.</dct:description>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:title xml:lang="DE">Was bringen Sie mit?</dct:title>
+    <dct:description xml:lang="NL">Elektronische identiteitskaart van alle gezinsleden.
+Pincode om de chip te updaten.</dct:description>
+    <dct:description xml:lang="EN">Electronic identity card of all family members.
+Pin code to update the chip.</dct:description>
+    <dct:identifier>Evidence_2648aca1fafb4a0b986395159a381ed5</dct:identifier>
+    <dct:title xml:lang="NL">Wat meebrengen?</dct:title>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation60d0e215b4664ab99e0786fb8ad111c5">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <cv:hasAddress rdf:nodeID="Nd410cdfd053545099fb354e38302f0d5"/>
+    <dct:spatial rdf:resource="www.aalter.be"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService_aa45ea8390fc4229b9cfe8a21c059052">
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence_2648aca1fafb4a0b986395159a381ed5"/>
+    <dct:title>
+    Aangifte van een adreswijziging - Gemeente Aalter
+  </dct:title>
+    <dct:identifier>PublicService_aa45ea8390fc4229b9cfe8a21c059052</dct:identifier>
+    <dct:description></dct:description>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule_ec14d6114b01427f9348b0c1b109a87f"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule_1eca0e844a8444beb55b7eb6256df698"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointd5ceef0fe69a4385b42a39303ee92f92"/>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation60d0e215b4664ab99e0786fb8ad111c5"/>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost_7d1a9c9bb6f4414db2742a8ddd418d7b"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement_9c89c50eaa1d424894432cee2f259579"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="www.aalter.be">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule_ec14d6114b01427f9348b0c1b109a87f">
+    <dct:description xml:lang="EN">You can report the change of address online via the Digital Window of
+your (new) municipality.
+You can go to the Citizens’ Office of your (new)
+municipality.</dct:description>
+    <dct:description xml:lang="FR">Vous pouvez notifier le changement d’adresse en ligne par l’intermédiaire du guichet numérique de
+votre (nouvelle) commune.
+Vous pouvez vous rendre au service des affaires civiles de ton (nouveau)
+commune.</dct:description>
+    <dct:title xml:lang="UK">Як повідомити?</dct:title>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
+    <dct:identifier>Rule_ec14d6114b01427f9348b0c1b109a87f</dct:identifier>
+    <dct:description xml:lang="NL">Je kan de adreswijziging online melden via het digitaal loket van
+jouw (nieuwe) gemeente.
+Je kan langsgaan bij de dienst Burgerzaken van jouw (nieuwe)
+gemeente.</dct:description>
+    <dct:title xml:lang="EN">How to report?</dct:title>
+    <dct:title xml:lang="DE">Wie ist Bericht zu erstatten?</dct:title>
+    <dct:description xml:lang="UK">Ви можете повідомити про зміну адреси онлайн через цифрове вікно
+ваш (новий) муніципалітет.
+Ви можете перейти до Громадського офісу вашого (новий)
+комунікабельність.</dct:description>
+    <dct:title xml:lang="FR">Comment notifier la notification?</dct:title>
+    <dct:title xml:lang="NL">Hoe melden?</dct:title>
+    <dct:description xml:lang="DE">Sie können die Änderung der Adresse online über das digitale Fenster von
+ihre (neue) Gemeinde.
+Sie können sich an das Bürgerbüro Ihres (neuen) Bürgerbüros wenden.
+Gemeinde.</dct:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement_9c89c50eaa1d424894432cee2f259579">
+    <dct:description xml:lang="DE">Jeder, der 18 Jahre oder älter ist, kann sich frei bewegen.
+Eltern oder Vormund geben den Umzug ihrer minderjährigen Kinder an
+bis.
+Erwachsene Familienangehörige dürfen Ihren Umzug weitergeben. Sie haben
+oder Sie benötigen Ihren Personalausweis.
+Sie können den Umzug erst dann weitergeben, wenn Sie tatsächlich umgezogen sind.
+Ist ein nicht bewachter Minderjähriger der Wohnort des Minderjährigen
+Eltern verlassen ihren Hauptwohnsitz zum ersten Mal an einem anderen Ort
+der Betrieb muss von einer Person begleitet werden, die
+Ausübungsberechtigung.</dct:description>
+    <dct:identifier>CriterionRequirement_9c89c50eaa1d424894432cee2f259579</dct:identifier>
+    <dct:title xml:lang="EN">Conditions</dct:title>
     <dct:title xml:lang="NL">Voorwaarden</dct:title>
-    <dct:identifier>CriterionRequirement_eabbf646b4704974a622aa7752427f9d</dct:identifier>
     <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
-    <dct:description xml:lang="EN">Anyone aged 18 or over is free to pass on the move.
-Parents or guardians give the move of their minor children
-by.
-Adult family members are allowed to pass on your move. They have
-or you need your identity card.
-You can only pass on the move once you have actually moved.
-If a non-guardianated minor is the place of residence of his or her
-parents leave their main residence elsewhere for the first time
-establishment, must be accompanied by a person who
-exercise authority.</dct:description>
+    <dct:title xml:lang="UK">Умови та умови</dct:title>
+    <dct:description xml:lang="FR">Toute personne âgée de 18 ans ou plus peut communiquer le déménagement lui-même.
+Les parents ou les tuteurs confient le déménagement de leurs enfants mineurs
+par.
+Les membres majeurs de votre famille peuvent transmettre votre déménagement. Ils ont:
+si vous avez besoin de votre carte d’identité.
+Vous ne pouvez transmettre votre déménagement que si vous avez effectivement déménagé.
+En tant que mineur non déguisé, le lieu de séjour de son enfant
+les parents quittent pour la première fois leur résidence principale ailleurs
+s’installer, être accompagné d’un parent
+exerce un pouvoir de contrôle.</dct:description>
+    <dct:title xml:lang="FR">Conditions</dct:title>
+    <dct:description xml:lang="UK">Будь-яка людина у віці від 18 років і старше може вільно переходити на ходу.
+Батьки або опікуни дають переїзд своїх неповнолітніх дітей
+це означає, що.
+Дорослим членам сім'ї дозволяється переходити на свій переїзд. Вони мають
+або вам потрібна ваша ідентифікаційна картка.
+Ви можете пройти хід тільки після того, як ви фактично переїхали.
+Якщо неповнолітня особа, яка не охороняється, є місцем її проживання;
+батьки вперше залишають своє основне місце проживання в іншому місці.
+установа, повинна супроводжуватися особою, яка
+здійснення авторитету.</dct:description>
+    <dct:title xml:lang="DE">Bedingungen</dct:title>
     <dct:description xml:lang="NL">Iedereen die 18 jaar of ouder is, mag zelf de verhuizing doorgeven.
 Ouders of voogden geven de verhuizing van hun minderjarige kinderen
 door.
@@ -31,87 +141,43 @@ Als een niet-ontvoogde minderjarige de verblijfplaats van zijn
 ouders voor het eerst verlaat om zijn hoofdverblijf elders te
 vestigen, moet hij vergezeld zijn door iemand die het ouderlijke
 gezag uitoefent.</dct:description>
-    <dct:title xml:lang="EN">Conditions</dct:title>
+    <dct:description xml:lang="EN">Anyone aged 18 or over is free to pass on the move.
+Parents or guardians give the move of their minor children
+by.
+Adult family members are allowed to pass on your move. They have
+or you need your identity card.
+You can only pass on the move once you have actually moved.
+If a non-guardianated minor is the place of residence of his or her
+parents leave their main residence elsewhere for the first time
+establishment, must be accompanied by a person who
+exercise authority.</dct:description>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService_eabeb8b80bb149949e4ada0c1310c1be">
-    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement_eabbf646b4704974a622aa7752427f9d"/>
-    <dct:description></dct:description>
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule_cea78e0f23474c0f917d276a51727ec3"/>
-    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence_99138a81a728482ebc65d5719f0bb29a"/>
-    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPointe7770b8fa73d4f86bd6777dc4fad3aca"/>
-    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisationf0b30ae630744ed0a01adef366ab7a75"/>
-    <dct:identifier>PublicService_eabeb8b80bb149949e4ada0c1310c1be</dct:identifier>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
-    <cpsv:follows rdf:resource="http://cefat4cities.crosslang.com/content/Rule_e052ae7969764e37ae82fd024ecc424d"/>
-    <dct:title>
-    Aangifte van een adreswijziging - Gemeente Aalter
-  </dct:title>
-    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost_1c4650247b7c4962912ea4bbf9319d9a"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence_99138a81a728482ebc65d5719f0bb29a">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
-    <dct:title xml:lang="NL">Wat meebrengen?</dct:title>
-    <dct:identifier>Evidence_99138a81a728482ebc65d5719f0bb29a</dct:identifier>
-    <dct:description xml:lang="EN">Electronic identity card of all family members.
-Pin code to update the chip.</dct:description>
-    <dct:description xml:lang="NL">Elektronische identiteitskaart van alle gezinsleden.
-Pincode om de chip te updaten.</dct:description>
-    <dct:title xml:lang="EN">What do you bring?</dct:title>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule_cea78e0f23474c0f917d276a51727ec3">
-    <dct:title xml:lang="NL">Hoe melden?</dct:title>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
-    <dct:description xml:lang="NL">Je kan de adreswijziging online melden via het digitaal loket van
-jouw (nieuwe) gemeente.
-Je kan langsgaan bij de dienst Burgerzaken van jouw (nieuwe)
-gemeente.</dct:description>
-    <dct:description xml:lang="EN">You can report the change of address online via the Digital Window of
-your (new) municipality.
-You can go to the Citizens’ Office of your (new)
-municipality.</dct:description>
-    <dct:identifier>Rule_cea78e0f23474c0f917d276a51727ec3</dct:identifier>
-    <dct:title xml:lang="EN">How to report?</dct:title>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule_e052ae7969764e37ae82fd024ecc424d">
-    <dct:title xml:lang="NL">Waarmee kunnen we je helpen?</dct:title>
-    <dct:description></dct:description>
-    <dct:identifier>Rule_e052ae7969764e37ae82fd024ecc424d</dct:identifier>
-    <dct:title xml:lang="EN">What can we help you?</dct:title>
-    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="www.aalter.be">
-    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisationf0b30ae630744ed0a01adef366ab7a75">
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
-    <dct:spatial rdf:resource="www.aalter.be"/>
-    <skos:prefLabel># TODO</skos:prefLabel>
-    <cv:hasAddress rdf:nodeID="Nace6d6745c784ca09091acde2763dd11"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointe7770b8fa73d4f86bd6777dc4fad3aca">
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPointd5ceef0fe69a4385b42a39303ee92f92">
+    <schema:email>gemeente@aalter.be</schema:email>
     <schema:telephone>09 325 22 00</schema:telephone>
-    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
     <schema:telephone>www.aalter.be/afspraak
 of tel. 09 325 22 00.</schema:telephone>
     <schema:email>eerste.lijn@aalter.be</schema:email>
-    <schema:email>gemeente@aalter.be</schema:email>
     <schema:email>burgerzaken@aalter.be</schema:email>
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
     <schema:telephone>09 325 22 40</schema:telephone>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="Nace6d6745c784ca09091acde2763dd11">
-    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
-    <skos:prefLabel>09 325 22 40
-09 325 22 00
-De Plaats 14
-www.aalter.be/afspraak
-of tel. 09 325 22 00.</skos:prefLabel>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Rule_1eca0e844a8444beb55b7eb6256df698">
+    <dct:title xml:lang="EN">What can we help you?</dct:title>
+    <dct:description></dct:description>
+    <dct:title xml:lang="NL">Waarmee kunnen we je helpen?</dct:title>
+    <dct:title xml:lang="DE">Was können wir Ihnen helfen?</dct:title>
+    <dct:title xml:lang="FR">Comment pouvons-nous vous aider?</dct:title>
+    <dct:identifier>Rule_1eca0e844a8444beb55b7eb6256df698</dct:identifier>
+    <dct:title xml:lang="UK">Чим ми можемо вам допомогти?</dct:title>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#Rule"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost_1c4650247b7c4962912ea4bbf9319d9a">
-    <dct:identifier>Cost_1c4650247b7c4962912ea4bbf9319d9a</dct:identifier>
-    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
-    <dct:description xml:lang="EN">Electronic identity card of all family members.
-Pin code to update the chip.</dct:description>
-    <dct:description xml:lang="NL">Elektronische identiteitskaart van alle gezinsleden.
-Pincode om de chip te updaten.</dct:description>
+  <rdf:Description rdf:nodeID="Nd410cdfd053545099fb354e38302f0d5">
+    <skos:prefLabel>09 325 22 00
+09 325 22 40
+www.aalter.be/afspraak
+of tel. 09 325 22 00.
+De Plaats 14</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
   </rdf:Description>
 </rdf:RDF>
