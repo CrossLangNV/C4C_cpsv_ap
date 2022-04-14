@@ -123,7 +123,7 @@ class ItemContextBroker(Item):
                     elif AT_LANG == k:
                         """
                         Suggestion from Fernando Lopez
-                        
+
                         * ETSI CIM NGSI-LD LanguageProperty
                         'label': {
                             'type': 'LanguageProperty',
@@ -140,9 +140,8 @@ class ItemContextBroker(Item):
                                 'fr': 'une phrase'
                             }
                         }
-                        
+
                         """
-                        # TODO test
 
                         if 0:
                             # ETSI CIM NGSI-LD LanguageProperty
@@ -156,11 +155,19 @@ class ItemContextBroker(Item):
                             return d__
 
                         else:
+
+                            if isinstance(a[AT_LANG], str):
+                                _value = {a[AT_LANG]: a[AT_VALUE]}
+                            elif isinstance(a[AT_LANG], list):
+                                _value = {k: v for k, v in zip(a[AT_LANG], a[AT_VALUE])}
+                            else:
+                                # Unexpected, let's do default behaviour
+                                _value = {a[AT_LANG]: a[AT_VALUE]}
+
                             d__ = {
                                 "type": "Property",
-                                "value": {
-                                    a[AT_LANG]: a[AT_VALUE]
-                                }
+                                "value": _value
+
                             }
                             return d__
 
