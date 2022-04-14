@@ -1,5 +1,4 @@
 import copy
-import warnings
 from typing import FrozenSet, Iterator, List, Tuple
 
 import justext
@@ -356,14 +355,18 @@ def get_stoplist(language_or_language_code) -> FrozenSet[str]:
 
     try:
         stoplist = justext.get_stoplist(language_or_language_code)
-    except ValueError as e:  # Perhaps language code is given instead of language
-        warnings.warn(
-            f"Expected full language name: \"{language_or_language_code}\". Trying to cast from language code instead ",
-            UserWarning)
+    except ValueError as e_stoplist_name:
+        # Perhaps language code is given instead of language
+        # Try to cast to full language name.
         try:
             _language = _get_language_full_from_code(language_code=language_or_language_code)
-        except:
-            raise e
+        except Exception as e_cast:
+
+            s_error = f"Could not find matching stoplist and was unable to cast language code to full language name.\n" \
+                      f"Expected full language name or language code: \"{language_or_language_code}\"."
+
+            raise ValueError(ValueError(s_error), e_cast, e_stoplist_name)
+
         else:
             return justext.get_stoplist(_language)
     else:

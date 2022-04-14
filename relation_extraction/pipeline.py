@@ -1,11 +1,12 @@
 import os
 import time
+import warnings
 
 from rdflib import Literal
 
-from c4c_cpsv_ap.models import Cost, CriterionRequirement, Evidence, Rule
+from c4c_cpsv_ap.models import Cost, CriterionRequirement, Evidence, PublicService, Rule
 from connectors.translation import ETranslationConnector
-from relation_extraction.cities import CityParser
+from relation_extraction.cities import CityParser, Relations
 from relation_extraction.methods import RelationExtractor
 
 CEF_LOGIN = os.environ.get("CEF_LOGIN")
@@ -32,18 +33,25 @@ class RelationExtractor2(RelationExtractor):
 
         self.lang_code = lang_code
 
-    def extract_all(self, *args, verbose=0, **kwargs, ):
+    def extract_all(self, *args, verbose=0, **kwargs, ) -> PublicService:
         if verbose:
             print("Relation extraction contact info - Start")
+
         ps = super(RelationExtractor2, self).extract_all(*args, **kwargs)
         if verbose:
             print("Relation extraction contact info - Finish")
 
         if verbose:
             print("Relation extraction req/rule/evidence/cost - Start")
-        d_relations = self.parser.extract_relations(self.html,
-                                                    url=self.url,
-                                                    verbose=verbose)
+
+        try:
+            d_relations = self.parser.extract_relations(self.html,
+                                                        url=self.url,
+                                                        verbose=verbose)
+        except Exception as e:
+            warnings.warn(f"Unable to extract relations:\n{e}", UserWarning)
+            d_relations = Relations()
+
         if verbose:
             print("Relation extraction req/rule/evidence/cost - Finish")
 
@@ -119,6 +127,8 @@ class RelationExtractor2(RelationExtractor):
                                                         uri_event=uri_event,
                                                         context=self.context)
 
+        return ps
+
     def translate(self, target: str, source: str):
         """
 
@@ -163,13 +173,17 @@ class RelationExtractor2(RelationExtractor):
                 # No need to translate
                 continue
 
-            l_text_target = translator.trans_list_blocking(l_text_source,
-                                                           target=target_i,
-                                                           source=source)
+            try:
+                l_text_target = translator.trans_list_blocking(l_text_source,
+                                                               target=target_i,
+                                                               source=source)
 
-            for (s, p, _, c), text_trans in zip(l_to_translate, l_text_target):
-                quad_trans = (s, p, Literal(text_trans, lang=target_i), c)
-                g.add(quad_trans)
+            except Exception as e:
+                warnings.warn(f"Unable to translate from {source} to {target_i}:\n{e}", UserWarning)
+            else:
+                for (s, p, _, c), text_trans in zip(l_to_translate, l_text_target):
+                    quad_trans = (s, p, Literal(text_trans, lang=target_i), c)
+                    g.add(quad_trans)
 
         t1 = time.time()
         print(f"Translating labels - End ({t1 - t0:.2f} s)")

@@ -545,6 +545,7 @@ class TestCLISaveHTMLParsing(unittest.TestCase):
                                       general=True,
                                       lang=lang,
                                       filename_html_parsing=path_scripts(basename_html_parsing),
+                                      translation=["EN", "NB", "NN"]
                                       )
 
         return

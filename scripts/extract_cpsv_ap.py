@@ -80,7 +80,7 @@ def extract_cpsv_ap_from_html(filename_html,
                               filename_rdf,
                               context,
                               country_code: str,
-                              lang,  # Only needed when using general
+                              lang: str,  # Only needed when using general
                               url: str = None,
                               extract_concepts: bool = False,
                               general: bool = False,
@@ -105,6 +105,16 @@ def extract_cpsv_ap_from_html(filename_html,
     Returns:
         0 if successful
     """
+
+    # Cleaning input
+    if lang is not None:
+        lang = lang.upper()
+
+    if translation is not None:
+        if isinstance(translation, str):
+            translation = translation.upper()
+        else:
+            translation = [l_i.upper() for l_i in translation]
 
     if not os.path.exists(filename_html):
         warnings.warn(f"Could not find {filename_html}", UserWarning)

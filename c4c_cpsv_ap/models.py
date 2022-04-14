@@ -241,6 +241,8 @@ class PublicService(CPSVAPModel):
         """
         if isinstance(v, ContactPoint):
             return [v]
+        elif v is None:
+            return []  # empty
         else:
             return v
 
