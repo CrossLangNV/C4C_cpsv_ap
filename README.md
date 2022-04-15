@@ -45,6 +45,22 @@ be visualized with [RDF Grapher](https://www.ldf.fi/service/rdf-grapher):
 
 ![Visualisation of extracted CPSV-AP RDF](https://user-images.githubusercontent.com/8747446/161078882-eae61bd5-1348-4be8-bb9c-b38b72b75c07.png)
 
+## Upload to the Context Broker
+
+Once the CPSV-AP relations are extracted, they can be pushed to the Context Broker:
+
+e.g.:
+
+```commandline
+docker compose run cpsv_ap python scripts/upload_context_broker.py scripts/EXAMPLES/DEMO_BELGIUM_GENERAL.rdf
+```
+
+For extra help, run:
+
+```commandline
+docker compose run cpsv_ap python scripts/upload_context_broker.py -h
+```
+
 ## Validation
 
 For validation of the RDF, we currently refer
