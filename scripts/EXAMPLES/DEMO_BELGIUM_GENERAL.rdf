@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:cpsv="http://purl.org/vocab/cpsv#"
+   xmlns:cv="http://data.europa.eu/m8g/"
+   xmlns:dct="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:schema="https://schema.org/"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicOrganisation6df8d2726ee043b1a979e4ec1093084f">
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/PublicOrganisation"/>
+    <skos:prefLabel># TODO</skos:prefLabel>
+    <dct:spatial rdf:resource="http://stad.gent"/>
+    <cv:hasAddress rdf:nodeID="N0e61f2dd89ab44238c06389518d48ee1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/PublicService_4f148df149ac4e67ba6ecd2998224685">
+    <dct:identifier>PublicService_4f148df149ac4e67ba6ecd2998224685</dct:identifier>
+    <cv:hasCompetentAuthority rdf:resource="http://cefat4cities.crosslang.com/content/PublicOrganisation6df8d2726ee043b1a979e4ec1093084f"/>
+    <cv:hasContactPoint rdf:resource="http://cefat4cities.crosslang.com/content/ContactPoint7e925478b8514b0e82b591d0d0bbd925"/>
+    <cv:hasCriterion rdf:resource="http://cefat4cities.crosslang.com/content/CriterionRequirement_c85576366a1e4d13839c2f6ebaee2d13"/>
+    <cpsv:hasInput rdf:resource="http://cefat4cities.crosslang.com/content/Evidence_1253cb13532043f6a4641fe30cb24554"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/cpsv#PublicService"/>
+    <dct:description>De Stad Gent heft een belasting op de woningen zonder inschrijving in het bevolkingsregister of vreemdelingenregister.</dct:description>
+    <dct:title>
+   Belasting op woningen zonder inschrijving in het bevolkingsregister (zogenaamde 'tweede verblijven') | Stad Gent
+  </dct:title>
+    <cv:hasCost rdf:resource="http://cefat4cities.crosslang.com/content/Cost_0b8e0b516d6040d69ac3969ba3bcffcf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/CriterionRequirement_c85576366a1e4d13839c2f6ebaee2d13">
+    <dct:title xml:lang="EN">What are the conditions?</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/CriterionRequirement"/>
+    <dct:title xml:lang="FR">Quelles sont les conditions?</dct:title>
+    <dct:identifier>CriterionRequirement_c85576366a1e4d13839c2f6ebaee2d13</dct:identifier>
+    <dct:title xml:lang="NL">Wat zijn de voorwaarden?</dct:title>
+    <dct:title xml:lang="DE">Welche Bedingungen sind erfüllt?</dct:title>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N0e61f2dd89ab44238c06389518d48ee1">
+    <skos:prefLabel>09 210 10 10
+Gentinfo@stad.gent
+09 210 10 10
+1.200
+1.220
+1.500
+1.526
+1.551
+1.578
+Woodrow Wilsonplein 1,
+9000 Gent
+09 266 74 80
+stadsbelastingen@stad.gent</skos:prefLabel>
+    <rdf:type rdf:resource="http://www.w3.org/2006/vcard/ns#Address"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/ContactPoint7e925478b8514b0e82b591d0d0bbd925">
+    <rdf:type rdf:resource="https://schema.org/ContactPoint"/>
+    <schema:email>Woodrow Wilsonplein 1,
+9000 Gent
+09 266 74 80
+stadsbelastingen@stad.gent</schema:email>
+    <schema:email>09 210 10 10
+Gentinfo@stad.gent</schema:email>
+    <schema:telephone>Woodrow Wilsonplein 1,
+9000 Gent
+09 266 74 80
+stadsbelastingen@stad.gent</schema:telephone>
+    <schema:telephone>09 210 10 10</schema:telephone>
+    <schema:telephone>09 210 10 10
+Gentinfo@stad.gent</schema:telephone>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Evidence_1253cb13532043f6a4641fe30cb24554">
+    <dct:title xml:lang="EN">What are the steps?</dct:title>
+    <dct:title xml:lang="NL">Welke stappen zijn er?</dct:title>
+    <dct:title xml:lang="FR">Quelles sont les étapes à suivre?</dct:title>
+    <dct:title xml:lang="DE">Was sind die Schritte?</dct:title>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Evidence"/>
+    <dct:identifier>Evidence_1253cb13532043f6a4641fe30cb24554</dct:identifier>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://cefat4cities.crosslang.com/content/Cost_0b8e0b516d6040d69ac3969ba3bcffcf">
+    <dct:identifier>Cost_0b8e0b516d6040d69ac3969ba3bcffcf</dct:identifier>
+    <rdf:type rdf:resource="http://data.europa.eu/m8g/Cost"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://stad.gent">
+    <rdf:type rdf:resource="http://purl.org/dc/terms/Location"/>
+  </rdf:Description>
+</rdf:RDF>

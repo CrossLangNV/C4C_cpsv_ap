@@ -28,13 +28,17 @@ in [scripts/extract_cpsv_ap.py](scripts/extract_cpsv_ap.py).
 
 This CLI can be used after building the images with our docker-compose file.
 
-> docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -h
+```commandline
+docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -h
+```
 
 ![image](https://user-images.githubusercontent.com/8747446/161078551-6ce66a33-9fe5-4619-af65-b711cac44632.png)
 
 An example to run the extraction:
 
-> docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -g -o scripts/DEMO_BELGIUM_GENERAL.rdf -l NL -c BE -m http://stad.gent scripts/DEMO_PROCEDURE.html
+```commandline
+docker compose run cpsv_ap python scripts/extract_cpsv_ap.py -g -o scripts/examples/DEMO_BELGIUM_GENERAL.rdf --html_parsing scripts/examples/DEMO_BELGIUM_HTML_PARSING.html -l NL -c BE -m http://stad.gent scripts/examples/DEMO_BELGIUM.html --translate NL EN FR DE
+```
 
 The output is saved in [tests/scripts/examples/DEMO_PROCEDURE.html](tests/scripts/examples/DEMO_PROCEDURE.html) and can
 be visualized with [RDF Grapher](https://www.ldf.fi/service/rdf-grapher):

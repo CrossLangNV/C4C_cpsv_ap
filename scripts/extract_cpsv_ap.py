@@ -5,7 +5,6 @@ from typing import List, Union
 
 from data.html import get_html
 from relation_extraction.aalter import AalterParser
-from relation_extraction.affligem import AffligemParser
 from relation_extraction.austrheim import AustrheimParser
 from relation_extraction.cities import CityParser
 from relation_extraction.general_classifier import GeneralCityParser
@@ -22,8 +21,8 @@ def get_parser():
                                                  ' as defined by the CPSV-AP vocabulary.')
 
     # Add the arguments
-    parser.add_argument('path',
-                        metavar='path',
+    parser.add_argument('html',
+                        metavar='html',
                         type=str,
                         help='input filename to read the HTML')
 
@@ -70,8 +69,20 @@ def get_parser():
     parser.add_argument("-l",
                         "--language",
                         metavar="code",
-                        help="Language code (e.g. FR, NL, DE, IT, EN...)",
+                        help="As language code (ISO 639-1, e.g. FR, NL, DE, IT, EN...)",
                         required=True)
+
+    parser.add_argument("--translate",
+                        metavar="code",
+                        type=str,
+                        help="Translate the labels to the provided language(s). Give as Language code",
+                        nargs="+")
+
+    parser.add_argument("--html_parsing",
+                        metavar="filename",
+                        type=str,
+                        help="Save the intermediate state of the HTML parsing. (For debugging)",
+                        )
 
     return parser
 
@@ -125,16 +136,23 @@ def extract_cpsv_ap_from_html(filename_html,
     except FileNotFoundError as e:
         raise FileNotFoundError(f"Could not find HTML file: {filename_html}") from e
 
-    if general:
+    def get_parser():
+        if not general:
+            city_parser = get_municipality_parser(country_code=country_code,
+                                                  url=url)
+
+            if city_parser is not None:
+                return city_parser
+
+        # Backup
         city_parser = GeneralCityParser(lang_code=lang,
                                         filename_html_parsing=filename_html_parsing)
+        return city_parser
 
-    else:
-        city_parser = get_municipality_parser(country_code=country_code,
-                                              url=url)
+    parser = get_parser()
 
     relation_extractor = RelationExtractor2(html,
-                                            parser=city_parser,
+                                            parser=parser,
                                             url=url,
                                             context=context,
                                             country_code=country_code,
@@ -159,14 +177,16 @@ def extract_cpsv_ap_from_html(filename_html,
 
 def main(args: argparse.Namespace):
     """Run the script from args"""
-    return extract_cpsv_ap_from_html(filename_html=args.path,
+    return extract_cpsv_ap_from_html(filename_html=args.html,
                                      filename_rdf=args.output,
                                      extract_concepts=args.terms,
                                      context=args.municipality,
                                      country_code=args.country,
                                      url=args.url,
                                      general=args.general,
-                                     lang=args.language
+                                     lang=args.language,
+                                     translation=args.translate,
+                                     filename_html_parsing=args.html_parsing
                                      )
 
 
@@ -186,9 +206,6 @@ def get_municipality_parser(country_code: str = "",
         return AustrheimParser()
     elif country_code.upper() in ["SL", "SI"]:
         return NovaGoricaParser()
-
-    # Backup: Affligem parser
-    return AffligemParser()
 
 
 if __name__ == '__main__':
