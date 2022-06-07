@@ -321,7 +321,7 @@ class TestCLIGeneral(unittest.TestCase):
 
         args = parser.parse_args(l_args)
 
-        extract_cpsv_ap_from_html(filename_html=args.path,
+        extract_cpsv_ap_from_html(filename_html=args.html,
                                   filename_rdf=args.output,
                                   extract_concepts=args.terms,
                                   context=args.municipality,
@@ -499,7 +499,7 @@ class TestCLIGeneralChunker(unittest.TestCase):
             parser = get_parser()
             args = parser.parse_args(l_args)
 
-            extract_cpsv_ap_from_html(filename_html=path_scripts(args.path),
+            extract_cpsv_ap_from_html(filename_html=path_scripts(args.html),
                                       filename_rdf=path_scripts(args.output),
                                       extract_concepts=args.terms,
                                       context=args.municipality,
@@ -546,7 +546,7 @@ class TestCLISaveHTMLParsing(unittest.TestCase):
                                       general=True,
                                       lang=lang,
                                       filename_html_parsing=path_scripts(basename_html_parsing),
-                                      translation=["EN", "NB", "NN"]
+                                      translation=[]  # ["EN", "NB", "NN"]
                                       )
 
         return

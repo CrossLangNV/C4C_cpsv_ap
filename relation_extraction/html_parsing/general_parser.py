@@ -49,7 +49,7 @@ class GeneralHTMLParser:
 
         return self._justext_wrapper.paragraphs
 
-    def get_sections(self) -> List[GeneralSection]:
+    def get_sections(self, include_sub=False) -> List[GeneralSection]:
 
         prev_section = None
         l_sections = []

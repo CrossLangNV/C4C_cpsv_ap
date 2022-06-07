@@ -37,7 +37,7 @@ countries:
       Affligem:
         language: "NL"
         procedures:
-          - https://www.affligem.be/Affligem/Nederlands/Leven/identiteitsbewijzen,-rijbewijzen-en-afschriften/afschriften-uittreksels-getuigschriften/wettiging-van-handtekening/page.aspx/169#
+          - https://www.affligem.be/leven/identiteit-en-rijbewijzen/identiteit-belg/wettiging-handtekening
         parser:
           titles: html_headings
 

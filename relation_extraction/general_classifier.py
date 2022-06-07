@@ -450,6 +450,6 @@ class GeneralCityParser(ClassifierCityParser):
                 warnings.warn(f"Tried to export HTML parsing result to {filename_html_parsing}, but failed",
                               UserWarning)
 
-        sections = html_parser.get_sections()
+        sections = html_parser.get_sections(include_sub=include_sub)
 
         return sections

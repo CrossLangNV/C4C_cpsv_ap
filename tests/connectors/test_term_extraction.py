@@ -295,10 +295,20 @@ class TestConnectorContactInfoClassification(unittest.TestCase):
 
     def test_classify_contact_type(self):
         conn = ConnectorContactInfoClassification(CONTACT_CLASSIFICATION)
-        label = conn._post_classify_contact_type(self.s_email)
+        l_label = conn._post_classify_contact_type(self.s_email,
+                                                   country_code="BE")
 
-        self.assertIsInstance(label, Label)
-        self.assertEqual(self.label_email, label.name)
+        with self.subTest("List"):
+            self.assertIsInstance(l_label, list)
+
+        with self.subTest("Single item"):
+            self.assertEqual(len(l_label), 1)
+
+        with self.subTest('label'):
+            label = l_label[0]
+
+            self.assertIsInstance(label, Label)
+            self.assertEqual(self.label_email, label.name)
 
     def test_labels(self):
         conn = ConnectorContactInfoClassification(CONTACT_CLASSIFICATION)

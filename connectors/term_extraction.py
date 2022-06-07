@@ -140,8 +140,10 @@ class ConnectorTermExtraction(Connector):
 
         r = requests.post(self.url + "/extract_contact_info",
                           json=doc.dict())
-        j_r = r.json()
 
+        r.raise_for_status()
+
+        j_r = r.json()
         contact_info_response = ContactInfo(**j_r)
 
         return contact_info_response
