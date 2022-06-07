@@ -13,6 +13,7 @@ import warnings
 
 from connectors.translation import ETranslationConnector
 
+CEF_API = os.environ.get("CEF_API")
 CEF_LOGIN = os.environ.get("CEF_LOGIN")
 CEF_PASSW = os.environ.get("CEF_PASSW")
 
@@ -55,7 +56,8 @@ class TestETranslationConnector(unittest.TestCase):
 
     def setUp(self) -> None:
         self.connector = ETranslationConnector(username=CEF_LOGIN,
-                                               password=CEF_PASSW)
+                                               password=CEF_PASSW,
+                                               url=CEF_API)
 
     def test_info(self):
 
@@ -74,7 +76,7 @@ class TestETranslationConnector(unittest.TestCase):
         return
 
     def test_docs(self):
-        r = self.connector._get(self.connector.url_info)
+        r = self.connector.docs()
 
         self.assertTrue(r.ok, r.content)
 
@@ -261,7 +263,8 @@ class TestETranslationConnector(unittest.TestCase):
 class TestEtranslationConnectorList(unittest.TestCase):
     def setUp(self) -> None:
         self.connector = ETranslationConnector(username=CEF_LOGIN,
-                                               password=CEF_PASSW)
+                                               password=CEF_PASSW,
+                                               url=CEF_API)
 
     def test_simple(self):
         l = ["one", "two", "three"]

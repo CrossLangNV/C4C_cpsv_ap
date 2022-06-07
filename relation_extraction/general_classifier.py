@@ -24,6 +24,7 @@ from relation_extraction.zagreb import ZagrebParser
 DIR_EXAMPLE_FILES = os.path.join(os.path.dirname(__file__), "../tests/relation_extraction/EXAMPLE_FILES")
 url2filename = lambda page: os.path.join(DIR_EXAMPLE_FILES, re.sub(r'\W+', '_', page) + ".html")
 
+CEF_API = os.environ.get("CEF_API")
 CEF_LOGIN = os.environ.get("CEF_LOGIN")
 CEF_PASSW = os.environ.get("CEF_PASSW")
 
@@ -69,7 +70,8 @@ class Dataset:
                 ]
 
         translator = ETranslationConnector(username=CEF_LOGIN,
-                                           password=CEF_PASSW)
+                                           password=CEF_PASSW,
+                                           url=CEF_API)
 
         l_d = []
 
@@ -289,7 +291,8 @@ class GeneralClassifier(CPSVAPRelationsClassifier):
 
         self.bert_connector = BERTConnector()
         self.translator = ETranslationConnector(username=CEF_LOGIN,
-                                                password=CEF_PASSW)
+                                                password=CEF_PASSW,
+                                                url=CEF_API)
 
         self.lang = lang  # language of source files
         self.target = target

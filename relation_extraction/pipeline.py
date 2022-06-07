@@ -9,6 +9,7 @@ from connectors.translation import ETranslationConnector
 from relation_extraction.cities import CityParser, Relations
 from relation_extraction.methods import RelationExtractor
 
+CEF_API = os.environ.get("CEF_API")
 CEF_LOGIN = os.environ.get("CEF_LOGIN")
 CEF_PASSW = os.environ.get("CEF_PASSW")
 
@@ -160,7 +161,8 @@ class RelationExtractor2(RelationExtractor):
                 l_to_translate.append((s, p, o, c))
 
         translator = ETranslationConnector(username=CEF_LOGIN,
-                                           password=CEF_PASSW)
+                                           password=CEF_PASSW,
+                                           url=CEF_API)
 
         l_text_source = [str(o) for s, p, o, c in l_to_translate]
 

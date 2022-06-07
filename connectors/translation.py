@@ -8,24 +8,30 @@ import requests
 
 
 class ETranslationConnector:
-    base_url = 'https://etranslation.cefat4cities.crosslang.com'
-    url_info = urljoin(base_url + '/', 'info')
-    url_trans_snippet = urljoin(base_url + '/', 'translate/snippet')
+    url_info = 'info'
+    url_trans_snippet = 'translate/snippet'
     url_trans_snippet_id = urljoin(url_trans_snippet + '/', '{id}')
     url_trans_snippet_blocking = urljoin(url_trans_snippet + '/', 'blocking')
-    url_trans_doc = urljoin(base_url + '/', 'translate/document')
+    url_trans_doc = 'translate/document'
     url_trans_doc_id = urljoin(url_trans_doc + '/', '{id}')
     url_trans_doc_blocking = urljoin(url_trans_doc + '/', 'blocking')
 
-    url_docs = urljoin(url_trans_doc, "docs")
+    url_docs = "docs"
 
-    def __init__(self, username: str, password: str):
+    def __init__(self, username: str, password: str,
+                 url: str  # 'https://etranslation.cefat4cities.crosslang.com'
+                 ):
         self._username = username
         self._password = password
+        self.home_url = url
 
     def info(self):
         r = self._get(self.url_info)
         return r.json()
+
+    def docs(self) -> requests.Response:
+        r = self._get(self.url_docs)
+        return r
 
     def trans_snippet(self,
                       source: str,
@@ -187,13 +193,13 @@ class ETranslationConnector:
     def _get(self, url, auth=None, *args, **kwargs) -> requests.Response:
         if auth is None:
             auth = (self._username, self._password)
-        r = requests.get(url=url, auth=auth, *args, **kwargs)
+        r = requests.get(url=urljoin(self.home_url + '/', url), auth=auth, *args, **kwargs)
 
         return r
 
     def _post(self, url, auth=None, *args, **kwargs) -> requests.Response:
         if auth is None:
             auth = (self._username, self._password)
-        r = requests.post(url=url, auth=auth, *args, **kwargs)
+        r = requests.post(url=urljoin(self.home_url + '/', url), auth=auth, *args, **kwargs)
 
         return r
