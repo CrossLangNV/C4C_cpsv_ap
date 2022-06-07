@@ -200,7 +200,8 @@ def _get_annotation_text(cas: Cas,
 
     l_annotation = []
 
-    for ts in _get_list_feature_structure(cas, annotation):
+    for ts in _get_list_feature_structure(cas, annotation,
+                                          sofa_id=sofa_id):
         s = ts.get_covered_text()
 
         if strip:
@@ -240,7 +241,7 @@ def _get_annotation_content(cas: Cas,
     l_contact_typesystem[0].content
     """
 
-    for fs in _get_list_feature_structure(cas, annotation):
+    for fs in _get_list_feature_structure(cas, annotation, sofa_id=sofa_id):
         s = fs.content
         l_annotation.append(s)
 

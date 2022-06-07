@@ -103,8 +103,9 @@ class TestConnectorTermExtractionContactInfo(unittest.TestCase):
 
             def clean(s):
                 # Replace double newlines
+                # strip begin and end
+                s_lines = map(str.strip, s.splitlines())
 
-                s_lines = s.splitlines()
                 # Removes empty lines
                 s = "\n".join(filter(lambda l: l, s_lines))
 
