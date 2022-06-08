@@ -19,7 +19,7 @@ class ETranslationConnector:
     url_docs = "docs"
 
     def __init__(self, username: str, password: str,
-                 url: str  # 'https://etranslation.cefat4cities.crosslang.com'
+                 url: str  # 'https://etranslation-cefat4cities.crosslang.com'
                  ):
         self._username = username
         self._password = password

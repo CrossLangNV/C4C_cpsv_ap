@@ -20,8 +20,7 @@ class Section(list):
         _l = [title] + paragraphs
         super(Section, self).__init__(_l)
 
-        if level is not None:
-            self._level = level
+        self._level = level
 
     @property
     def title(self):
@@ -48,7 +47,7 @@ class Section(list):
         return delimiter.join(self.paragraphs)
 
     @property
-    def level(self) -> int:
+    def level(self) -> Union[None, int]:
         """
         The level of the (sub)section: h1, h2, h3...
         """

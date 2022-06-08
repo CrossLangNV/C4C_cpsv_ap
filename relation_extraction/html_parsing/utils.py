@@ -98,7 +98,8 @@ def _tmp_html(url, filename_html=None) -> str:
 def _tmp_filename(name: str,
                   ext: str = "",
                   prefix: str = "",
-                  c_max: int = 100) -> str:
+                  c_max: int = 100,
+                  dir=FOLDER_TMP) -> str:
     """
 
     Args:
@@ -118,7 +119,7 @@ def _tmp_filename(name: str,
     if len(basename) > c_max:
         basename = f"{basename[:c_max]}_{hashlib.sha1(name.encode()).hexdigest()}"
 
-    tmp_filename = os.path.join(FOLDER_TMP, f"{prefix}{basename}{ext}")
+    tmp_filename = os.path.join(dir, f"{prefix}{basename}{ext}")
 
     return tmp_filename
 
