@@ -1,8 +1,9 @@
 import os
 
-from data.html import get_html, url2html
+from data.html import url2html
 from data.utils.sitemap import DIR_EXT, FILENAME_SITEMAP_OVERVIEW_TMP, get_sitemap_csv, process_sitemap
 from relation_extraction.html_parsing.utils import _tmp_filename
+from scripts.extract_cpsv_ap import extract_cpsv_ap_from_html
 
 DIR_PROCESSED = os.path.join(DIR_EXT, '../processed')
 
@@ -30,15 +31,38 @@ def download_sitemap(filename) -> None:
 def pipeline_all(filename):
     df_all = get_sitemap_csv(filename)
 
+    context = "https://berlare.be"
+    country_code = "BE"
+    language_code = "NL"
+    translations = ["EN", "NL", "FR", "DE",
+                    "EL", "UK"  # Optional ones
+                    ]
+
     for i, row in df_all.iterrows():
         url = row.url
 
         filename_html = _tmp_filename(url, ext='.html',
                                       dir=DIR_EXT)
 
-        s_html = get_html(filename_html)
+        filename_html_parsing = _tmp_filename(url, prefix='parsing_', ext='.html',
+                                              dir=DIR_PROCESSED)
 
-        DIR_PROCESSED
+        filename_rdf = _tmp_filename(url, ext='.rdf',
+                                     dir=DIR_PROCESSED)
+
+        # s_html = get_html(filename_html)
+
+        extract_cpsv_ap_from_html(filename_html=filename_html,
+                                  filename_rdf=filename_rdf,
+                                  extract_concepts=False,
+                                  context=context,
+                                  country_code=country_code,
+                                  url=url,
+                                  general=True,
+                                  lang=language_code,
+                                  translation=translations,
+                                  filename_html_parsing=filename_html_parsing
+                                  )
 
     return
 
