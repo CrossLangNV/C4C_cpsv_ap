@@ -31,3 +31,18 @@ HAVING (COUNT(*) >= 2)
 ORDER BY ?subject ?predicate
 LIMIT 50
 ```
+
+Count type of subjects
+
+```
+SELECT ?object (count(?subject) as ?n)
+WHERE {
+	Graph ?g { # when saved in named graph
+	
+  ?subject a ?object
+  }}
+
+GROUP BY ?object
+ORDER BY DESC(?n)
+LIMIT 25
+```
