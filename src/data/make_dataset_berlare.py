@@ -28,7 +28,8 @@ def download_sitemap(filename) -> None:
         url2html(url, filename=filename_html)
 
 
-def pipeline_all(filename):
+def pipeline_all(filename,
+                 from_scratch=False):
     df_all = get_sitemap_csv(filename)
 
     context = "https://berlare.be"
@@ -39,6 +40,8 @@ def pipeline_all(filename):
                     ]
 
     for i, row in df_all.iterrows():
+        print(f'Webpage [{i + 1}/{len(df_all)}]')
+
         url = row.url
 
         filename_html = _tmp_filename(url, ext='.html',
@@ -49,6 +52,9 @@ def pipeline_all(filename):
 
         filename_rdf = _tmp_filename(url, ext='.rdf',
                                      dir=DIR_PROCESSED)
+
+        if from_scratch or os.path.exists(filename_rdf):
+            continue
 
         # s_html = get_html(filename_html)
 

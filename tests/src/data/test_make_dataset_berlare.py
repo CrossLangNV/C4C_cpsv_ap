@@ -48,7 +48,7 @@ class TestProcessSitemap(unittest.TestCase):
 
 
 class Test_Download(unittest.TestCase):
-    def test_foo(self, download=False):
+    def test_call(self, download=False):
         if download:
             download_sitemap(FILENAME_SITEMAP_OVERVIEW_TMP)
 
@@ -66,7 +66,7 @@ class Test_Download(unittest.TestCase):
 
 
 class TestPipelineAll(unittest.TestCase):
-    def test_foo(self):
+    def test_call(self):
         pipeline_all(FILENAME_SITEMAP_OVERVIEW_TMP)
 
 
