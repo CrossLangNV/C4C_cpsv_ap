@@ -25,7 +25,17 @@ def get_html(filename, encoding='utf-8') -> str:
         return f.read()
 
 
-def url2html(url, filename=None):
+def url2html(url, filename=None) -> str:
+    """
+    Get html from url and save it to filename.
+
+    Args:
+        url: url to get html from
+        filename: (Optional) filename to save html to
+
+    Returns:
+        html: html from url
+    """
     # def get_encoding(rawdata):
     #     result = chardet.detect(rawdata)
     #     charenc = result['encoding']

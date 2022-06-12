@@ -64,6 +64,9 @@ class MyTestCase(unittest.TestCase):
 
             self.assertIn('Wat breng je mee??', section3.title)
 
+        with self.subTest('Limited sections'):
+            self.assertLessEqual(len(sections), 4, "Expected at most 4 sections (including title)")
+
 
 if __name__ == '__main__':
     unittest.main()

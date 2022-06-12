@@ -1,3 +1,4 @@
+import re
 from typing import List, Type
 
 from relation_extraction.html_parsing.justext_wrapper import GeneralParagraph, get_stoplist, JustextWrapper
@@ -44,7 +45,6 @@ class GeneralHTMLParser:
         Get all the paragraphs from the HTML for further processing.
 
         Returns:
-
         """
 
         return self._justext_wrapper.paragraphs
@@ -65,11 +65,21 @@ class GeneralHTMLParser:
                 if prev_section is not None:
                     l_sections.append(prev_section)
 
+                # Try to get the level of the heading
+                try:
+                    # Get the last part of the path
+                    el_x = paragraph.dom_path.rsplit(".", 1)[-1]
+                    level = int(re.findall(r"h(\d)", el_x)[0])
+                except:
+                    level = None
+
                 # Make a new section.
                 prev_section = GeneralSection(title=text,
-                                              paragraphs=[])
+                                              paragraphs=[],
+                                              level=level)
 
             else:
+                # This section has no title (e.g. introduction)
                 if prev_section is None:
                     prev_section = GeneralSection(title="",
                                                   paragraphs=[])
