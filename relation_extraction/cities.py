@@ -147,10 +147,10 @@ class RegexCPSVAPRelationsClassifier(CPSVAPRelationsClassifier):
     """
 
     def __init__(self,
-                 pattern_criterion_requirement: str,
-                 pattern_rule: str,
-                 pattern_evidence: str,
-                 pattern_cost: str,
+                 pattern_criterion_requirement: Optional[str] = None,
+                 pattern_rule: Optional[str] = None,
+                 pattern_evidence: Optional[str] = None,
+                 pattern_cost: Optional[str] = None,
                  *args,
                  **kwargs):
         super(RegexCPSVAPRelationsClassifier, self).__init__(*args,
@@ -164,22 +164,26 @@ class RegexCPSVAPRelationsClassifier(CPSVAPRelationsClassifier):
     def predict_criterion_requirement(self,
                                       title: str = None,
                                       paragraph: str = None):
-        return bool(re.match(self.pattern_criterion_requirement, title, re.IGNORECASE))
+        if self.pattern_criterion_requirement:
+            return bool(re.match(self.pattern_criterion_requirement, title, re.IGNORECASE))
 
     def predict_rule(self,
                      title: str = None,
                      paragraph: str = None):
-        return bool(re.match(self.pattern_rule, title, re.IGNORECASE))
+        if self.pattern_rule:
+            return bool(re.match(self.pattern_rule, title, re.IGNORECASE))
 
     def predict_evidence(self,
                          title: str = None,
                          paragraph: str = None):
-        return bool(re.match(self.pattern_evidence, title, re.IGNORECASE))
+        if self.pattern_evidence:
+            return bool(re.match(self.pattern_evidence, title, re.IGNORECASE))
 
     def predict_cost(self,
                      title: str = None,
                      paragraph: str = None):
-        return bool(re.match(self.pattern_cost, title, re.IGNORECASE))
+        if self.pattern_cost:
+            return bool(re.match(self.pattern_cost, title, re.IGNORECASE))
 
 
 class CityParser(abc.ABC):

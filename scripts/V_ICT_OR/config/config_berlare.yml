@@ -1,0 +1,35 @@
+classifiers:
+  # All classifiers
+  title:
+    type: rules
+    rules:
+      - "section.level": 1
+  description:
+    type: rules
+    rules:
+      "section.level": 2
+      "section.title": "Wat?"
+  rule:
+    type: rules
+    rules:
+      "section.level": 2
+      "section.title": "Hoe aanvragen?"
+  evidence:
+    type: rules
+    rules:
+      "section.level": 2
+      "section.title": 'Wat breng je mee?'
+  cost:
+    type: rules
+    rules:
+      "section.level": 2
+      "section.title": "Kostprijs"
+  contact_info:
+    type: rules
+    rules:
+      "section.title": "Contact"
+
+city:
+  url: "http://berlare.be/"
+  language: NL
+  country: BE

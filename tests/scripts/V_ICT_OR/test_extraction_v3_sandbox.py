@@ -3,7 +3,7 @@ import unittest
 
 import pandas as pd
 
-from data.html import url2html
+from data.html import get_html, url2html
 from relation_extraction.html_parsing.utils import _tmp_filename
 from scripts.V_ICT_OR.extraction_v3_sandbox import Berlare_rule_based_extraction, Berlare_rule_based_summary, \
     extract_cpsv_ap_from_html_v3
@@ -99,9 +99,6 @@ class TestExtractCPSVAP_V3(unittest.TestCase):
         country_code = "BE"
         lang = "NL"
 
-        # TODO do we still need this?
-        general = True
-
         for url in [url_adreswijziging, url_recyclage, url_vergunningen, url_geboorte]:
 
             filename_html = _tmp_filename(url, ext=".html")
@@ -112,14 +109,15 @@ class TestExtractCPSVAP_V3(unittest.TestCase):
             if not os.path.exists(filename_html):
                 url2html(url, filename_html)
 
-            extract_cpsv_ap_from_html_v3(filename_html,
+            html = get_html(filename_html)
+
+            extract_cpsv_ap_from_html_v3(html,
                                          filename_rdf,
                                          context=context,
                                          country_code=country_code,
                                          lang=lang,
                                          url=url,
                                          extract_concepts=False,
-                                         general=general,
                                          filename_html_parsing=filename_html_parsing,
                                          translation=translation)
 
