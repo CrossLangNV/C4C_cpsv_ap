@@ -2,10 +2,10 @@ torchtext==0.8.0
 scikit-learn==0.23.2
 scikit-multilearn==0.2.0
 transformers==4.7.0
-numpy==1.18.5
+numpy==1.21
 pandas==1.2.4
 pytest==6.1.1
-fastapi==0.61.1
+fastapi==0.65.2
 uvicorn==0.12.1
 
 spacy==2.3.2
@@ -21,7 +21,7 @@ datasets==1.11.0
 faiss-gpu==1.7.1.post2
 beautifulsoup4==4.9.3
 matplotlib==3.4.3
-Scrapy==2.5.1
+Scrapy==2.6.0
 # ipython
 # jupyter
 # jupyterlab
